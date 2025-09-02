@@ -150,5 +150,5 @@ models/
 # Large data files
 *.csv
 # *.json  # Commented out - we need package.json and vercel.json
-data/
+# data/  # Commented out - we need src/data/blog-posts.json
 datasets/
