@@ -15,9 +15,8 @@ export function NavigationStructuredData() {
       target: {
         '@type': 'EntryPoint',
         urlTemplate: 'https://bwconverter.com/?q={search_term_string}'
-      },
-      'query-input': 'required name=search_term_string'
-    },
+      }
+    } as any,
     // 网站主要导航结构
     hasPart: [
       {
