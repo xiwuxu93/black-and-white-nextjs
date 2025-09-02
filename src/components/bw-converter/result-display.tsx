@@ -206,7 +206,7 @@ export function ResultDisplay({
                 ) : (
                   <>
                     <Download className="w-4 h-4 mr-2" />
-                    Download Black & White Image
+                    Download Black And White Image
                   </>
                 )}
               </Button>

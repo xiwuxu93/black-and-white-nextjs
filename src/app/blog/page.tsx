@@ -17,7 +17,7 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Black & White Photography Blog - Tips, Techniques & Tutorials',
+  title: 'Black And White Photography Blog - Tips, Techniques & Tutorials',
   description: 'Expert tips, techniques, and insights for creating stunning black and white images. From beginner guides to professional workflows.',
   keywords: [
     'black and white photography',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     'image conversion tips'
   ],
   openGraph: {
-    title: 'Black & White Photography Blog - BWConverter',
+    title: 'Black And White Photography Blog - BWConverter',
     description: 'Expert tips, techniques, and insights for creating stunning black and white images. From beginner guides to professional workflows.',
     url: 'https://bwconverter.com/blog',
   },
@@ -68,7 +68,7 @@ export default function BlogPage() {
             📝 Photography Blog
           </Badge>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Black & White Photography
+            Black And White Photography
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Tips, techniques, and insights for creating stunning black and white images. 

@@ -101,7 +101,7 @@ export default function RootLayout({
         <NavigationStructuredData />
         <GoogleAnalytics />
         <GoogleTagManager />
-        {/* <GoogleAdsense /> */}
+        <GoogleAdsense />
         <StructuredData type="website" data={{}} />
         <StructuredData type="application" data={{}} />
         <StructuredData type="faq" data={{

@@ -219,7 +219,7 @@ export default function BatchPage() {
             ⚡ Batch Processing
           </Badge>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Batch Black & White Converter
+            Batch Black And White Converter
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Convert multiple images to black and white at once. Simply upload your images 

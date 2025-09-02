@@ -68,7 +68,7 @@ export default function HowToUsePage() {
             📖 Complete Guide
           </Badge>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            How to Use Our Black & White Converter
+            How to Use Our Black And White Converter
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Master the art of black and white photography with our comprehensive guide.
@@ -127,7 +127,7 @@ export default function HowToUsePage() {
 
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Ready to Create Amazing Black & White Images?
+            Ready to Create Amazing Black And White Images?
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/">

@@ -103,7 +103,7 @@ export default function AboutPage() {
             Our Story
           </Badge>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            About Black & White Converter
+            About Black And White Converter
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             We believe that creating beautiful black and white photography should be simple, fast, and accessible to everyone. 
