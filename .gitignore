@@ -149,6 +149,6 @@ models/
 
 # Large data files
 *.csv
-*.json
+# *.json  # Commented out - we need package.json and vercel.json
 data/
 datasets/
