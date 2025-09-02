@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Free Black & White Image Converter | BWConverter',
+    default: 'Free Black And White Image Converter | BWConverter',
     template: '%s | BWConverter'
   },
   description: 'Convert images to black and white online for free. Professional filters, instant preview, no watermarks. Transform color photos to stunning B&W images.',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://bwconverter.com',
-    title: 'Free Black & White Image Converter | BWConverter',
+    title: 'Free Black And White Image Converter | BWConverter',
     description: 'Convert images to black and white online for free. Professional filters, instant preview, no watermarks. Transform color photos to stunning B&W images.',
     siteName: 'BWConverter - Black and White Image Converter',
     images: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Black & White Image Converter | BWConverter',
+    title: 'Free Black And White Image Converter | BWConverter',
     description: 'Convert images to black and white online for free. Professional filters, instant preview, no watermarks. Transform color photos to stunning B&W images.',
     images: ['/black-and-white-image.png'],
     creator: '@bwconverter'
@@ -101,7 +101,7 @@ export default function RootLayout({
         <NavigationStructuredData />
         <GoogleAnalytics />
         <GoogleTagManager />
-        <GoogleAdsense />
+        {/* <GoogleAdsense /> */}
         <StructuredData type="website" data={{}} />
         <StructuredData type="application" data={{}} />
         <StructuredData type="faq" data={{
