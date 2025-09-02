@@ -14,23 +14,16 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Black and White Image Converter - Free Online Tool | BWConverter',
-    template: '%s | BWConverter - Black and White Image Converter'
+    default: 'Free Black & White Image Converter | BWConverter',
+    template: '%s | BWConverter'
   },
-  description: 'Transform your photos instantly with our free black and white image converter. Convert any image to stunning black and white photos online. No downloads, no watermarks, professional results in seconds.',
+  description: 'Convert images to black and white online for free. Professional filters, instant preview, no watermarks. Transform color photos to stunning B&W images.',
   keywords: [
-    'black and white image',
-    'black and white image converter',
-    'black and white photo',
-    'convert image to black and white',
-    'make image black and white',
-    'black and white picture',
+    'black white image converter',
+    'convert image black white', 
+    'free photo converter',
     'monochrome image',
-    'grayscale image',
-    'B&W image converter',
-    'black white photo maker',
-    'free image converter',
-    'online photo editor'
+    'B&W converter online'
   ],
   authors: [{ name: 'BWConverter.com' }],
   creator: 'BWConverter.com',
@@ -42,8 +35,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://bwconverter.com',
-    title: 'Free Black and White Image Converter - Transform Photos Online',
-    description: 'Convert any color photo to beautiful black and white images instantly. Professional black and white image converter with advanced filters. Free, fast, and secure.',
+    title: 'Free Black & White Image Converter | BWConverter',
+    description: 'Convert images to black and white online for free. Professional filters, instant preview, no watermarks. Transform color photos to stunning B&W images.',
     siteName: 'BWConverter - Black and White Image Converter',
     images: [
       {
@@ -57,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Black and White Image Converter - Transform Photos Online',
-    description: 'Convert any color photo to beautiful black and white images instantly. Professional black and white image converter with advanced filters. Free, fast, and secure.',
+    title: 'Free Black & White Image Converter | BWConverter',
+    description: 'Convert images to black and white online for free. Professional filters, instant preview, no watermarks. Transform color photos to stunning B&W images.',
     images: ['/black-and-white-image.png'],
     creator: '@bwconverter'
   },

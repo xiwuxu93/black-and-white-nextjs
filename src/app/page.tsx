@@ -198,7 +198,7 @@ export default function HomePage() {
             </h1>
             
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-              Transform any color photo into stunning black and white images online. Our professional black and white image converter offers advanced filters, instant preview, and high-quality results - completely free.
+              Professional black and white image converter with advanced filters, instant preview, and high-quality results - completely free.
             </p>
 
             <div className="flex flex-wrap justify-center gap-2 mb-12">

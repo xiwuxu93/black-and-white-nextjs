@@ -15,7 +15,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         '@type': 'WebSite',
         name: 'BWConverter - Free Black and White Image Converter',
         alternateName: 'Black and White Image Converter Online',
-        description: 'Transform any color photo to stunning black and white images instantly. Professional free black and white image converter with advanced filters.',
+        description: 'Professional free black and white image converter with advanced filters and instant preview.',
         url: 'https://bwconverter.com',
         keywords: 'black and white image, black and white image converter, convert image to black and white, monochrome image',
         inLanguage: 'en-US',
