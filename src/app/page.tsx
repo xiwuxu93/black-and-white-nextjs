@@ -155,17 +155,19 @@ export default function HomePage() {
     }
   }, [currentImageBitmap, filters, processImage])
 
-  const downloadProcessedImage = (imageData: ImageData) => {
+  const downloadProcessedImage = async (imageData: ImageData) => {
     const canvas = document.createElement('canvas')
     canvas.width = imageData.width
     canvas.height = imageData.height
     const ctx = canvas.getContext('2d')
     if (ctx) {
       ctx.putImageData(imageData, 0, 0)
-      const link = document.createElement('a')
-      link.download = 'black-white-image.png'
-      link.href = canvas.toDataURL('image/png')
-      link.click()
+      const { downloadCanvasImage } = await import('@/lib/utils')
+      try {
+        await downloadCanvasImage(canvas, 'black-white-image.png')
+      } catch (error) {
+        console.error('Download failed:', error)
+      }
     }
     setIsProcessing(false)
   }

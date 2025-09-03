@@ -143,6 +143,343 @@ export function downloadFile(data: string | Blob, filename: string, mimeType?: s
 }
 
 /**
+ * Download image from canvas with enhanced mobile compatibility
+ */
+export function downloadCanvasImage(canvas: HTMLCanvasElement, filename: string = 'image.png'): Promise<void> {
+  return new Promise((resolve, reject) => {
+    try {
+      // Detect mobile devices
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+      const isAndroid = /Android/.test(navigator.userAgent)
+      const isMobileDevice = isIOS || isAndroid || isMobile()
+      
+      if (isMobileDevice) {
+        // For mobile devices, use enhanced mobile download
+        mobileCanvasDownload(canvas, filename).then(resolve).catch(reject)
+      } else {
+        // For desktop, use traditional blob download
+        canvas.toBlob((blob) => {
+          if (blob) {
+            downloadFile(blob, filename, 'image/png')
+            resolve()
+          } else {
+            fallbackCanvasDownload(canvas, filename).then(resolve).catch(reject)
+          }
+        }, 'image/png', 0.95)
+      }
+    } catch (error) {
+      console.warn('Canvas download failed, using fallback:', error)
+      fallbackCanvasDownload(canvas, filename).then(resolve).catch(reject)
+    }
+  })
+}
+
+/**
+ * Enhanced mobile download with iOS Photos app support
+ */
+function mobileCanvasDownload(canvas: HTMLCanvasElement, filename: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    try {
+      const dataUrl = canvas.toDataURL('image/png')
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+      const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)
+      
+      if (isIOS && isSafari) {
+        // iOS Safari - enhanced experience for Photos app
+        showIOSImageSaveDialog(dataUrl, filename).then(resolve).catch(reject)
+      } else if (isIOS) {
+        // iOS other browsers (Chrome, Firefox, etc.)
+        showIOSImagePreview(dataUrl, filename).then(resolve).catch(reject)
+      } else {
+        // Android and other mobile browsers
+        showMobileImagePreview(dataUrl, filename).then(resolve).catch(reject)
+      }
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+/**
+ * Show iOS-optimized image save dialog with Photos app integration
+ */
+function showIOSImageSaveDialog(dataUrl: string, filename: string): Promise<void> {
+  return new Promise((resolve) => {
+    // Create overlay
+    const overlay = document.createElement('div')
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    `
+    
+    // Create image element
+    const img = document.createElement('img')
+    img.src = dataUrl
+    img.style.cssText = `
+      max-width: 90%;
+      max-height: 60%;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+    `
+    
+    // Create instructions
+    const instructions = document.createElement('div')
+    instructions.style.cssText = `
+      color: white;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    `
+    
+    instructions.innerHTML = `
+      <h3 style="margin: 0 0 10px 0; font-size: 18px; font-weight: 600;">Save to Photos</h3>
+      <p style="margin: 0 0 8px 0; font-size: 16px;">1. Long press the image above</p>
+      <p style="margin: 0 0 8px 0; font-size: 16px;">2. Select "Save to Photos"</p>
+      <p style="margin: 0; font-size: 14px; opacity: 0.8;">Image will be saved to your Photos app</p>
+    `
+    
+    // Create close button
+    const closeBtn = document.createElement('button')
+    closeBtn.textContent = 'Done'
+    closeBtn.style.cssText = `
+      background: #007AFF;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `
+    
+    closeBtn.onclick = () => {
+      document.body.removeChild(overlay)
+      resolve()
+    }
+    
+    // Assemble and show
+    overlay.appendChild(img)
+    overlay.appendChild(instructions)
+    overlay.appendChild(closeBtn)
+    document.body.appendChild(overlay)
+  })
+}
+
+/**
+ * Show iOS image preview for non-Safari browsers
+ */
+function showIOSImagePreview(dataUrl: string, filename: string): Promise<void> {
+  return new Promise((resolve) => {
+    const newWindow = window.open('', '_blank')
+    if (newWindow) {
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Save Image</title>
+          <style>
+            body {
+              margin: 0;
+              padding: 20px;
+              background: #f2f2f7;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+              text-align: center;
+            }
+            .container {
+              max-width: 100%;
+              margin: 0 auto;
+            }
+            img {
+              max-width: 100%;
+              height: auto;
+              border-radius: 12px;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+              margin-bottom: 20px;
+            }
+            .instructions {
+              background: white;
+              padding: 20px;
+              border-radius: 12px;
+              margin: 20px 0;
+              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+            h3 {
+              color: #1d1d1f;
+              margin: 0 0 15px 0;
+              font-size: 18px;
+              font-weight: 600;
+            }
+            p {
+              color: #424245;
+              margin: 8px 0;
+              font-size: 16px;
+              line-height: 1.4;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <img src="${dataUrl}" alt="Converted Image" />
+            <div class="instructions">
+              <h3>Save Image</h3>
+              <p>Long press the image above and select:</p>
+              <p><strong>"Save to Photos"</strong> or <strong>"Download Image"</strong></p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `)
+      newWindow.document.close()
+      resolve()
+    } else {
+      // Popup blocked, try direct download with data URL
+      try {
+        const link = document.createElement('a')
+        link.href = dataUrl
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        resolve()
+      } catch (error) {
+        console.error('Direct download failed:', error)
+        resolve()
+      }
+    }
+  })
+}
+
+/**
+ * Show mobile image preview for Android and other mobile browsers
+ */
+function showMobileImagePreview(dataUrl: string, filename: string): Promise<void> {
+  return new Promise((resolve) => {
+    const newWindow = window.open('', '_blank')
+    if (newWindow) {
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Download Image</title>
+          <style>
+            body {
+              margin: 0;
+              padding: 20px;
+              background: #f5f5f5;
+              font-family: system-ui, -apple-system, sans-serif;
+              text-align: center;
+            }
+            img {
+              max-width: 100%;
+              height: auto;
+              border-radius: 8px;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+              margin-bottom: 20px;
+            }
+            .instructions {
+              background: white;
+              padding: 16px;
+              border-radius: 8px;
+              margin: 16px 0;
+              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+            h3 {
+              margin: 0 0 12px 0;
+              color: #333;
+              font-size: 18px;
+            }
+            p {
+              margin: 8px 0;
+              color: #666;
+              font-size: 14px;
+              line-height: 1.4;
+            }
+            .download-btn {
+              background: #4CAF50;
+              color: white;
+              border: none;
+              padding: 12px 24px;
+              border-radius: 6px;
+              font-size: 16px;
+              cursor: pointer;
+              margin-top: 16px;
+              text-decoration: none;
+              display: inline-block;
+            }
+          </style>
+        </head>
+        <body>
+          <img src="${dataUrl}" alt="Converted Image" />
+          <div class="instructions">
+            <h3>Save Image</h3>
+            <p>Long press the image above and select <strong>"Download Image"</strong></p>
+            <p>Or tap the button below to download directly</p>
+            <a href="${dataUrl}" download="${filename}" class="download-btn">Download Image</a>
+          </div>
+        </body>
+        </html>
+      `)
+      newWindow.document.close()
+      resolve()
+    } else {
+      // Popup blocked, try direct download
+      try {
+        const link = document.createElement('a')
+        link.href = dataUrl
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        resolve()
+      } catch (error) {
+        console.error('Direct download failed:', error)
+        resolve()
+      }
+    }
+  })
+}
+
+/**
+ * Fallback download method for canvas
+ */
+function fallbackCanvasDownload(canvas: HTMLCanvasElement, filename: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    try {
+      const dataUrl = canvas.toDataURL('image/png')
+      
+      // Desktop browser - use normal download
+      const link = document.createElement('a')
+      link.href = dataUrl
+      link.download = filename
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      resolve()
+    } catch (error) {
+      console.error('Failed to download image:', error)
+      reject(error)
+    }
+  })
+}
+
+/**
  * Copy text to clipboard
  */
 export async function copyToClipboard(text: string): Promise<boolean> {

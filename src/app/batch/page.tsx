@@ -178,15 +178,12 @@ export default function BatchPage() {
     }
   }, [processedImages, isProcessing, processAllImages])
 
-  const downloadAll = useCallback(() => {
+  const downloadAll = useCallback(async () => {
+    const { downloadFile } = await import('@/lib/utils')
     processedImages.forEach(image => {
       if (image.processedBlob && image.processingStatus === 'completed') {
-        const url = URL.createObjectURL(image.processedBlob)
-        const link = document.createElement('a')
-        link.href = url
-        link.download = `bw_${image.originalFile.name.replace(/\.[^/.]+$/, '')}.png`
-        link.click()
-        URL.revokeObjectURL(url)
+        const filename = `bw_${image.originalFile.name.replace(/\.[^/.]+$/, '')}.png`
+        downloadFile(image.processedBlob, filename)
       }
     })
   }, [processedImages])
@@ -353,13 +350,10 @@ export default function BatchPage() {
                         <Button
                           size="sm"
                           className="w-full text-xs h-7"
-                          onClick={() => {
-                            const url = URL.createObjectURL(image.processedBlob!)
-                            const link = document.createElement('a')
-                            link.href = url
-                            link.download = `bw_${image.originalFile.name.replace(/\.[^/.]+$/, '')}.png`
-                            link.click()
-                            URL.revokeObjectURL(url)
+                          onClick={async () => {
+                            const { downloadFile } = await import('@/lib/utils')
+                            const filename = `bw_${image.originalFile.name.replace(/\.[^/.]+$/, '')}.png`
+                            downloadFile(image.processedBlob!, filename)
                           }}
                         >
                           <Download className="w-3 h-3 mr-1" />
