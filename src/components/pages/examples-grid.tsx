@@ -252,11 +252,21 @@ export function ExamplesGrid() {
                   {/* Before/After Images */}
                   <div className="grid grid-cols-2 gap-2">
                     <div className="text-center">
-                      <img src={example.beforeImage} alt="Before" className="w-full h-32 object-cover rounded-lg mb-2" />
+                      <img 
+                        src={example.beforeImage} 
+                        alt="Before" 
+                        className="w-full h-32 object-cover rounded-lg mb-2" 
+                        loading="lazy"
+                      />
                       <span className="text-xs text-gray-500">Before</span>
                     </div>
                     <div className="text-center">
-                      <img src={example.afterImage} alt="After" className="w-full h-32 object-cover rounded-lg mb-2 filter grayscale" />
+                      <img 
+                        src={example.afterImage} 
+                        alt="After" 
+                        className="w-full h-32 object-cover rounded-lg mb-2 filter grayscale" 
+                        loading="lazy"
+                      />
                       <span className="text-xs text-gray-500">After</span>
                     </div>
                   </div>
@@ -345,11 +355,21 @@ export function ExamplesGrid() {
                   {/* Before/After Images */}
                   <div className="grid grid-cols-2 gap-2">
                     <div className="text-center">
-                      <img src={example.beforeImage} alt="Before" className="w-full h-24 object-cover rounded-lg mb-1" />
+                      <img 
+                        src={example.beforeImage} 
+                        alt="Before" 
+                        className="w-full h-24 object-cover rounded-lg mb-1" 
+                        loading="lazy"
+                      />
                       <span className="text-xs text-gray-500">Original</span>
                     </div>
                     <div className="text-center">
-                      <img src={example.afterImage} alt="After" className="w-full h-24 object-cover rounded-lg mb-1 filter grayscale" />
+                      <img 
+                        src={example.afterImage} 
+                        alt="After" 
+                        className="w-full h-24 object-cover rounded-lg mb-1 filter grayscale" 
+                        loading="lazy"
+                      />
                       <span className="text-xs text-gray-500">Black & White</span>
                     </div>
                   </div>

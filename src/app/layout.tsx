@@ -14,10 +14,10 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Free Black And White Image Converter | BWConverter',
+    default: 'Convert Image to Black and White - Free B&W Photo Converter',
     template: '%s | BWConverter'
   },
-  description: 'Convert images to black and white online for free. Professional filters, instant preview, no watermarks. Transform color photos to stunning B&W images.',
+  description: 'Transform any color photo into stunning black and white images with our free online converter. Professional results in just a few clicks - no software needed.',
   keywords: [
     'black white image converter',
     'convert image black white', 
@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://bwconverter.com',
-    title: 'Free Black And White Image Converter | BWConverter',
-    description: 'Convert images to black and white online for free. Professional filters, instant preview, no watermarks. Transform color photos to stunning B&W images.',
+    title: 'Convert Image to Black and White - Free B&W Photo Converter',
+    description: 'Transform any color photo into stunning black and white images with our free online converter. Professional results in just a few clicks - no software needed.',
     siteName: 'BWConverter - Black and White Image Converter',
     images: [
       {
@@ -50,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Black And White Image Converter | BWConverter',
-    description: 'Convert images to black and white online for free. Professional filters, instant preview, no watermarks. Transform color photos to stunning B&W images.',
+    title: 'Convert Image to Black and White - Free B&W Photo Converter',
+    description: 'Transform any color photo into stunning black and white images with our free online converter. Professional results in just a few clicks - no software needed.',
     images: ['/black-and-white-image.png'],
     creator: '@bwconverter'
   },

@@ -192,15 +192,16 @@ export default function HomePage() {
             </Badge>
             
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              Free{' '}
+              Convert Image to{' '}
               <span className="text-primary-600 dark:text-primary-400">
-                Black and White Image
+                Black and White
               </span>{' '}
-              Converter
+              Instantly
             </h1>
             
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-              Professional black and white image converter with advanced filters, instant preview, and high-quality results - completely free.
+              Transform any color photo into stunning black and white images with our free online converter. 
+              Professional results in just a few clicks - no software needed.
             </p>
 
             <div className="flex flex-wrap justify-center gap-2 mb-12">
@@ -216,6 +217,30 @@ export default function HomePage() {
                 isProcessing={isProcessing}
                 className="max-w-lg mx-auto"
               />
+            </div>
+
+            {/* Quick Feature Highlights - squaredimage.com style */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto">
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                <div className="text-2xl mb-2">🎨</div>
+                <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Quick Presets</h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400">Choose from Dramatic, Vintage, Film Noir styles</p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                <div className="text-2xl mb-2">🔧</div>
+                <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Advanced Controls</h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400">Fine-tune contrast, brightness, and grain</p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                <div className="text-2xl mb-2">⚡</div>
+                <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Instant Preview</h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400">See changes in real-time</p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                <div className="text-2xl mb-2">💾</div>
+                <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Multiple Formats</h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400">Download as PNG, JPEG, or WebP</p>
+              </div>
             </div>
 
             {/* Content Ad */}
@@ -463,6 +488,54 @@ export default function HomePage() {
                   </div>
                 </div>
               </details>
+            </div>
+
+            {/* Related Tools Recommendation */}
+            <div className="mt-12 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+                ✨ Try More Effects
+              </h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <Link href="/tools" className="group">
+                  <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-primary-300 dark:hover:border-primary-500 transition-colors">
+                    <div className="text-2xl mb-2">🎨</div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                      Vintage Sepia Converter
+                    </h4>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">Add warm sepia tones to your photos</p>
+                  </div>
+                </Link>
+                
+                <Link href="/tools" className="group">
+                  <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-primary-300 dark:hover:border-primary-500 transition-colors">
+                    <div className="text-2xl mb-2">📸</div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                      Film Grain Effects
+                    </h4>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">Add authentic film grain texture</p>
+                  </div>
+                </Link>
+                
+                <Link href="/tools" className="group">
+                  <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-primary-300 dark:hover:border-primary-500 transition-colors">
+                    <div className="text-2xl mb-2">🌈</div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                      Color Splash Tool
+                    </h4>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">Keep one color, make the rest B&W</p>
+                  </div>
+                </Link>
+                
+                <Link href="/tools" className="group">
+                  <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-primary-300 dark:hover:border-primary-500 transition-colors">
+                    <div className="text-2xl mb-2">☀️</div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                      Photo Brightness Adjuster
+                    </h4>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">Fine-tune image brightness and contrast</p>
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
