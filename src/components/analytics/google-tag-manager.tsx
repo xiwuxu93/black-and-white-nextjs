@@ -2,7 +2,7 @@
 
 import Script from 'next/script'
 
-const GTM_ID = 'GTM-BWCONV24' // Black And White Converter Tag Manager
+const GTM_ID = 'G-8L2HQF6YTW' // Black And White Converter Tag Manager
 
 export default function GoogleTagManager() {
   return (

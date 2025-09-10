@@ -99,9 +99,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <NavigationStructuredData />
-        <GoogleAnalytics />
-        <GoogleTagManager />
-        <GoogleAdsense />
         <StructuredData type="website" data={{}} />
         <StructuredData type="application" data={{}} />
         <StructuredData type="faq" data={{
@@ -141,6 +138,11 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
+        <div style={{display:"none"}}>
+          <GoogleAnalytics />
+          <GoogleTagManager />
+          <GoogleAdsense />
+        </div>
       </body>
     </html>
   )

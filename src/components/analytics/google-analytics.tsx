@@ -2,7 +2,7 @@
 
 import Script from 'next/script'
 
-const GA_TRACKING_ID = 'G-BW2024CONV01' // Black And White Converter Analytics
+const GA_TRACKING_ID = 'G-8L2HQF6YTW' // Black And White Converter Analytics
 
 export default function GoogleAnalytics() {
   return (
