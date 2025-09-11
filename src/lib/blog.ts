@@ -1,24 +1,13 @@
-import blogData from '@/data/blog-posts.json'
+import { blogPosts, BlogPost } from '@/data/blog-posts'
 
-export interface BlogPost {
-  id: string
-  title: string
-  content: string
-  excerpt: string
-  publishDate: string
-  readTime: string
-  category: string
-  author: string
-  tags: string[]
-  featured: boolean
-}
+export type { BlogPost }
 
 export function getBlogPosts(): BlogPost[] {
-  return Object.values(blogData) as BlogPost[]
+  return Object.values(blogPosts) as BlogPost[]
 }
 
 export function getBlogPost(id: string): BlogPost | null {
-  return (blogData as Record<string, BlogPost>)[id] || null
+  return blogPosts[id] || null
 }
 
 export function getFeaturedBlogPosts(): BlogPost[] {

@@ -1,4 +1,17 @@
-{
+export interface BlogPost {
+  id: string
+  title: string
+  content: string
+  excerpt: string
+  publishDate: string
+  readTime: string
+  category: string
+  author: string
+  tags: string[]
+  featured: boolean
+}
+
+export const blogPosts: Record<string, BlogPost> = {
   "best-black-and-white-image-converter-2025": {
     "id": "best-black-and-white-image-converter-2025",
     "title": "Best Black and White Image Converter 2025: Free Tools Compared",
