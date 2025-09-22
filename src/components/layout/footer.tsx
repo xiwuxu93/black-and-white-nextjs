@@ -127,6 +127,7 @@ export function Footer() {
                     />
                   </a>
                <a href="https://fwfw.app/item/charades-generator" target="_blank"><img src="https://fwfw.app/badge-white.svg" width="250" height="54" alt="Featured on FWFW" /></a>
+               <a target="_blank" href="https://acidtools.com"><img src="https://acidtools.com/assets/images/badge.png" alt="Acid Tools" height="54"></a>
                 </div>
               </div>
             </div>
