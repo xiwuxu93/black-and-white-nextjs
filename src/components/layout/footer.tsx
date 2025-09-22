@@ -123,7 +123,7 @@ export function Footer() {
                     <img
                       src="https://imglab.dev/svg/badge.svg"
                       alt="Listed on imglab"
-                      style="height: 54px; width: auto;"
+                      style={{ height: '54px', width: 'auto' }}
                     />
                   </a>
                 </div>
