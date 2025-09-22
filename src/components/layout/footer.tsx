@@ -126,6 +126,7 @@ export function Footer() {
                       style={{ height: '54px', width: 'auto' }}
                     />
                   </a>
+               <a href="https://fwfw.app/item/charades-generator" target="_blank"><img src="https://fwfw.app/badge-white.svg" width="250" height="54" alt="Featured on FWFW" /></a>
                 </div>
               </div>
             </div>
