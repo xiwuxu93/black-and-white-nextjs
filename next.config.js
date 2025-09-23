@@ -4,7 +4,15 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react']
   },
   images: {
-    domains: ['localhost', 'images.unsplash.com'],
+    domains: [
+      'localhost',
+      'images.unsplash.com',
+      'magicbox.tools',
+      'cdn.prod.website-files.com',
+      'imglab.dev',
+      'fwfw.app',
+      'acidtools.com'
+    ],
     unoptimized: false
   },
   trailingSlash: true,

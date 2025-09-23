@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -29,109 +30,111 @@ interface Example {
   tips: string[]
 }
 
+const EXAMPLES: Example[] = [
+  {
+    id: '1',
+    title: 'Professional Portrait',
+    description: 'A stunning professional headshot transformed into elegant black and white, emphasizing facial features and expression',
+    category: 'Portrait Photography',
+    style: 'Classic',
+    tags: ['portrait', 'professional', 'headshot', 'business'],
+    featured: true,
+    beforeImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
+    afterImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&sat=-100',
+    tips: [
+      'Perfect for LinkedIn profiles and professional portfolios',
+      'Classic style enhances facial features naturally',
+      'Ideal for business cards and corporate materials'
+    ]
+  },
+  {
+    id: '2',
+    title: 'Newborn Baby Photo',
+    description: 'Precious newborn moment converted to timeless black and white, capturing pure innocence and beauty',
+    category: 'Newborn Photography',
+    style: 'Soft',
+    tags: ['newborn', 'baby', 'family', 'memories'],
+    featured: true,
+    beforeImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80',
+    afterImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80&sat=-100',
+    tips: [
+      'Soft style perfect for delicate newborn skin',
+      'Creates timeless family keepsakes',
+      'Removes color distractions to focus on emotions'
+    ]
+  },
+  {
+    id: '3',
+    title: 'Urban Street Scene',
+    description: 'Dynamic city street converted to dramatic black and white, showcasing architectural details and urban life',
+    category: 'Street Photography',
+    style: 'High Contrast',
+    tags: ['street', 'urban', 'architecture', 'city'],
+    featured: true,
+    beforeImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80',
+    afterImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80&sat=-100',
+    tips: [
+      'High contrast brings out architectural details',
+      'Perfect for modern art prints',
+      'Emphasizes patterns and textures in urban environments'
+    ]
+  },
+  {
+    id: '4',
+    title: 'Wedding Moment',
+    description: 'Romantic wedding photo transformed into elegant monochrome, highlighting emotion and intimacy',
+    category: 'Wedding Photography',
+    style: 'Classic',
+    tags: ['wedding', 'romance', 'couple', 'love'],
+    featured: false,
+    beforeImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+    afterImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80&sat=-100',
+    tips: [
+      'Classic style perfect for wedding albums',
+      'Timeless look that never goes out of style',
+      'Focuses attention on emotions and expressions'
+    ]
+  },
+  {
+    id: '5',
+    title: 'Nature Landscape',
+    description: 'Breathtaking landscape photo converted to artistic black and white, emphasizing natural textures and forms',
+    category: 'Landscape Photography',
+    style: 'Dramatic',
+    tags: ['landscape', 'nature', 'mountains', 'scenic'],
+    featured: false,
+    beforeImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+    afterImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&sat=-100',
+    tips: [
+      'Dramatic style enhances natural contrast',
+      'Perfect for fine art photography prints',
+      'Brings out textures in clouds and terrain'
+    ]
+  },
+  {
+    id: '6',
+    title: 'Fashion Portrait',
+    description: 'High-fashion portrait converted to vintage black and white, creating a classic editorial look',
+    category: 'Fashion Photography',
+    style: 'Vintage',
+    tags: ['fashion', 'model', 'vintage', 'editorial'],
+    featured: false,
+    beforeImage: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80',
+    afterImage: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80&sat=-100',
+    tips: [
+      'Vintage style adds film-like character',
+      'Perfect for fashion magazines and portfolios',
+      'Creates sophisticated, editorial-quality results'
+    ]
+  }
+]
+
 export function ExamplesGrid() {
   const [searchTerm, setSearchTerm] = React.useState('')
   const [selectedCategory, setSelectedCategory] = React.useState('all')
   const [selectedStyle, setSelectedStyle] = React.useState('all')
 
-  const examples: Example[] = [
-    {
-      id: '1',
-      title: 'Professional Portrait',
-      description: 'A stunning professional headshot transformed into elegant black and white, emphasizing facial features and expression',
-      category: 'Portrait Photography',
-      style: 'Classic',
-      tags: ['portrait', 'professional', 'headshot', 'business'],
-      featured: true,
-      beforeImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
-      afterImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&sat=-100',
-      tips: [
-        'Perfect for LinkedIn profiles and professional portfolios',
-        'Classic style enhances facial features naturally',
-        'Ideal for business cards and corporate materials'
-      ]
-    },
-    {
-      id: '2',
-      title: 'Newborn Baby Photo',
-      description: 'Precious newborn moment converted to timeless black and white, capturing pure innocence and beauty',
-      category: 'Newborn Photography',
-      style: 'Soft',
-      tags: ['newborn', 'baby', 'family', 'memories'],
-      featured: true,
-      beforeImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80',
-      afterImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80&sat=-100',
-      tips: [
-        'Soft style perfect for delicate newborn skin',
-        'Creates timeless family keepsakes',
-        'Removes color distractions to focus on emotions'
-      ]
-    },
-    {
-      id: '3',
-      title: 'Urban Street Scene',
-      description: 'Dynamic city street converted to dramatic black and white, showcasing architectural details and urban life',
-      category: 'Street Photography',
-      style: 'High Contrast',
-      tags: ['street', 'urban', 'architecture', 'city'],
-      featured: true,
-      beforeImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80',
-      afterImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80&sat=-100',
-      tips: [
-        'High contrast brings out architectural details',
-        'Perfect for modern art prints',
-        'Emphasizes patterns and textures in urban environments'
-      ]
-    },
-    {
-      id: '4',
-      title: 'Wedding Moment',
-      description: 'Romantic wedding photo transformed into elegant monochrome, highlighting emotion and intimacy',
-      category: 'Wedding Photography',
-      style: 'Classic',
-      tags: ['wedding', 'romance', 'couple', 'love'],
-      featured: false,
-      beforeImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
-      afterImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80&sat=-100',
-      tips: [
-        'Classic style perfect for wedding albums',
-        'Timeless look that never goes out of style',
-        'Focuses attention on emotions and expressions'
-      ]
-    },
-    {
-      id: '5',
-      title: 'Nature Landscape',
-      description: 'Breathtaking landscape photo converted to artistic black and white, emphasizing natural textures and forms',
-      category: 'Landscape Photography',
-      style: 'Dramatic',
-      tags: ['landscape', 'nature', 'mountains', 'scenic'],
-      featured: false,
-      beforeImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
-      afterImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&sat=-100',
-      tips: [
-        'Dramatic style enhances natural contrast',
-        'Perfect for fine art photography prints',
-        'Brings out textures in clouds and terrain'
-      ]
-    },
-    {
-      id: '6',
-      title: 'Fashion Portrait',
-      description: 'High-fashion portrait converted to vintage black and white, creating a classic editorial look',
-      category: 'Fashion Photography',
-      style: 'Vintage',
-      tags: ['fashion', 'model', 'vintage', 'editorial'],
-      featured: false,
-      beforeImage: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80',
-      afterImage: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80&sat=-100',
-      tips: [
-        'Vintage style adds film-like character',
-        'Perfect for fashion magazines and portfolios',
-        'Creates sophisticated, editorial-quality results'
-      ]
-    }
-  ]
+  const examples = EXAMPLES
 
   const categories = ['all', ...Array.from(new Set(examples.map(ex => ex.category)))]
   const styles = ['all', 'Classic', 'Dramatic', 'Soft', 'Vintage', 'High Contrast']
@@ -252,21 +255,27 @@ export function ExamplesGrid() {
                   {/* Before/After Images */}
                   <div className="grid grid-cols-2 gap-2">
                     <div className="text-center">
-                      <img 
-                        src={example.beforeImage} 
-                        alt="Before" 
-                        className="w-full h-32 object-cover rounded-lg mb-2" 
-                        loading="lazy"
-                      />
+                      <div className="relative w-full h-32">
+                        <Image
+                          src={example.beforeImage}
+                          alt="Before"
+                          fill
+                          className="rounded-lg object-cover"
+                          sizes="(max-width: 768px) 50vw, 300px"
+                        />
+                      </div>
                       <span className="text-xs text-gray-500">Before</span>
                     </div>
                     <div className="text-center">
-                      <img 
-                        src={example.afterImage} 
-                        alt="After" 
-                        className="w-full h-32 object-cover rounded-lg mb-2 filter grayscale" 
-                        loading="lazy"
-                      />
+                      <div className="relative w-full h-32">
+                        <Image
+                          src={example.afterImage}
+                          alt="After"
+                          fill
+                          className="rounded-lg object-cover filter grayscale"
+                          sizes="(max-width: 768px) 50vw, 300px"
+                        />
+                      </div>
                       <span className="text-xs text-gray-500">After</span>
                     </div>
                   </div>

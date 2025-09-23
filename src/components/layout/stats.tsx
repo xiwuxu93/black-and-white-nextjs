@@ -38,11 +38,11 @@ export function Stats() {
   ]
 
   // 数字动画效果
-  const AnimatedNumber = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
+  const AnimatedNumber = ({ value, suffix = "", shouldAnimate }: { value: number; suffix?: string; shouldAnimate: boolean }) => {
     const [displayValue, setDisplayValue] = useState(0)
 
     useEffect(() => {
-      if (!mounted) return
+      if (!shouldAnimate) return
 
       const increment = value / 100
       let current = 0
@@ -57,9 +57,9 @@ export function Stats() {
       }, 20)
 
       return () => clearInterval(timer)
-    }, [value, mounted])
+    }, [shouldAnimate, value])
 
-    if (!mounted) {
+    if (!shouldAnimate) {
       return <span>0{suffix}</span>
     }
 
@@ -88,7 +88,7 @@ export function Stats() {
               <CardContent className="pt-6">
                 <div className="space-y-2">
                   <div className="text-3xl lg:text-4xl font-bold text-primary-600">
-                    <AnimatedNumber value={stat.value} suffix={stat.suffix} />
+                    <AnimatedNumber value={stat.value} suffix={stat.suffix} shouldAnimate={mounted} />
                   </div>
                   <div className="text-lg font-semibold text-gray-900 dark:text-white">
                     {stat.label}

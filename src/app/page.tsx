@@ -33,6 +33,40 @@ export default function HomePage() {
   const debounceTimerRef = useRef<NodeJS.Timeout>()
 
   // Initialize worker
+  const downloadProcessedImage = useCallback(async (imageData: ImageData) => {
+    const canvas = document.createElement('canvas')
+    canvas.width = imageData.width
+    canvas.height = imageData.height
+    const ctx = canvas.getContext('2d')
+    if (ctx) {
+      ctx.putImageData(imageData, 0, 0)
+      const { downloadCanvasImage } = await import('@/lib/utils')
+      try {
+        await downloadCanvasImage(canvas, 'black-white-image.png')
+      } catch (error) {
+        console.error('Download failed:', error)
+      }
+    }
+    setIsProcessing(false)
+  }, [])
+
+  const handleWorkerMessage = useCallback((e: MessageEvent<WorkerResponse>) => {
+    const { processedImageData, type } = e.data
+    
+    if (type === 'preview') {
+      setProcessedImageData(processedImageData)
+      setIsProcessing(false)
+    } else if (type === 'final') {
+      // Handle final processing for download
+      downloadProcessedImage(processedImageData)
+    }
+  }, [downloadProcessedImage])
+
+  const handleWorkerError = useCallback((error: ErrorEvent) => {
+    console.error('Worker error:', error)
+    setIsProcessing(false)
+  }, [])
+
   React.useEffect(() => {
     if (typeof window !== 'undefined' && window.Worker) {
       workerRef.current = new Worker('/worker.js')
@@ -45,37 +79,7 @@ export default function HomePage() {
         workerRef.current.terminate()
       }
     }
-  }, [])
-
-  const handleWorkerMessage = (e: MessageEvent<WorkerResponse>) => {
-    const { processedImageData, type } = e.data
-    
-    if (type === 'preview') {
-      setProcessedImageData(processedImageData)
-      setIsProcessing(false)
-    } else if (type === 'final') {
-      // Handle final processing for download
-      downloadProcessedImage(processedImageData)
-    }
-  }
-
-  const handleWorkerError = (error: ErrorEvent) => {
-    console.error('Worker error:', error)
-    setIsProcessing(false)
-  }
-
-  const handleFileSelect = useCallback(async (file: File) => {
-    try {
-      const bitmap = await createImageBitmap(file)
-      setCurrentImageBitmap(bitmap)
-      setShowEditor(true)
-      
-      // Trigger initial processing
-      processImage(bitmap, filters, 'preview')
-    } catch (error) {
-      console.error('Failed to process file:', error)
-    }
-  }, [filters])
+  }, [handleWorkerError, handleWorkerMessage])
 
   const processImage = useCallback((
     bitmap: ImageBitmap, 
@@ -120,6 +124,19 @@ export default function HomePage() {
     workerRef.current.postMessage(message, [imageData.data.buffer])
   }, [])
 
+  const handleFileSelect = useCallback(async (file: File) => {
+    try {
+      const bitmap = await createImageBitmap(file)
+      setCurrentImageBitmap(bitmap)
+      setShowEditor(true)
+      
+      // Trigger initial processing
+      processImage(bitmap, filters, 'preview')
+    } catch (error) {
+      console.error('Failed to process file:', error)
+    }
+  }, [filters, processImage])
+
   const handleFiltersChange = useCallback((newFilters: ImageFilter) => {
     setFilters(newFilters)
     setSelectedPreset('') // Clear preset selection when manually adjusting
@@ -153,23 +170,6 @@ export default function HomePage() {
       processImage(currentImageBitmap, filters, 'final')
     }
   }, [currentImageBitmap, filters, processImage])
-
-  const downloadProcessedImage = async (imageData: ImageData) => {
-    const canvas = document.createElement('canvas')
-    canvas.width = imageData.width
-    canvas.height = imageData.height
-    const ctx = canvas.getContext('2d')
-    if (ctx) {
-      ctx.putImageData(imageData, 0, 0)
-      const { downloadCanvasImage } = await import('@/lib/utils')
-      try {
-        await downloadCanvasImage(canvas, 'black-white-image.png')
-      } catch (error) {
-        console.error('Download failed:', error)
-      }
-    }
-    setIsProcessing(false)
-  }
 
   const handleReset = useCallback(() => {
     setCurrentImageBitmap(null)

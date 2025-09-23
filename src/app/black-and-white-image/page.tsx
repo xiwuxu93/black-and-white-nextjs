@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -92,11 +93,14 @@ export default function BlackAndWhiteImagePage() {
           </div>
 
           {/* Featured Image */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-20">
-            <img 
-              src="/black-and-white-image.jpg" 
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-20 h-64 md:h-96">
+            <Image
+              src="/black-and-white-image.jpg"
               alt="Professional black and white image conversion example"
-              className="w-full h-64 md:h-96 object-cover"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 1200px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
             <div className="absolute bottom-6 left-6 text-white">

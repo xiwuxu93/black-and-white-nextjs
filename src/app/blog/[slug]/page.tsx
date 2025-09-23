@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 import { 
   Calendar, 
   Clock, 
@@ -123,11 +124,14 @@ export default function BlogPostPage({ params }: Props) {
           </div>
 
           {/* Featured Image */}
-          <div className="relative rounded-lg overflow-hidden mb-8 shadow-lg">
-            <img 
-              src="/black-and-white-image.jpg" 
+          <div className="relative rounded-lg overflow-hidden mb-8 shadow-lg h-64 md:h-96">
+            <Image
+              src="/black-and-white-image.jpg"
               alt="Black and White Image Conversion Example"
-              className="w-full h-64 md:h-96 object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 960px"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             <div className="absolute bottom-4 left-4 text-white">

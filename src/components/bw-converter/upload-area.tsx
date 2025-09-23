@@ -16,6 +16,20 @@ export function UploadArea({ onFileSelect, onReset, isProcessing = false, classN
   const [dragActive, setDragActive] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  const validateAndProcessFile = useCallback((file: File) => {
+    if (!file.type.startsWith('image/')) {
+      setError('Please select a valid image file.')
+      return
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      setError('File size must be less than 10MB.')
+      return
+    }
+
+    onFileSelect(file)
+  }, [onFileSelect])
+
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault()
     e.stopPropagation()
@@ -36,7 +50,7 @@ export function UploadArea({ onFileSelect, onReset, isProcessing = false, classN
       const file = e.dataTransfer.files[0]
       validateAndProcessFile(file)
     }
-  }, [])
+  }, [validateAndProcessFile])
 
   const handleFileInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setError(null)
@@ -44,21 +58,7 @@ export function UploadArea({ onFileSelect, onReset, isProcessing = false, classN
       const file = e.target.files[0]
       validateAndProcessFile(file)
     }
-  }, [])
-
-  const validateAndProcessFile = (file: File) => {
-    if (!file.type.startsWith('image/')) {
-      setError('Please select a valid image file.')
-      return
-    }
-
-    if (file.size > 10 * 1024 * 1024) { // 10MB limit
-      setError('File size must be less than 10MB.')
-      return
-    }
-
-    onFileSelect(file)
-  }
+  }, [validateAndProcessFile])
 
   return (
     <div className={`w-full ${className}`}>

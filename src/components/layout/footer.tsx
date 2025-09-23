@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Heart } from "lucide-react";
 
 export function Footer() {
@@ -84,11 +85,11 @@ export function Footer() {
                     target="_blank"
                     rel="nofollow sponsored noopener noreferrer"
                   >
-                    <img
+                    <Image
                       src="https://magicbox.tools/badge-dark.svg"
                       alt="Featured on MagicBox.tools"
-                      width="200"
-                      height="54"
+                      width={200}
+                      height={54}
                       className="transition-opacity hover:opacity-80"
                     />
                   </a>
@@ -99,11 +100,11 @@ export function Footer() {
                     target="_blank"
                     rel="nofollow sponsored noopener noreferrer"
                   >
-                    <img
+                    <Image
                       src="https://cdn.prod.website-files.com/63d8afd87da01fb58ea3fbcb/6487e2868c6c8f93b4828827_dang-badge.png"
                       alt="Dang.ai"
-                      width="150"
-                      height="54"
+                      width={150}
+                      height={54}
                       className="transition-opacity hover:opacity-80"
                     />
                   </a>
@@ -120,25 +121,28 @@ export function Footer() {
                     target="_blank"
                     rel="nofollow sponsored noopener noreferrer"
                   >
-                    <img
+                    <Image
                       src="https://imglab.dev/svg/badge.svg"
                       alt="Listed on imglab"
-                      style={{ height: '54px', width: 'auto' }}
+                      width={180}
+                      height={54}
+                      className="h-[54px] w-auto"
                     />
                   </a>
                <a href="https://fwfw.app/item/charades-generator" target="_blank" rel="nofollow sponsored noopener noreferrer">
-                 <img
+                 <Image
                    src="https://fwfw.app/badge-white.svg"
-                   width="250"
-                   height="54"
+                   width={250}
+                   height={54}
                    alt="Featured on FWFW"
                  />
                </a>
                <a target="_blank" href="https://acidtools.com" rel="nofollow sponsored noopener noreferrer">
-                 <img
+                 <Image
                    src="https://acidtools.com/assets/images/badge.png"
                    alt="Acid Tools"
-                   height="54"
+                   width={200}
+                   height={54}
                  />
                </a>
                 </div>

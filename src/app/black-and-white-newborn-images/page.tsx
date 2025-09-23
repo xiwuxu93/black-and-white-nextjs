@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Heart, Camera, Baby, Star, Download, Sparkles, Shield, Clock } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
@@ -170,11 +171,27 @@ export default function BlackAndWhiteNewbornImagesPage() {
                 </ul>
                 <div className="grid grid-cols-2 gap-2 mt-4">
                   <div className="text-center">
-                    <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=300&q=80" alt="Before" className="w-full h-16 object-cover rounded-lg mb-1" />
+                    <div className="relative w-full h-16">
+                      <Image
+                        src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=300&q=80"
+                        alt="Before"
+                        fill
+                        className="rounded-lg object-cover"
+                        sizes="(max-width: 768px) 50vw, 200px"
+                      />
+                    </div>
                     <span className="text-xs text-gray-500">Original</span>
                   </div>
                   <div className="text-center">
-                    <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=300&q=80&sat=-100" alt={`${style.title} style`} className="w-full h-16 object-cover rounded-lg mb-1" />
+                    <div className="relative w-full h-16">
+                      <Image
+                        src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=300&q=80&sat=-100"
+                        alt={`${style.title} style`}
+                        fill
+                        className="rounded-lg object-cover"
+                        sizes="(max-width: 768px) 50vw, 200px"
+                      />
+                    </div>
                     <span className="text-xs text-gray-500">{style.title}</span>
                   </div>
                 </div>

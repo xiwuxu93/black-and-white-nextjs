@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Upload, Zap, Shield, Download, Settings, Star, CheckCircle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
@@ -140,6 +141,24 @@ export default function ImageBlackAndWhiteConverterPage() {
     }
   ]
 
+  const originalImages = [
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80',
+    'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=300&q=80',
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=80',
+    'https://images.unsplash.com/photo-1519741497674-611481863552?w=300&q=80',
+    'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=300&q=80',
+    'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=300&q=80'
+  ]
+
+  const convertedImages = [
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80&sat=-100',
+    'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=300&q=80&sat=-100',
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=80&sat=-100',
+    'https://images.unsplash.com/photo-1519741497674-611481863552?w=300&q=80&sat=-100',
+    'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=300&q=80&sat=-100',
+    'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=300&q=80&sat=-100'
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -268,25 +287,27 @@ export default function ImageBlackAndWhiteConverterPage() {
               <Card key={index} className="p-6">
                 <div className="grid grid-cols-2 gap-1 mb-4">
                   <div className="text-center">
-                    <img src={[
-                      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80',
-                      'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=300&q=80',
-                      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=80',
-                      'https://images.unsplash.com/photo-1519741497674-611481863552?w=300&q=80',
-                      'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=300&q=80',
-                      'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=300&q=80'
-                    ][index]} alt="Before" className="w-full h-16 object-cover rounded-lg mb-1" />
+                    <div className="relative w-full h-16">
+                      <Image
+                        src={originalImages[index]}
+                        alt="Before"
+                        fill
+                        className="rounded-lg object-cover"
+                        sizes="(max-width: 768px) 50vw, 200px"
+                      />
+                    </div>
                     <span className="text-xs text-gray-500">Original</span>
                   </div>
                   <div className="text-center">
-                    <img src={[
-                      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80&sat=-100',
-                      'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=300&q=80&sat=-100',
-                      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=80&sat=-100',
-                      'https://images.unsplash.com/photo-1519741497674-611481863552?w=300&q=80&sat=-100',
-                      'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=300&q=80&sat=-100',
-                      'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=300&q=80&sat=-100'
-                    ][index]} alt="Black and white result" className="w-full h-16 object-cover rounded-lg mb-1" />
+                    <div className="relative w-full h-16">
+                      <Image
+                        src={convertedImages[index]}
+                        alt="Black and white result"
+                        fill
+                        className="rounded-lg object-cover"
+                        sizes="(max-width: 768px) 50vw, 200px"
+                      />
+                    </div>
                     <span className="text-xs text-gray-500">Converted</span>
                   </div>
                 </div>
