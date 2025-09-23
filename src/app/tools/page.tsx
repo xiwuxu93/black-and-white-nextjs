@@ -1,10 +1,19 @@
 import type { Metadata } from 'next'
 import { FrontendToolsHub } from '@/components/frontend-tools-hub'
+import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Professional Black and White Photography Tools & Image Converters',
   description: 'Complete collection of professional black and white photography tools. Convert, edit, and enhance your images with our advanced AI-powered converters and filters.',
   keywords: ['black and white tools', 'image converters', 'photo editing tools', 'professional photography', 'vintage filters', 'sepia converter', 'monochrome tools', 'photography utilities'],
+  alternates: {
+    canonical: canonicalUrl('/tools')
+  },
+  openGraph: {
+    title: 'Professional Black and White Photography Tools & Image Converters',
+    description: 'Complete collection of professional black and white photography tools. Convert, edit, and enhance your images with our advanced AI-powered converters and filters.',
+    url: canonicalUrl('/tools')
+  }
 }
 
 export default function ToolsPage() {

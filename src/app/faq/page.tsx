@@ -5,11 +5,20 @@ import { Button } from '@/components/ui/button'
 import { ChevronDown, HelpCircle, CheckCircle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { ContentAd } from '@/components/ads/ad-placements'
+import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'FAQ - Black and White Image Converter | Common Questions Answered',
   description: 'Get answers to frequently asked questions about our black and white image converter. Learn about supported formats, processing quality, privacy, and more.',
   keywords: ['black and white converter FAQ', 'image converter questions', 'black and white photo help'],
+  alternates: {
+    canonical: canonicalUrl('/faq')
+  },
+  openGraph: {
+    title: 'FAQ - Black and White Image Converter | Common Questions Answered',
+    description: 'Get answers to frequently asked questions about our black and white image converter. Learn about supported formats, processing quality, privacy, and more.',
+    url: canonicalUrl('/faq')
+  }
 }
 
 export default function FAQPage() {

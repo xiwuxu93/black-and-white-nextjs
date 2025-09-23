@@ -1,4 +1,5 @@
 import { WebSite, WithContext, SoftwareApplication, HowTo, FAQPage, BlogPosting } from 'schema-dts'
+import { canonicalUrl, SITE_URL } from '@/lib/seo'
 
 interface StructuredDataProps {
   type: 'website' | 'application' | 'howto' | 'faq' | 'article'
@@ -16,23 +17,16 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         name: 'BWConverter - Free Black and White Image Converter',
         alternateName: 'Black and White Image Converter Online',
         description: 'Professional free black and white image converter with advanced filters and instant preview.',
-        url: 'https://bwconverter.com',
+        url: canonicalUrl('/'),
         keywords: 'black and white image, black and white image converter, convert image to black and white, monochrome image',
         inLanguage: 'en-US',
-        potentialAction: {
-          '@type': 'SearchAction',
-          target: {
-            '@type': 'EntryPoint',
-            urlTemplate: 'https://bwconverter.com/?q={search_term_string}'
-          }
-        } as any,
         publisher: {
           '@type': 'Organization',
           name: 'BWConverter - Black and White Image Converter',
-          url: 'https://bwconverter.com',
+          url: canonicalUrl('/'),
           logo: {
             '@type': 'ImageObject',
-            url: 'https://bwconverter.com/logo.png'
+            url: `${SITE_URL}/logo.png`
           }
         }
       } satisfies WithContext<WebSite>
@@ -45,7 +39,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         name: 'BWConverter - Free Black and White Image Converter Online',
         alternateName: 'Black and White Photo Converter',
         description: 'Professional free online tool to convert color images to beautiful black and white photos. Advanced black and white image processing with instant preview.',
-        url: 'https://bwconverter.com',
+        url: canonicalUrl('/'),
         applicationCategory: 'MultimediaApplication',
         applicationSubCategory: 'Photo Editor',
         operatingSystem: 'Any',
@@ -65,18 +59,11 @@ export function StructuredData({ type, data }: StructuredDataProps) {
           'No watermarks on black and white images',
           'Free black and white image conversion'
         ],
-        screenshot: 'https://bwconverter.com/website1.png',
-        image: 'https://bwconverter.com/black-and-white-image.png',
+        screenshot: `${SITE_URL}/website1.png`,
+        image: `${SITE_URL}/black-and-white-image.png`,
         author: {
           '@type': 'Organization',
           name: 'BWConverter - Black and White Image Converter'
-        },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.9',
-          reviewCount: '1247',
-          bestRating: '5',
-          worstRating: '1'
         }
       } satisfies WithContext<SoftwareApplication>
       break
@@ -132,7 +119,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
           name: 'BWConverter',
           logo: {
             '@type': 'ImageObject',
-            url: 'https://bwconverter.com/logo.png'
+            url: `${SITE_URL}/logo.png`
           }
         },
         datePublished: data.publishedDate,

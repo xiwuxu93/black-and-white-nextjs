@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Heart, Camera, Baby, Palette, Download, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import { Breadcrumb } from '@/components/seo/breadcrumb'
+import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Newborn Black and White Images - Beautiful Baby Photography | Free Converter',
@@ -13,7 +14,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Newborn Black and White Images - Beautiful Baby Photography',
     description: 'Transform your precious newborn photos into stunning black and white images with our professional-grade converter.',
+    url: canonicalUrl('/newborn-black-and-white-images'),
     images: ['/black-and-white-image.png']
+  },
+  alternates: {
+    canonical: canonicalUrl('/newborn-black-and-white-images')
   }
 }
 
@@ -21,42 +26,42 @@ export default function NewbornBlackAndWhiteImagesPage() {
   const tips = [
     {
       icon: Camera,
-      title: "Perfect Lighting",
-      description: "Use soft, natural light from a window for the most beautiful newborn portraits"
+      title: "Use Everyday Light",
+      description: "Open curtains and switch off overhead lamps to wrap your baby in gentle window light."
     },
     {
       icon: Heart,
-      title: "Emotional Focus",
-      description: "Black and white images emphasize the pure emotion and innocence of newborns"
+      title: "Capture Real Moments",
+      description: "Focus on cuddles, yawns, and tiny expressions to tell an intimate family story."
     },
     {
       icon: Sparkles,
-      title: "Timeless Appeal",
-      description: "Monochrome baby photos never go out of style and become treasured family heirlooms"
+      title: "Hide Color Distractions",
+      description: "Convert colorful blankets and toys to monochrome for a calm, cohesive gallery."
     },
     {
       icon: Palette,
-      title: "Artistic Touch",
-      description: "Remove color distractions to focus on textures, expressions, and precious details"
+      title: "Highlight Texture",
+      description: "Black & white draws attention to tiny fingers, soft hair, and the texture of knit wraps."
     }
   ]
 
   const examples = [
     {
-      title: "Sleeping Angel",
-      description: "Peaceful newborn sleeping poses highlight serenity and innocence"
+      title: "Morning Snuggles",
+      description: "Photograph skin-to-skin cuddles near the bedroom window for dreamy tones."
     },
     {
       title: "Tiny Details",
-      description: "Close-ups of little fingers, toes, and delicate features"
+      description: "Use macro mode on your phone to capture eyelashes, button noses, and toes."
     },
     {
-      title: "Family Bonding",
-      description: "Parent-child moments become even more emotional in black and white"
+      title: "Family Connection",
+      description: "Ask siblings to hold hands with the baby for authentic storytelling portraits."
     },
     {
-      title: "Studio Portraits",
-      description: "Professional-style newborn portraits with dramatic lighting"
+      title: "Lifestyle Moments",
+      description: "Document everyday routines like feeding or rocking to sleep in classic monochrome."
     }
   ]
 
@@ -161,37 +166,37 @@ export default function NewbornBlackAndWhiteImagesPage() {
             <div className="space-y-6">
               <div className="border-l-4 border-pink-500 pl-6">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  1. Capture During the Golden Hours
+                  1. Schedule Around Naps
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  The first 14 days after birth are ideal for newborn photography. Babies are typically sleepier and more flexible, making posing easier.
+                  Photograph your baby right after a feeding when they are naturally sleepy. Relaxed poses feel safer and look more authentic in black & white.
                 </p>
               </div>
               
               <div className="border-l-4 border-pink-500 pl-6">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  2. Focus on Natural Light
+                  2. Build a Simple Home Studio
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Use soft, diffused natural light from a large window. Avoid harsh direct sunlight or artificial lighting that can create unflattering shadows.
+                  Lay a neutral blanket on the bed, turn off mixed lighting, and pull sheer curtains for flattering, even illumination.
                 </p>
               </div>
               
               <div className="border-l-4 border-pink-500 pl-6">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  3. Emphasize Tiny Details
+                  3. Style With Texture Layers
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Black and white photography is perfect for highlighting delicate features like tiny fingers, toes, eyelashes, and the soft texture of baby skin.
+                  Combine knitted wraps, muslin swaddles, and wicker baskets. Monochrome conversion amplifies the tactile detail of each material.
                 </p>
               </div>
               
               <div className="border-l-4 border-pink-500 pl-6">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  4. Create Emotional Connections
+                  4. Include Everyday Storytelling
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Include parents and siblings in shots. The emotional connection and love become even more powerful in monochrome images.
+                  Photograph diaper changes, gently holding feet, or rocking to sleep. Those raw moments become artistic once converted to black & white.
                 </p>
               </div>
             </div>

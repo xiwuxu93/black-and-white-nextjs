@@ -2,9 +2,13 @@
 
 import Script from 'next/script'
 
-const GA_TRACKING_ID = 'G-8L2HQF6YTW' // Black And White Converter Analytics
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID
 
 export default function GoogleAnalytics() {
+  if (process.env.NODE_ENV !== 'production' || !GA_TRACKING_ID) {
+    return null
+  }
+
   return (
     <>
       <Script

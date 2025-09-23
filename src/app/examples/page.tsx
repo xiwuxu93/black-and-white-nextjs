@@ -1,11 +1,20 @@
 import type { Metadata } from 'next'
 import { ExamplesGrid } from '@/components/pages/examples-grid'
 import { Breadcrumb } from '@/components/seo/breadcrumb'
+import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Black and White Photo Examples - Professional Before & After Gallery',
   description: 'Explore stunning black and white image conversions with detailed analysis and professional techniques. Learn from real examples of portrait, landscape, and artistic photography transformations.',
   keywords: ['black and white photo examples', 'image conversion gallery', 'before after photography', 'monochrome examples', 'professional photo conversion', 'black white transformation', 'photography case studies'],
+  alternates: {
+    canonical: canonicalUrl('/examples')
+  },
+  openGraph: {
+    title: 'Black and White Photo Examples - Professional Before & After Gallery',
+    description: 'Explore stunning black and white image conversions with detailed analysis and professional techniques. Learn from real examples of portrait, landscape, and artistic photography transformations.',
+    url: canonicalUrl('/examples')
+  }
 }
 
 export default function ExamplesPage() {

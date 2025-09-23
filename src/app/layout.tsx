@@ -5,10 +5,10 @@ import { ThemeProvider } from '@/components/providers/theme-provider'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import GoogleAnalytics from '@/components/analytics/google-analytics'
-import GoogleTagManager, { GTMNoScript } from '@/components/analytics/google-tag-manager'
 import GoogleAdsense from '@/components/ads/google-adsense'
 import { StructuredData } from '@/components/seo/structured-data'
 import { NavigationStructuredData } from '@/components/seo/navigation-structured-data'
+import { canonicalUrl } from '@/lib/seo'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://bwconverter.com',
+    url: canonicalUrl('/'),
     title: 'Convert Image to Black and White - Free B&W Photo Converter',
     description: 'Transform any color photo into stunning black and white images with our free online converter. Professional results in just a few clicks - no software needed.',
     siteName: 'BWConverter - Black and White Image Converter',
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     google: 'ca-pub-4855228928819714',
   },
   alternates: {
-    canonical: 'https://bwconverter.com',
+    canonical: canonicalUrl('/'),
   },
   manifest: '/manifest.json',
   icons: {
@@ -123,7 +123,6 @@ export default function RootLayout({
         }} />
       </head>
       <body className={inter.className}>
-        <GTMNoScript />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -140,7 +139,6 @@ export default function RootLayout({
         </ThemeProvider>
         <div style={{display:"none"}}>
           <GoogleAnalytics />
-          <GoogleTagManager />
           <GoogleAdsense />
         </div>
       </body>

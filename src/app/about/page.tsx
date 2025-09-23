@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { canonicalUrl } from '@/lib/seo'
 import { 
   Heart, 
   Shield, 
@@ -21,6 +22,14 @@ export const metadata: Metadata = {
   title: 'About Us - Black and White Image Converter | Our Story & Mission',
   description: 'Learn about our mission to provide the best free black and white image converter. Discover our commitment to quality, privacy, and helping photographers create stunning monochrome art.',
   keywords: ['about black and white converter', 'our mission', 'image processing team', 'photography tools'],
+  alternates: {
+    canonical: canonicalUrl('/about')
+  },
+  openGraph: {
+    title: 'About Us - Black and White Image Converter | Our Story & Mission',
+    description: 'Learn about our mission to provide the best free black and white image converter. Discover our commitment to quality, privacy, and helping photographers create stunning monochrome art.',
+    url: canonicalUrl('/about')
+  }
 }
 
 export default function AboutPage() {

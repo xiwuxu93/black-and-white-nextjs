@@ -82,7 +82,7 @@ export function Footer() {
                   <a
                     href="https://magicbox.tools"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow sponsored noopener noreferrer"
                   >
                     <img
                       src="https://magicbox.tools/badge-dark.svg"
@@ -97,7 +97,7 @@ export function Footer() {
                   <a
                     href="https://dang.ai/"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow sponsored noopener noreferrer"
                   >
                     <img
                       src="https://cdn.prod.website-files.com/63d8afd87da01fb58ea3fbcb/6487e2868c6c8f93b4828827_dang-badge.png"
@@ -110,7 +110,7 @@ export function Footer() {
                   <a
                     href="https://kontext-ai.com/"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow sponsored noopener noreferrer"
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 border border-border rounded-md hover:border-foreground"
                   >
                     Kontext AI
@@ -118,7 +118,7 @@ export function Footer() {
                   <a
                     href="https://imglab.dev/item/bwconverter-prym"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow sponsored noopener noreferrer"
                   >
                     <img
                       src="https://imglab.dev/svg/badge.svg"
@@ -126,8 +126,21 @@ export function Footer() {
                       style={{ height: '54px', width: 'auto' }}
                     />
                   </a>
-               <a href="https://fwfw.app/item/charades-generator" target="_blank"><img src="https://fwfw.app/badge-white.svg" width="250" height="54" alt="Featured on FWFW" /></a>
-               <a target="_blank" href="https://acidtools.com"><img src="https://acidtools.com/assets/images/badge.png" alt="Acid Tools" height="54"></a>
+               <a href="https://fwfw.app/item/charades-generator" target="_blank" rel="nofollow sponsored noopener noreferrer">
+                 <img
+                   src="https://fwfw.app/badge-white.svg"
+                   width="250"
+                   height="54"
+                   alt="Featured on FWFW"
+                 />
+               </a>
+               <a target="_blank" href="https://acidtools.com" rel="nofollow sponsored noopener noreferrer">
+                 <img
+                   src="https://acidtools.com/assets/images/badge.png"
+                   alt="Acid Tools"
+                   height="54"
+                 />
+               </a>
                 </div>
               </div>
             </div>

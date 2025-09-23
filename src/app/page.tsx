@@ -16,7 +16,6 @@ import {
   WorkerResponse 
 } from '@/types/image-processing'
 import { Palette, Zap, Users, Shield, ChevronRight } from 'lucide-react'
-import { FriendlyLinks } from '@/components/layout/friendly-links'
 import { ContentAd } from '@/components/ads/ad-placements'
 import Link from 'next/link'
 
@@ -542,7 +541,33 @@ export default function HomePage() {
       )}
       
       {/* Friendly Links Section */}
-      {!showEditor && <FriendlyLinks />}
+      {!showEditor && (
+        <section className="bg-white dark:bg-gray-900 py-12">
+          <div className="container mx-auto text-center">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              Explore More Black & White Resources
+            </h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+              Learn advanced monochrome techniques, review professional presets, and
+              discover workflow tips inside our blog and tools library.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/blog">
+                <Button variant="outline" size="lg">
+                  Read Photography Guides
+                  <ChevronRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+              <Link href="/tools">
+                <Button size="lg">
+                  Open Tools Library
+                  <ChevronRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   )
 }

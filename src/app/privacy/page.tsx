@@ -4,11 +4,20 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Shield, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy - Black and White Image Converter | Your Data Protection',
   description: 'Our comprehensive privacy policy explains how we protect your data and images. Learn about our local processing approach and commitment to user privacy.',
   keywords: ['privacy policy', 'data protection', 'image privacy', 'local processing'],
+  alternates: {
+    canonical: canonicalUrl('/privacy')
+  },
+  openGraph: {
+    title: 'Privacy Policy - Black and White Image Converter | Your Data Protection',
+    description: 'Our comprehensive privacy policy explains how we protect your data and images. Learn about our local processing approach and commitment to user privacy.',
+    url: canonicalUrl('/privacy')
+  }
 }
 
 export default function PrivacyPolicyPage() {

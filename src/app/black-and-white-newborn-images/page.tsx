@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Heart, Camera, Baby, Star, Download, Sparkles, Shield, Clock } from 'lucide-react'
 import Link from 'next/link'
+import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Black and White Newborn Images - Professional Baby Photo Converter | Free Online',
@@ -12,7 +13,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Black and White Newborn Images - Professional Baby Photo Converter',
     description: 'Transform your newborn photos into beautiful black and white masterpieces with our professional online converter.',
+    url: canonicalUrl('/black-and-white-newborn-images'),
     images: ['/black-and-white-image.png']
+  },
+  alternates: {
+    canonical: canonicalUrl('/black-and-white-newborn-images')
   }
 }
 
@@ -20,65 +25,65 @@ export default function BlackAndWhiteNewbornImagesPage() {
   const benefits = [
     {
       icon: Star,
-      title: "Professional Quality",
-      description: "Get studio-quality black and white conversions that highlight every precious detail"
+      title: "Studio-Tuned Profiles",
+      description: "Dedicated conversion curves preserve dynamic range from strobe or continuous lighting setups."
     },
     {
       icon: Shield,
-      title: "Safe & Private",
-      description: "Your baby photos are processed locally in your browser - never uploaded to servers"
+      title: "Client-Safe Processing",
+      description: "Deliver previews on set knowing sensitive newborn galleries never leave your workstation."
     },
     {
       icon: Clock,
-      title: "Instant Results",
-      description: "Convert your newborn photos to black and white in seconds with real-time preview"
+      title: "Instant Proofing",
+      description: "Generate monochrome proofs while parents watch to increase same-day sales."
     },
     {
       icon: Sparkles,
-      title: "Artistic Enhancement",
-      description: "Multiple preset styles from soft and gentle to dramatic and artistic"
+      title: "Consistent Signature Style",
+      description: "Apply preset looks that match your studio brand across every client collection."
     }
   ]
 
   const styles = [
     {
-      title: "Soft & Gentle",
-      description: "Perfect for capturing the peaceful innocence of sleeping newborns",
-      features: ["Low contrast", "Warm tones", "Gentle shadows"]
+      title: "Editorial Matte",
+      description: "Create magazine-ready spreads with restrained highlights and clean mid-tones.",
+      features: ["Controlled contrast", "Matte roll-off", "Album friendly"]
     },
     {
-      title: "Classic Portrait",
-      description: "Traditional black and white style ideal for formal newborn portraits",
-      features: ["Balanced contrast", "Clear details", "Professional look"]
+      title: "Clinic Clean",
+      description: "Neutral conversion profile for hospitals and pediatric marketing campaigns.",
+      features: ["True whites", "Minimal grain", "Compliance ready"]
     },
     {
-      title: "High Contrast",
-      description: "Dramatic style that emphasizes textures and creates striking artistic images",
-      features: ["Deep blacks", "Bright whites", "Bold shadows"]
+      title: "High-Impact Contrast",
+      description: "Sculpt dramatic lighting for fine-art wall art and gallery reveals.",
+      features: ["Shadow separation", "Deep blacks", "Large print optimized"]
     },
     {
-      title: "Vintage Film",
-      description: "Nostalgic film-inspired look with subtle grain and timeless appeal",
-      features: ["Film grain", "Vintage tones", "Classic appeal"]
+      title: "Silver Halide Emulation",
+      description: "Mimic traditional darkroom fiber paper with organic grain and luminous highlights.",
+      features: ["Analog grain", "Split-toned whites", "Archival feel"]
     }
   ]
 
   const photographyTips = [
     {
-      title: "Best Age for Black and White Newborn Photos",
-      content: "The ideal time for newborn photography is within the first 5-14 days after birth. During this period, babies sleep more deeply and are more flexible for gentle posing. Black and white conversion works exceptionally well with newborns as it removes color distractions and focuses on their pure, innocent features."
+      title: "Optimize Lighting Ratios",
+      content: "Meter key and fill separately—maintain a 2:1 ratio for dimensional yet soft newborn skin."
     },
     {
-      title: "Lighting for Black and White Success",
-      content: "Natural window light is your best friend for black and white newborn photography. Position your baby near a large window with soft, diffused light. Avoid direct sunlight which can create harsh shadows. The gentle gradation of light and shadow will translate beautifully to monochrome."
+      title: "Calibrate Studio Workflow",
+      content: "Shoot in RAW, sync white balance, and let our converter handle first-pass monochrome before polishing in Capture One or Lightroom."
     },
     {
-      title: "Composition Elements That Shine",
-      content: "Focus on close-up details that work exceptionally well in black and white: tiny fingers and toes, peaceful sleeping expressions, the curve of their back, or the texture of their hair. These intimate details become even more powerful without the distraction of color."
+      title: "Curate Gallery Narrative",
+      content: "Sequence macro detail shots, storyteller wides, and parent connection frames to command premium album pricing."
     },
     {
-      title: "Creating Emotional Connection",
-      content: "Include meaningful elements like parents' hands gently cradling the baby, or capture the baby with a special blanket or toy. Black and white photography excels at conveying deep emotion and the precious bond between parent and child."
+      title: "Deliver Conversion Variants",
+      content: "Export a high-contrast hero, a matte backup, and a print-ready TIFF so clients receive options without extra editing time."
     }
   ]
 

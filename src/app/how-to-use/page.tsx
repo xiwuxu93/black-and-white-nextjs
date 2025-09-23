@@ -15,11 +15,20 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { ContentAd } from '@/components/ads/ad-placements'
+import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'How to Use Black and White Image Converter - Complete Guide',
   description: 'Learn how to convert your images to stunning black and white photos with our comprehensive step-by-step guide. Master professional techniques and achieve perfect results.',
   keywords: ['how to convert to black and white', 'black and white photo tutorial', 'image converter guide'],
+  alternates: {
+    canonical: canonicalUrl('/how-to-use')
+  },
+  openGraph: {
+    title: 'How to Use Black and White Image Converter - Complete Guide',
+    description: 'Learn how to convert your images to stunning black and white photos with our comprehensive step-by-step guide. Master professional techniques and achieve perfect results.',
+    url: canonicalUrl('/how-to-use')
+  }
 }
 
 export default function HowToUsePage() {

@@ -14,6 +14,7 @@ import { notFound } from 'next/navigation'
 import { BlogInteractions } from '@/components/blog/blog-interactions'
 import { BlogHeaderActions } from '@/components/blog/blog-header-actions'
 import blogPosts from '@/data/blog-posts.json'
+import { canonicalUrl } from '@/lib/seo'
 
 // Load blog posts from JSON file
 const getBlogPost = (slug: string) => {
@@ -41,6 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
+  const canonical = canonicalUrl(`/blog/${post.id}`)
+
   return {
     title: post.title,
     description: post.excerpt,
@@ -49,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://bwconverter.com/blog/${post.id}`,
+      url: canonical,
       type: 'article',
       publishedTime: post.publishDate,
       authors: [post.author],
@@ -60,7 +63,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt,
     },
     alternates: {
-      canonical: `https://bwconverter.com/blog/${post.id}`
+      canonical: canonical
     }
   }
 }

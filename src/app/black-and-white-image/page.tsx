@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { canonicalUrl } from '@/lib/seo'
 import { 
   ArrowRight,
   Camera,
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Black and White Image Converter - Transform Color Photos Online Free',
     description: 'Create stunning black and white images from your color photos. Professional black and white image converter with advanced filters.',
+    url: canonicalUrl('/black-and-white-image'),
     images: [
       {
         url: '/black-and-white-image.png',
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
     ]
   },
   alternates: {
-    canonical: 'https://bwconverter.com/black-and-white-image'
+    canonical: canonicalUrl('/black-and-white-image')
   }
 }
 

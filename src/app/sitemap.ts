@@ -1,103 +1,37 @@
 import { MetadataRoute } from 'next'
 import { getBlogPosts } from '@/lib/blog'
+import { canonicalUrl } from '@/lib/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://bwconverter.com'
   const currentDate = new Date().toISOString()
-  
-  // 静态页面配置
-  const staticPages = [
-    {
-      url: `${baseUrl}/`,
-      lastModified: currentDate,
-      changeFrequency: 'daily' as const,
-      priority: 1.0
-    },
-    {
-      url: `${baseUrl}/batch`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.9
-    },
-    {
-      url: `${baseUrl}/black-and-white-image`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.9
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8
-    },
-    {
-      url: `${baseUrl}/how-to-use`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7
-    },
-    {
-      url: `${baseUrl}/faq`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6
-    },
-    {
-      url: `${baseUrl}/examples`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6
-    },
-    {
-      url: `${baseUrl}/tools`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.6
-    },
-    // SEO Landing Pages for Long-tail Keywords
-    {
-      url: `${baseUrl}/newborn-black-and-white-images`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.9
-    },
-    {
-      url: `${baseUrl}/black-and-white-newborn-images`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.9
-    },
-    {
-      url: `${baseUrl}/image-black-and-white-converter`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.9
-    }
+
+  const staticRoutes = [
+    { path: '/', changeFrequency: 'daily' as const, priority: 1.0 },
+    { path: '/batch', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/black-and-white-image', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/blog', changeFrequency: 'weekly' as const, priority: 0.8 },
+    { path: '/how-to-use', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: '/about', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: '/faq', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: '/privacy', changeFrequency: 'monthly' as const, priority: 0.6 },
+    { path: '/terms', changeFrequency: 'monthly' as const, priority: 0.6 },
+    { path: '/examples', changeFrequency: 'monthly' as const, priority: 0.6 },
+    { path: '/tools', changeFrequency: 'weekly' as const, priority: 0.6 },
+    { path: '/newborn-black-and-white-images', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/black-and-white-newborn-images', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/image-black-and-white-converter', changeFrequency: 'weekly' as const, priority: 0.9 }
   ]
 
-  // 获取所有博客文章
+  const staticPages = staticRoutes.map((route) => ({
+    url: canonicalUrl(route.path),
+    lastModified: currentDate,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority
+  }))
+
   const blogPosts = getBlogPosts()
   const blogPages = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.id}`,
+    url: canonicalUrl(`/blog/${post.id}`),
     lastModified: post.publishDate ? new Date(post.publishDate).toISOString() : currentDate,
     changeFrequency: 'monthly' as const,
     priority: 0.8

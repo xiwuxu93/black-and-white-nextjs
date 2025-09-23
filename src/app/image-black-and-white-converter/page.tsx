@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Upload, Zap, Shield, Download, Settings, Star, CheckCircle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Image Black and White Converter - Best Free Online Tool 2025',
@@ -12,7 +13,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Image Black and White Converter - Best Free Online Tool',
     description: 'Transform any image into stunning black and white with our professional online converter. Fast, secure, and completely free.',
+    url: canonicalUrl('/image-black-and-white-converter'),
     images: ['/black-and-white-image.png']
+  },
+  alternates: {
+    canonical: canonicalUrl('/image-black-and-white-converter')
   }
 }
 

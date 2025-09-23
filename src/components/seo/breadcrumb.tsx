@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ChevronRight, Home } from 'lucide-react'
 import { WithContext, BreadcrumbList } from 'schema-dts'
+import { canonicalUrl } from '@/lib/seo'
 
 interface BreadcrumbItem {
   name: string
@@ -31,7 +32,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
       ...(item.url && {
         item: {
           '@type': 'WebPage',
-          '@id': `https://bwconverter.com${item.url}`
+          '@id': canonicalUrl(item.url)
         }
       })
     }))

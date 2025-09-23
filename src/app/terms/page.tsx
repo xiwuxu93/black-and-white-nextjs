@@ -4,11 +4,20 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { FileText, CheckCircle, AlertTriangle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Terms of Service - Black and White Image Converter | Usage Agreement',
   description: 'Read our terms of service for using the black and white image converter. Understand your rights and responsibilities when using our free online tool.',
   keywords: ['terms of service', 'usage agreement', 'legal terms', 'user agreement'],
+  alternates: {
+    canonical: canonicalUrl('/terms')
+  },
+  openGraph: {
+    title: 'Terms of Service - Black and White Image Converter | Usage Agreement',
+    description: 'Read our terms of service for using the black and white image converter. Understand your rights and responsibilities when using our free online tool.',
+    url: canonicalUrl('/terms')
+  }
 }
 
 export default function TermsOfServicePage() {

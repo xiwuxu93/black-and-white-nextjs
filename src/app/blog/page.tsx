@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { canonicalUrl } from '@/lib/seo'
 import { getBlogPosts, getFeaturedBlogPosts } from '@/lib/blog'
 import { 
   Calendar, 
@@ -31,10 +32,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Black And White Photography Blog - BWConverter',
     description: 'Expert tips, techniques, and insights for creating stunning black and white images. From beginner guides to professional workflows.',
-    url: 'https://bwconverter.com/blog',
+    url: canonicalUrl('/blog'),
   },
   alternates: {
-    canonical: 'https://bwconverter.com/blog'
+    canonical: canonicalUrl('/blog')
   }
 }
 
