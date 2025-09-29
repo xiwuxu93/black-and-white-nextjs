@@ -27,7 +27,6 @@ yarn-error.log*
 
 # local env files
 .env*.local
-.env
 .env.production
 
 # vercel
@@ -98,7 +97,6 @@ jspm_packages/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
 .env.development.local
 .env.test.local
 .env.production.local
