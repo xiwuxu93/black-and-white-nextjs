@@ -364,19 +364,25 @@ export function ExamplesGrid() {
                   {/* Before/After Images */}
                   <div className="grid grid-cols-2 gap-2">
                     <div className="text-center">
-                      <img 
-                        src={example.beforeImage} 
-                        alt="Before" 
-                        className="w-full h-24 object-cover rounded-lg mb-1" 
+                      <Image 
+                        src={example.beforeImage}
+                        alt={`${example.title} before conversion`}
+                        width={320}
+                        height={180}
+                        className="w-full h-24 object-cover rounded-lg mb-1"
+                        sizes="(max-width: 1024px) 50vw, 320px"
                         loading="lazy"
                       />
                       <span className="text-xs text-gray-500">Original</span>
                     </div>
                     <div className="text-center">
-                      <img 
-                        src={example.afterImage} 
-                        alt="After" 
-                        className="w-full h-24 object-cover rounded-lg mb-1 filter grayscale" 
+                      <Image 
+                        src={example.afterImage}
+                        alt={`${example.title} after black and white conversion`}
+                        width={320}
+                        height={180}
+                        className="w-full h-24 object-cover rounded-lg mb-1 filter grayscale"
+                        sizes="(max-width: 1024px) 50vw, 320px"
                         loading="lazy"
                       />
                       <span className="text-xs text-gray-500">Black & White</span>

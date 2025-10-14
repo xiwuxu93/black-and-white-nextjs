@@ -18,6 +18,28 @@ import {
 import { Palette, Zap, Users, Shield, ChevronRight } from 'lucide-react'
 import { ContentAd } from '@/components/ads/ad-placements'
 import Link from 'next/link'
+import { StructuredData } from '@/components/seo/structured-data'
+
+const HOME_FAQ_SCHEMA = {
+  questions: [
+    {
+      question: 'What is a black and white image converter?',
+      answer: 'A black and white image converter is a tool that transforms color photos into monochrome images. Our converter uses advanced algorithms to create professional-quality black and white images while preserving important details and contrast.'
+    },
+    {
+      question: 'Is this black and white image converter really free?',
+      answer: 'Yes! Our black and white image converter is completely free to use. There are no hidden costs, watermarks, or registration requirements. Convert as many images to black and white as you want.'
+    },
+    {
+      question: 'What image formats can I convert to black and white?',
+      answer: 'Our black and white image converter supports all common image formats including JPG, JPEG, PNG, GIF, and WebP. You can convert any of these formats to high-quality black and white images.'
+    },
+    {
+      question: 'How is this different from simple grayscale conversion?',
+      answer: 'Our black and white image converter goes beyond simple grayscale. It uses professional techniques like luminance mapping, contrast enhancement, and selective tone adjustment to create stunning black and white images with rich detail and depth.'
+    }
+  ]
+}
 
 export default function HomePage() {
   // State management
@@ -181,7 +203,9 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <>
+      <StructuredData type="faq" data={HOME_FAQ_SCHEMA} />
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       {/* Hero Section */}
       {!showEditor && (
         <section className="py-20 px-4">
@@ -569,5 +593,6 @@ export default function HomePage() {
         </section>
       )}
     </div>
+    </>
   )
 }

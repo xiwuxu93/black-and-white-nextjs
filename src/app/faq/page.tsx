@@ -6,6 +6,7 @@ import { ChevronDown, HelpCircle, CheckCircle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { ContentAd } from '@/components/ads/ad-placements'
 import { canonicalUrl } from '@/lib/seo'
+import { StructuredData } from '@/components/seo/structured-data'
 
 export const metadata: Metadata = {
   title: 'FAQ - Black and White Image Converter | Common Questions Answered',
@@ -143,8 +144,19 @@ export default function FAQPage() {
     }
   ]
 
+  const faqStructuredData = {
+    questions: faqs.flatMap(category =>
+      category.questions.map(({ question, answer }) => ({
+        question,
+        answer
+      }))
+    )
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12">
+    <>
+      <StructuredData type="faq" data={faqStructuredData} />
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
@@ -236,5 +248,6 @@ export default function FAQPage() {
         </Card>
       </div>
     </div>
+    </>
   )
 }
