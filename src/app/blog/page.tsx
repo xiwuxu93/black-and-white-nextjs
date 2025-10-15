@@ -4,7 +4,8 @@ import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { canonicalUrl } from '@/lib/seo'
-import { getBlogPosts, getFeaturedBlogPosts } from '@/lib/blog'
+import { getBlogPosts } from '@/lib/blog'
+import Image from 'next/image'
 import { 
   Calendar, 
   Clock, 
@@ -109,8 +110,8 @@ export default function BlogPage() {
             {/* Featured Post */}
             {featuredPost && (
               <Card className="overflow-hidden">
-                <div className="md:flex">
-                  <div className="md:w-2/3 p-8">
+                <div className="md:flex md:flex-row-reverse">
+                  <div className="md:w-1/2 p-8">
                     <div className="flex items-center space-x-2 mb-3">
                       <Badge className="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200">
                         ⭐ Featured
@@ -139,7 +140,7 @@ export default function BlogPage() {
                         By {featuredPost.author}
                       </div>
                     </div>
-                    
+                      
                     <Link href={`/blog/${featuredPost.id}`}>
                       <Button size="lg">
                         Read Article
@@ -148,8 +149,20 @@ export default function BlogPage() {
                     </Link>
                   </div>
                   
-                  <div className="md:w-1/3 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 flex items-center justify-center p-8">
-                    <Camera className="w-24 h-24 text-gray-400 dark:text-gray-500" />
+                  <div className="md:w-1/2 relative h-64 md:h-auto">
+                    {featuredPost.heroImage ? (
+                      <Image
+                        src={featuredPost.heroImage}
+                        alt={featuredPost.heroAlt || featuredPost.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 flex items-center justify-center">
+                        <Camera className="w-24 h-24 text-gray-400 dark:text-gray-500" />
+                      </div>
+                    )}
                   </div>
                 </div>
               </Card>
@@ -159,8 +172,20 @@ export default function BlogPage() {
             <div className="grid md:grid-cols-2 gap-6">
               {regularPosts.map((post) => (
                 <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 h-48 flex items-center justify-center">
-                    <Camera className="w-16 h-16 text-gray-400 dark:text-gray-500" />
+                  <div className="relative h-48">
+                    {post.heroImage ? (
+                      <Image
+                        src={post.heroImage}
+                        alt={post.heroAlt || post.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 flex items-center justify-center">
+                        <Camera className="w-16 h-16 text-gray-400 dark:text-gray-500" />
+                      </div>
+                    )}
                   </div>
                   
                   <div className="p-6">

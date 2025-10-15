@@ -1,20 +1,19 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Card } from '@/components/ui/card'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import { 
-  Calendar, 
-  Clock, 
+import {
+  Calendar,
+  Clock,
   ArrowLeft,
-  Camera,
   User
 } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import { BlogInteractions } from '@/components/blog/blog-interactions'
 import { BlogHeaderActions } from '@/components/blog/blog-header-actions'
-import blogPosts from '@/data/blog-posts.json'
+import { blogPosts, blogPostList, BlogPost } from '@/data/blog-posts'
 import { canonicalUrl } from '@/lib/seo'
 
 // Load blog posts from JSON file
@@ -33,6 +32,13 @@ interface Props {
   params: { slug: string }
 }
 
+const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getBlogPost(params.slug)
   
@@ -44,6 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const canonical = canonicalUrl(`/blog/${post.id}`)
+  const lastModified = post.updatedDate ?? post.publishDate
 
   return {
     title: post.title,
@@ -56,6 +63,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: canonical,
       type: 'article',
       publishedTime: post.publishDate,
+      modifiedTime: lastModified,
       authors: [post.author],
       tags: post.tags,
     },
@@ -75,6 +83,39 @@ export default function BlogPostPage({ params }: Props) {
   if (!post) {
     notFound()
   }
+
+  const relatedPosts = blogPostList
+    .filter(item => item.id !== post.id)
+    .map(item => {
+      const sharedTags = item.tags.filter(tag => post.tags.includes(tag)).length
+      const categoryBoost = item.category === post.category ? 1 : 0
+      return {
+        post: item,
+        score: sharedTags + categoryBoost
+      }
+    })
+    .filter(item => item.score > 0)
+    .sort((a, b) => {
+      if (b.score !== a.score) {
+        return b.score - a.score
+      }
+      return new Date(b.post.publishDate).getTime() - new Date(a.post.publishDate).getTime()
+    })
+    .slice(0, 3)
+    .map(item => item.post)
+
+  const fallbackRelated = blogPostList
+    .filter(item => item.id !== post.id)
+    .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
+    .slice(0, 3)
+
+  const postsToShow = relatedPosts.length > 0 ? relatedPosts : fallbackRelated
+
+  const authorInitials = post.author
+    .split(' ')
+    .map(piece => piece[0])
+    .join('')
+    .slice(0, 2)
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 py-12 px-4">
@@ -112,10 +153,15 @@ export default function BlogPostPage({ params }: Props) {
               </div>
               <div className="flex items-center space-x-1">
                 <Calendar className="w-4 h-4" />
-                <span>{new Date(post.publishDate).toLocaleDateString()}</span>
+                <span>{formatDate(post.publishDate)}</span>
               </div>
+              {post.updatedDate && (
+                <div className="flex items-center space-x-1">
+                  <Clock className="w-4 h-4" />
+                  <span>Updated {formatDate(post.updatedDate)}</span>
+                </div>
+              )}
               <div className="flex items-center space-x-1">
-                <Clock className="w-4 h-4" />
                 <span>{post.readTime}</span>
               </div>
             </div>
@@ -124,20 +170,69 @@ export default function BlogPostPage({ params }: Props) {
           </div>
 
           {/* Featured Image */}
-          <div className="relative rounded-lg overflow-hidden mb-8 shadow-lg h-64 md:h-96">
-            <Image
-              src="/black-and-white-image.jpg"
-              alt="Black and White Image Conversion Example"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 960px"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-            <div className="absolute bottom-4 left-4 text-white">
-              <p className="text-sm opacity-80">Example of black and white image conversion</p>
+          {post.heroImage && (
+            <div className="relative rounded-lg overflow-hidden mb-8 shadow-lg h-64 md:h-96">
+              <Image
+                src={post.heroImage}
+                alt={post.heroAlt || post.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 960px"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              {post.heroAlt && (
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="text-sm opacity-80">{post.heroAlt}</p>
+                </div>
+              )}
             </div>
-          </div>
+          )}
+
+          {/* Key Takeaways */}
+          {post.keyTakeaways && post.keyTakeaways.length > 0 && (
+            <Card className="mb-10 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <CardHeader>
+                <div className="flex items-center space-x-2">
+                  <Badge variant="secondary">Key Takeaways</Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                  {post.keyTakeaways.map((item, index) => (
+                    <li key={index} className="flex items-start space-x-3">
+                      <span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-100 text-primary-700 text-sm font-semibold dark:bg-primary-900/40 dark:text-primary-200">
+                        {index + 1}
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Author */}
+          <Card className="mb-12 border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur">
+            <CardContent className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="flex items-center space-x-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary-100 text-primary-700 font-semibold text-lg">
+                  {authorInitials}
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-gray-900 dark:text-white">{post.author}</p>
+                  {post.authorTitle && (
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{post.authorTitle}</p>
+                  )}
+                </div>
+              </div>
+              {post.authorBio && (
+                <p className="text-sm text-gray-600 dark:text-gray-400 md:max-w-xl">
+                  {post.authorBio}
+                </p>
+              )}
+            </CardContent>
+          </Card>
         </div>
 
         <div className="grid lg:grid-cols-4 gap-8">
@@ -194,6 +289,31 @@ export default function BlogPostPage({ params }: Props) {
                         </h3>
                       )
                     }
+                    else if (trimmedLine.startsWith('![')) {
+                      flushList()
+                      const match = trimmedLine.match(/!\[(.*?)\]\((.*?)\)/)
+                      if (match) {
+                        const [, alt, src] = match
+                        elements.push(
+                          <div key={`img-${index}`} className="my-8 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
+                            <div className="relative aspect-[16/9]">
+                              <Image
+                                src={src}
+                                alt={alt || post.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 720px"
+                              />
+                            </div>
+                            {alt && (
+                              <p className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-900">
+                                {alt}
+                              </p>
+                            )}
+                          </div>
+                        )
+                      }
+                    }
                     else if (trimmedLine.startsWith('- ')) {
                       currentList.push(trimmedLine.slice(2))
                     }
@@ -247,6 +367,26 @@ export default function BlogPostPage({ params }: Props) {
               </div>
             </div>
 
+            {post.sources && post.sources.length > 0 && (
+              <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">参考资料</h2>
+                <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+                  {post.sources.map((source, idx) => (
+                    <li key={idx}>
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline decoration-primary-500 decoration-2 underline-offset-2 hover:text-primary-600 dark:hover:text-primary-400"
+                      >
+                        {source.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {/* Engagement */}
             <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
               <BlogInteractions 
@@ -260,27 +400,24 @@ export default function BlogPostPage({ params }: Props) {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <Card className="p-6 sticky top-8">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">
-                Related Articles
-              </h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Related Articles</h3>
               <div className="space-y-4">
-                <Link href="/blog/art-of-black-and-white-photography" className="block space-y-2 hover:bg-gray-50 dark:hover:bg-gray-800 p-2 rounded transition-colors">
-                  <h4 className="font-medium text-sm text-gray-900 dark:text-white line-clamp-2">
-                    The Art of the Black and White Image: A Deep Dive
-                  </h4>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">
-                    6 min read • Art & Techniques
-                  </p>
-                </Link>
-                
-                <Link href="/blog/revolutionary-art-of-black-and-white" className="block space-y-2 hover:bg-gray-50 dark:hover:bg-gray-800 p-2 rounded transition-colors">
-                  <h4 className="font-medium text-sm text-gray-900 dark:text-white line-clamp-2">
-                    The Revolutionary Art of Black and White
-                  </h4>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">
-                    7 min read • Art & Techniques
-                  </p>
-                </Link>
+                {postsToShow.map((related: BlogPost) => (
+                  <Link
+                    key={related.id}
+                    href={`/blog/${related.id}`}
+                    className="block space-y-2 hover:bg-gray-50 dark:hover:bg-gray-800 p-2 rounded transition-colors"
+                  >
+                    <h4 className="font-medium text-sm text-gray-900 dark:text-white line-clamp-2">
+                      {related.title}
+                    </h4>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center space-x-2">
+                      <span>{related.readTime}</span>
+                      <span>•</span>
+                      <span>{related.category}</span>
+                    </p>
+                  </Link>
+                ))}
               </div>
               
               <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">

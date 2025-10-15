@@ -1,9 +1,9 @@
-import { blogPosts, BlogPost } from '@/data/blog-posts'
+import { blogPosts, blogPostList, BlogPost } from '@/data/blog-posts'
 
 export type { BlogPost }
 
 export function getBlogPosts(): BlogPost[] {
-  return Object.values(blogPosts) as BlogPost[]
+  return blogPostList
 }
 
 export function getBlogPost(id: string): BlogPost | null {

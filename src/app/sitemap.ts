@@ -30,12 +30,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   const blogPosts = getBlogPosts()
-  const blogPages = blogPosts.map((post) => ({
-    url: canonicalUrl(`/blog/${post.id}`),
-    lastModified: post.publishDate ? new Date(post.publishDate).toISOString() : currentDate,
-    changeFrequency: 'monthly' as const,
-    priority: 0.8
-  }))
+  const blogPages = blogPosts.map((post) => {
+    const lastModifiedSource = post.updatedDate ?? post.publishDate
+    return {
+      url: canonicalUrl(`/blog/${post.id}`),
+      lastModified: lastModifiedSource ? new Date(lastModifiedSource).toISOString() : currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8
+    }
+  })
 
   return [
     ...staticPages,
