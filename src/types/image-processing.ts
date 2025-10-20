@@ -45,10 +45,20 @@ export interface BatchWorkerResponse {
   fileIdentifier: string;
 }
 
+export interface OriginalFileInfo {
+  name: string;
+  baseName: string;
+  extension: string;
+  mimeType: string;
+  size: number;
+}
+
 export interface ProcessedImage {
   id: string;
   originalFile: File;
-  processedBlob?: Blob;
+  originalInfo: OriginalFileInfo;
+  selectedFormat: DownloadFormat;
+  processedData?: ImageData;
   processingStatus: 'pending' | 'processing' | 'completed' | 'error';
   error?: string;
   originalPreviewUrl?: string;

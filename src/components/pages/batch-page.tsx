@@ -2,11 +2,12 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import React, { useState, useCallback, useRef } from 'react'
+import React, { useState, useCallback, useRef, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
+import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
 import { 
   Upload, 
   Download, 
@@ -22,9 +23,36 @@ import {
   ProcessedImage, 
   DEFAULT_PRESETS, 
   BatchWorkerMessage, 
-  BatchWorkerResponse
+  BatchWorkerResponse,
+  DownloadFormat,
+  DOWNLOAD_FORMATS
 } from '@/types/image-processing'
 import { ContentAd } from '@/components/ads/ad-placements'
+import { resolveFileInfo, sanitizeBaseName, qualityForFormat, normalizeExtension } from '@/lib/image-format'
+import { downloadCanvasImage } from '@/lib/utils'
+
+function ProcessedPreviewCanvas({ data }: { data?: ImageData }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    if (data && canvasRef.current) {
+      const canvas = canvasRef.current
+      const ctx = canvas.getContext('2d')
+      if (!ctx) return
+      canvas.width = data.width
+      canvas.height = data.height
+      ctx.putImageData(data, 0, 0)
+    }
+  }, [data])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="w-full h-full object-cover"
+      style={{ display: data ? 'block' : 'none' }}
+    />
+  )
+}
 
 export default function BatchPage() {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([])
@@ -52,31 +80,27 @@ export default function BatchPage() {
 
   const handleWorkerMessage = (e: MessageEvent<BatchWorkerResponse>) => {
     const { processedImageData, fileIdentifier } = e.data
-    
+
+    const previewCanvas = document.createElement('canvas')
+    previewCanvas.width = processedImageData.width
+    previewCanvas.height = processedImageData.height
+    const previewCtx = previewCanvas.getContext('2d')
+    const previewUrl = (() => {
+      if (previewCtx) {
+        previewCtx.putImageData(processedImageData, 0, 0)
+        return previewCanvas.toDataURL('image/png')
+      }
+      return undefined
+    })()
+
     setProcessedImages(prev => prev.map(img => {
       if (img.id === fileIdentifier) {
-        // Create blob from processed image data
-        const canvas = document.createElement('canvas')
-        canvas.width = processedImageData.width
-        canvas.height = processedImageData.height
-        const ctx = canvas.getContext('2d')
-        if (ctx) {
-          ctx.putImageData(processedImageData, 0, 0)
-          
-          // Create preview URL immediately
-          const previewUrl = canvas.toDataURL('image/png')
-          
-          canvas.toBlob(blob => {
-            if (blob) {
-              setProcessedImages(current => current.map(item => 
-                item.id === fileIdentifier 
-                  ? { ...item, processedBlob: blob, processedPreviewUrl: previewUrl, processingStatus: 'completed' }
-                  : item
-              ))
-            }
-          }, 'image/png')
+        return {
+          ...img,
+          processedData: processedImageData,
+          processedPreviewUrl: previewUrl ?? img.processedPreviewUrl,
+          processingStatus: 'completed' as const
         }
-        return { ...img, processingStatus: 'completed' as const }
       }
       return img
     }))
@@ -101,12 +125,17 @@ export default function BatchPage() {
     const fileArray = Array.from(files).filter(file => file.type.startsWith('image/'))
     setSelectedFiles(fileArray)
     
-    const processedImagesList: ProcessedImage[] = fileArray.map((file, index) => ({
-      id: `${Date.now()}_${index}`,
-      originalFile: file,
-      processingStatus: 'pending',
-      originalPreviewUrl: URL.createObjectURL(file)
-    }))
+    const processedImagesList: ProcessedImage[] = fileArray.map((file, index) => {
+      const { info, defaultFormat } = resolveFileInfo(file)
+      return {
+        id: `${Date.now()}_${index}`,
+        originalFile: file,
+        originalInfo: info,
+        selectedFormat: defaultFormat,
+        processingStatus: 'pending',
+        originalPreviewUrl: URL.createObjectURL(file)
+      }
+    })
     
     setProcessedImages(processedImagesList)
     setProcessingProgress(0)
@@ -180,21 +209,57 @@ export default function BatchPage() {
     }
   }, [processedImages, isProcessing, processAllImages])
 
+  const downloadImageFile = useCallback(async (image: ProcessedImage, formatOverride?: DownloadFormat) => {
+    if (!image.processedData) return
+
+    const canvas = document.createElement('canvas')
+    canvas.width = image.processedData.width
+    canvas.height = image.processedData.height
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    ctx.putImageData(image.processedData, 0, 0)
+
+    const format = formatOverride || image.selectedFormat
+    const baseName = image.originalInfo.baseName || sanitizeBaseName(image.originalFile.name)
+    const filename = `${baseName}-bw.${format.value}`
+    const sameFormat = normalizeExtension(image.originalInfo.extension) === normalizeExtension(format.value)
+
+    try {
+      await downloadCanvasImage(canvas, {
+        filename,
+        mimeType: format.mimeType,
+        quality: qualityForFormat(format),
+        maxBytes: sameFormat ? image.originalInfo.size : undefined
+      })
+    } catch (error) {
+      console.error('Failed to download image', error)
+    }
+  }, [])
+
   const downloadAll = useCallback(async () => {
-    const { downloadFile } = await import('@/lib/utils')
-    processedImages.forEach(image => {
-      if (image.processedBlob && image.processingStatus === 'completed') {
-        const filename = `bw_${image.originalFile.name.replace(/\.[^/.]+$/, '')}.png`
-        downloadFile(image.processedBlob, filename)
+    for (const image of processedImages) {
+      if (image.processingStatus === 'completed' && image.processedData) {
+        await downloadImageFile(image)
       }
-    })
-  }, [processedImages])
+    }
+  }, [processedImages, downloadImageFile])
 
   const downloadAsZip = useCallback(async () => {
     // This would require a library like JSZip in a real implementation
     // For now, we'll just download individually
     downloadAll()
   }, [downloadAll])
+
+  const handleFormatChange = useCallback((id: string, value: string) => {
+    const format = DOWNLOAD_FORMATS.find(fmt => fmt.value === value)
+    if (!format) return
+
+    setProcessedImages(prev => prev.map(image =>
+      image.id === id
+        ? { ...image, selectedFormat: format }
+        : image
+    ))
+  }, [])
 
   const clearAll = useCallback(() => {
     setSelectedFiles([])
@@ -313,28 +378,37 @@ export default function BatchPage() {
                   <Card key={image.id} className="p-3 relative">
                     <div className="space-y-3">
                       {/* Image Display */}
-                      <div className="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden relative">
-                        {image.processedPreviewUrl ? (
+                      <div className="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden relative flex items-center justify-center">
+                        {image.processedData ? (
+                          <ProcessedPreviewCanvas data={image.processedData} />
+                        ) : image.originalPreviewUrl ? (
                           <img
-                            src={image.processedPreviewUrl}
-                            alt="Black & White"
-                            className="w-full h-full object-cover"
+                            src={image.originalPreviewUrl}
+                            alt="Original"
+                            className="w-full h-full object-cover opacity-60"
                           />
                         ) : (
                           <div className="w-full h-full flex flex-col items-center justify-center">
-                            {image.processingStatus === 'processing' && (
-                              <RefreshCw className="w-6 h-6 animate-spin text-primary-600" />
-                            )}
-                            {image.processingStatus === 'pending' && (
-                              <Clock className="w-6 h-6 text-gray-400" />
-                            )}
-                            {image.processingStatus === 'error' && (
-                              <AlertCircle className="w-6 h-6 text-red-500" />
-                            )}
+                            <RefreshCw className="w-6 h-6 animate-spin text-primary-600" />
                           </div>
                         )}
-                        
-                        {/* Status indicator */}
+
+                        {image.processingStatus === 'processing' && (
+                          <div className="absolute inset-0 bg-black/25 flex items-center justify-center">
+                            <RefreshCw className="w-6 h-6 animate-spin text-primary-100" />
+                          </div>
+                        )}
+                        {image.processingStatus === 'pending' && (
+                          <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                            <Clock className="w-6 h-6 text-gray-200" />
+                          </div>
+                        )}
+                        {image.processingStatus === 'error' && (
+                          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <AlertCircle className="w-6 h-6 text-red-400" />
+                          </div>
+                        )}
+
                         {image.processingStatus === 'completed' && (
                           <div className="absolute top-2 right-2 bg-green-500 text-white rounded-full p-1">
                             <CheckCircle className="w-3 h-3" />
@@ -347,20 +421,34 @@ export default function BatchPage() {
                         {image.originalFile.name}
                       </p>
                       
-                      {/* Download button */}
-                      {image.processingStatus === 'completed' && image.processedBlob && (
-                        <Button
-                          size="sm"
-                          className="w-full text-xs h-7"
-                          onClick={async () => {
-                            const { downloadFile } = await import('@/lib/utils')
-                            const filename = `bw_${image.originalFile.name.replace(/\.[^/.]+$/, '')}.png`
-                            downloadFile(image.processedBlob!, filename)
-                          }}
-                        >
-                          <Download className="w-3 h-3 mr-1" />
-                          Download
-                        </Button>
+                      {/* Format selection & Download */}
+                      {image.processingStatus === 'completed' && image.processedData && (
+                        <div className="space-y-2">
+                          <Select
+                            value={image.selectedFormat.value}
+                            onValueChange={(value) => handleFormatChange(image.id, value)}
+                          >
+                            <SelectTrigger className="w-full text-left text-xs h-8 px-2 py-1">
+                              <span className="truncate">{image.selectedFormat.label}</span>
+                            </SelectTrigger>
+                            <SelectContent>
+                              {DOWNLOAD_FORMATS.map(format => (
+                                <SelectItem key={format.value} value={format.value}>
+                                  {format.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+
+                          <Button
+                            size="sm"
+                            className="w-full text-xs h-7"
+                            onClick={() => downloadImageFile(image)}
+                          >
+                            <Download className="w-3 h-3 mr-1" />
+                            Download
+                          </Button>
+                        </div>
                       )}
                     </div>
                   </Card>

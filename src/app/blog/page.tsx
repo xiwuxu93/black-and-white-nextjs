@@ -55,6 +55,7 @@ const categories = [
   { name: 'Art & Techniques', count: categoryCount['Art & Techniques'] || 0, icon: Camera },
   { name: 'Photography Theory', count: categoryCount['Photography Theory'] || 0, icon: Brain },
   { name: 'Photography Basics', count: categoryCount['Photography Basics'] || 0, icon: BookOpen },
+  { name: 'Design Resources', count: categoryCount['Design Resources'] || 0, icon: Lightbulb },
 ]
 
 export default function BlogPage() {

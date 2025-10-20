@@ -12,13 +12,23 @@ import {
   ImageFilter, 
   DEFAULT_PRESETS, 
   DownloadFormat, 
+  DOWNLOAD_FORMATS,
   WorkerMessage, 
-  WorkerResponse 
+  WorkerResponse,
+  OriginalFileInfo 
 } from '@/types/image-processing'
 import { Palette, Zap, Users, Shield, ChevronRight } from 'lucide-react'
 import { ContentAd } from '@/components/ads/ad-placements'
 import Link from 'next/link'
 import { StructuredData } from '@/components/seo/structured-data'
+import {
+  resolveFileInfo,
+  sanitizeBaseName,
+  findFormatByMime,
+  findFormatByExtension,
+  qualityForFormat,
+  normalizeExtension
+} from '@/lib/image-format'
 
 const HOME_FAQ_SCHEMA = {
   questions: [
@@ -49,10 +59,13 @@ export default function HomePage() {
   const [selectedPreset, setSelectedPreset] = useState('default')
   const [isProcessing, setIsProcessing] = useState(false)
   const [showEditor, setShowEditor] = useState(false)
+  const [originalFileInfo, setOriginalFileInfo] = useState<OriginalFileInfo | null>(null)
 
   // Refs
   const workerRef = useRef<Worker | null>(null)
   const debounceTimerRef = useRef<NodeJS.Timeout>()
+  const originalFileInfoRef = useRef<OriginalFileInfo | null>(null)
+  const pendingDownloadFormatRef = useRef<DownloadFormat | null>(null)
 
   // Initialize worker
   const downloadProcessedImage = useCallback(async (imageData: ImageData) => {
@@ -60,16 +73,39 @@ export default function HomePage() {
     canvas.width = imageData.width
     canvas.height = imageData.height
     const ctx = canvas.getContext('2d')
-    if (ctx) {
-      ctx.putImageData(imageData, 0, 0)
-      const { downloadCanvasImage } = await import('@/lib/utils')
-      try {
-        await downloadCanvasImage(canvas, 'black-white-image.png')
-      } catch (error) {
-        console.error('Download failed:', error)
-      }
+
+    if (!ctx) {
+      setIsProcessing(false)
+      return
     }
-    setIsProcessing(false)
+
+    ctx.putImageData(imageData, 0, 0)
+    const { downloadCanvasImage } = await import('@/lib/utils')
+
+    const originalInfo = originalFileInfoRef.current
+    const defaultFormat =
+      (originalInfo && (findFormatByMime(originalInfo.mimeType) || findFormatByExtension(originalInfo.extension))) ||
+      DOWNLOAD_FORMATS[0]
+    const selectedFormat = pendingDownloadFormatRef.current ?? defaultFormat
+    const safeBaseName = sanitizeBaseName(originalInfo?.baseName ?? 'black-and-white-image')
+    const filename = `${safeBaseName}-bw.${selectedFormat.value}`
+    const sameFormat =
+      !!originalInfo && normalizeExtension(originalInfo.extension) === normalizeExtension(selectedFormat.value)
+    const maxBytes = sameFormat ? originalInfo?.size : undefined
+
+    try {
+      await downloadCanvasImage(canvas, {
+        filename,
+        mimeType: selectedFormat.mimeType,
+        quality: qualityForFormat(selectedFormat),
+        maxBytes,
+      })
+    } catch (error) {
+      console.error('Download failed:', error)
+    } finally {
+      pendingDownloadFormatRef.current = null
+      setIsProcessing(false)
+    }
   }, [])
 
   const handleWorkerMessage = useCallback((e: MessageEvent<WorkerResponse>) => {
@@ -149,6 +185,10 @@ export default function HomePage() {
   const handleFileSelect = useCallback(async (file: File) => {
     try {
       const bitmap = await createImageBitmap(file)
+      const { info, defaultFormat } = resolveFileInfo(file)
+      setOriginalFileInfo(info)
+      originalFileInfoRef.current = info
+      pendingDownloadFormatRef.current = defaultFormat
       setCurrentImageBitmap(bitmap)
       setShowEditor(true)
       
@@ -188,6 +228,7 @@ export default function HomePage() {
   }, [currentImageBitmap, processImage])
 
   const handleDownload = useCallback((format: DownloadFormat) => {
+    pendingDownloadFormatRef.current = format
     if (currentImageBitmap) {
       processImage(currentImageBitmap, filters, 'final')
     }
@@ -200,7 +241,21 @@ export default function HomePage() {
     setFilters(DEFAULT_PRESETS.default)
     setSelectedPreset('default')
     setIsProcessing(false)
+    setOriginalFileInfo(null)
+    originalFileInfoRef.current = null
+    pendingDownloadFormatRef.current = null
   }, [])
+
+  const defaultDownloadFormat = React.useMemo(() => {
+    if (originalFileInfo) {
+      return (
+        findFormatByMime(originalFileInfo.mimeType) ||
+        findFormatByExtension(originalFileInfo.extension) ||
+        DOWNLOAD_FORMATS[0]
+      )
+    }
+    return DOWNLOAD_FORMATS[0]
+  }, [originalFileInfo])
 
   return (
     <>
@@ -462,6 +517,8 @@ export default function HomePage() {
                 onDownload={handleDownload}
                 onReset={handleReset}
                 simplified={true}
+                defaultFormat={defaultDownloadFormat}
+                availableFormats={DOWNLOAD_FORMATS}
               />
             </div>
 
@@ -565,33 +622,6 @@ export default function HomePage() {
       )}
       
       {/* Friendly Links Section */}
-      {!showEditor && (
-        <section className="bg-white dark:bg-gray-900 py-12">
-          <div className="container mx-auto text-center">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              Explore More Black & White Resources
-            </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
-              Learn advanced monochrome techniques, review professional presets, and
-              discover workflow tips inside our blog and tools library.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/blog">
-                <Button variant="outline" size="lg">
-                  Read Photography Guides
-                  <ChevronRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-              <Link href="/tools">
-                <Button size="lg">
-                  Open Tools Library
-                  <ChevronRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
     </div>
     </>
   )

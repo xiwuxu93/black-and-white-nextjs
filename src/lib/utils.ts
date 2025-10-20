@@ -145,31 +145,99 @@ export function downloadFile(data: string | Blob, filename: string, mimeType?: s
 /**
  * Download image from canvas with enhanced mobile compatibility
  */
-export function downloadCanvasImage(canvas: HTMLCanvasElement, filename: string = 'image.png'): Promise<void> {
+const QUALITY_ENABLED_MIME_TYPES = new Set(['image/jpeg', 'image/webp'])
+
+export interface CanvasDownloadOptions {
+  filename: string
+  mimeType: string
+  quality?: number
+  maxBytes?: number
+}
+
+const toBlobPromise = (
+  canvas: HTMLCanvasElement,
+  mimeType: string,
+  quality?: number
+): Promise<Blob | null> =>
+  new Promise((resolve) => canvas.toBlob(resolve, mimeType, quality))
+
+const defaultQualityForMime = (mimeType: string, requested?: number): number | undefined => {
+  if (!QUALITY_ENABLED_MIME_TYPES.has(mimeType)) return undefined
+  if (typeof requested === 'number') return requested
+  return mimeType === 'image/webp' ? 0.96 : 0.92
+}
+
+const generateDataUrl = (
+  canvas: HTMLCanvasElement,
+  options: CanvasDownloadOptions
+): string => {
+  const quality = defaultQualityForMime(options.mimeType, options.quality)
+  try {
+    return canvas.toDataURL(options.mimeType, quality)
+  } catch (error) {
+    console.warn(`Canvas toDataURL failed for ${options.mimeType}, falling back to PNG`, error)
+    return canvas.toDataURL('image/png')
+  }
+}
+
+const generateBlobWithConstraints = async (
+  canvas: HTMLCanvasElement,
+  options: CanvasDownloadOptions
+): Promise<Blob | null> => {
+  const initialQuality = defaultQualityForMime(options.mimeType, options.quality)
+  let blob = await toBlobPromise(canvas, options.mimeType, initialQuality)
+  if (!blob) return null
+
+  const supportsQuality = QUALITY_ENABLED_MIME_TYPES.has(options.mimeType)
+  if (!options.maxBytes || !supportsQuality || blob.size <= options.maxBytes) {
+    return blob
+  }
+
+  let quality = initialQuality ?? 0.92
+  let bestBlob = blob
+  let attempts = 0
+
+  while (bestBlob.size > options.maxBytes && quality > 0.3 && attempts < 6) {
+    quality = Math.max(0.3, quality - 0.1)
+    const candidate = await toBlobPromise(canvas, options.mimeType, quality)
+    if (!candidate || candidate.size >= bestBlob.size) {
+      break
+    }
+    bestBlob = candidate
+    attempts++
+  }
+
+  return bestBlob
+}
+
+export function downloadCanvasImage(canvas: HTMLCanvasElement, options: CanvasDownloadOptions): Promise<void> {
   return new Promise((resolve, reject) => {
     try {
-      // Detect mobile devices
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
       const isAndroid = /Android/.test(navigator.userAgent)
       const isMobileDevice = isIOS || isAndroid || isMobile()
-      
+
       if (isMobileDevice) {
-        // For mobile devices, use enhanced mobile download
-        mobileCanvasDownload(canvas, filename).then(resolve).catch(reject)
-      } else {
-        // For desktop, use traditional blob download
-        canvas.toBlob((blob) => {
+        mobileCanvasDownload(canvas, options).then(resolve).catch(reject)
+        return
+      }
+
+      generateBlobWithConstraints(canvas, options)
+        .then((blob) => {
           if (blob) {
-            downloadFile(blob, filename, 'image/png')
+            downloadFile(blob, options.filename, options.mimeType)
             resolve()
           } else {
-            fallbackCanvasDownload(canvas, filename).then(resolve).catch(reject)
+            fallbackCanvasDownload(canvas, options).then(resolve).catch(reject)
           }
-        }, 'image/png', 0.95)
-      }
+        })
+        .catch((error) => {
+          console.error('Canvas blob generation failed:', error)
+          fallbackCanvasDownload(canvas, options).then(resolve).catch(reject)
+        })
     } catch (error) {
       console.warn('Canvas download failed, using fallback:', error)
-      fallbackCanvasDownload(canvas, filename).then(resolve).catch(reject)
+      fallbackCanvasDownload(canvas, options).then(resolve).catch(reject)
     }
   })
 }
@@ -177,22 +245,22 @@ export function downloadCanvasImage(canvas: HTMLCanvasElement, filename: string 
 /**
  * Enhanced mobile download with iOS Photos app support
  */
-function mobileCanvasDownload(canvas: HTMLCanvasElement, filename: string): Promise<void> {
+function mobileCanvasDownload(canvas: HTMLCanvasElement, options: CanvasDownloadOptions): Promise<void> {
   return new Promise((resolve, reject) => {
     try {
-      const dataUrl = canvas.toDataURL('image/png')
+      const dataUrl = generateDataUrl(canvas, options)
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
       const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)
       
       if (isIOS && isSafari) {
         // iOS Safari - enhanced experience for Photos app
-        showIOSImageSaveDialog(dataUrl, filename).then(resolve).catch(reject)
+        showIOSImageSaveDialog(dataUrl, options.filename).then(resolve).catch(reject)
       } else if (isIOS) {
         // iOS other browsers (Chrome, Firefox, etc.)
-        showIOSImagePreview(dataUrl, filename).then(resolve).catch(reject)
+        showIOSImagePreview(dataUrl, options.filename).then(resolve).catch(reject)
       } else {
         // Android and other mobile browsers
-        showMobileImagePreview(dataUrl, filename).then(resolve).catch(reject)
+        showMobileImagePreview(dataUrl, options.filename).then(resolve).catch(reject)
       }
     } catch (error) {
       reject(error)
@@ -459,15 +527,15 @@ function showMobileImagePreview(dataUrl: string, filename: string): Promise<void
 /**
  * Fallback download method for canvas
  */
-function fallbackCanvasDownload(canvas: HTMLCanvasElement, filename: string): Promise<void> {
+function fallbackCanvasDownload(canvas: HTMLCanvasElement, options: CanvasDownloadOptions): Promise<void> {
   return new Promise((resolve, reject) => {
     try {
-      const dataUrl = canvas.toDataURL('image/png')
+      const dataUrl = generateDataUrl(canvas, options)
       
       // Desktop browser - use normal download
       const link = document.createElement('a')
       link.href = dataUrl
-      link.download = filename
+      link.download = options.filename
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)

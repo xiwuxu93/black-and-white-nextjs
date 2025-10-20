@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
 import { Download, Eye, EyeOff, RotateCcw, Loader2 } from 'lucide-react'
 import { DOWNLOAD_FORMATS, DownloadFormat } from '@/types/image-processing'
@@ -16,6 +16,8 @@ interface ResultDisplayProps {
   onReset: () => void
   className?: string
   simplified?: boolean
+  defaultFormat?: DownloadFormat
+  availableFormats?: DownloadFormat[]
 }
 
 export function ResultDisplay({ 
@@ -25,13 +27,25 @@ export function ResultDisplay({
   onDownload, 
   onReset,
   className = '',
-  simplified = false
+  simplified = false,
+  defaultFormat,
+  availableFormats = DOWNLOAD_FORMATS
 }: ResultDisplayProps) {
   const originalCanvasRef = useRef<HTMLCanvasElement>(null)
   const processedCanvasRef = useRef<HTMLCanvasElement>(null)
   const [showComparison, setShowComparison] = useState(!simplified)
-  const [selectedFormat, setSelectedFormat] = useState<DownloadFormat>(DOWNLOAD_FORMATS[0])
+  const [selectedFormat, setSelectedFormat] = useState<DownloadFormat>(
+    defaultFormat || availableFormats[0]
+  )
   const [isDownloading, setIsDownloading] = useState(false)
+
+  useEffect(() => {
+    if (defaultFormat) {
+      setSelectedFormat(defaultFormat)
+    } else if (availableFormats.length > 0) {
+      setSelectedFormat(availableFormats[0])
+    }
+  }, [defaultFormat, availableFormats])
 
   // Draw original image
   useEffect(() => {
@@ -192,6 +206,25 @@ export function ResultDisplay({
           {simplified ? (
             // Simplified download for basic users
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
+              <Select
+                value={selectedFormat.value}
+                onValueChange={(value) => {
+                  const format = availableFormats.find(f => f.value === value)
+                  if (format) setSelectedFormat(format)
+                }}
+              >
+              <SelectTrigger className="w-full sm:w-40 text-left text-gray-900 dark:text-gray-100">
+                <span className="truncate">{selectedFormat.label}</span>
+              </SelectTrigger>
+                <SelectContent>
+                  {availableFormats.map((format) => (
+                    <SelectItem key={format.value} value={format.value}>
+                      {format.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
               <Button 
                 onClick={handleDownload}
                 disabled={isDownloading}
@@ -236,15 +269,15 @@ export function ResultDisplay({
                 <Select
                   value={selectedFormat.value}
                   onValueChange={(value) => {
-                    const format = DOWNLOAD_FORMATS.find(f => f.value === value)
+                    const format = availableFormats.find(f => f.value === value)
                     if (format) setSelectedFormat(format)
                   }}
                 >
-                  <SelectTrigger className="w-32">
-                    <SelectValue />
+                  <SelectTrigger className="w-32 text-left text-gray-900 dark:text-gray-100">
+                    <span className="truncate">{selectedFormat.label}</span>
                   </SelectTrigger>
                   <SelectContent>
-                    {DOWNLOAD_FORMATS.map((format) => (
+                    {availableFormats.map((format) => (
                       <SelectItem key={format.value} value={format.value}>
                         {format.label}
                       </SelectItem>

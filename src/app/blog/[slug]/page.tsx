@@ -1,9 +1,12 @@
 import { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import {
   Calendar,
   Clock,
@@ -38,6 +41,119 @@ const formatDate = (date: string) =>
     month: 'short',
     day: 'numeric'
   })
+
+const MarkdownImage = ({ src, alt }: { src?: string; alt?: string }) => {
+  if (!src) return null
+  const isExternal = src.startsWith('http')
+
+  if (isExternal) {
+    return (
+      <figure className="my-8">
+        <Image
+          src={src}
+          alt={alt || ''}
+          width={1600}
+          height={900}
+          className="w-full h-auto rounded-xl object-cover"
+        />
+        {alt && (
+          <figcaption className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {alt}
+          </figcaption>
+        )}
+      </figure>
+    )
+  }
+
+  return (
+    <figure className="my-8">
+      <div className="relative w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 aspect-[16/9]">
+        <Image
+          src={src}
+          alt={alt || ''}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 720px"
+        />
+      </div>
+      {alt && (
+        <figcaption className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          {alt}
+        </figcaption>
+      )}
+    </figure>
+  )
+}
+
+const MarkdownLink = ({ href, children }: { href?: string; children: ReactNode }) => {
+  if (!href) return <span>{children}</span>
+  const isInternal = href.startsWith('/')
+  if (isInternal) {
+    return (
+      <Link href={href} className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 underline underline-offset-4">
+        {children}
+      </Link>
+    )
+  }
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 underline underline-offset-4"
+    >
+      {children}
+    </a>
+  )
+}
+
+const MarkdownComponents = {
+  h1: (props: any) => (
+    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-10 mb-6" {...props} />
+  ),
+  h2: (props: any) => (
+    <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-10 mb-4" {...props} />
+  ),
+  h3: (props: any) => (
+    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-8 mb-3" {...props} />
+  ),
+  p: (props: any) => (
+    <p className="mb-5 text-gray-700 dark:text-gray-300 leading-relaxed" {...props} />
+  ),
+  ul: (props: any) => (
+    <ul className="mb-5 list-disc pl-6 text-gray-700 dark:text-gray-300 space-y-2" {...props} />
+  ),
+  ol: (props: any) => (
+    <ol className="mb-5 list-decimal pl-6 text-gray-700 dark:text-gray-300 space-y-2" {...props} />
+  ),
+  li: (props: any) => <li className="leading-relaxed" {...props} />,
+  blockquote: (props: any) => (
+    <blockquote className="border-l-4 border-primary-500 bg-primary-50/70 dark:bg-primary-900/20 dark:border-primary-400 px-5 py-3 my-6 text-gray-700 dark:text-gray-200 italic" {...props} />
+  ),
+  table: ({ children }: any) => (
+    <div className="my-6 overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+      <table className="w-full border-collapse text-sm text-left text-gray-700 dark:text-gray-300">
+        {children}
+      </table>
+    </div>
+  ),
+  thead: (props: any) => (
+    <thead className="bg-gray-100 dark:bg-gray-800" {...props} />
+  ),
+  th: (props: any) => (
+    <th className="px-4 py-3 font-semibold border-b border-gray-200 dark:border-gray-700" {...props} />
+  ),
+  td: (props: any) => (
+    <td className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 align-top" {...props} />
+  ),
+  a: (props: any) => <MarkdownLink {...props} />,
+  img: (props: any) => <MarkdownImage {...props} />,
+  hr: () => <hr className="my-10 border-gray-200 dark:border-gray-700" />,
+  strong: (props: any) => <strong className="font-semibold text-gray-900 dark:text-gray-100" {...props} />,
+  code: (props: any) => (
+    <code className="rounded bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 text-sm" {...props} />
+  ),
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getBlogPost(params.slug)
@@ -239,121 +355,12 @@ export default function BlogPostPage({ params }: Props) {
           {/* Main Content */}
           <div className="lg:col-span-3">
             <div className="prose prose-lg max-w-none prose-gray dark:prose-invert">
-              <article className="text-gray-700 dark:text-gray-300 leading-relaxed space-y-6">
-                {(() => {
-                  const lines = post.content.split('\n')
-                  const elements: JSX.Element[] = []
-                  let currentList: string[] = []
-                  
-                  const flushList = () => {
-                    if (currentList.length > 0) {
-                      elements.push(
-                        <ul key={`list-${elements.length}`} className="mb-6 ml-6 space-y-2">
-                          {currentList.map((item, idx) => (
-                            <li 
-                              key={idx} 
-                              className="list-disc text-gray-700 dark:text-gray-300"
-                              dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}
-                            />
-                          ))}
-                        </ul>
-                      )
-                      currentList = []
-                    }
-                  }
-                  
-                  lines.forEach((line, index) => {
-                    const trimmedLine = line.trim()
-                    
-                    if (trimmedLine.startsWith('# ')) {
-                      flushList()
-                      elements.push(
-                        <h1 key={`h1-${index}`} className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
-                          {trimmedLine.slice(2)}
-                        </h1>
-                      )
-                    }
-                    else if (trimmedLine.startsWith('## ')) {
-                      flushList()
-                      elements.push(
-                        <h2 key={`h2-${index}`} className="text-2xl font-semibold text-gray-900 dark:text-white mt-8 mb-4">
-                          {trimmedLine.slice(3)}
-                        </h2>
-                      )
-                    }
-                    else if (trimmedLine.startsWith('### ')) {
-                      flushList()
-                      elements.push(
-                        <h3 key={`h3-${index}`} className="text-xl font-medium text-gray-900 dark:text-white mt-6 mb-3">
-                          {trimmedLine.slice(4)}
-                        </h3>
-                      )
-                    }
-                    else if (trimmedLine.startsWith('![')) {
-                      flushList()
-                      const match = trimmedLine.match(/!\[(.*?)\]\((.*?)\)/)
-                      if (match) {
-                        const [, alt, src] = match
-                        elements.push(
-                          <div key={`img-${index}`} className="my-8 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
-                            <div className="relative aspect-[16/9]">
-                              <Image
-                                src={src}
-                                alt={alt || post.title}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, 720px"
-                              />
-                            </div>
-                            {alt && (
-                              <p className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-900">
-                                {alt}
-                              </p>
-                            )}
-                          </div>
-                        )
-                      }
-                    }
-                    else if (trimmedLine.startsWith('- ')) {
-                      currentList.push(trimmedLine.slice(2))
-                    }
-                    else if (trimmedLine === '') {
-                      flushList()
-                      elements.push(<div key={`space-${index}`} className="h-4"></div>)
-                    }
-                    else if (trimmedLine.startsWith('✅') || trimmedLine.startsWith('❌')) {
-                      flushList()
-                      elements.push(
-                        <div key={`highlight-${index}`} className="mb-3 font-medium text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border-l-4 border-blue-500">
-                          {trimmedLine}
-                        </div>
-                      )
-                    }
-                    else if (/^\d+\./.test(trimmedLine)) {
-                      flushList()
-                      elements.push(
-                        <p key={`numbered-${index}`} className="mb-2 font-medium text-gray-800 dark:text-gray-200">
-                          {trimmedLine}
-                        </p>
-                      )
-                    }
-                    else if (trimmedLine) {
-                      flushList()
-                      const formattedText = trimmedLine.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                      elements.push(
-                        <p 
-                          key={`p-${index}`} 
-                          className="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed text-lg"
-                          dangerouslySetInnerHTML={{ __html: formattedText }}
-                        />
-                      )
-                    }
-                  })
-                  
-                  flushList() // Flush any remaining list items
-                  return elements
-                })()}
-              </article>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={MarkdownComponents as any}
+              >
+                {post.content}
+              </ReactMarkdown>
             </div>
 
             {/* Tags */}
