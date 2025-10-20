@@ -398,8 +398,6 @@ export default function BlogPostPage({ params }: Props) {
             <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
               <BlogInteractions 
                 postId={post.id} 
-                initialLikes={32} 
-                initialComments={5} 
               />
             </div>
           </div>
