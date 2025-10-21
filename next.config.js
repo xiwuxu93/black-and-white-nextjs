@@ -38,21 +38,6 @@ const nextConfig = {
         ],
         destination: 'https://bwconverter.com/:path*',
         permanent: true
-      },
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'bwconverter.com'
-          },
-          {
-            type: 'query',
-            key: 'q'
-          }
-        ],
-        destination: 'https://bwconverter.com/:path*',
-        permanent: true
       }
     ]
   }
