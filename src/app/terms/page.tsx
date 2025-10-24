@@ -276,17 +276,23 @@ export default function TermsOfServicePage() {
               12. Contact Information
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              If you have questions about these Terms of Service, please consult our FAQ section or contact us through the information provided on our About page.
+              If you have questions about these Terms of Service, reach out anytime. We typically reply within one business day (UTC+8).
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="mailto:support@bwconverter.com"
+                className="inline-flex items-center justify-center px-4 py-2 border border-primary-200 dark:border-primary-800 rounded-md text-primary-600 dark:text-primary-300 font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
+              >
+                support@bwconverter.com
+              </a>
+              <Link href="/contact">
+                <Button variant="outline">
+                  Contact Page
+                </Button>
+              </Link>
               <Link href="/faq">
                 <Button variant="outline">
                   Visit FAQ
-                </Button>
-              </Link>
-              <Link href="/about">
-                <Button variant="outline">
-                  Contact Information
                 </Button>
               </Link>
             </div>

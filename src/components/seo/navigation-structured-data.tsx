@@ -112,6 +112,17 @@ export function NavigationStructuredData() {
           '@type': 'WebSite',
           '@id': homeUrl
         }
+      },
+      {
+        '@type': 'WebPage',
+        '@id': canonicalUrl('/contact'),
+        url: canonicalUrl('/contact'),
+        name: 'Contact BWConverter Support',
+        description: 'Email support@bwconverter.com or find quick answers for the converter',
+        isPartOf: {
+          '@type': 'WebSite',
+          '@id': homeUrl
+        }
       }
     ]
   }
@@ -161,6 +172,11 @@ export function NavigationStructuredData() {
         '@type': 'WebPage',
         name: 'FAQ & Support',
         url: canonicalUrl('/faq')
+      },
+      {
+        '@type': 'WebPage',
+        name: 'Contact',
+        url: canonicalUrl('/contact')
       }
     ]
   }

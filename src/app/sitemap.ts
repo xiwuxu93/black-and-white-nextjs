@@ -16,10 +16,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/privacy', changeFrequency: 'monthly' as const, priority: 0.6 },
     { path: '/terms', changeFrequency: 'monthly' as const, priority: 0.6 },
     { path: '/examples', changeFrequency: 'monthly' as const, priority: 0.6 },
-    { path: '/tools', changeFrequency: 'weekly' as const, priority: 0.6 },
     { path: '/newborn-black-and-white-images', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/black-and-white-newborn-images', changeFrequency: 'weekly' as const, priority: 0.9 },
-    { path: '/image-black-and-white-converter', changeFrequency: 'weekly' as const, priority: 0.9 }
+    { path: '/image-black-and-white-converter', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/contact', changeFrequency: 'monthly' as const, priority: 0.5 }
   ]
 
   const staticPages = staticRoutes.map((route) => ({

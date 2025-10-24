@@ -48,10 +48,18 @@ export default function PrivacyPolicyPage() {
             Key Privacy Highlights
           </h2>
           <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-            <li> <strong>No Image Upload:</strong> All processing happens locally in your browser</li>
-            <li> <strong>Zero Data Collection:</strong> We don't collect, store, or analyze your images</li>
-            <li> <strong>No Tracking:</strong> We don't track your usage or create user profiles</li>
-            <li> <strong>Local Processing Only:</strong> Your images never leave your device</li>
+            <li>
+              <strong>No Image Upload:</strong> All processing happens locally in your browser
+            </li>
+            <li>
+              <strong>Zero Data Collection:</strong> We don't collect, store, or analyze your images
+            </li>
+            <li>
+              <strong>No Tracking:</strong> We don't track your usage or create user profiles
+            </li>
+            <li>
+              <strong>Local Processing Only:</strong> Your images never leave your device
+            </li>
           </ul>
         </Card>
 

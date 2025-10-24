@@ -174,8 +174,7 @@ export default function BlackAndWhiteImagePage() {
                 Trusted by Thousands
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Over 10,000+ users trust our black and white image converter for their 
-                professional and personal photography projects.
+                Creative teams rely on the converter for consistent monochrome workflows across portrait, landscape, and editorial projects.
               </p>
             </Card>
 

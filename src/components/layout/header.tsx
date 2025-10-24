@@ -12,11 +12,11 @@ import {
   Menu, 
   X, 
   ChevronDown,
-  Image as ImageIcon,
   HelpCircle,
   Info,
   Shield,
-  FileText
+  FileText,
+  Mail
 } from "lucide-react"
 
 export function Header() {
@@ -39,6 +39,7 @@ export function Header() {
       href: "#",
       children: [
         { name: "FAQ", href: "/faq", icon: HelpCircle, description: "Common questions answered" },
+        { name: "Contact", href: "/contact", icon: Mail, description: "Email our support team" },
         { name: "About Us", href: "/about", icon: Info, description: "Our story and mission" },
         { name: "Privacy Policy", href: "/privacy", icon: Shield, description: "How we protect your data" },
         { name: "Terms of Service", href: "/terms", icon: FileText, description: "Usage terms and conditions" }

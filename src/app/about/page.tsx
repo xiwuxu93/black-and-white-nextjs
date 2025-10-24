@@ -58,24 +58,24 @@ export default function AboutPage() {
 
   const stats = [
     {
-      number: "1M+",
-      label: "Images Converted",
-      description: "Photographers worldwide trust our converter"
+      number: "Local Only",
+      label: "Processing Mode",
+      description: "Images never leave your browser during conversion"
     },
     {
-      number: "99.9%",
-      label: "Uptime",
-      description: "Reliable service you can count on"
+      number: "Real-Time",
+      label: "Preview Speed",
+      description: "Adjustments render instantly as you fine-tune settings"
     },
     {
-      number: "6",
-      label: "Professional Presets",
-      description: "Carefully crafted for different photography styles"
+      number: "6 Presets",
+      label: "Creative Looks",
+      description: "Portrait, architecture, and editorial styles ready to use"
     },
     {
-      number: "0",
-      label: "Ads or Watermarks",
-      description: "Clean, professional results every time"
+      number: "Export Ready",
+      label: "Format Support",
+      description: "Download PNG, JPEG, or WebP files without watermarks"
     }
   ]
 
@@ -311,13 +311,26 @@ export default function AboutPage() {
             Questions or Feedback?
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
-            We'd love to hear from you. Check our FAQ for quick answers or reach out directly.
+            We'd love to hear from you. Email our team or visit the contact page for response times and self-service tips.
           </p>
-          <Link href="/faq">
-            <Button variant="outline">
-              Visit FAQ
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="mailto:support@bwconverter.com"
+              className="inline-flex items-center justify-center px-4 py-2 border border-primary-200 dark:border-primary-800 rounded-md text-primary-600 dark:text-primary-300 font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
+            >
+              support@bwconverter.com
+            </a>
+            <Link href="/contact">
+              <Button variant="outline">
+                Contact BWConverter
+              </Button>
+            </Link>
+            <Link href="/faq">
+              <Button variant="outline">
+                Visit FAQ
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
