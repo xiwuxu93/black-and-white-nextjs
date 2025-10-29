@@ -9,6 +9,8 @@ export function Footer() {
         { name: "Single Converter", href: "/" },
         { name: "Batch Converter", href: "/batch" },
         { name: "Examples", href: "/examples" },
+        { name: "Newborn Guide", href: "/newborn-black-and-white-images" },
+        { name: "Newborn Case Study", href: "/black-and-white-newborn-images" },
         { name: "How to Use", href: "/how-to-use" },
         { name: "Blog", href: "/blog" },
       ],

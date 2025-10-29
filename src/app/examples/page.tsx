@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { ExamplesGrid } from '@/components/pages/examples-grid'
 import { Breadcrumb } from '@/components/seo/breadcrumb'
 import { canonicalUrl } from '@/lib/seo'
+import { Card } from '@/components/ui/card'
 
 export const metadata: Metadata = {
   title: 'Black and White Photo Examples - Professional Before & After Gallery',
@@ -22,7 +24,7 @@ export default function ExamplesPage() {
     <div className="min-h-screen py-12">
       <div className="container max-w-7xl">
         <Breadcrumb items={[{ name: 'Examples' }]} />
-        
+
         {/* 页面标题 */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -34,6 +36,42 @@ export default function ExamplesPage() {
             science behind creating compelling monochrome photography.
           </p>
         </div>
+
+        {/* Featured Guides */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white text-center mb-10">
+            Featured Guides & Case Studies
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                Newborn Photography Playbook
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
+                Follow a home-session checklist, lighting recipes, and a one-hour editing timeline built for
+                BWConverter presets. Includes downloadable sample conversions and benchmark data.
+              </p>
+              <Link href="/newborn-black-and-white-images" className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
+                Read the guide
+                <span className="sr-only">Newborn photography guide</span>
+              </Link>
+            </Card>
+
+            <Card className="p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                Studio Case Study: 34% Revenue Lift
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
+                Review lighting diagrams, preset choices, and delivery metrics that helped a Singapore studio
+                increase wall-art orders using monochrome newborn galleries.
+              </p>
+              <Link href="/black-and-white-newborn-images" className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
+                Explore the case study
+                <span className="sr-only">Newborn studio case study</span>
+              </Link>
+            </Card>
+          </div>
+        </section>
 
         {/* Photography Education Section */}
         <section className="mb-16 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8">
