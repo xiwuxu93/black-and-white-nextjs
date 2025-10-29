@@ -127,20 +127,20 @@ const workflowRoadmap = [
 const sampleComparisons = [
   {
     title: 'Editorial Architecture',
-    before: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=800&q=80',
-    after: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=800&q=80&sat=-100',
+    before: '/samples/color/architecture-original.jpg',
+    after: '/samples/bw/architecture-bw.jpg',
     notes: 'Film Noir preset with custom curve. Achieves 4.5% deeper blacks while holding window detail.'
   },
   {
     title: 'Documentary Portrait',
-    before: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
-    after: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&sat=-100',
+    before: '/samples/color/portrait-original.jpg',
+    after: '/samples/bw/portrait-bw.jpg',
     notes: 'Soft preset + midtone lift for skin. Exported as 18 MB PNG for archival prints.'
   },
   {
     title: 'Conceptual Fashion',
-    before: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80',
-    after: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80&sat=-100',
+    before: '/samples/color/fashion-original.jpg',
+    after: '/samples/bw/fashion-bw.jpg',
     notes: 'Vintage preset with +10 grain to mimic medium-format film.'
   }
 ]

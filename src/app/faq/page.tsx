@@ -25,23 +25,19 @@ export const metadata: Metadata = {
 export default function FAQPage() {
   const faqs = [
     {
-      category: "General Usage",
+      category: "Workflow & Production",
       questions: [
         {
-          question: "What is a black and white image converter?",
-          answer: "A black and white image converter is a digital tool that transforms color photographs into monochrome (black and white) images. Our converter uses advanced algorithms to analyze the colors in your original image and convert them to grayscale values, preserving important details, contrast, and tonal relationships for professional-quality results."
+          question: "How do I keep preset looks consistent across projects?",
+          answer: "Store the numeric slider values (contrast, brightness, shadows, highlights, grain) returned by BWConverter in your DAM or CMS. When you reopen the converter, hydrate those values before triggering the worker message—our WebAssembly pipeline is deterministic, so identical inputs produce identical results."
         },
         {
-          question: "Is this black and white image converter really free?",
-          answer: "Yes! Our black and white image converter is completely free to use. There are no hidden costs, subscription fees, or registration requirements. You can convert unlimited images to black and white without any charges. We don't add watermarks to your converted images either."
+          question: "Can I automate publishing before/after sliders?",
+          answer: "Yes. Bundle `/worker.js` with your front-end build, capture both the colour original and BWConverter output via `downloadCanvasImage`, and save the preset metadata alongside the assets. The integration checklist at `/image-black-and-white-converter` shows the exact pattern."
         },
         {
-          question: "Do I need to create an account to use the converter?",
-          answer: "No account creation is required. You can start converting your images to black and white immediately without signing up, providing email addresses, or any registration process. Simply upload your image and start converting right away."
-        },
-        {
-          question: "How many images can I convert?",
-          answer: "There's no limit to the number of images you can convert. Whether you need to convert one photo or hundreds of images, our tool can handle your needs. For multiple images, try our batch converter for efficient processing."
+          question: "What is the recommended RAW → delivery workflow?",
+          answer: "Cull and colour-correct in Lightroom or Capture One, export 16-bit TIFF or high-quality JPEG files, and then run them through BWConverter for monochrome mastering. Use the QA checklist on `/how-to-use` together with the newborn case study timeline to validate tone curves before delivering galleries."
         }
       ]
     },
@@ -49,58 +45,33 @@ export default function FAQPage() {
       category: "Technical Specifications",
       questions: [
         {
-          question: "What image formats are supported?",
-          answer: "Our black and white converter supports all major image formats including JPG/JPEG, PNG, GIF, and WebP. The converter automatically detects your file format and processes it accordingly, maintaining the highest quality output."
+          question: "How large can my files be?",
+          answer: "The hosted UI caps uploads at 10 MB for performance, but the engine itself handles substantially larger files when self-hosted. For 40+ MP frames, convert to a 16-bit TIFF or JPEG before upload, or embed the worker locally without the UI limit."
         },
         {
-          question: "What's the maximum file size I can upload?",
-          answer: "You can upload images up to 10MB in size. This limit accommodates most high-resolution photos while ensuring fast processing times. If your image is larger, consider resizing it first or compressing it slightly before conversion."
+          question: "Does the converter change image dimensions?",
+          answer: "No. We render to a canvas that matches the original width and height. If you need to constrain file size, pass a `maxBytes` value to `downloadCanvasImage`—this preserves resolution while adjusting compression."
         },
         {
-          question: "What resolution will my converted image have?",
-          answer: "Your converted black and white image will maintain the exact same resolution and dimensions as your original image. We don't compress or resize your photos during the conversion process, ensuring you get the highest quality results."
-        },
-        {
-          question: "How long does the conversion process take?",
-          answer: "Most images convert to black and white in just a few seconds. The exact time depends on your image size and complexity, but typically ranges from 1-5 seconds. Large, high-resolution images may take slightly longer to process."
+          question: "Can I create custom presets?",
+          answer: "Absolutely. Duplicate any object in `DEFAULT_PRESETS`, tweak the numbers, and persist it via local storage or your CMS schema. The converter automatically recognises presets that follow the same shape."
         }
       ]
     },
     {
-      category: "Privacy & Security",
+      category: "Privacy & Compliance",
       questions: [
         {
-          question: "Are my images stored on your servers?",
-          answer: "No, your images are never stored on our servers. All processing happens locally in your browser using advanced web technologies. Your original and converted images remain completely private and are only stored temporarily in your browser's memory during processing."
+          question: "Are images or analytics sent to your servers?",
+          answer: "No image pixels ever leave your browser. Optional Google Analytics collects anonymous usage data (page views, load times) only—review `/privacy` for the full statement."
         },
         {
-          question: "Is it safe to upload personal photos?",
-          answer: "Yes, it's completely safe. Since all processing happens in your browser and nothing is uploaded to external servers, your personal photos remain 100% private. We have no access to your images, and they never leave your device."
+          question: "How do I document privacy for client audits?",
+          answer: "Share the signed Statement of Intent on `/about`, capture a network log that shows zero upload requests during conversion, and attach the QA checklist from `/how-to-use` to demonstrate your process."
         },
         {
-          question: "Do you collect any data about my images?",
-          answer: "We don't collect, store, or analyze any data about your images. We don't track what images you convert, how many you process, or any metadata from your files. Your privacy is our top priority."
-        }
-      ]
-    },
-    {
-      category: "Quality & Results",
-      questions: [
-        {
-          question: "How is this different from simple grayscale conversion?",
-          answer: "Our black and white converter goes far beyond simple grayscale conversion. We use professional techniques including luminance mapping, contrast enhancement, selective tone adjustment, and advanced algorithms that consider the artistic and visual impact of the conversion, resulting in more dramatic and visually appealing black and white images."
-        },
-        {
-          question: "Can I adjust the black and white conversion settings?",
-          answer: "Yes! While we offer instant one-click conversion with our presets (Classic, Dramatic, Vintage, Soft, High Contrast, Film Noir), you can also fine-tune individual settings including contrast, brightness, shadows, highlights, grain, and sepia tones for complete creative control."
-        },
-        {
-          question: "Which preset should I use for different types of photos?",
-          answer: "• Portraits: Use 'Soft' or 'Classic' for flattering skin tones\n• Landscapes: Try 'Dramatic' or 'High Contrast' for impact\n• Architecture: 'Film Noir' emphasizes lines and structure\n• Street Photography: 'Vintage' or 'Film Noir' for artistic flair\n• General Photos: 'Classic' provides balanced, professional results"
-        },
-        {
-          question: "Why do some photos look better in black and white than others?",
-          answer: "Photos with strong contrast, interesting textures, clear subject definition, and good lighting typically convert better to black and white. Images that rely heavily on color for their impact (like colorful flowers or sunsets) may be more challenging, but our advanced algorithms help preserve the essential visual elements."
+          question: "Can I run BWConverter offline?",
+          answer: "Yes. Serve the app from a local server or bundle it with a Chromium kiosk/Electron shell. Workers and the WebAssembly engine have no external API dependencies."
         }
       ]
     },
@@ -108,20 +79,16 @@ export default function FAQPage() {
       category: "Troubleshooting",
       questions: [
         {
-          question: "My image won't upload. What should I do?",
-          answer: "First, check that your image is in a supported format (JPG, PNG, GIF, WebP) and under 10MB. If it still won't upload, try refreshing the page, using a different browser, or checking your internet connection. Images with special characters in filenames might also cause issues."
+          question: "Preview rendering pauses on very large files. Why?",
+          answer: "High-resolution frames can exhaust browser memory. Downsize the file before previewing or move final exports to the `/batch` worker, which processes one frame at a time."
         },
         {
-          question: "The conversion is taking too long. Is something wrong?",
-          answer: "Large, high-resolution images naturally take longer to process. If it's taking more than 30 seconds, try refreshing the page and uploading again. Ensure you have a stable internet connection and that your browser supports modern web technologies."
+          question: "Downloads are larger than my client’s limit. What should I check?",
+          answer: "Ensure every download call includes the `maxBytes` parameter and confirm the output size in your QA log. This keeps exports within print or CMS restrictions."
         },
         {
-          question: "The converted image looks too dark or too light. How can I fix this?",
-          answer: "Try different presets first - 'Soft' for lighter results, 'Dramatic' for darker, moodier images. You can also use the advanced controls to adjust brightness, contrast, shadows, and highlights until you achieve the perfect look for your image."
-        },
-        {
-          question: "Can I undo changes or start over?",
-          answer: "Yes! You can always upload the same original image again to start fresh, or use our preset buttons to quickly switch between different styles. Your original image is never modified, so you can experiment freely."
+          question: "Where can I find sample outputs for comparison?",
+          answer: "Download verified before/after frames from `/samples/` or inside the newborn guide. Each sample notes the preset and settings used so you can reproduce the look."
         }
       ]
     },
@@ -129,16 +96,16 @@ export default function FAQPage() {
       category: "Advanced Features",
       questions: [
         {
-          question: "What is batch processing and how does it work?",
-          answer: "Batch processing allows you to convert multiple images to black and white at once. Simply upload multiple images, and our system will process them all using the same settings. This is perfect for photographers, designers, or anyone who needs to convert many images quickly and consistently."
+          question: "How do I capture slider metadata for analytics?",
+          answer: "Listen to slider change events, store the values in your analytics platform, and associate them with session IDs. This helps you learn which looks your team prefers and whether additional presets are needed."
         },
         {
-          question: "Can I download all converted images at once?",
-          answer: "Yes! In batch mode, you can download all converted images individually or as a ZIP file for convenience. This makes it easy to process and organize large collections of photos."
+          question: "Can I hook BWConverter into a CI/CD pipeline?",
+          answer: "Yes. Use Node + Puppeteer to run the converter headlessly, process reference images, and compare histograms against the `/samples/` outputs during automated tests."
         },
         {
-          question: "Are there any mobile or desktop apps available?",
-          answer: "Currently, our converter works entirely through your web browser, making it compatible with all devices including smartphones, tablets, and computers. No app installation is required - just visit our website from any device with an internet connection."
+          question: "Is batch processing available via API?",
+          answer: "The `/batch` route exposes the same worker used in the UI. You can instantiate it inside your own app, feed it a file list, and retrieve processed ImageData objects for downstream automation."
         }
       ]
     }

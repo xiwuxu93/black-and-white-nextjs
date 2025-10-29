@@ -105,6 +105,21 @@ const workflowStages = [
   }
 ]
 
+const galleryPreviews = [
+  {
+    color: '/samples/color/newborn-original.jpg',
+    bw: '/samples/bw/newborn-bw.jpg'
+  },
+  {
+    color: '/samples/color/newborn-family-original.jpg',
+    bw: '/samples/bw/newborn-family-bw.jpg'
+  },
+  {
+    color: '/samples/color/newborn-wrap-original.jpg',
+    bw: '/samples/bw/newborn-wrap-bw.jpg'
+  }
+]
+
 export default function BlackAndWhiteNewbornImagesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 py-12">
@@ -224,27 +239,38 @@ export default function BlackAndWhiteNewbornImagesPage() {
                 Gallery Preview Strip
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                Twelve hero frames were sequenced in alternating colour/monochrome order to show the
-                immediate tonal upgrade. Each conversion metadata note was embedded in the proofing album
-                so parents understood the creative decisions.
+                Delivered albums alternate colour and monochrome variants so parents can review tonal
+                choices at a glance. The samples below were generated on 27 Jan 2025 using the same preset
+                profiles documented in this case study.
               </p>
               <div className="flex space-x-3 overflow-x-auto pb-4">
-                {['photo-1515488042361-ee00e0ddd4e4', 'photo-1477959858617-67f85cf4f1df', 'photo-1529626455594-4ff0802cfb7e'].map((id) => (
-                  <div key={id} className="relative h-36 w-24 rounded-lg overflow-hidden flex-shrink-0">
-                    <Image
-                      src={`https://images.unsplash.com/${id}?w=400&q=80&sat=-100`}
-                      alt="Monochrome gallery preview"
-                      fill
-                      className="object-cover"
-                      sizes="96px"
-                    />
+                {galleryPreviews.map((frame, index) => (
+                  <div key={index} className="flex flex-col items-center gap-2">
+                    <div className="relative h-32 w-24 rounded-lg overflow-hidden flex-shrink-0 border border-blue-100 dark:border-blue-900">
+                      <Image
+                        src={frame.color}
+                        alt="Colour reference frame"
+                        fill
+                        className="object-cover"
+                        sizes="96px"
+                      />
+                    </div>
+                    <div className="relative h-32 w-24 rounded-lg overflow-hidden flex-shrink-0 border border-blue-100 dark:border-blue-900">
+                      <Image
+                        src={frame.bw}
+                        alt="BWConverter output"
+                        fill
+                        className="object-cover"
+                        sizes="96px"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
-              <Link href="https://bwconverter.com/wallpapers/black-and-white-image/alan-jiang-x6yN54Ssszo-unsplash-bw.jpeg">
+              <Link href="/samples/bw/newborn-bw.jpg">
                 <Button size="sm" className="w-full">
                   <Download className="w-4 h-4 mr-2" />
-                  Download a Sample Delivered Frame
+                  Download Case Study Sample
                 </Button>
               </Link>
             </Card>

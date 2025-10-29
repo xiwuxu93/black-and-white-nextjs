@@ -11,6 +11,7 @@ import {
   Calendar,
   Clock,
   ArrowLeft,
+  ArrowRight,
   User
 } from 'lucide-react'
 import { notFound } from 'next/navigation'
@@ -18,6 +19,20 @@ import { BlogInteractions } from '@/components/blog/blog-interactions'
 import { BlogHeaderActions } from '@/components/blog/blog-header-actions'
 import { blogPosts, blogPostList, BlogPost } from '@/data/blog-posts'
 import { canonicalUrl } from '@/lib/seo'
+
+const authorProfiles: Record<string, {
+  image?: string
+  role?: string
+  expertise?: string
+  website?: string
+}> = {
+  'Sivan Lee': {
+    image: '/authors/sivan-lee.jpg',
+    role: 'Founder & Lead Photographer',
+    expertise: '18 years leading monochrome campaigns for editorial and commercial clients across Asia.',
+    website: '/about'
+  }
+}
 
 // Load blog posts from JSON file
 const getBlogPost = (slug: string) => {
@@ -233,6 +248,25 @@ export default function BlogPostPage({ params }: Props) {
     .join('')
     .slice(0, 2)
 
+  const authorProfile = authorProfiles[post.author]
+  const suggestedReadings = [
+    {
+      title: 'Integration Playbook',
+      description: 'Understand how workers, presets, and QA logs align for production builds.',
+      href: '/image-black-and-white-converter'
+    },
+    {
+      title: 'Newborn Studio Case Study',
+      description: 'Benchmark lighting setups and revenue impact from monochrome deliverables.',
+      href: '/black-and-white-newborn-images'
+    },
+    {
+      title: 'Advanced Workflow Checklist',
+      description: 'Follow troubleshooting steps and production-ready workflows.',
+      href: '/how-to-use'
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 py-12 px-4">
       <div className="container mx-auto max-w-4xl">
@@ -332,13 +366,36 @@ export default function BlogPostPage({ params }: Props) {
           <Card className="mb-12 border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur">
             <CardContent className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
               <div className="flex items-center space-x-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary-100 text-primary-700 font-semibold text-lg">
-                  {authorInitials}
-                </div>
+                {authorProfile?.image ? (
+                  <div className="relative h-16 w-16 overflow-hidden rounded-full border border-primary-200 dark:border-primary-800">
+                    <Image
+                      src={authorProfile.image}
+                      alt={`${post.author} portrait`}
+                      fill
+                      className="object-cover"
+                      sizes="64px"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary-100 text-primary-700 font-semibold text-lg">
+                    {authorInitials}
+                  </div>
+                )}
                 <div>
                   <p className="text-lg font-semibold text-gray-900 dark:text-white">{post.author}</p>
-                  {post.authorTitle && (
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{post.authorTitle}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {authorProfile?.role || post.authorTitle || 'BWConverter Contributor'}
+                  </p>
+                  {authorProfile?.expertise && (
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      {authorProfile.expertise}
+                    </p>
+                  )}
+                  {authorProfile?.website && (
+                    <Link href={authorProfile.website} className="inline-flex items-center text-primary-600 dark:text-primary-400 text-xs font-medium mt-2">
+                      View full bio
+                      <ArrowRight className="w-4 h-4 ml-1" />
+                    </Link>
                   )}
                 </div>
               </div>
@@ -393,6 +450,22 @@ export default function BlogPostPage({ params }: Props) {
                 </ul>
               </div>
             )}
+
+            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Continue Learning</h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                {suggestedReadings.map((item) => (
+                  <Card key={item.title} className="p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{item.description}</p>
+                    <Link href={item.href} className="inline-flex items-center text-primary-600 dark:text-primary-400 text-sm font-medium">
+                      Read more
+                      <ArrowRight className="w-4 h-4 ml-1" />
+                    </Link>
+                  </Card>
+                ))}
+              </div>
+            </div>
 
             {/* Engagement */}
             <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">

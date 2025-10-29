@@ -40,21 +40,21 @@ interface SamplePair {
 const samplePairs: SamplePair[] = [
   {
     label: 'Window Light Portrait',
-    before: 'https://images.unsplash.com/photo-1555252333-d53d5f72c87b?w=600&q=80',
-    after: 'https://images.unsplash.com/photo-1555252333-d53d5f72c87b?w=600&q=80&sat=-100',
-    notes: 'Shot at 1/160s, f/2.8, ISO 400. Classic preset with +6 highlights.'
+    before: '/samples/color/newborn-original.jpg',
+    after: '/samples/bw/newborn-bw.jpg',
+    notes: 'Soft preset with +6 brightness and auto-contrast to preserve newborn skin texture.'
   },
   {
     label: 'Sibling Storytelling',
-    before: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80',
-    after: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80&sat=-100',
-    notes: 'Batch processed for matching contrast across three frames.'
+    before: '/samples/color/newborn-family-original.jpg',
+    after: '/samples/bw/newborn-family-bw.jpg',
+    notes: 'Classic preset, manual shadow lift (+8) to keep sibling details in backlight.'
   },
   {
     label: 'Texture Study',
-    before: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=600&q=80',
-    after: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=600&q=80&sat=-100',
-    notes: 'Film Noir preset plus subtle grain for print-ready depth.'
+    before: '/samples/color/newborn-wrap-original.jpg',
+    after: '/samples/bw/newborn-wrap-bw.jpg',
+    notes: 'Vintage preset plus +10 grain to mimic fibre paper for album spreads.'
   }
 ]
 
@@ -205,10 +205,10 @@ export default function NewbornBlackAndWhiteImagesPage() {
                   Grab six curated before/after JPEGs to benchmark exposure and tonal range before you
                   process your own session.
                 </p>
-                <Link href="https://bwconverter.com/wallpapers/black-and-white-image/damon-lam-WvbL0574rOc-unsplash-bw.jpeg">
+                <Link href="/samples/bw/newborn-bw.jpg">
                   <Button size="sm" className="w-full">
                     <Download className="w-4 h-4 mr-2" />
-                    View Sample Gallery (Hi-Res JPEG)
+                    View Sample Output (Hi-Res JPEG)
                   </Button>
                 </Link>
               </div>
