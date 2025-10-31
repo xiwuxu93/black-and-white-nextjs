@@ -78,7 +78,6 @@ Route (app)                                            Size     First Load JS
 ├ ○ /_not-found                                        871 B          87.9 kB
 ├ ○ /about                                             843 B          97.1 kB
 ├ ○ /batch                                             6.01 kB         103 kB
-├ ○ /black-and-white-image                             181 B            94 kB
 ├ ○ /blog                                              181 B            94 kB
 ├ ● /blog/[slug]                                       2.41 kB         104 kB
 ├ ○ /examples                                          5.75 kB         100 kB
@@ -91,6 +90,8 @@ Route (app)                                            Size     First Load JS
 
 ○  (Static)  预渲染静态内容
 ●  (SSG)     静态生成HTML
+
+> 注：`/black-and-white-image` 已移除并永久重定向至首页 `/`。
 ```
 
 ### 🔧 环境变量配置

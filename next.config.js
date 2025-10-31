@@ -29,6 +29,16 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: '/black-and-white-image/:path*',
+        destination: '/',
+        permanent: true
+      },
+      {
+        source: '/convert-image-to-black-and-white/:path*',
+        destination: '/',
+        permanent: true
+      },
+      {
         source: '/:path*',
         has: [
           {

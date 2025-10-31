@@ -94,8 +94,8 @@ export const breadcrumbPaths = {
     { name: 'Black and White Newborn Images' }
   ],
   '/image-black-and-white-converter': [
-    { name: 'Converters', url: '/black-and-white-image' },
-    { name: 'Image Black and White Converter' }
+    { name: 'How to Use', url: '/how-to-use' },
+    { name: 'Integration Guide' }
   ],
   '/how-to-use': [
     { name: 'How to Use' }
