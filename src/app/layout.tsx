@@ -14,10 +14,10 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Convert Image to Black and White - Free B&W Photo Converter',
+    default: 'Black and White Image Converter - Convert Photos Online Free | BWConverter',
     template: '%s | BWConverter'
   },
-  description: 'Transform any color photo into stunning black and white images with our free online converter. Professional results in just a few clicks - no software needed.',
+  description: 'Convert images to black and white with our free online tool. Make photos monochrome instantly with professional editing features. No upload, 100% private.',
   keywords: [
     'black white image converter',
     'convert image black white', 

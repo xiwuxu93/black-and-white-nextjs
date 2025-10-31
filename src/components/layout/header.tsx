@@ -30,7 +30,7 @@ export function Header() {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Batch Converter", href: "/batch" },
+    { name: "Batch Converter", href: "/batch-black-and-white-converter" },
     { name: "Examples", href: "/examples" },
     { name: "How to Use", href: "/how-to-use" },
     { name: "Blog", href: "/blog" },

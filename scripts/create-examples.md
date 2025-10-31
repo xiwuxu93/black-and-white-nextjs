@@ -57,7 +57,7 @@
 5. 重命名为对应的风格，如：`portrait-classic.jpg`
 
 ### 方法2: 批量处理
-1. 访问您的批量转换页面 `/batch`
+1. 访问您的批量转换页面 `/batch-black-and-white-converter`
 2. 一次上传多张图片
 3. 自动获得黑白版本
 4. 按类型重命名和分类

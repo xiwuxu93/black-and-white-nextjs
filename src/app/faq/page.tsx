@@ -4,7 +4,6 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ChevronDown, HelpCircle, CheckCircle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import { ContentAd } from '@/components/ads/ad-placements'
 import { canonicalUrl } from '@/lib/seo'
 import { StructuredData } from '@/components/seo/structured-data'
 
@@ -80,7 +79,7 @@ export default function FAQPage() {
       questions: [
         {
           question: "Preview rendering pauses on very large files. Why?",
-          answer: "High-resolution frames can exhaust browser memory. Downsize the file before previewing or move final exports to the `/batch` worker, which processes one frame at a time."
+          answer: "High-resolution frames can exhaust browser memory. Downsize the file before previewing or move final exports to the `/batch-black-and-white-converter` worker, which processes one frame at a time."
         },
         {
           question: "Downloads are larger than my client’s limit. What should I check?",
@@ -105,7 +104,7 @@ export default function FAQPage() {
         },
         {
           question: "Is batch processing available via API?",
-          answer: "The `/batch` route exposes the same worker used in the UI. You can instantiate it inside your own app, feed it a file list, and retrieve processed ImageData objects for downstream automation."
+          answer: "The `/batch-black-and-white-converter` route exposes the same worker used in the UI. You can instantiate it inside your own app, feed it a file list, and retrieve processed ImageData objects for downstream automation."
         }
       ]
     }
@@ -139,9 +138,6 @@ export default function FAQPage() {
             Can't find what you're looking for? Feel free to reach out!
           </p>
         </div>
-
-        {/* Content Ad */}
-        <ContentAd />
 
         {/* FAQ Categories */}
         <div className="space-y-8">

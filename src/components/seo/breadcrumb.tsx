@@ -79,7 +79,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
 
 // 预定义的面包屑路径
 export const breadcrumbPaths = {
-  '/batch': [
+  '/batch-black-and-white-converter': [
     { name: 'Batch Converter' }
   ],
   '/examples': [

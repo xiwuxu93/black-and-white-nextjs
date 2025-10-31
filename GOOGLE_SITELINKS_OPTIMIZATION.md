@@ -20,7 +20,7 @@
     },
     {
       "@type": "WebPage", 
-      "url": "https://bwconverter.com/batch",
+      "url": "https://bwconverter.com/batch-black-and-white-converter",
       "name": "Batch Black and White Image Converter"
     },
     // ... 所有主要页面
@@ -68,7 +68,7 @@
 ### **主要导航结构**
 ```
 Home (/)
-├── Batch Converter (/batch)
+├── Batch Converter (/batch-black-and-white-converter)
 ├── Examples (/examples)
 │   ├── Newborn Photography (/newborn-black-and-white-images)
 │   └── Newborn Images (/black-and-white-newborn-images)

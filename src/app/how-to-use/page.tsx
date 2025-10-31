@@ -13,7 +13,6 @@ import {
   AlertTriangle
 } from 'lucide-react'
 import Link from 'next/link'
-import { ContentAd } from '@/components/ads/ad-placements'
 import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
@@ -75,7 +74,7 @@ export default function HowToUsePage() {
       phases: [
         'Export 16-bit TIFFs or high-quality JPEGs from your DAM with embedded colour profiles.',
         'Drop the shortlist into BWConverter, apply a preset baseline, then tweak highlights with the manual slider.',
-        'Use `/batch` to render monochrome variants and keep filenames aligned with the colour set.'
+        'Use `/batch-black-and-white-converter` to render monochrome variants and keep filenames aligned with the colour set.'
       ],
       link: { href: '/black-and-white-newborn-images', label: 'See case study timeline' }
     },
@@ -133,8 +132,6 @@ export default function HowToUsePage() {
             Master the art of black and white photography with our comprehensive guide.
           </p>
         </div>
-
-        <ContentAd />
 
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
@@ -264,7 +261,7 @@ export default function HowToUsePage() {
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/batch">
+            <Link href="/batch-black-and-white-converter">
               <Button variant="outline" size="lg">
                 Try Batch Converter  
               </Button>

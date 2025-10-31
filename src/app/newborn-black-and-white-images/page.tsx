@@ -156,7 +156,7 @@ export default function NewbornBlackAndWhiteImagesPage() {
                 Convert Your Newborn Photos
               </Button>
             </Link>
-            <Link href="/batch">
+            <Link href="/batch-black-and-white-converter">
               <Button variant="outline" size="lg">
                 Batch Prepare Story Galleries
               </Button>

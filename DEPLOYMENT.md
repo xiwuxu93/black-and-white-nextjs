@@ -77,7 +77,7 @@ Route (app)                                            Size     First Load JS
 ┌ ○ /                                                  8.1 kB          116 kB
 ├ ○ /_not-found                                        871 B          87.9 kB
 ├ ○ /about                                             843 B          97.1 kB
-├ ○ /batch                                             6.01 kB         103 kB
+├ ○ /batch-black-and-white-converter                   6.01 kB         103 kB
 ├ ○ /blog                                              181 B            94 kB
 ├ ● /blog/[slug]                                       2.41 kB         104 kB
 ├ ○ /examples                                          5.75 kB         100 kB

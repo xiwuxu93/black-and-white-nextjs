@@ -27,8 +27,8 @@ export function NavigationStructuredData() {
       },
       {
         '@type': 'WebPage',
-        '@id': canonicalUrl('/batch'),
-        url: canonicalUrl('/batch'),
+        '@id': canonicalUrl('/batch-black-and-white-converter'),
+        url: canonicalUrl('/batch-black-and-white-converter'),
         name: 'Batch Black and White Image Converter',
         description: 'Convert multiple images to black and white at once - bulk processing tool',
         isPartOf: {
@@ -141,7 +141,7 @@ export function NavigationStructuredData() {
       {
         '@type': 'WebPage', 
         name: 'Batch Converter',
-        url: canonicalUrl('/batch')
+        url: canonicalUrl('/batch-black-and-white-converter')
       },
       {
         '@type': 'WebPage',

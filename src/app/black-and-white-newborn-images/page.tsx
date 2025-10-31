@@ -307,7 +307,7 @@ export default function BlackAndWhiteNewbornImagesPage() {
             with the community in the blog comments.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/batch">
+            <Link href="/batch-black-and-white-converter">
               <Button size="lg">
                 Launch Batch Converter
               </Button>

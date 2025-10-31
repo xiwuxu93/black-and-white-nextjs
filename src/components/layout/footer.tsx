@@ -7,7 +7,7 @@ export function Footer() {
       title: "Product",
       links: [
         { name: "Single Converter", href: "/" },
-        { name: "Batch Converter", href: "/batch" },
+        { name: "Batch Converter", href: "/batch-black-and-white-converter" },
         { name: "Examples", href: "/examples" },
         { name: "Newborn Guide", href: "/newborn-black-and-white-images" },
         { name: "Newborn Case Study", href: "/black-and-white-newborn-images" },

@@ -27,7 +27,6 @@ import {
   DownloadFormat,
   DOWNLOAD_FORMATS
 } from '@/types/image-processing'
-import { ContentAd } from '@/components/ads/ad-placements'
 import { resolveFileInfo, sanitizeBaseName, qualityForFormat, normalizeExtension } from '@/lib/image-format'
 import { downloadCanvasImage } from '@/lib/utils'
 
@@ -280,20 +279,19 @@ export default function BatchPage() {
         {/* Header */}
         <div className="text-center mb-12">
           <Badge className="mb-4" variant="secondary">
-            ⚡ Batch Processing
+            ⚡ Batch Black and White Converter
           </Badge>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Batch Black And White Converter
+            Batch Convert Multiple Images to Black and White Online
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Convert multiple images to black and white at once. Simply upload your images 
-            and download the processed results instantly.
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-4">
+            Drop in dozens or even hundreds of files and convert multiple images to black and white with one automated workflow. The batch engine processes everything in your browser, so sensitive projects remain private while you deliver monochrome assets in minutes instead of hours.
+          </p>
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            Whether you need to convert photos to black and white for ecommerce catalogs, editorial layouts, or social media takeovers, this tool keeps your queue organized, exports full-resolution files, and makes pictures black and white with consistent tone across every format.
           </p>
         </div>
         
-        {/* Content Ad */}
-        <ContentAd />
-
         <div className="space-y-8">
             {/* Upload Area */}
             {selectedFiles.length === 0 && (
@@ -384,7 +382,7 @@ export default function BatchPage() {
                         ) : image.originalPreviewUrl ? (
                           <img
                             src={image.originalPreviewUrl}
-                            alt="Original"
+                            alt="Original color photo before batch black and white conversion"
                             className="w-full h-full object-cover opacity-60"
                           />
                         ) : (
@@ -455,6 +453,81 @@ export default function BatchPage() {
                 ))}
               </div>
             )}
+            <section className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+                How to Convert Multiple Images to Black and White in One Session
+              </h2>
+              <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 text-center">
+                Follow these steps to keep every file organized as you convert multiple images to black and white. The workflow is designed for speed, whether you are preparing a wedding gallery, managing an ecommerce drop, or building a social media campaign.
+              </p>
+              <ol className="space-y-6 text-left">
+                <li>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Gather and label your source files</h3>
+                  <p className="text-gray-600 dark:text-gray-400">Create a folder for the project and sort assets by scene or product before you load them. Good naming conventions keep the batch black and white converter interface tidy and make it easier to hand off files to teammates after processing.</p>
+                </li>
+                <li>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Upload everything into the converter</h3>
+                  <p className="text-gray-600 dark:text-gray-400">Drag a full stack of images into the dropzone. The tool instantly queues each file and begins to convert photos to black and white using your selected preset so you do not waste a second on manual clicks.</p>
+                </li>
+                <li>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Monitor progress while you multitask</h3>
+                  <p className="text-gray-600 dark:text-gray-400">Watch the progress bar and status labels to see how many black and white photos are complete. You can meanwhile update spreadsheets, write captions, or prep exports without pausing the conversion queue.</p>
+                </li>
+                <li>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Download with consistent naming</h3>
+                  <p className="text-gray-600 dark:text-gray-400">Once processing hits 100 percent, download individual files or grab the entire set. The converter appends a helpful "-bw" suffix so you know which versions are the black and white pictures ready for delivery.</p>
+                </li>
+              </ol>
+            </section>
+
+            <section className="bg-gray-50 dark:bg-gray-900/60 rounded-3xl p-8 md:p-12">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+                Why Teams Choose This Batch Black and White Converter
+              </h2>
+              <div className="grid md:grid-cols-2 gap-8 text-left text-gray-600 dark:text-gray-400">
+                <div className="space-y-4">
+                  <p>Agencies need fast turnarounds with zero privacy concerns. Because the batch processor keeps every pixel on your device, creative directors can make pictures black and white for confidential pitches without touching cloud storage or external plugins.</p>
+                  <p>Marketing managers love the repeatable presets. Once you dial in a look that fits your brand, you can convert multiple images to black and white every week and maintain a consistent tone across product launches, billboards, email banners, and paid ads.</p>
+                </div>
+                <div className="space-y-4">
+                  <p>Event photographers often deliver thousands of files. Automating the first pass with this batch black and white converter gives you a polished baseline, so you can spend editing time on retouching hero shots instead of repetitive conversions.</p>
+                  <p>Educators and non-profits rely on the workflow for newsletters and course materials. Dragging an entire lecture folder into the converter produces accessible black and white images that print cleanly and look professional on every device.</p>
+                </div>
+              </div>
+            </section>
+
+            <section className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+                Batch Workflow Tips for Consistent Black and White Photos
+              </h2>
+              <ul className="list-disc pl-6 space-y-4 text-gray-600 dark:text-gray-400">
+                <li>Group similar lighting conditions so the converter can apply the same preset and keep contrast levels consistent across every set of black and white photos.</li>
+                <li>Run a short test batch to confirm grain and contrast settings before you process the full queue. This protects your time and keeps make pictures black and white projects on schedule.</li>
+                <li>Leverage the built-in format picker to export PNG, JPG, or WebP variations for different platforms without reprocessing the originals.</li>
+                <li>Keep an eye on the status panel. If any image has an error state, you can requeue it instantly instead of digging through folders later.</li>
+                <li>Archive the processed set with a project code so you can repurpose the same files the next time you convert photos to black and white for a related campaign.</li>
+              </ul>
+            </section>
+
+            <section className="bg-gray-50 dark:bg-gray-900/60 rounded-3xl p-8 md:p-12">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+                Batch Converter FAQ
+              </h2>
+              <div className="space-y-6 text-left text-gray-600 dark:text-gray-400">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How many files can I process at once?</h3>
+                  <p>The batch black and white converter comfortably handles more than 100 images in modern browsers. Queue them all, let the worker finish, and download when every status badge turns green.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Will my originals stay untouched?</h3>
+                  <p>Absolutely. The tool creates processed copies and keeps your source files intact. You can revisit the same folder to make picture adjustments or run a different preset later.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Can I switch presets mid-batch?</h3>
+                  <p>You can cancel and restart with a new preset at any time. Adjust the sliders, requeue the files, and the converter will apply your updated look to every photo to black and white export.</p>
+                </div>
+              </div>
+            </section>
         </div>
       </div>
     </div>
