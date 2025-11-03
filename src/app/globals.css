@@ -62,6 +62,10 @@
     scroll-behavior: smooth;
   }
 
+  html[data-converter-editing="true"] .converter-marketing {
+    display: none;
+  }
+
   /* Custom scrollbar styles */
   ::-webkit-scrollbar {
     width: 6px;
