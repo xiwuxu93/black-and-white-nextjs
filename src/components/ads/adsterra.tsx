@@ -1,6 +1,6 @@
 import Script from 'next/script'
 
-const ADSTERRA_INVOKE_SCRIPT = "//pl27893650.effectivegatecpm.com/86fc2cb005c3c6b2f4f3a2daefc0de47/invoke.js"
+const ADSTERRA_INVOKE_SCRIPT = "//brillianceremisswhistled.com/86fc2cb005c3c6b2f4f3a2daefc0de47/invoke.js"
 const ADSTERRA_CONTAINER_ID = 'container-86fc2cb005c3c6b2f4f3a2daefc0de47'
 
 export function AdsterraBanner() {
