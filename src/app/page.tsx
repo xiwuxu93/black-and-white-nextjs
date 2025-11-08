@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
-import { AdsterraBanner } from '@/components/ads/adsterra'
 import { StructuredData } from '@/components/seo/structured-data'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -331,7 +330,6 @@ export default function HomePage() {
       <StructuredData type="faq" data={HOME_FAQ_SCHEMA} />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
         <ConverterExperience />
-        <AdsterraBanner />
         <MarketingSections />
       </div>
     </>
