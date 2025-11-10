@@ -66,13 +66,13 @@ function MarketingSections() {
       <div className="container mx-auto max-w-6xl">
         <div className="text-gray-600 dark:text-gray-400">
           <p className="text-xl mb-4 text-gray-600 dark:text-gray-400">
-            Turn every black and white image idea into reality with our free black and white converter. In one tab you can make image black and white, generate studio-grade contrast, and keep full resolution. Whether you are retouching a portrait, preparing a black and white photo for print, or refreshing a black and white picture for social media, the tool blends ease of use with pro controls so you can make photo black and white without losing a single detail. Because everything runs in your browser, no file ever leaves your device.
+            Transform your photos into stunning monochrome images with our free online converter. Adjust contrast, apply professional presets, and export at full resolution—all in your browser with complete privacy. Perfect for portraits, social media, print projects, and professional portfolios.
           </p>
           <p className="text-base md:text-lg mb-6">
-            Our black and white image converter delivers live previews, film-inspired presets, and precise sliders that guide every image to black and white perfection. This black white image converter processes files locally with WebAssembly, so photographers, designers, and marketers can move any photo to black and white instantly for mood boards, ecommerce listings, pitch decks, or editorial spreads. Switch between presets, refine the tonal curve, and export professional assets ready for clients in seconds.
+            Get instant previews as you work, with film-inspired presets and precise controls for highlights, shadows, and grain. Process files locally using WebAssembly—no uploads, no waiting. Ideal for photographers, designers, and marketers who need fast, professional results for mood boards, ecommerce catalogs, pitch decks, or editorial spreads.
           </p>
           <p className="text-base md:text-lg mb-16">
-            No matter if you need a quick black and white image maker for a single portrait or a full-scale black and white image generator for campaign planning, BWConverter keeps the workflow simple. Drag a file into the canvas, experiment with rich monochrome looks, and deliver consistent results across every platform while meeting strict quality standards for print and digital media teams.
+            Whether you're converting a single portrait or batch-processing an entire campaign, BWConverter streamlines your workflow. Drag in your files, experiment with different looks, and deliver consistent results that meet professional quality standards across all platforms.
           </p>
         </div>
 
@@ -81,7 +81,7 @@ function MarketingSections() {
             How to Make Image Black and White in 3 Steps
           </h2>
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8">
-            Converting color to monochrome should be quick, strategic, and repeatable. Follow this workflow any time you need to convert image to black and white for a marketing campaign, social reel, or gallery print. Each step is powered by our black and white image maker, so you can duplicate the process across hundreds of assets without second-guessing the quality.
+            Converting color photos to monochrome should be quick, strategic, and repeatable. Follow this simple workflow for marketing campaigns, social content, or gallery prints. The process scales from single images to hundreds of assets while maintaining consistent quality.
           </p>
           <ol className="space-y-8 text-left">
             <li className="flex flex-col md:flex-row md:items-start gap-4">
@@ -95,7 +95,7 @@ function MarketingSections() {
                   Upload your color photo or drag it into the canvas
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Drop any JPG, PNG, or WebP into the interface. The black and white converter inspects color channels and keeps the full resolution intact while the preview loads. This first step makes it effortless to turn image black and white from a phone screenshot, a DSLR capture, or art scanned from film negatives without manual resizing.
+                  Drop any JPG, PNG, or WebP file into the interface. The converter analyzes RGB channels and preserves full resolution during processing. Works with phone screenshots, DSLR captures, or scanned film—no manual resizing needed.
                 </p>
               </div>
             </li>
@@ -110,7 +110,7 @@ function MarketingSections() {
                   Pick the preset that matches your creative direction
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Choose a cinematic preset for dramatic portraits, a clean preset for product photography, or build a custom mix. Our black and white image generator uses channel balancing so skin tones stay smooth and skies keep detail. Adjust contrast, brightness, and grain to create a signature look you can reuse across every black and white photo in the series.
+                  Choose a cinematic preset for dramatic portraits, a clean preset for product photography, or build a custom mix. Channel balancing keeps skin tones smooth and skies detailed. Adjust contrast, brightness, and grain to create a signature look you can reuse across your entire series.
                 </p>
               </div>
             </li>
@@ -125,7 +125,7 @@ function MarketingSections() {
                   Export your finished black and white picture instantly
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  When the preview looks perfect, select PNG, JPG, or WebP, and download. The file is saved locally with a tidy "-bw" suffix so you know it came from the black and white picture converter. Share it with clients, upload it to your site, or archive it for print production knowing the tones are locked in.
+                  When the preview looks perfect, select PNG, JPG, or WebP and download. Files are saved locally with a "-bw" suffix for easy organization. Share with clients, upload to your site, or archive for print production with confidence in the tonal accuracy.
                 </p>
               </div>
             </li>
@@ -146,7 +146,7 @@ function MarketingSections() {
                 Channel Mixing Engine
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Our black and white image converter reads red, green, and blue values separately so you can emphasize texture, isolate highlights, and create depth. It is the same principle used in the darkroom, delivered through a simple slider interface that anyone can master.
+                Analyzes red, green, and blue values separately to emphasize texture, isolate highlights, and create depth. The same principle used in traditional darkrooms, delivered through an intuitive slider interface.
               </p>
             </Card>
             <Card className="p-6 h-full">
@@ -155,7 +155,7 @@ function MarketingSections() {
                 Real-Time Preview
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Preview every adjustment instantly while you convert image to black and white. The live canvas eliminates guesswork and lets you dial in tonal contrast before exporting, which saves time in revisions and approvals.
+                See every adjustment instantly with live canvas updates. Dial in tonal contrast before exporting, eliminating guesswork and saving time on revisions and client approvals.
               </p>
             </Card>
             <Card className="p-6 h-full">
@@ -164,7 +164,7 @@ function MarketingSections() {
                 Privacy-First Workflow
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Files never leave your machine. The black white image converter runs entirely in your browser, making it safe for client deliverables, NDA projects, or personal archives that cannot be uploaded to third-party servers.
+                Files never leave your machine. All processing happens in your browser, making it safe for client deliverables, NDA projects, or personal archives that cannot be uploaded to third-party servers.
               </p>
             </Card>
             <Card className="p-6 h-full">
@@ -173,7 +173,7 @@ function MarketingSections() {
                 Reusable Presets
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Save time by leaning on presets inspired by iconic film stocks. Whether you are chasing a matte editorial finish or a bold photojournalism look, the black and white image maker keeps favorite styles one click away.
+                Save time with presets inspired by iconic film stocks. Whether you're chasing a matte editorial finish or a bold photojournalism look, keep your favorite styles one click away.
               </p>
             </Card>
             <Card className="p-6 h-full">
@@ -182,7 +182,7 @@ function MarketingSections() {
                 Print-Ready Exports
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Send photo to black and white output at full resolution with controlled compression. Export assets that can run in magazines, lookbooks, product inserts, or gallery prints without extra round-tripping through other software.
+                Export at full resolution with controlled compression. Produce assets ready for magazines, lookbooks, product inserts, or gallery prints without additional processing.
               </p>
             </Card>
             <Card className="p-6 h-full">
@@ -191,7 +191,7 @@ function MarketingSections() {
                 Works on Any Device
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Log in from a laptop, tablet, or phone and keep editing. The responsive UI ensures you can make image black and white during client calls, while traveling, or right after a photoshoot.
+                Edit from any laptop, tablet, or phone. The responsive interface works during client calls, while traveling, or right after a photoshoot.
               </p>
             </Card>
           </div>
@@ -261,26 +261,6 @@ function MarketingSections() {
             </p>
             <p>
               Save multiple presets for different clients or collections. A consistent toolkit speeds up collaboration and keeps every make photo black and white task aligned with brand visual identity.
-            </p>
-          </div>
-        </section>
-
-        <section className="bg-gray-50 dark:bg-gray-900/60 rounded-3xl p-8 md:p-12 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Black and White Image Maker Success Stories
-          </h2>
-          <div className="space-y-6 text-gray-600 dark:text-gray-400">
-            <p>
-              Elena, a wedding photographer in Barcelona, relies on the black and white image maker to deliver curated galleries for every couple she works with. During curation she highlights the moments with the most emotion, then uses the converter to make image black and white so reactions, glances, and movement stay front and center. By exporting multiple variations she can convert image to black and white for albums, wall art, and teaser posts while preserving all the fine lace and suit details that matter to her clients.
-            </p>
-            <p>
-              The merchandising team at Luma &amp; Co. runs a fast-moving ecommerce catalog where every product must feel cohesive. They feed each new hero shot into the black and white converter, evaluate the tonal balance, and send photo to black and white versions for campaigns that focus on texture or silhouette. Because the workflow is private and browser-based, the team can publish monochrome imagery the same day a sample arrives, keeping marketing calendars right on schedule.
-            </p>
-            <p>
-              A social media studio in New York manages multiple brand channels and needs a dependable black and white converter to keep posts fresh. They schedule weekly creative sprints, make photos black and white to match minimal brand boards, and export ready-to-share assets that slot perfectly into TikTok, Instagram, and Pinterest templates.
-            </p>
-            <p>
-              Independent artists use the black and white image generator to prepare Kickstarter visuals, online portfolio updates, and limited-edition merch drops. Because they can make photo black and white without uploading to third-party servers, every release stays under wraps until launch day.
             </p>
           </div>
         </section>

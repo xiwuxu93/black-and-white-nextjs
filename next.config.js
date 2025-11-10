@@ -39,6 +39,16 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: '/black-and-white-newborn-images',
+        destination: '/newborn-photography-guide/',
+        permanent: true
+      },
+      {
+        source: '/newborn-black-and-white-images',
+        destination: '/newborn-photography-guide/',
+        permanent: true
+      },
+      {
         source: '/:path*',
         has: [
           {

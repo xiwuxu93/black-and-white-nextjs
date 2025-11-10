@@ -14,9 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/faq', changeFrequency: 'monthly' as const, priority: 0.7 },
     { path: '/privacy', changeFrequency: 'monthly' as const, priority: 0.6 },
     { path: '/terms', changeFrequency: 'monthly' as const, priority: 0.6 },
-    { path: '/examples', changeFrequency: 'monthly' as const, priority: 0.6 },
-    { path: '/newborn-black-and-white-images', changeFrequency: 'weekly' as const, priority: 0.9 },
-    { path: '/black-and-white-newborn-images', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/examples', changeFrequency: 'weekly' as const, priority: 0.8 },
+    { path: '/newborn-photography-guide', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/image-black-and-white-converter', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/contact', changeFrequency: 'monthly' as const, priority: 0.5 }
   ]

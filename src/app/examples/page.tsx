@@ -51,22 +51,21 @@ export default function ExamplesPage() {
                 Follow a home-session checklist, lighting recipes, and a one-hour editing timeline built for
                 BWConverter presets. Includes downloadable sample conversions and benchmark data.
               </p>
-              <Link href="/newborn-black-and-white-images" className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
-                Read the guide
+              <Link href="/newborn-photography-guide" className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
+                Read the complete guide
                 <span className="sr-only">Newborn photography guide</span>
               </Link>
             </Card>
 
             <Card className="p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Studio Case Study: 34% Revenue Lift
+                Newborn Photography: Studio & Home
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-                Review lighting diagrams, preset choices, and delivery metrics that helped a Singapore studio
-                increase wall-art orders using monochrome newborn galleries.
+                Complete guide covering both professional studio workflows and DIY home sessions. Includes lighting diagrams, preset choices, and delivery metrics.
               </p>
-              <Link href="/black-and-white-newborn-images" className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
-                Explore the case study
+              <Link href="/newborn-photography-guide" className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
+                Explore the guide
                 <span className="sr-only">Newborn studio case study</span>
               </Link>
             </Card>
