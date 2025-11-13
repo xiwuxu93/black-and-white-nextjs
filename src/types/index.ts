@@ -1,5 +1,5 @@
 /**
- * 基础类型定义
+ * Base type definitions
  */
 export interface BaseEntity {
   id: string
@@ -8,7 +8,7 @@ export interface BaseEntity {
 }
 
 /**
- * API响应类型
+ * API response types
  */
 export interface ApiResponse<T = any> {
   success: boolean
@@ -18,7 +18,7 @@ export interface ApiResponse<T = any> {
 }
 
 /**
- * 分页类型
+ * Pagination types
  */
 export interface Pagination {
   page: number
@@ -32,7 +32,7 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
 }
 
 /**
- * 文件相关类型
+ * File-related types
  */
 export interface FileInfo {
   id: string
@@ -52,7 +52,7 @@ export interface UploadProgress {
 }
 
 /**
- * 工具参数类型
+ * Tool parameter types
  */
 export interface ToolParameter {
   id: string
@@ -79,7 +79,7 @@ export interface ToolConfig {
 }
 
 /**
- * 处理结果类型
+ * Processing result types
  */
 export interface ProcessResult {
   id: string
@@ -95,7 +95,7 @@ export interface ProcessResult {
 }
 
 /**
- * 用户设置类型
+ * User settings types
  */
 export interface UserSettings {
   theme: 'light' | 'dark' | 'system'
@@ -107,7 +107,7 @@ export interface UserSettings {
 }
 
 /**
- * 通知类型
+ * Notification types
  */
 export interface Notification {
   id: string
@@ -123,7 +123,7 @@ export interface Notification {
 }
 
 /**
- * 导航菜单类型
+ * Navigation menu types
  */
 export interface NavItem {
   id: string
@@ -136,7 +136,7 @@ export interface NavItem {
 }
 
 /**
- * 页面元数据类型
+ * Page metadata types
  */
 export interface PageMeta {
   title: string
@@ -152,7 +152,7 @@ export interface PageMeta {
 }
 
 /**
- * 功能特性类型
+ * Feature types
  */
 export interface Feature {
   id: string
@@ -164,7 +164,7 @@ export interface Feature {
 }
 
 /**
- * 统计数据类型
+ * Statistics types
  */
 export interface Statistics {
   totalUsers: number
@@ -175,7 +175,7 @@ export interface Statistics {
 }
 
 /**
- * FAQ类型
+ * FAQ types
  */
 export interface FAQ {
   id: string
@@ -190,7 +190,7 @@ export interface FAQ {
 }
 
 /**
- * 示例类型
+ * Example types
  */
 export interface Example {
   id: string
@@ -207,7 +207,7 @@ export interface Example {
 }
 
 /**
- * 更新日志类型
+ * Changelog types
  */
 export interface Changelog {
   id: string
@@ -222,7 +222,7 @@ export interface Changelog {
 }
 
 /**
- * 联系表单类型
+ * Contact form types
  */
 export interface ContactForm {
   name: string
@@ -233,7 +233,7 @@ export interface ContactForm {
 }
 
 /**
- * 搜索结果类型
+ * Search result types
  */
 export interface SearchResult {
   id: string
@@ -245,22 +245,22 @@ export interface SearchResult {
 }
 
 /**
- * 主题类型
+ * Theme type
  */
 export type Theme = 'light' | 'dark' | 'system'
 
 /**
- * 语言类型
+ * Language type
  */
 export type Language = 'zh' | 'en' | 'ja'
 
 /**
- * 设备类型
+ * Device type
  */
 export type DeviceType = 'mobile' | 'tablet' | 'desktop'
 
 /**
- * 错误类型
+ * Error type
  */
 export interface AppError {
   code: string
@@ -274,7 +274,7 @@ export interface AppError {
 }
 
 /**
- * 性能指标类型
+ * Performance metrics type
  */
 export interface PerformanceMetrics {
   loadTime: number

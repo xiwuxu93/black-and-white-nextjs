@@ -15,13 +15,13 @@ interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
-  // 始终包含首页作为第一项
+  // Always include Home as the first item
   const breadcrumbItems = [
     { name: 'Home', url: '/' },
     ...items
   ]
 
-  // 生成结构化数据
+  // Build structured data for breadcrumbs
   const breadcrumbStructuredData: WithContext<BreadcrumbList> = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -40,7 +40,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
 
   return (
     <>
-      {/* 结构化数据 */}
+      {/* Structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -48,7 +48,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
         }}
       />
       
-      {/* 可视化面包屑导航 */}
+      {/* Visual breadcrumb navigation */}
       <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
         {breadcrumbItems.map((item, index) => (
           <div key={index} className="flex items-center">
@@ -77,7 +77,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
   )
 }
 
-// 预定义的面包屑路径
+// Predefined breadcrumb paths
 export const breadcrumbPaths = {
   '/batch-black-and-white-converter': [
     { name: 'Batch Converter' }

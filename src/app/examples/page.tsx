@@ -25,7 +25,7 @@ export default function ExamplesPage() {
       <div className="container max-w-7xl">
         <Breadcrumb items={[{ name: 'Examples' }]} />
 
-        {/* 页面标题 */}
+        {/* Page title */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Professional Black and White Photography Examples
@@ -289,7 +289,7 @@ export default function ExamplesPage() {
           </div>
         </section>
 
-        {/* 示例网格 */}
+        {/* Example grid */}
         <ExamplesGrid />
 
         {/* Professional Tips Section */}

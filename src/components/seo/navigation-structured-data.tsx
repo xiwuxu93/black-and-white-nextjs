@@ -12,7 +12,7 @@ export function NavigationStructuredData() {
     alternateName: 'Black and White Image Converter Online',
     url: homeUrl,
     description: 'Convert images to black and white online for free. Professional quality black and white photo converter with multiple artistic styles.',
-    // 网站主要导航结构
+    // Main site navigation structure
     hasPart: [
       {
         '@type': 'WebPage',

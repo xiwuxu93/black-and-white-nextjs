@@ -171,9 +171,9 @@ export function ExamplesGrid() {
 
   return (
     <div className="space-y-8">
-      {/* 搜索和筛选 */}
+      {/* Search and filters */}
       <div className="space-y-4">
-        {/* 搜索框 */}
+        {/* Search box */}
         <div className="relative max-w-md mx-auto">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -185,9 +185,9 @@ export function ExamplesGrid() {
           />
         </div>
 
-        {/* 筛选器 */}
+        {/* Filters */}
         <div className="flex flex-wrap justify-center gap-4">
-          {/* 分类筛选 */}
+          {/* Category filter */}
           <div className="flex items-center space-x-2">
             <Filter className="h-4 w-4 text-muted-foreground" />
             <select
@@ -308,7 +308,7 @@ export function ExamplesGrid() {
         </div>
       )}
 
-      {/* 所有示例 */}
+      {/* All examples */}
       <div>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
           All Examples ({filteredExamples.length})

@@ -1,4 +1,4 @@
-// 图像处理相关的 TypeScript 类型定义
+// TypeScript types related to image processing
 
 export interface ImageFilter {
   contrast: number;

@@ -36,7 +36,7 @@ export function Footer() {
   return (
     <footer className="bg-gray-50 dark:bg-gray-900 border-t border-border">
       <div className="container py-12">
-        {/* 主要内容区域 */}
+        {/* Main content area */}
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {Object.values(footerLinks).map((section) => (
             <div key={section.title} className="text-center">
@@ -59,10 +59,10 @@ export function Footer() {
           ))}
         </div>
 
-        {/* 分隔线 */}
+        {/* Divider */}
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            {/* 版权信息 */}
+            {/* Copyright */}
             <div className="flex items-center space-x-1 text-sm text-muted-foreground">
               <span>
                 © 2025 Black And White Converter. All rights reserved.

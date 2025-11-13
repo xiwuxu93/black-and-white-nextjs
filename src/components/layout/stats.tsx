@@ -37,7 +37,7 @@ export function Stats() {
     }
   ]
 
-  // 数字动画效果
+  // Animated numbers effect
   const AnimatedNumber = ({ value, suffix = "", shouldAnimate }: { value: number; suffix?: string; shouldAnimate: boolean }) => {
     const [displayValue, setDisplayValue] = useState(0)
 

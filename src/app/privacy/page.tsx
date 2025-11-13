@@ -269,10 +269,48 @@ export default function PrivacyPolicyPage() {
             </div>
           </Card>
 
+          {/* Advertising and Cookies (AdSense) */}
+          <Card className="p-6">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              6. Advertising and Cookies (Google AdSense)
+            </h2>
+            <div className="space-y-4 text-gray-600 dark:text-gray-400">
+              <p>
+                We show advertising on some pages using Google AdSense. As part of this service:
+              </p>
+              <ul className="list-disc ml-6 space-y-1">
+                <li>
+                  Third‑party vendors, including Google, use cookies to serve ads based on a user’s prior visits to this website or other websites.
+                </li>
+                <li>
+                  Google’s advertising cookies and identifiers enable Google and its partners to serve ads based on your visits to this site and/or other sites on the Internet.
+                </li>
+              </ul>
+              <p>
+                Users can opt out of personalized advertising by visiting Google’s Ads Settings.
+                Alternatively, you can opt out of some third‑party vendors’ uses of cookies for personalized advertising by visiting the industry opt‑out page.
+              </p>
+              <ul className="list-disc ml-6 space-y-1">
+                <li>
+                  Google Ads Settings: <a className="underline" href="https://adssettings.google.com" rel="noopener noreferrer" target="_blank">https://adssettings.google.com</a>
+                </li>
+                <li>
+                  AboutAds choices: <a className="underline" href="http://www.aboutads.info/choices" rel="noopener noreferrer" target="_blank">http://www.aboutads.info/choices</a>
+                </li>
+              </ul>
+              <p>
+                We currently use Google AdSense as our advertising partner. If we later work with additional third‑party vendors or ad networks, we will list them here and link to their opt‑out pages.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Learn more: <a className="underline" href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">How Google uses cookies in ads</a> · <a className="underline" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google uses data from partner sites</a>
+              </p>
+            </div>
+          </Card>
+
           {/* Cookies */}
           <Card className="p-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              6. Cookies and Local Storage
+              7. Cookies and Local Storage
             </h2>
             <div className="space-y-4">
               <div>
@@ -303,7 +341,7 @@ export default function PrivacyPolicyPage() {
           {/* Children's Privacy */}
           <Card className="p-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              7. Children's Privacy
+              8. Children's Privacy
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
               Our service is suitable for all ages since we don't collect personal information. However, we recommend parental supervision for children under 13 when using any online service. Parents can be confident that their children's images are processed securely on their own device.
@@ -313,7 +351,7 @@ export default function PrivacyPolicyPage() {
           {/* Changes to Policy */}
           <Card className="p-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              8. Changes to This Policy
+              9. Changes to This Policy
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
               We may update this privacy policy to reflect changes in our practices or legal requirements. Any changes will be posted on this page with an updated "Last modified" date.
@@ -326,7 +364,7 @@ export default function PrivacyPolicyPage() {
           {/* Contact */}
           <Card className="p-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              9. Contact Information
+              10. Contact Information
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
               If you have questions about this privacy policy or our practices, please review our FAQ section for common questions, or contact us through the information provided on our About page.

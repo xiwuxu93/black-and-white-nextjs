@@ -54,7 +54,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        {/* Logo和品牌名 */}
+        {/* Logo and brand */}
         <div className="flex items-center space-x-2">
           <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
             <Image
@@ -71,7 +71,7 @@ export function Header() {
           </Link>
         </div>
 
-        {/* 桌面端导航 */}
+        {/* Desktop navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navigation.map((item) => (
             <div key={item.name} className="relative group">
@@ -82,7 +82,7 @@ export function Header() {
                     <ChevronDown className="h-4 w-4" />
                   </button>
                   
-                  {/* 下拉菜单 */}
+                  {/* Dropdown menu */}
                   <div className="absolute top-full left-0 mt-1 w-64 py-2 bg-background border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     {item.children.map((child) => {
                       const ChildIcon = child.icon
@@ -116,9 +116,9 @@ export function Header() {
           ))}
         </nav>
 
-        {/* 右侧操作按钮 */}
+        {/* Right-side actions */}
         <div className="flex items-center space-x-2">
-          {/* 主题切换 */}
+          {/* Theme toggle */}
           {mounted && (
             <Button
               variant="ghost"
@@ -135,7 +135,7 @@ export function Header() {
           )}
 
 
-          {/* 移动端菜单按钮 */}
+          {/* Mobile menu button */}
           <Button
             variant="ghost"
             size="icon"
@@ -152,7 +152,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* 移动端菜单 */}
+      {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden border-t border-border">
           <div className="container py-4 space-y-4">

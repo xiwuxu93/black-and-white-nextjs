@@ -10,6 +10,7 @@ import { StructuredData } from '@/components/seo/structured-data'
 import { NavigationStructuredData } from '@/components/seo/navigation-structured-data'
 import { canonicalUrl } from '@/lib/seo'
 import Script from 'next/script'
+import { CookieConsentBanner } from '@/components/consent/cookie-consent'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -118,6 +119,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
+        <CookieConsentBanner />
         <div style={{display:"none"}}>
           {/* <Script id="adsterra-base" src={'//brillianceremisswhistled.com/4f/dd/ad/4fddadac30a85c97963d809831ee55f5.js'} strategy="afterInteractive" />
           <Script id="adsterra-base" src={'//brillianceremisswhistled.com/1d/15/7f/1d157fe1b9b618d3fd276464b571d76a.js'} strategy="afterInteractive" /> */}

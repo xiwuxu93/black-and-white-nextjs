@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /*?q=
-Sitemap: https://bwconverter.com/sitemap.xml 
+Sitemap: https://bwconverter.com/sitemap.xml

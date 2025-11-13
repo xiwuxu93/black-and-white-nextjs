@@ -433,7 +433,7 @@ export default function BlogPostPage({ params }: Props) {
 
             {post.sources && post.sources.length > 0 && (
               <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">参考资料</h2>
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">References</h2>
                 <ul className="space-y-2 text-gray-600 dark:text-gray-400">
                   {post.sources.map((source, idx) => (
                     <li key={idx}>
