@@ -19,11 +19,21 @@ export function CookieConsentBanner() {
     } catch {
       // ignore
     }
+
+    const open = () => setVisible(true)
+    window.addEventListener('bwconverter:open-consent', open)
+    return () => {
+      window.removeEventListener('bwconverter:open-consent', open)
+    }
   }, [])
 
   const saveConsent = (value: ConsentValue) => {
     try {
       localStorage.setItem(STORAGE_KEY, value)
+      // Notify listeners (e.g., to load analytics/ads after consent)
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('bwconverter:consent-changed'))
+      }
     } catch {
       // ignore storage failures
     }
@@ -59,4 +69,3 @@ export function CookieConsentBanner() {
     </div>
   )
 }
-

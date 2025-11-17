@@ -10,7 +10,8 @@ import { StructuredData } from '@/components/seo/structured-data'
 import { NavigationStructuredData } from '@/components/seo/navigation-structured-data'
 import { canonicalUrl } from '@/lib/seo'
 import Script from 'next/script'
-import { CookieConsentBanner } from '@/components/consent/cookie-consent'
+import { GoogleConsentModeDefaults } from '@/components/consent/consent-mode'
+import { FundingChoices } from '@/components/consent/funding-choices'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -100,6 +101,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google Consent Mode defaults (deny until CMP updates) */}
+        <GoogleConsentModeDefaults />
+        {/* Google Funding Choices (CMP) */}
+        <FundingChoices pubId={process.env.NEXT_PUBLIC_FC_PUB_ID || 'pub-4855228928819714'} />
         <NavigationStructuredData />
         <StructuredData type="website" data={{}} />
         <StructuredData type="application" data={{}} />
@@ -119,10 +124,8 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
-        <CookieConsentBanner />
-        <div style={{display:"none"}}>
-          {/* <Script id="adsterra-base" src={'//brillianceremisswhistled.com/4f/dd/ad/4fddadac30a85c97963d809831ee55f5.js'} strategy="afterInteractive" />
-          <Script id="adsterra-base" src={'//brillianceremisswhistled.com/1d/15/7f/1d157fe1b9b618d3fd276464b571d76a.js'} strategy="afterInteractive" /> */}
+        {/* Analytics and AdSense scripts can load normally; Consent Mode controls storage */}
+        <div style={{display:'none'}}>
           <GoogleAnalytics />
           <GoogleAdsense />
         </div>

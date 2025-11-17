@@ -88,6 +88,23 @@ export function Footer() {
             <p>
               Need help? Visit the <Link href="/contact" className="underline hover:text-foreground transition-colors">contact page</Link> for support response times.
             </p>
+            <p>
+              <button
+                onClick={() => {
+                  // Try to reopen the CMP (TCF v2.2) consent UI if available
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  const tcf = (window as any).__tcfapi
+                  if (typeof tcf === 'function') {
+                    try {
+                      tcf('displayConsentUi', 2, function() {})
+                    } catch {}
+                  }
+                }}
+                className="underline hover:text-foreground transition-colors"
+              >
+                Cookie Preferences
+              </button>
+            </p>
           </div>
         </div>
       </div>
