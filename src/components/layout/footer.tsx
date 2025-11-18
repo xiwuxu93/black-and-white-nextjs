@@ -92,8 +92,7 @@ export function Footer() {
               <button
                 onClick={() => {
                   // Try to reopen the CMP (TCF v2.2) consent UI if available
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  const tcf = (window as any).__tcfapi
+                  const tcf = (window as typeof window & { __tcfapi?: (command: string, version: number, callback: (...args: unknown[]) => void) => void }).__tcfapi
                   if (typeof tcf === 'function') {
                     try {
                       tcf('displayConsentUi', 2, function() {})
