@@ -10,7 +10,6 @@ import { StructuredData } from '@/components/seo/structured-data'
 import { NavigationStructuredData } from '@/components/seo/navigation-structured-data'
 import { canonicalUrl } from '@/lib/seo'
 import Script from 'next/script'
-import { GoogleConsentModeDefaults } from '@/components/consent/consent-mode'
 import { FundingChoices } from '@/components/consent/funding-choices'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -101,8 +100,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google Consent Mode defaults (deny until CMP updates) */}
-        <GoogleConsentModeDefaults />
         {/* Google Funding Choices (CMP) */}
         <FundingChoices pubId={process.env.NEXT_PUBLIC_FC_PUB_ID || 'pub-4855228928819714'} />
         <NavigationStructuredData />
