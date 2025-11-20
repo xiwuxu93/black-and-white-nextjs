@@ -42,6 +42,7 @@ export const metadata: Metadata = {
 
 // Get blog posts from JSON data
 const blogPosts = getBlogPosts().sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
+const featuredPosts = blogPosts.filter(post => post.featured)
 
 // Calculate category counts dynamically
 const categoryCount = blogPosts.reduce((acc, post) => {
@@ -59,8 +60,9 @@ const categories = [
 ]
 
 export default function BlogPage() {
-  const featuredPost = blogPosts.find(post => post.featured)
-  const regularPosts = blogPosts.filter(post => !post.featured)
+  const featuredPost = featuredPosts[0]
+  // Show all posts: highlight the first featured, and include the rest in the grid
+  const regularPosts = blogPosts.filter(post => !post.featured || post.id !== featuredPost?.id)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4">

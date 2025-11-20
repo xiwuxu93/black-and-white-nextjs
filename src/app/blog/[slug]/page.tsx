@@ -132,9 +132,19 @@ const MarkdownComponents = {
   h3: (props: any) => (
     <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-8 mb-3" {...props} />
   ),
-  p: (props: any) => (
-    <p className="mb-5 text-gray-700 dark:text-gray-300 leading-relaxed" {...props} />
-  ),
+  // Unwrap paragraphs that contain only an image to avoid <figure> inside <p>
+  p: ({ node, children, ...props }: any) => {
+    const onlyChild = node?.children && node.children.length === 1 ? node.children[0] : null
+    const isImageOnly = onlyChild && (onlyChild as any).tagName === 'img'
+    if (isImageOnly) {
+      return <>{children}</>
+    }
+    return (
+      <p className="mb-5 text-gray-700 dark:text-gray-300 leading-relaxed" {...props}>
+        {children}
+      </p>
+    )
+  },
   ul: (props: any) => (
     <ul className="mb-5 list-disc pl-6 text-gray-700 dark:text-gray-300 space-y-2" {...props} />
   ),
@@ -499,7 +509,7 @@ export default function BlogPostPage({ params }: Props) {
               </div>
               
               <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <Link href="/">
+                <Link href="/#how-to-convert">
                   <Button className="w-full">
                     Try BW Converter
                   </Button>

@@ -5,7 +5,6 @@ import { ThemeProvider } from '@/components/providers/theme-provider'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import GoogleAnalytics from '@/components/analytics/google-analytics'
-import GoogleAdsense from '@/components/ads/google-adsense'
 import { StructuredData } from '@/components/seo/structured-data'
 import { NavigationStructuredData } from '@/components/seo/navigation-structured-data'
 import { canonicalUrl } from '@/lib/seo'
@@ -16,7 +15,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Black and White Image Converter - Convert Photos Online Free | BWConverter',
+    default: 'Black and White Image Converter | Convert Image to Black and White Online Free',
     template: '%s | BWConverter'
   },
   description: 'Convert images to black and white with our free online tool. Make photos monochrome instantly with professional editing features. No upload, 100% private.',
@@ -124,7 +123,6 @@ export default function RootLayout({
         {/* Analytics and AdSense scripts can load normally; Consent Mode controls storage */}
         <div style={{display:'none'}}>
           <GoogleAnalytics />
-          <GoogleAdsense />
         </div>
       </body>
     </html>

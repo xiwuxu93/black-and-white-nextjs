@@ -5,6 +5,32 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ConverterExperience } from '@/components/home/converter-experience'
 
+const HOWTO_SCHEMA = {
+  name: 'Convert image to black and white online',
+  description:
+    'Turn any color photo into a black and white image in your browser. No upload, instant preview, and professional presets.',
+  image: '/black-and-white-image.png',
+  totalTime: 'PT1M',
+  tool: ['BWConverter web app'],
+  steps: [
+    {
+      name: 'Upload your image',
+      text:
+        'Drag and drop a JPG, PNG, or WebP into the upload area, or click to browse your files.'
+    },
+    {
+      name: 'Choose a preset and fine-tune',
+      text:
+        'Select a starting look like Classic or Dramatic, then adjust contrast, highlights, shadows, and grain with real-time preview.'
+    },
+    {
+      name: 'Download your black and white photo',
+      text:
+        'Export as PNG, JPG, or WebP at full resolution. Your edited file is saved locally with “-bw” in the name.'
+    }
+  ]
+} as const
+
 const HOME_FAQ_SCHEMA = {
   questions: [
     {
@@ -76,7 +102,7 @@ function MarketingSections() {
           </p>
         </div>
 
-        <section className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 mb-16">
+        <section id="how-to-convert" className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
             How to Make Image Black and White in 3 Steps
           </h2>
@@ -265,7 +291,7 @@ function MarketingSections() {
           </div>
         </section>
 
-        <section className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 mb-16">
+        <section id="faq" className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
             Frequently Asked Black and White Image Questions
           </h2>
@@ -307,6 +333,7 @@ function MarketingSections() {
 export default function HomePage() {
   return (
     <>
+      <StructuredData type="howto" data={HOWTO_SCHEMA} />
       <StructuredData type="faq" data={HOME_FAQ_SCHEMA} />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
         <ConverterExperience />
