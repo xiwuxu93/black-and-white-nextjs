@@ -350,9 +350,9 @@ export default function ImageBlackAndWhiteConverterPage() {
                 Launch Web Converter
               </Button>
             </Link>
-            <Link href="/docs" prefetch={false}>
+            <Link href="/how-to-use" prefetch={false}>
               <Button variant="outline" size="lg">
-                Read Additional Docs
+                Read How-To Guide
               </Button>
             </Link>
             <Link href="/contact">
