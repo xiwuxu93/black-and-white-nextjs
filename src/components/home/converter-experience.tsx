@@ -61,7 +61,59 @@ const ParameterPanel = dynamic(
 
 type TimeoutHandle = ReturnType<typeof setTimeout> | undefined
 
-export function ConverterExperience() {
+interface ConverterExperienceProps {
+  /**
+   * Optional badge text displayed above the main heading.
+   * Defaults to “✨ Free Black and White Converter”.
+   */
+  heroBadgeText?: string
+  /**
+   * Optional main heading shown in the hero area.
+   * Defaults to “Convert Images to Black and White Online”.
+   */
+  heroTitle?: string
+  /**
+   * Optional subtitle shown under the hero title.
+   * If not provided, a generic privacy-focused description is used.
+   */
+  heroSubtitle?: string
+  /**
+   * Optional set of feature badges shown under the hero.
+   * If omitted, a generic set of four badges is rendered.
+   */
+  heroFeatureBadges?: string[]
+  /**
+   * Optional accept attribute passed to the upload input.
+   * Defaults to allowing all image types.
+   */
+  uploadAccept?: string
+  /**
+   * Optional helper text describing supported formats and limits
+   * for the upload input.
+   */
+  uploadSupportText?: string
+  /**
+   * Optional list of allowed file extensions (e.g. ['jpg', 'jpeg']).
+   * When provided, uploads with other extensions are rejected.
+   */
+  uploadAllowedExtensions?: string[]
+  /**
+   * Optional custom error message shown when a file does not match
+   * the allowed extensions.
+   */
+  uploadInvalidFileMessage?: string
+}
+
+export function ConverterExperience({
+  heroBadgeText,
+  heroTitle,
+  heroSubtitle,
+  heroFeatureBadges,
+  uploadAccept,
+  uploadSupportText,
+  uploadAllowedExtensions,
+  uploadInvalidFileMessage
+}: ConverterExperienceProps = {}) {
   const [currentImageBitmap, setCurrentImageBitmap] =
     useState<ImageBitmap | null>(null)
   const [processedImageData, setProcessedImageData] =
@@ -319,23 +371,28 @@ export function ConverterExperience() {
           <div className="container mx-auto max-w-6xl">
             <div className="text-center max-w-4xl mx-auto">
               <Badge className="mb-6" variant="secondary">
-                ✨ Free Black and White Converter
+                {heroBadgeText ?? '✨ Free Black and White Converter'}
               </Badge>
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                Convert Images to Black and White Online
+                {heroTitle ?? 'Convert Images to Black and White Online'}
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300">
-                Upload, preview, and export professional monochrome photos in
-                seconds. No accounts, no uploads to third-party servers—everything
-                happens in your browser.
+                {heroSubtitle ??
+                  'Upload, preview, and export professional monochrome photos in seconds. No accounts, no uploads to third-party servers—everything happens in your browser.'}
               </p>
             </div>
 
             <div className="flex flex-wrap justify-center gap-2 mb-12 mt-10">
-              <Badge variant="secondary">Make Photos Black and White</Badge>
-              <Badge variant="secondary">Instant Privacy-Friendly Processing</Badge>
-              <Badge variant="secondary">Film Style Presets</Badge>
-              <Badge variant="secondary">Professional Download Formats</Badge>
+              {(heroFeatureBadges ?? [
+                'Make Photos Black and White',
+                'Instant Privacy-Friendly Processing',
+                'Film Style Presets',
+                'Professional Download Formats'
+              ]).map((label) => (
+                <Badge key={label} variant="secondary">
+                  {label}
+                </Badge>
+              ))}
             </div>
 
             <div className="mb-12 max-w-xl mx-auto">
@@ -343,6 +400,10 @@ export function ConverterExperience() {
                 onFileSelect={handleFileSelect}
                 isProcessing={isProcessing}
                 className="max-w-xl"
+                accept={uploadAccept}
+                supportText={uploadSupportText}
+                allowedExtensions={uploadAllowedExtensions}
+                invalidFileMessage={uploadInvalidFileMessage}
               />
             </div>
 

@@ -10,25 +10,73 @@ interface UploadAreaProps {
   onReset?: () => void
   isProcessing?: boolean
   className?: string
+  /**
+   * Optional accept attribute for the underlying file input.
+   * Defaults to `image/*` when not provided.
+   */
+  accept?: string
+  /**
+   * Optional text shown under the main description that describes
+   * supported formats and limits. Falls back to a generic message
+   * when omitted.
+   */
+  supportText?: string
+  /**
+   * Optional list of allowed file extensions (e.g. ['jpg', 'jpeg']).
+   * When provided, files with other extensions will be rejected.
+   */
+  allowedExtensions?: string[]
+  /**
+   * Optional custom error message used when the selected file does
+   * not match the allowed extensions.
+   */
+  invalidFileMessage?: string
 }
 
-export function UploadArea({ onFileSelect, onReset, isProcessing = false, className = '' }: UploadAreaProps) {
+export function UploadArea({
+  onFileSelect,
+  onReset,
+  isProcessing = false,
+  className = '',
+  accept,
+  supportText,
+  allowedExtensions,
+  invalidFileMessage
+}: UploadAreaProps) {
   const [dragActive, setDragActive] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const validateAndProcessFile = useCallback((file: File) => {
-    if (!file.type.startsWith('image/')) {
-      setError('Please select a valid image file.')
-      return
-    }
+  const validateAndProcessFile = useCallback(
+    (file: File) => {
+      if (allowedExtensions && allowedExtensions.length > 0) {
+        const match = /\.([^.]+)$/.exec(file.name)
+        const ext = match ? match[1].toLowerCase() : ''
+        const normalizedExt = ext === 'jpeg' ? 'jpg' : ext
+        const allowed = allowedExtensions.map((value) => {
+          const lowered = value.toLowerCase()
+          return lowered === 'jpeg' ? 'jpg' : lowered
+        })
+        if (!allowed.includes(normalizedExt)) {
+          setError(
+            invalidFileMessage ||
+              'Please upload a file with a supported extension.'
+          )
+          return
+        }
+      } else if (!file.type.startsWith('image/')) {
+        setError('Please select a valid image file.')
+        return
+      }
 
-    if (file.size > 10 * 1024 * 1024) {
-      setError('File size must be less than 10MB.')
-      return
-    }
+      if (file.size > 10 * 1024 * 1024) {
+        setError('File size must be less than 10MB.')
+        return
+      }
 
-    onFileSelect(file)
-  }, [onFileSelect])
+      onFileSelect(file)
+    },
+    [allowedExtensions, invalidFileMessage, onFileSelect]
+  )
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault()
@@ -81,7 +129,7 @@ export function UploadArea({ onFileSelect, onReset, isProcessing = false, classN
           <input
             id="file-input"
             type="file"
-            accept="image/*"
+            accept={accept || 'image/*'}
             onChange={handleFileInput}
             className="hidden"
             disabled={isProcessing}
@@ -115,7 +163,7 @@ export function UploadArea({ onFileSelect, onReset, isProcessing = false, classN
           </p>
 
           <div className="text-sm text-gray-500 dark:text-gray-500 mb-6">
-            Supports: PNG, JPG, WebP • Max size: 10MB
+            {supportText ?? 'Supports: PNG, JPG, WebP • Max size: 10MB'}
           </div>
 
           {!isProcessing && (

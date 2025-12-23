@@ -569,3 +569,233 @@ Wedding_Reception.preset:
 - 长尾关键词：如"black and white portrait skin tone"
 - 避免堆砌，保持可读性
 - 每篇文章关联1-2个核心功能
+
+---
+
+## 新增：工具型专题页面配套教程（4篇，文本为主，无需图片）
+
+> 说明：下面4篇文章主要配合新工具页（JPG/PNG/照片/生成器）。大纲以文字解释和步骤为主，不强制使用任何图片或截图。
+
+## 文章 7: JPG to Black and White Online – Step-by-Step Guide
+
+**分类:** Tool Tutorials  
+**预计字数:** 1,800-2,200字  
+**阅读时间:** 8-9 min read  
+**Featured:** 否  
+**对应页面:** `/jpg-to-black-and-white`  
+**状态:** 已完成（已在 blog-posts.json 中发布，ID: `jpg-to-black-and-white-online-guide`）
+
+### 关键要点:
+- 什么时候应该用专门的 JPG 转黑白工具  
+- 完整的在线转换步骤（从上传到下载）  
+- 如何保证导出的 JPG 既清晰又文件大小可控  
+
+### 文章结构:
+
+#### 1. Why Use a Dedicated JPG to Black and White Tool? (200字)
+- JPG 在手机/相机工作流中的普及  
+- 通用“黑白滤镜” vs 细致控制的区别  
+- 使用网页工具的优势：无需安装、跨设备、隐私本地处理  
+
+#### 2. Before You Start – Prepare Your JPG Files (300字)
+- 从手机/相机导出 JPG 的基础建议（分辨率、压缩）  
+- 何时需要先在 LR/PS 做基础曝光校正再导出 JPG  
+- 文件大小与加载速度的平衡（例如 2000px 作为常用上限）  
+
+#### 3. Step-by-Step: Convert JPG to Black and White Online (600字)
+1. 打开 `/jpg-to-black-and-white` 页面  
+2. 点击上传或拖拽 JPG 文件（强调只接受 .jpg/.jpeg）  
+3. 等待预览生成，理解“预设 + 滑块”的关系  
+4. 如何根据用途选择风格：  
+   - 社交媒体：稍高对比 + 适度亮度  
+   - 电商图：结构清晰、不过度对比  
+   - 人像：注意肤色和高光保留  
+5. 选择导出格式（继续用 JPG 的场景 vs 导出 PNG/WebP）  
+6. 下载后本地整理：用 `-bw` 后缀命名的好处  
+
+#### 4. Quality & File Size Tips for JPG Black and White (400字)
+- 解释质量参数（例如 80%-90% 的实用区间）  
+- 为什么过度压缩会影响黑白细节（banding、块状噪点）  
+- 适合打印 vs 适合网页的分辨率建议  
+
+#### 5. Common Mistakes When Converting JPG to Black and White (300字)
+- 只用“降低饱和度”而不调整对比度的误区  
+- 让高光完全“死白”的风险（尤其是婚纱、白墙）  
+- 为了“极致锐利”而过度锐化的副作用  
+- 正确工作流示例：先曝光，再黑白，再微调  
+
+#### 6. Simple Use Cases (300字)
+- 用 3-4 个文本案例说明：  
+  - 电商产品页 banner 统一黑白风格  
+  - 摄影师作品集里的一组黑白系列  
+  - 品牌在 IG 上做“黑白主题周”的思路  
+
+#### 7. Conclusion & Call to Action (200字)
+- 总结：专页工具在精细控制和效率上的优势  
+- CTA：鼓励读者尝试 `/jpg-to-black-and-white`，并在需要批量时使用 `/batch-black-and-white-converter`  
+
+---
+
+## 文章 8: How to Convert PNG Logos and Icons to Black and White
+
+**分类:** Tool Tutorials  
+**预计字数:** 1,800-2,200字  
+**阅读时间:** 8-9 min read  
+**Featured:** 否  
+**对应页面:** `/png-to-black-and-white`
+
+### 关键要点:
+- 为什么品牌 Logo / UI 图标适合单独做黑白版  
+- 如何在不依赖复杂设计软件的情况下完成转换  
+- 让黑白图标在深色/浅色背景上都清晰可读  
+
+### 文章结构:
+
+#### 1. Why Black and White Versions Matter for Logos and Icons (250字)
+- 多平台需求：发票、合同、打印件、浏览器 tab、app icon 等  
+- 设计系统常见要求：需要 mono/outline 版本  
+- 解释 black/white 版本如何提高可访问性与对比度  
+
+#### 2. Preparing Your PNG Assets (300字)
+- 透明背景 vs 实色背景的差异  
+- 简单解释：即使不使用图像软件，也可以通过导出 PNG 保留透明度  
+- 文件命名与分组建议（icon-pack、brand-assets）  
+
+#### 3. Step-by-Step: Convert PNG Logos and Icons to Black and White (600字)
+1. 打开 `/png-to-black-and-white` 页面  
+2. 上传 PNG 格式的 Logo 或 icon（说明只接受 .png）  
+3. 观察预览：  
+   - 线条是否太细？  
+   - 小字号文字是否仍然可读？  
+4. 使用对比度和亮度控制：  
+   - 确保背景和图形之间有足够对比  
+   - 避免灰灰的“中间状态”  
+5. 测试不同背景假想场景（仅文字说明，不需要图片）：  
+   - 浅色背景 vs 深色背景  
+   - 营销落地页 vs App 导航栏  
+6. 导出 PNG，并建议命名规则（如 `logo-mono-dark-bg.png`）  
+
+#### 4. Practical Guidelines for UI and Brand Teams (400字)
+- 为设计系统准备一组“黑白 icon 库”的好处  
+- 如何为开发者提供多套资源（普通、hover、active 状态）  
+- 设置内部规范：什么情况下必须使用黑白版 Logo  
+
+#### 5. Avoid These Mistakes (250字)
+- 仅用 CSS 调整透明度而不是直接准备黑白资源  
+- 让整个 Logo 变得过细，失去品牌识别度  
+- 在深色背景上使用对比不足的灰色图标  
+
+#### 6. Conclusion & Next Steps (200字)
+- 总结：black & white PNG 对于专业品牌呈现的重要性  
+- CTA：鼓励读者用 `/png-to-black-and-white` 建立自己的 black & white 资产库，并在需要批量处理时转向 batch 工具  
+
+---
+
+## 文章 9: Make Any Photo Black and White Online (No Photoshop Needed)
+
+**分类:** Tool Tutorials  
+**预计字数:** 2,000-2,400字  
+**阅读时间:** 9-10 min read  
+**Featured:** 否  
+**对应页面:** `/black-and-white-photo-converter`
+
+### 关键要点:
+- 用浏览器完成黑白转换，无需 LR/PS  
+- 针对不同题材（人像、旅行、家庭照）的调色思路  
+- 简单、可复现的黑白工作流  
+
+### 文章结构:
+
+#### 1. Why Convert Photos to Black and White Online? (250字)
+- 对比传统软件的门槛和成本  
+- 在线工具适合的场景：偶尔使用、跨设备、无安装权限环境  
+- 简单强调隐私：浏览器本地处理 vs 上传到服务器  
+
+#### 2. Choosing the Right Photos for Black and White (350字)
+- 什么样的照片更适合黑白（强光影、明确形状、表情）  
+- 不太适合的照片（完全依赖色彩对比的画面）  
+- 人像、街景、旅行照的基本筛选建议  
+
+#### 3. Step-by-Step: Make a Photo Black and White Online (700字)
+1. 打开 `/black-and-white-photo-converter` 页面  
+2. 上传照片（手机拍摄、相机 JPG、导出文件都可以）  
+3. 选择一个初始预设：Classic / Soft / Dramatic 等  
+4. 针对不同场景微调：  
+   - 人像：稍提亮中间调，保护高光  
+   - 旅行/城市：增加对比，强化结构  
+   - 家庭/日常：避免过度对比，保留情绪  
+5. 使用阴影/高光控制局部区域（文字说明为主）  
+6. 选择导出格式，并给出针对社交媒体/打印的简单建议  
+
+#### 4. Three Simple Recipes You Can Reuse (400字)
+- 配方 1：柔和人像风格（参数以文字形式描述）  
+- 配方 2：高对比街头风格  
+- 配方 3：干净的家庭纪实风格  
+
+#### 5. Frequently Asked Questions (300字)
+- “会不会降低图片质量？”  
+- “能不能之后再恢复彩色？”  
+- “适合打印吗？”  
+- “一次可以处理多少张？”（顺带引出 batch 工具）  
+
+#### 6. Conclusion & Resource Links (200字)
+- 总结：在线黑白转换适合作为“快速版本”或“最终版本”  
+- 内链：指向 `/batch-black-and-white-converter`、相关摄影指南博文  
+
+---
+
+## 文章 10: Black and White Photo Generator – Style Guide for Creators
+
+**分类:** Tool Tutorials / Creative  
+**预计字数:** 2,000-2,400字  
+**阅读时间:** 9-10 min read  
+**Featured:** 否  
+**对应页面:** `/black-and-white-photo-generator`
+
+### 关键要点:
+- 以“风格”而非“技术参数”视角介绍黑白  
+- 为创作者提供几种固定风格模板（适合社媒、作品集、海报）  
+- 教会用户如何用生成器找到自己的黑白风格  
+
+### 文章结构:
+
+#### 1. From Filter to Style – What a Generator Really Does (250字)
+- 滤镜（一次性效果） vs 可调式生成器（可反复微调）  
+- 为什么创作者需要稳定、可复现的黑白风格  
+
+#### 2. Quick Tour of the Black and White Photo Generator (300字)
+- 用文字方式介绍界面结构：上传区、预设区、滑块区、下载区  
+- 强调“实时预览 + 本地处理”的体验特点  
+
+#### 3. Style 1: Soft Editorial (400字)
+- 适用场景：时尚、生活方式、轻商业  
+- 目标效果：柔和高光、保留皮肤细节、整体气质温柔  
+- 参数思路：  
+  - 对比度中等偏低、亮度略高  
+  - 阴影轻微抬高，高光略压  
+  - 颗粒为 0-10%（只轻微增加质感）  
+
+#### 4. Style 2: High-Contrast Documentary (400字)
+- 适用场景：街头摄影、纪实、音乐现场  
+- 目标效果：强烈光影、清晰形状、富有张力  
+- 参数思路：  
+  - 对比度偏高、亮度中性或略低  
+  - 阴影略压，高光适当拉高  
+  - 颗粒中等，用来强化“胶片感”  
+
+#### 5. Style 3: Minimal Branding (400字)
+- 适用场景：个人品牌、作品集网站、演讲封面  
+- 目标效果：简洁、干净、不过分戏剧化  
+- 参数思路：  
+  - 对比度适中、亮度略高  
+  - 阴影/高光调整幅度较小  
+  - 几乎不加颗粒，保留现代感  
+
+#### 6. How to Build Your Own Signature Style (400字)
+- 先从上述三种风格中选一个作为起点  
+- 用小幅度调整记录“自己喜欢的版本”（建议自己做文字记录）  
+- 建议用同一风格处理一整组作品来测试一致性  
+
+#### 7. Conclusion & Next Steps (200字)
+- 鼓励用户把生成器当成“风格实验室”，而不仅仅是一次性滤镜  
+- CTA：在 `/black-and-white-photo-generator` 里实践文中配方，并在满意后扩展到 batch 工作流  

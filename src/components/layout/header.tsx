@@ -6,17 +6,21 @@ import Image from "next/image"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { 
-  Sun, 
-  Moon, 
-  Menu, 
-  X, 
+import {
+  Sun,
+  Moon,
+  Menu,
+  X,
   ChevronDown,
   HelpCircle,
   Info,
   Shield,
   FileText,
-  Mail
+  Mail,
+  Image as ImageIcon,
+  Layers,
+  Sparkles,
+  Camera
 } from "lucide-react"
 
 export function Header() {
@@ -38,6 +42,10 @@ export function Header() {
       name: "More",
       href: "#",
       children: [
+        { name: "JPG to Black and White", href: "/jpg-to-black-and-white", icon: ImageIcon, description: "Convert JPG photos to black and white" },
+        { name: "PNG to Black and White", href: "/png-to-black-and-white", icon: Layers, description: "Convert PNG logos and icons" },
+        { name: "Photo Converter", href: "/black-and-white-photo-converter", icon: Camera, description: "Make any photo black and white" },
+        { name: "Photo Generator", href: "/black-and-white-photo-generator", icon: Sparkles, description: "Experiment with black and white styles" },
         { name: "FAQ", href: "/faq", icon: HelpCircle, description: "Common questions answered" },
         { name: "Contact", href: "/contact", icon: Mail, description: "Email our support team" },
         { name: "About Us", href: "/about", icon: Info, description: "Our story and mission" },
