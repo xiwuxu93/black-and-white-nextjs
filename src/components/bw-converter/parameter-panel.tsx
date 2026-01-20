@@ -4,6 +4,7 @@ import React from 'react'
 import { Card } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
+import { Switch } from '@/components/ui/switch'
 import { ImageFilter } from '@/types/image-processing'
 
 interface ParameterPanelProps {
@@ -12,6 +13,7 @@ interface ParameterPanelProps {
   disabled?: boolean
   className?: string
   compact?: boolean
+  showInvertToggle?: boolean
 }
 
 interface SliderControlProps {
@@ -25,49 +27,17 @@ interface SliderControlProps {
   unit?: string
   description?: string
 }
+// ... (SliderControl implementation remains the same)
 
-function SliderControl({ 
-  label, 
-  value, 
-  onChange, 
-  min, 
-  max, 
-  step = 1, 
-  disabled = false, 
-  unit = '', 
-  description 
-}: SliderControlProps) {
-  return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <Label htmlFor={label} className="text-sm font-medium text-gray-700 dark:text-gray-300">
-          {label}
-        </Label>
-        <span className="text-sm font-semibold text-primary-600 dark:text-primary-400 min-w-[3rem] text-right">
-          {value}{unit}
-        </span>
-      </div>
-      
-      <Slider
-        id={label}
-        min={min}
-        max={max}
-        step={step}
-        value={[value]}
-        onValueChange={(values) => onChange(values[0])}
-        disabled={disabled}
-        className="w-full"
-      />
-      
-      {description && (
-        <p className="text-xs text-gray-500 dark:text-gray-400">{description}</p>
-      )}
-    </div>
-  )
-}
-
-export function ParameterPanel({ filters, onFiltersChange, disabled = false, className = '', compact = false }: ParameterPanelProps) {
-  const handleFilterChange = (key: keyof ImageFilter, value: number) => {
+export function ParameterPanel({
+  filters,
+  onFiltersChange,
+  disabled = false,
+  className = '',
+  compact = false,
+  showInvertToggle = false
+}: ParameterPanelProps) {
+  const handleFilterChange = (key: keyof ImageFilter, value: number | boolean) => {
     onFiltersChange({
       ...filters,
       [key]: value
@@ -88,8 +58,24 @@ export function ParameterPanel({ filters, onFiltersChange, disabled = false, cla
       )}
 
       <div className={compact ? 'space-y-4' : 'space-y-6'}>
-        <SliderControl
-          label="Contrast"
+        {showInvertToggle && (
+          <div className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-gray-800/50">
+            <div className="space-y-0.5">
+              <Label htmlFor="invert-mode" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Invert Colors
+              </Label>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Create a negative effect</p>
+            </div>
+            <Switch
+              id="invert-mode"
+              checked={filters.invert}
+              onCheckedChange={(checked) => handleFilterChange('invert', checked)}
+              disabled={disabled}
+            />
+          </div>
+        )}
+
+        <SliderControl          label="Contrast"
           value={filters.contrast}
           onChange={(value) => handleFilterChange('contrast', value)}
           min={0}

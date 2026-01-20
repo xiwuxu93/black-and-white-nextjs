@@ -19,7 +19,7 @@ self.onmessage = function(e) {
 
 function applyAllEffects(imageData, filters) {
     const data = imageData.data;
-    const { contrast, brightness, sepia, grain, shadows, highlights } = filters;
+    const { contrast, brightness, sepia, grain, shadows, highlights, invert, grayscale = true } = filters;
 
     // Pre-calculate adjustment factors
     const contrastFactor = (contrast / 100) + 1;
@@ -31,9 +31,11 @@ function applyAllEffects(imageData, filters) {
         let g = data[i + 1];
         let b = data[i + 2];
 
-        // 1. Grayscale (Luminance Method)
-        const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-        r = g = b = luminance;
+        // 1. Grayscale (Luminance Method) - OPTIONAL
+        if (grayscale) {
+            const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+            r = g = b = luminance;
+        }
         
         // 2. Sepia
         if (sepiaFactor > 0) {
@@ -69,6 +71,15 @@ function applyAllEffects(imageData, filters) {
             g = Math.max(0, Math.min(255, g * factor));
             b = Math.max(0, Math.min(255, b * factor));
         }
+        
+        // 6. Invert (Negative)
+        if (invert) {
+            r = 255 - r;
+            g = 255 - g;
+            b = 255 - b;
+        }
+
+        // 7. Film Grain
 
         // 6. Film Grain
         if (grain > 0) {

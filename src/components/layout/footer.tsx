@@ -8,6 +8,9 @@ export function Footer() {
       links: [
         { name: "Single Converter", href: "/" },
         { name: "Batch Converter", href: "/batch-black-and-white-converter" },
+        { name: "Logo Converter", href: "/logo-to-black-and-white" },
+        { name: "JPG Optimizer", href: "/jpg-to-black-and-white" },
+        { name: "Invert Colors", href: "/invert-image-colors" },
         { name: "Examples", href: "/examples" },
         { name: "Newborn Photography Guide", href: "/newborn-photography-guide" },
         { name: "How to Use", href: "/how-to-use" },

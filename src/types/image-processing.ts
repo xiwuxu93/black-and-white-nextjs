@@ -7,6 +7,8 @@ export interface ImageFilter {
   grain: number;
   shadows: number;
   highlights: number;
+  invert: boolean;
+  grayscale: boolean;
 }
 
 export interface PresetConfig extends ImageFilter {
@@ -27,6 +29,8 @@ export interface WorkerMessage {
   grain: number;
   shadows: number;
   highlights: number;
+  invert: boolean;
+  grayscale: boolean;
 }
 
 export interface WorkerResponse {
@@ -81,61 +85,73 @@ export const DEFAULT_PRESETS: Record<string, PresetConfig> = {
   default: {
     name: 'default',
     displayName: 'Default',
-    contrast: 100,
+    contrast: 0,
     brightness: 100,
     sepia: 0,
     grain: 0,
     shadows: 0,
     highlights: 0,
+    invert: false,
+    grayscale: true,
   },
   dramatic: {
     name: 'dramatic',
     displayName: 'Dramatic',
-    contrast: 160,
+    contrast: 60,
     brightness: 90,
     sepia: 0,
     grain: 5,
     shadows: -20,
     highlights: 10,
+    invert: false,
+    grayscale: true,
   },
   soft: {
     name: 'soft',
     displayName: 'Soft',
-    contrast: 80,
+    contrast: -20,
     brightness: 110,
     sepia: 0,
     grain: 0,
     shadows: 10,
     highlights: -5,
+    invert: false,
+    grayscale: true,
   },
   vintage: {
     name: 'vintage',
     displayName: 'Vintage',
-    contrast: 120,
+    contrast: 20,
     brightness: 95,
     sepia: 25,
     grain: 15,
     shadows: 5,
     highlights: 0,
+    invert: false,
+    grayscale: true,
   },
   'high-contrast': {
     name: 'high-contrast',
     displayName: 'High Contrast',
-    contrast: 180,
+    contrast: 80,
     brightness: 100,
     sepia: 0,
     grain: 0,
     shadows: -30,
     highlights: 20,
+    invert: false,
+    grayscale: true,
   },
   'film-noir': {
     name: 'film-noir',
     displayName: 'Film Noir',
-    contrast: 150,
+    contrast: 50,
     brightness: 80,
     sepia: 0,
     grain: 20,
     shadows: -25,
     highlights: 15,
+    invert: false,
+    grayscale: true,
   },
 };

@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import React, { useState, useCallback, useRef, useEffect } from 'react'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -526,6 +527,29 @@ export default function BatchPage() {
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Can I switch presets mid-batch?</h3>
                   <p>You can cancel and restart with a new preset at any time. Adjust the sliders, requeue the files, and the converter will apply your updated look to every photo to black and white export.</p>
                 </div>
+              </div>
+            </section>
+
+            <section className="mt-16 text-center">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                Other Specialized Tools
+              </h2>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link href="/logo-to-black-and-white">
+                  <Button variant="outline">
+                    Convert Logos & Icons
+                  </Button>
+                </Link>
+                <Link href="/jpg-to-black-and-white">
+                  <Button variant="outline">
+                    JPG Optimizer
+                  </Button>
+                </Link>
+                <Link href="/invert-image-colors">
+                  <Button variant="outline">
+                    Invert Colors
+                  </Button>
+                </Link>
               </div>
             </section>
         </div>
