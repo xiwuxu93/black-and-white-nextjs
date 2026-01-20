@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/batch-black-and-white-converter', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/blog', changeFrequency: 'weekly' as const, priority: 0.8 },
      { path: '/jpg-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.85 },
+     { path: '/logo-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.85 },
      { path: '/png-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.84 },
      { path: '/black-and-white-photo-converter', changeFrequency: 'weekly' as const, priority: 0.86 },
      { path: '/black-and-white-photo-generator', changeFrequency: 'weekly' as const, priority: 0.83 },

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, Layers, Image as ImageIcon, Briefcase } from 'lucide-react'
 import { StructuredData } from '@/components/seo/structured-data'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -39,6 +39,11 @@ const HOME_FAQ_SCHEMA = {
         'Upload your file, choose a preset, and click download. The converter analyzes color data and applies channel mixing, letting you convert image to black and white with depth, contrast, and film-style grain in under a minute.'
     },
     {
+      question: 'Can I convert logos with transparent backgrounds?',
+      answer:
+        'Yes. Use our specialized Logo Converter (linked below) which supports PNG and SVG inputs and preserves transparency.'
+    },
+    {
       question: 'Can I make multiple photos black and white at once?',
       answer:
         'Yes. Head to the batch black and white converter to convert multiple images to black and white simultaneously. Drop in a full folder of photos and apply the same preset across every file.'
@@ -57,31 +62,6 @@ const HOME_FAQ_SCHEMA = {
       question: 'Is this black and white photo editor free?',
       answer:
         'Absolutely. BWConverter is a free black and white photo editor with no hidden paywalls, watermarks, or file limits. Every feature works without creating an account.'
-    },
-    {
-      question: 'How do I make a black and white image from color?',
-      answer:
-        'Upload any color snapshot, select "Classic" or a more dramatic preset, then refine the highlights and shadows. The tool remaps every pixel so you can make a photo black and white while protecting detail.'
-    },
-    {
-      question: 'Can I convert PNG or JPG to black and white?',
-      answer:
-        'Yes. Drop PNG, JPG, WebP, or TIFF files into the converter, and export them as black and white pictures in PNG, JPG, or WebP formats with your chosen quality level.'
-    },
-    {
-      question: 'How do I download my black and white picture?',
-      answer:
-        'After previewing your image to black and white, select the file format you want and click download. The tool saves a copy locally with a file name that includes "-bw" so you can sort your edits at a glance.'
-    },
-    {
-      question: 'Does this work for existing black and white photos?',
-      answer:
-        'Yes. Upload classic monochrome shots to add contrast, film grain, or tone adjustments. The black white image converter can enhance vintage negatives just as easily as it handles fresh color files.'
-    },
-    {
-      question: 'How do I make images black and white in bulk?',
-      answer:
-        'Select all the files you need, open the batch tool, and start the queue. The batch workflow makes pictures black and white in bulk while keeping resolutions intact and filenames organized.'
     }
   ]
 } as const
@@ -90,26 +70,82 @@ function MarketingSections() {
   return (
     <section className="converter-marketing py-20 px-4">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-gray-600 dark:text-gray-400">
-          <p className="text-xl mb-4 text-gray-600 dark:text-gray-400">
-            Transform your photos into stunning monochrome images with our free online converter. Adjust contrast, apply professional presets, and export at full resolution—all in your browser with complete privacy. Perfect for portraits, social media, print projects, and professional portfolios.
+        
+        {/* Specialized Tools Hub - New Addition for SEO Weight Distribution */}
+        <div className="mb-20">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+            Choose the Right Tool for Your Workflow
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Link href="/logo-to-black-and-white" className="group">
+              <Card className="p-6 h-full transition-shadow hover:shadow-md border-primary-100 dark:border-primary-900/50">
+                <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-full w-fit text-blue-600 dark:text-blue-400">
+                  <Layers className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-600 transition-colors">
+                  Logo & Icon Converter
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Best for transparent PNGs and SVGs. Turns logos into pure black or white for watermarks.
+                </p>
+                <div className="mt-4 flex items-center text-sm font-medium text-primary-600">
+                  Convert Logo <ChevronRight className="w-4 h-4 ml-1" />
+                </div>
+              </Card>
+            </Link>
+
+            <Link href="/batch-black-and-white-converter" className="group">
+              <Card className="p-6 h-full transition-shadow hover:shadow-md border-primary-100 dark:border-primary-900/50">
+                 <div className="mb-4 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-full w-fit text-purple-600 dark:text-purple-400">
+                  <Briefcase className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-600 transition-colors">
+                  Batch Converter
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Process hundreds of photos at once. Apply consistent presets to entire folders.
+                </p>
+                <div className="mt-4 flex items-center text-sm font-medium text-primary-600">
+                  Start Batch <ChevronRight className="w-4 h-4 ml-1" />
+                </div>
+              </Card>
+            </Link>
+
+            <Link href="/jpg-to-black-and-white" className="group">
+              <Card className="p-6 h-full transition-shadow hover:shadow-md border-primary-100 dark:border-primary-900/50">
+                 <div className="mb-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-full w-fit text-green-600 dark:text-green-400">
+                  <ImageIcon className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-600 transition-colors">
+                  JPG Photo Converter
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Optimized for photography. Smart artifact smoothing for compressed JPGs.
+                </p>
+                <div className="mt-4 flex items-center text-sm font-medium text-primary-600">
+                  Convert JPG <ChevronRight className="w-4 h-4 ml-1" />
+                </div>
+              </Card>
+            </Link>
+          </div>
+        </div>
+
+        <div className="text-gray-600 dark:text-gray-400 text-center max-w-3xl mx-auto mb-16">
+          <p className="text-xl mb-4 text-gray-800 dark:text-gray-200 font-medium">
+            Professional Grade Monochrome Conversion in Your Browser
           </p>
-          <p className="text-base md:text-lg mb-6">
-            Get instant previews as you work, with film-inspired presets and precise controls for highlights, shadows, and grain. Process files locally using WebAssembly—no uploads, no waiting. Ideal for photographers, designers, and marketers who need fast, professional results for mood boards, ecommerce catalogs, pitch decks, or editorial spreads.
-          </p>
-          <p className="text-base md:text-lg mb-16">
-            Whether you're converting a single portrait or batch-processing an entire campaign, BWConverter streamlines your workflow. Drag in your files, experiment with different looks, and deliver consistent results that meet professional quality standards across all platforms.
+          <p className="text-base md:text-lg">
+            Whether you are a photographer creating dramatic portraits or a designer preparing assets for print, 
+            BWConverter gives you the control of a desktop editor with the speed of a web tool.
+            Privacy-first, free, and no watermark.
           </p>
         </div>
 
         <section id="how-to-convert" className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            How to Make Image Black and White in 3 Steps
+            How to Make Image Black and White
           </h2>
-          <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8">
-            Converting color photos to monochrome should be quick, strategic, and repeatable. Follow this simple workflow for marketing campaigns, social content, or gallery prints. The process scales from single images to hundreds of assets while maintaining consistent quality.
-          </p>
-          <ol className="space-y-8 text-left">
+          <ol className="space-y-8 text-left max-w-4xl mx-auto">
             <li className="flex flex-col md:flex-row md:items-start gap-4">
               <div className="flex-shrink-0">
                 <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-900 text-white text-xl font-semibold">
@@ -117,11 +153,11 @@ function MarketingSections() {
                 </span>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                  Upload your color photo or drag it into the canvas
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Upload your photo
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Drop any JPG, PNG, or WebP file into the interface. The converter analyzes RGB channels and preserves full resolution during processing. Works with phone screenshots, DSLR captures, or scanned film—no manual resizing needed.
+                  Drag and drop any image file. We support high-resolution processing so your print quality remains sharp.
                 </p>
               </div>
             </li>
@@ -132,11 +168,11 @@ function MarketingSections() {
                 </span>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                  Pick the preset that matches your creative direction
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Adjust tone and contrast
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Choose a cinematic preset for dramatic portraits, a clean preset for product photography, or build a custom mix. Channel balancing keeps skin tones smooth and skies detailed. Adjust contrast, brightness, and grain to create a signature look you can reuse across your entire series.
+                  Don't settle for a flat grey image. Use the Channel Mixer to darken skies (Blue channel) or brighten skin tones (Red channel).
                 </p>
               </div>
             </li>
@@ -147,11 +183,11 @@ function MarketingSections() {
                 </span>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                  Export your finished black and white picture instantly
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Download instantly
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  When the preview looks perfect, select PNG, JPG, or WebP and download. Files are saved locally with a "-bw" suffix for easy organization. Share with clients, upload to your site, or archive for print production with confidence in the tonal accuracy.
+                  Export as JPG, PNG, or WebP. Your file is processed locally, meaning 0 wait time for uploads or downloads.
                 </p>
               </div>
             </li>
@@ -159,141 +195,43 @@ function MarketingSections() {
         </section>
 
         <section className="bg-gray-50 dark:bg-gray-900/60 rounded-3xl p-8 md:p-12 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Free Black and White Converter Features
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-10 text-center">
+            Why Use Our Black and White Converter?
           </h2>
-          <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-10 text-center">
-            Everything you need to make photos black and white is available the moment you load the page. These capabilities help solo creators and agencies maintain consistent aesthetics while meeting demanding production schedules.
-          </p>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <Card className="p-6 h-full">
               <div className="text-2xl mb-4">🎚️</div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Channel Mixing Engine
+                Channel Mixing
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Analyzes red, green, and blue values separately to emphasize texture, isolate highlights, and create depth. The same principle used in traditional darkrooms, delivered through an intuitive slider interface.
+                True black and white photography isn't just desaturation. Control how Red, Green, and Blue colors translate to greyscale values.
               </p>
             </Card>
             <Card className="p-6 h-full">
               <div className="text-2xl mb-4">⚡</div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Real-Time Preview
+                100% Client-Side
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                See every adjustment instantly with live canvas updates. Dial in tonal contrast before exporting, eliminating guesswork and saving time on revisions and client approvals.
+                We use WebAssembly technology. Your photos are processed by your own device's CPU/GPU, ensuring maximum speed and privacy.
               </p>
             </Card>
             <Card className="p-6 h-full">
-              <div className="text-2xl mb-4">🛡️</div>
+              <div className="text-2xl mb-4">✨</div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Privacy-First Workflow
+                Smart Presets
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Files never leave your machine. All processing happens in your browser, making it safe for client deliverables, NDA projects, or personal archives that cannot be uploaded to third-party servers.
+                One-click looks including "High Contrast", "Matte", and "Classic Film" to jumpstart your editing.
               </p>
             </Card>
-            <Card className="p-6 h-full">
-              <div className="text-2xl mb-4">🔁</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Reusable Presets
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Save time with presets inspired by iconic film stocks. Whether you're chasing a matte editorial finish or a bold photojournalism look, keep your favorite styles one click away.
-              </p>
-            </Card>
-            <Card className="p-6 h-full">
-              <div className="text-2xl mb-4">🖨️</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Print-Ready Exports
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Export at full resolution with controlled compression. Produce assets ready for magazines, lookbooks, product inserts, or gallery prints without additional processing.
-              </p>
-            </Card>
-            <Card className="p-6 h-full">
-              <div className="text-2xl mb-4">🌐</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Works on Any Device
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Edit from any laptop, tablet, or phone. The responsive interface works during client calls, while traveling, or right after a photoshoot.
-              </p>
-            </Card>
-          </div>
-        </section>
-
-        <section className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Convert Image to Black and White With Professional Control
-          </h2>
-          <div className="grid md:grid-cols-2 gap-10 text-left">
-            <div className="space-y-4 text-gray-600 dark:text-gray-400">
-              <p>
-                Photographers rely on nuanced tonal control to guide the viewer&apos;s eye. Our controls let you lighten skin, deepen skies, and build contrast selectively so each black and white photo tells a deliberate story. Blend multiple adjustments to achieve the same flexibility you would find in Lightroom or Capture One without leaving your browser.
-              </p>
-              <p>
-                Because the black and white picture converter honors your original file data, there is no fear of banding or crushed shadows. Preview different combinations, compare presets, and reset with one click until the image to black and white balance feels right.
-              </p>
-              <p>
-                Need to match a brand style guide? Store favorite settings and reuse them across entire campaigns. Consistency is critical for catalogs, editorial spreads, and social storytelling, and this workflow removes the guesswork.
-              </p>
-              <p>
-                Portrait photographers refine highlights and shadows to build dramatic storytelling. Fashion editors convert runway coverage into cohesive black and white photo sets for brand lookbooks. Fine artists prepare gallery prints without scanning back and forth between multiple tools.
-              </p>
-              <p>
-                Illustrators and concept artists feed reference shots into the black and white image maker to explore tone, shape, and light before diving into final artwork.
-              </p>
-              <p>
-                Content creators preparing reels or carousels can make pictures black and white to create visual breaks that keep audiences engaged.
-              </p>
-            </div>
-            <div className="space-y-4 text-gray-600 dark:text-gray-400">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Business and Marketing Teams
-              </h3>
-              <p>
-                Ecommerce managers produce product swatches and campaign imagery that align with seasonal palettes. Agencies deliver monochrome mockups that focus stakeholder attention on layout and messaging. Real estate marketers convert image to black and white for property brochures that emphasize structure and light.
-              </p>
-              <p>
-                Corporate communications teams rely on the black and white converter to standardize employee portraits or leadership headshots, ensuring consistent branding across press releases and investor decks.
-              </p>
-              <p>
-                Educators and non-profits use the tool to create high-contrast visuals for presentations, printouts, and infographics that must remain legible when photocopied.
-              </p>
-              <p>
-                Video teams can export still frames, convert them for storyboards, and keep the palette aligned across deliverables. Marketing managers can turn image black and white for A/B testing, landing pages, or seasonal campaigns with zero technical overhead.
-              </p>
-              <p>
-                Because exports can be set to PNG, JPG, or WebP, you always have the exact format needed for content management systems, ad platforms, or print vendors. One workflow fits all.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Black and White Image Generator Tips for Consistent Results
-          </h2>
-          <div className="space-y-6 text-gray-600 dark:text-gray-400">
-            <p>
-              Start with a high-resolution file whenever possible. The more data you feed the black and white image generator, the better it can separate tones and maintain detail. If a file is low resolution, use the clarity and grain sliders sparingly to avoid artifacts.
-            </p>
-            <p>
-              Balance your midtones before pushing extreme contrast. A subtle S-curve can add depth to any black and white picture while keeping highlights under control. Use the split-toning options to add a hint of warmth or coolness for mood-driven campaigns.
-            </p>
-            <p>
-              When prepping assets for print, preview the image to black and white result on both light and dark backgrounds. This ensures logos, product edges, and text overlays stay legible no matter where the final asset lives.
-            </p>
-            <p>
-              Save multiple presets for different clients or collections. A consistent toolkit speeds up collaboration and keeps every make photo black and white task aligned with brand visual identity.
-            </p>
           </div>
         </section>
 
         <section id="faq" className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Frequently Asked Black and White Image Questions
+            Frequently Asked Questions
           </h2>
           <div className="grid gap-6 md:grid-cols-2 text-gray-600 dark:text-gray-400">
             {HOME_FAQ_SCHEMA.questions.map(({ question, answer }) => (
@@ -310,15 +248,15 @@ function MarketingSections() {
         <section className="bg-gray-50 dark:bg-gray-900/60 rounded-3xl p-8 md:p-12">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Learn the Craft of Modern Black and White Image Editing
+              Master Monochrome Photography
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              Dive deeper into composition, lighting, and storytelling with our tutorials. Each guide shows how to move an image to black and white with purpose, build cohesive series, and present your work with confidence.
+              Check out our guides on composition, lighting, and editing techniques.
             </p>
             <div className="mt-6">
               <Link href="/blog">
                 <Button size="lg" variant="outline">
-                  Read Our Photography Guides
+                  Read the Blog
                   <ChevronRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
@@ -336,7 +274,10 @@ export default function HomePage() {
       <StructuredData type="howto" data={HOWTO_SCHEMA} />
       <StructuredData type="faq" data={HOME_FAQ_SCHEMA} />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <ConverterExperience />
+        <ConverterExperience 
+          heroTitle="Black and White Image Converter"
+          heroSubtitle="Free online tool to turn photos, logos, and images into black and white. Professional features, 100% private."
+        />
         <MarketingSections />
       </div>
     </>

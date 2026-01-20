@@ -7,23 +7,23 @@ import { canonicalUrl } from '@/lib/seo'
 import { StructuredData } from '@/components/seo/structured-data'
 
 export const metadata: Metadata = {
-  title: 'JPG to Black and White – Free Online JPG to BW Converter',
+  title: 'Convert Color JPG to Black and White - Free Online Converter',
   description:
-    'Convert JPG to black and white online in seconds. Smart processing handles JPG artifacts and preserves detail. Free, private, and no signup required.',
+    'Turn color JPG images into black and white instantly. Free online tool that changes photos to monochrome while preserving quality. Smart processing, no signup.',
   keywords: [
     'jpg to black and white',
-    'jpg to bw',
-    'convert jpg to black and white',
-    'jpg black and white converter',
-    'remove color from jpg'
+    'convert color jpg to black and white',
+    'turn jpg black and white',
+    'change photo to black and white',
+    'jpg bw converter'
   ],
   alternates: {
     canonical: canonicalUrl('/jpg-to-black-and-white')
   },
   openGraph: {
-    title: 'JPG to Black and White – Free Online JPG to BW Converter',
+    title: 'Convert Color JPG to Black and White - Free Online Converter',
     description:
-      'Turn any JPG photo into a clean black and white image. Smart processing handles JPG artifacts and preserves detail.',
+      'Turn color JPG images into black and white instantly. Free online tool that changes photos to monochrome while preserving quality.',
     url: canonicalUrl('/jpg-to-black-and-white')
   }
 }
