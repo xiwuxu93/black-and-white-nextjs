@@ -27,13 +27,52 @@ interface SliderControlProps {
   unit?: string
   description?: string
 }
-// ... (SliderControl implementation remains the same)
 
-export function ParameterPanel({
-  filters,
-  onFiltersChange,
-  disabled = false,
-  className = '',
+function SliderControl({ 
+  label, 
+  value, 
+  onChange, 
+  min, 
+  max, 
+  step = 1, 
+  disabled = false, 
+  unit = '', 
+  description 
+}: SliderControlProps) {
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <Label htmlFor={label} className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          {label}
+        </Label>
+        <span className="text-sm font-semibold text-primary-600 dark:text-primary-400 min-w-[3rem] text-right">
+          {value}{unit}
+        </span>
+      </div>
+      
+      <Slider
+        id={label}
+        min={min}
+        max={max}
+        step={step}
+        value={[value]}
+        onValueChange={(values) => onChange(values[0])}
+        disabled={disabled}
+        className="w-full"
+      />
+      
+      {description && (
+        <p className="text-xs text-gray-500 dark:text-gray-400">{description}</p>
+      )}
+    </div>
+  )
+}
+
+export function ParameterPanel({ 
+  filters, 
+  onFiltersChange, 
+  disabled = false, 
+  className = '', 
   compact = false,
   showInvertToggle = false
 }: ParameterPanelProps) {
@@ -75,7 +114,8 @@ export function ParameterPanel({
           </div>
         )}
 
-        <SliderControl          label="Contrast"
+        <SliderControl
+          label="Contrast"
           value={filters.contrast}
           onChange={(value) => handleFilterChange('contrast', value)}
           min={0}

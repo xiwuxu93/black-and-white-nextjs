@@ -306,7 +306,32 @@ export function ConverterExperience({
     async (file: File) => {
       try {
         initializeWorker()
-        const bitmap = await createImageBitmap(file)
+        
+        // Use HTMLImageElement as an intermediate step to handle SVGs and other formats robustly
+        const img = new Image()
+        const objectUrl = URL.createObjectURL(file)
+        
+        await new Promise((resolve, reject) => {
+          img.onload = resolve
+          img.onerror = reject
+          img.src = objectUrl
+        })
+
+        let bitmap: ImageBitmap
+        
+        // Handle SVGs without natural dimensions
+        if (img.naturalWidth === 0 || img.naturalHeight === 0) {
+          // Default to a high resolution for vector graphics
+          bitmap = await createImageBitmap(img, { 
+            resizeWidth: 2048,
+            resizeQuality: 'high'
+          })
+        } else {
+          bitmap = await createImageBitmap(img)
+        }
+
+        URL.revokeObjectURL(objectUrl)
+
         const { info, defaultFormat } = resolveFileInfo(file)
         setOriginalFileInfo(info)
         originalFileInfoRef.current = info
@@ -317,6 +342,11 @@ export function ConverterExperience({
         processImage(bitmap, filters, 'preview')
       } catch (error) {
         console.error('Failed to process file:', error)
+        setIsProcessing(false)
+        if (originalFileInfoRef.current) {
+           setOriginalFileInfo(null)
+           originalFileInfoRef.current = null
+        }
       }
     },
     [filters, initializeWorker, processImage]
