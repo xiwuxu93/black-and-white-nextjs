@@ -17,14 +17,14 @@ import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'How to Use Black and White Image Converter - Complete Guide',
-  description: 'Learn how to convert your images to stunning black and white photos with our comprehensive step-by-step guide. Master professional techniques and achieve perfect results.',
+  description: 'Step-by-step guide for converting images to black and white with practical settings, workflow tips, and troubleshooting notes.',
   keywords: ['how to convert to black and white', 'black and white photo tutorial', 'image converter guide'],
   alternates: {
     canonical: canonicalUrl('/how-to-use')
   },
   openGraph: {
     title: 'How to Use Black and White Image Converter - Complete Guide',
-    description: 'Learn how to convert your images to stunning black and white photos with our comprehensive step-by-step guide. Master professional techniques and achieve perfect results.',
+    description: 'Step-by-step guide for converting images to black and white with practical settings, workflow tips, and troubleshooting notes.',
     url: canonicalUrl('/how-to-use')
   }
 }
@@ -34,35 +34,35 @@ export default function HowToUsePage() {
     {
       icon: Upload,
       title: "Upload Your Image",
-      description: "Select or drag and drop your color image into the converter",
+      description: "Drag your image into the converter and wait for preview generation",
       details: [
-        "Support for JPG, PNG, GIF, and WebP formats",
-        "Maximum file size: 10MB", 
-        "Images are processed locally in your browser",
-        "Your privacy is completely protected"
+        "Supports common formats including JPG, PNG, and WebP",
+        "Recommended upload size: up to 10MB for smoother previews", 
+        "Processing runs locally in your browser",
+        "No account is required to convert files"
       ],
       tips: [
-        "Higher resolution images produce better results",
-        "Well-lit photos convert better than dark images",
-        "Images with good contrast work best"
+        "Start with a well-exposed image",
+        "If preview stutters, close other heavy tabs first",
+        "Keep original files for re-export with different settings"
       ]
     },
     {
       icon: Palette,
       title: "Choose Your Style",
-      description: "Select from professional black and white presets or customize manually",
+      description: "Pick a preset, then tune sliders for your scene",
       details: [
-        "Classic: Traditional balanced black and white",
-        "Dramatic: High contrast with deep blacks", 
-        "Vintage: Film-inspired with slight sepia tones",
-        "Soft: Gentle conversion with smooth gradients",
-        "High Contrast: Bold blacks and bright whites",
-        "Film Noir: Cinematic dark atmosphere"
+        "Classic: balanced contrast for general use",
+        "Dramatic: deeper blacks and stronger highlights", 
+        "Vintage: softer contrast with film-like character",
+        "Soft: gentler transitions for delicate subjects",
+        "High Contrast: bold black and white separation",
+        "Film Noir: low-key cinematic tonality"
       ],
       tips: [
-        "Portrait photos work well with Soft or Classic styles",
-        "Landscapes benefit from Dramatic or High Contrast", 
-        "Architecture looks great with Film Noir"
+        "Portraits often start well with Soft or Classic",
+        "Architecture and street scenes usually handle higher contrast", 
+        "Use channel sliders when two colors map to similar gray"
       ]
     }
   ]
@@ -70,33 +70,33 @@ export default function HowToUsePage() {
   const proWorkflows = [
     {
       title: 'RAW → Proofing Gallery',
-      description: 'Ideal for studios that cull inside Lightroom or Capture One before switching to BWConverter for monochrome mastering.',
+      description: 'For teams that cull in Lightroom or Capture One, then need fast monochrome previews.',
       phases: [
-        'Export 16-bit TIFFs or high-quality JPEGs from your DAM with embedded colour profiles.',
-        'Drop the shortlist into BWConverter, apply a preset baseline, then tweak highlights with the manual slider.',
-        'Use `/batch-black-and-white-converter` to render monochrome variants and keep filenames aligned with the colour set.'
+        'Export high-quality JPEG or TIFF files from your DAM.',
+        'Apply one baseline preset in BWConverter, then adjust highlights and shadows.',
+        'Use `/batch-black-and-white-converter` for full-set exports with consistent naming.'
       ],
-      link: { href: '/black-and-white-newborn-images', label: 'See case study timeline' }
+      link: { href: '/batch-black-and-white-converter', label: 'Open batch workflow' }
     },
     {
-      title: 'CMS Automation',
-      description: 'Publish before/after sliders inside a headless CMS by reusing the existing worker and utilities.',
+      title: 'CMS Publishing Workflow',
+      description: 'Useful when editors need repeatable before/after assets for articles or product pages.',
       phases: [
-        'Embed `/worker.js` in your front-end build and cache preset selections per entry.',
-        'Call `downloadCanvasImage` with `maxBytes` set to your CDN limits to auto-generate WebP previews.',
-        'Store slider metadata (preset + manual tweaks) so editors can re-run conversions without guesswork.'
+        'Define a small preset set your team agrees on.',
+        'Store the chosen preset and slider values per entry.',
+        'Export web-safe formats for publishing and archive original files separately.'
       ],
-      link: { href: '/image-black-and-white-converter', label: 'Integration guide' }
+      link: { href: '/faq', label: 'Read implementation FAQ' }
     },
     {
       title: 'On-Set Review Kiosk',
-      description: 'Great for clients reviewing captures during shoots without uploading sensitive material.',
+      description: 'Useful for client preview sessions where internet access is limited or uploads are not allowed.',
       phases: [
-        'Run the converter offline in a Chromium-based kiosk build.',
-        'Create a shared preset profile per lighting setup and sync via local storage.',
-        'Export JPEG previews to a shared folder; full-resolution files remain on the tethered camera workstation.'
+        'Preload the app on the review machine before the shoot.',
+        'Create one preset per lighting setup to keep review output consistent.',
+        'Export JPG previews for fast sharing while keeping originals on the main workstation.'
       ],
-      link: { href: '/newborn-black-and-white-images', label: 'Download preset matrix' }
+      link: { href: '/privacy', label: 'Review privacy policy' }
     }
   ]
 
@@ -104,17 +104,17 @@ export default function HowToUsePage() {
     {
       issue: 'Large RAW exports stall during preview',
       cause: 'Browser hits memory ceiling when decoding >40MP frames.',
-      fix: 'Convert to 16-bit TIFF or high-quality JPEG before upload. Monitor memory via Chrome DevTools > Performance.'
+      fix: 'Export a lighter TIFF/JPEG derivative first, then convert in browser. Close unused tabs to free memory.'
     },
     {
       issue: 'Downloads exceed client file size requirements',
-      cause: 'Manual download bypassed `maxBytes` governance.',
-      fix: 'Always call `downloadCanvasImage` with the `maxBytes` argument and verify output in the QA checklist.'
+      cause: 'Export format or quality is set too high for delivery constraints.',
+      fix: 'Switch to JPG/WebP and lower quality settings until files meet the required size range.'
     },
     {
       issue: 'Preset look varies between devices',
       cause: 'Custom adjustments not persisted between sessions.',
-      fix: 'Persist slider values in local storage or CMS fields, then hydrate the converter on load.'
+      fix: 'Save slider values per project and reapply the same values for each delivery pass.'
     }
   ]
 
@@ -129,7 +129,7 @@ export default function HowToUsePage() {
             How to Use Our Black And White Converter
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Master the art of black and white photography with our comprehensive guide.
+            A practical guide for getting consistent black and white results.
           </p>
         </div>
 
@@ -252,7 +252,7 @@ export default function HowToUsePage() {
 
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Ready to Create Amazing Black And White Images?
+            Ready to Start?
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/">

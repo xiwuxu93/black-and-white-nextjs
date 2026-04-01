@@ -82,20 +82,18 @@ export const breadcrumbPaths = {
   '/batch-black-and-white-converter': [
     { name: 'Batch Converter' }
   ],
+  '/logo-to-black-and-white': [
+    { name: 'Logo Converter' }
+  ],
+  '/invert-image-colors': [
+    { name: 'Invert Colors' }
+  ],
   '/examples': [
     { name: 'Examples' }
   ],
-  '/newborn-black-and-white-images': [
+  '/newborn-photography-guide': [
     { name: 'Photography', url: '/examples' },
-    { name: 'Newborn Black and White Images' }
-  ],
-  '/black-and-white-newborn-images': [
-    { name: 'Photography', url: '/examples' },
-    { name: 'Black and White Newborn Images' }
-  ],
-  '/image-black-and-white-converter': [
-    { name: 'How to Use', url: '/how-to-use' },
-    { name: 'Integration Guide' }
+    { name: 'Newborn Photography Guide' }
   ],
   '/how-to-use': [
     { name: 'How to Use' }
@@ -104,11 +102,14 @@ export const breadcrumbPaths = {
     { name: 'Blog' }
   ],
   '/faq': [
-    { name: 'Support', url: '/about' },
+    { name: 'Support', url: '/contact' },
     { name: 'FAQ' }
   ],
   '/about': [
-    { name: 'About Us' }
+    { name: 'About' }
+  ],
+  '/contact': [
+    { name: 'Contact' }
   ],
   '/privacy': [
     { name: 'Legal' },

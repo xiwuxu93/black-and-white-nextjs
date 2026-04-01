@@ -39,13 +39,48 @@ const nextConfig = {
         permanent: true
       },
       {
-        source: '/black-and-white-newborn-images',
+        source: '/black-and-white-newborn-images/',
         destination: '/newborn-photography-guide/',
         permanent: true
       },
       {
-        source: '/newborn-black-and-white-images',
+        source: '/newborn-black-and-white-images/',
         destination: '/newborn-photography-guide/',
+        permanent: true
+      },
+      {
+        source: '/jpg-to-black-and-white/',
+        destination: '/',
+        permanent: true
+      },
+      {
+        source: '/png-to-black-and-white/',
+        destination: '/',
+        permanent: true
+      },
+      {
+        source: '/image-black-and-white-converter/',
+        destination: '/',
+        permanent: true
+      },
+      {
+        source: '/black-and-white-photo-converter/',
+        destination: '/',
+        permanent: true
+      },
+      {
+        source: '/black-and-white-photo-generator/',
+        destination: '/',
+        permanent: true
+      },
+      {
+        source: '/tools/',
+        destination: '/',
+        permanent: true
+      },
+      {
+        source: '/changelog/',
+        destination: '/',
         permanent: true
       },
       {

@@ -34,7 +34,7 @@ const EXAMPLES: Example[] = [
   {
     id: '1',
     title: 'Professional Portrait',
-    description: 'A stunning professional headshot transformed into elegant black and white, emphasizing facial features and expression',
+    description: 'Headshot conversion focused on facial contrast, skin texture, and clean background separation.',
     category: 'Portrait Photography',
     style: 'Classic',
     tags: ['portrait', 'professional', 'headshot', 'business'],
@@ -42,15 +42,15 @@ const EXAMPLES: Example[] = [
     beforeImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
     afterImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&sat=-100',
     tips: [
-      'Perfect for LinkedIn profiles and professional portfolios',
-      'Classic style enhances facial features naturally',
-      'Ideal for business cards and corporate materials'
+      'Use Classic preset as a neutral baseline for portraits',
+      'Lower highlights if forehead reflections clip',
+      'Keep micro-contrast moderate for natural skin rendering'
     ]
   },
   {
     id: '2',
     title: 'Newborn Baby Photo',
-    description: 'Precious newborn moment converted to timeless black and white, capturing pure innocence and beauty',
+    description: 'Soft conversion for newborn skin tones with low contrast and smooth tonal transitions.',
     category: 'Newborn Photography',
     style: 'Soft',
     tags: ['newborn', 'baby', 'family', 'memories'],
@@ -58,15 +58,15 @@ const EXAMPLES: Example[] = [
     beforeImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80',
     afterImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80&sat=-100',
     tips: [
-      'Soft style perfect for delicate newborn skin',
-      'Creates timeless family keepsakes',
-      'Removes color distractions to focus on emotions'
+      'Start with Soft preset and reduce contrast slightly',
+      'Protect highlight detail in blankets and wraps',
+      'Avoid heavy sharpening on skin areas'
     ]
   },
   {
     id: '3',
     title: 'Urban Street Scene',
-    description: 'Dynamic city street converted to dramatic black and white, showcasing architectural details and urban life',
+    description: 'High-contrast street conversion emphasizing geometry, shadows, and structural lines.',
     category: 'Street Photography',
     style: 'High Contrast',
     tags: ['street', 'urban', 'architecture', 'city'],
@@ -74,15 +74,15 @@ const EXAMPLES: Example[] = [
     beforeImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80',
     afterImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80&sat=-100',
     tips: [
-      'High contrast brings out architectural details',
-      'Perfect for modern art prints',
-      'Emphasizes patterns and textures in urban environments'
+      'Increase blue-channel influence to darken skies',
+      'Use stronger blacks for concrete and metal textures',
+      'Check shadow clipping in deep alley areas'
     ]
   },
   {
     id: '4',
     title: 'Wedding Moment',
-    description: 'Romantic wedding photo transformed into elegant monochrome, highlighting emotion and intimacy',
+    description: 'Classic monochrome treatment for ceremony moments with balanced skin and dress detail.',
     category: 'Wedding Photography',
     style: 'Classic',
     tags: ['wedding', 'romance', 'couple', 'love'],
@@ -90,15 +90,15 @@ const EXAMPLES: Example[] = [
     beforeImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
     afterImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80&sat=-100',
     tips: [
-      'Classic style perfect for wedding albums',
-      'Timeless look that never goes out of style',
-      'Focuses attention on emotions and expressions'
+      'Protect white dress highlights before adding contrast',
+      'Keep grain subtle for album-ready exports',
+      'Use local adjustments for faces if needed'
     ]
   },
   {
     id: '5',
     title: 'Nature Landscape',
-    description: 'Breathtaking landscape photo converted to artistic black and white, emphasizing natural textures and forms',
+    description: 'Landscape conversion built around cloud texture, terrain depth, and tonal layering.',
     category: 'Landscape Photography',
     style: 'Dramatic',
     tags: ['landscape', 'nature', 'mountains', 'scenic'],
@@ -106,15 +106,15 @@ const EXAMPLES: Example[] = [
     beforeImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
     afterImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&sat=-100',
     tips: [
-      'Dramatic style enhances natural contrast',
-      'Perfect for fine art photography prints',
-      'Brings out textures in clouds and terrain'
+      'Dramatic preset works well for cloud-heavy skies',
+      'Lift shadows slightly to keep terrain detail',
+      'Check horizon contrast at final export size'
     ]
   },
   {
     id: '6',
     title: 'Fashion Portrait',
-    description: 'High-fashion portrait converted to vintage black and white, creating a classic editorial look',
+    description: 'Vintage-style portrait with restrained contrast and controlled grain for editorial mood.',
     category: 'Fashion Photography',
     style: 'Vintage',
     tags: ['fashion', 'model', 'vintage', 'editorial'],
@@ -122,9 +122,9 @@ const EXAMPLES: Example[] = [
     beforeImage: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80',
     afterImage: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80&sat=-100',
     tips: [
-      'Vintage style adds film-like character',
-      'Perfect for fashion magazines and portfolios',
-      'Creates sophisticated, editorial-quality results'
+      'Add grain carefully to avoid fabric detail loss',
+      'Keep midtones open for makeup and clothing texture',
+      'Use slight warm tone only if the brief allows'
     ]
   }
 ]

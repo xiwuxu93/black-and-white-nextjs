@@ -4,7 +4,7 @@ import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Batch Black and White Converter - Convert Multiple Images Online',
-  description: 'Convert multiple images to black and white in one click. Free batch converter for photos, pictures, and graphics. Process 100+ files instantly.',
+  description: 'Convert multiple images to black and white in one workflow. Free batch converter for photos, graphics, and client galleries.',
   keywords: [
     'batch black and white converter',
     'convert multiple images to black and white',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Batch Black and White Converter - Convert Multiple Images Online',
-    description: 'Convert multiple images to black and white in one click. Free batch converter for photos, pictures, and graphics. Process 100+ files instantly.',
+    description: 'Convert multiple images to black and white in one workflow. Free batch converter for photos, graphics, and client galleries.',
     url: canonicalUrl('/batch-black-and-white-converter')
   }
 }

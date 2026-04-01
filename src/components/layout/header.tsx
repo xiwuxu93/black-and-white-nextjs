@@ -19,7 +19,6 @@ import {
   Mail,
   Image as ImageIcon,
   Layers,
-  Sparkles,
   Camera
 } from "lucide-react"
 
@@ -42,13 +41,12 @@ export function Header() {
       name: "More",
       href: "#",
       children: [
-        { name: "JPG to Black and White", href: "/jpg-to-black-and-white", icon: ImageIcon, description: "Convert JPG photos to black and white" },
-        { name: "PNG to Black and White", href: "/png-to-black-and-white", icon: Layers, description: "Convert PNG logos and icons" },
-        { name: "Photo Converter", href: "/black-and-white-photo-converter", icon: Camera, description: "Make any photo black and white" },
-        { name: "Photo Generator", href: "/black-and-white-photo-generator", icon: Sparkles, description: "Experiment with black and white styles" },
+        { name: "Logo Converter", href: "/logo-to-black-and-white", icon: Layers, description: "Convert PNG and SVG logos" },
+        { name: "Invert Colors", href: "/invert-image-colors", icon: ImageIcon, description: "Flip color values for design and negatives" },
+        { name: "Newborn Guide", href: "/newborn-photography-guide", icon: Camera, description: "Lighting and editing workflow notes" },
         { name: "FAQ", href: "/faq", icon: HelpCircle, description: "Common questions answered" },
         { name: "Contact", href: "/contact", icon: Mail, description: "Email our support team" },
-        { name: "About Us", href: "/about", icon: Info, description: "Our story and mission" },
+        { name: "About", href: "/about", icon: Info, description: "Project background and development notes" },
         { name: "Privacy Policy", href: "/privacy", icon: Shield, description: "How we protect your data" },
         { name: "Terms of Service", href: "/terms", icon: FileText, description: "Usage terms and conditions" }
       ]

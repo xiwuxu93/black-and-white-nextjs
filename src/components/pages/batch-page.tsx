@@ -18,7 +18,11 @@ import {
   RefreshCw,
   CheckCircle,
   Clock,
-  AlertCircle
+  AlertCircle,
+  Zap,
+  ShieldCheck,
+  Cpu,
+  Workflow
 } from 'lucide-react'
 import { 
   ProcessedImage, 
@@ -272,37 +276,36 @@ export default function BatchPage() {
   }, [])
 
   const completedCount = processedImages.filter(img => img.processingStatus === 'completed').length
-  const errorCount = processedImages.filter(img => img.processingStatus === 'error').length
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4">
       <div className="container mx-auto max-w-6xl">
-        {/* Header */}
-        <div className="text-center mb-12">
+        {/* Header Section */}
+        <div className="text-center mb-16">
           <Badge className="mb-4" variant="secondary">
-            ⚡ Batch Black and White Converter
+            <Zap className="w-4 h-4 mr-2 text-yellow-500" />
+            High-Volume Production Tool
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Batch Convert Multiple Images to Black and White Online
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+            Batch Black and White Converter
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-4">
-            Drop in dozens or even hundreds of files and convert multiple images to black and white with one automated workflow. The batch engine processes everything in your browser, so sensitive projects remain private while you deliver monochrome assets in minutes instead of hours.
-          </p>
-          <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Whether you need to convert photos to black and white for ecommerce catalogs, editorial layouts, or social media takeovers, this tool keeps your queue organized, exports full-resolution files, and makes pictures black and white with consistent tone across every format.
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            I built this for one practical task: <strong>processing large folders without uploads</strong>.
+            It works well for wedding galleries, ecommerce catalogs, and social media sets where you need
+            consistent black and white output across many files.
           </p>
         </div>
-        
-        <div className="space-y-8">
+
+        <div className="space-y-12 mb-24">
             {/* Upload Area */}
             {selectedFiles.length === 0 && (
               <Card
-                className="border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500 transition-colors cursor-pointer"
+                className="border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary-400 dark:hover:border-primary-500 transition-all duration-300 cursor-pointer bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm"
                 onDrop={handleDrop}
                 onDragOver={(e) => e.preventDefault()}
                 onClick={() => fileInputRef.current?.click()}
               >
-                <div className="p-12 text-center">
+                <div className="p-16 text-center">
                   <input
                     ref={fileInputRef}
                     type="file"
@@ -312,58 +315,63 @@ export default function BatchPage() {
                     className="hidden"
                   />
                   
-                  <Upload className="w-12 h-12 text-primary-600 dark:text-primary-400 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    Upload Multiple Images
+                  <div className="w-20 h-20 bg-primary-50 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Upload className="w-10 h-10 text-primary-600 dark:text-primary-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                    Drop a Folder or Select Files
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6">
-                    Drag and drop your images here, or click to browse
+                  <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
+                    Add up to 100 images. Files are processed in browser workers so the page stays responsive.
                   </p>
-                  <Button size="lg">
-                    <Upload className="w-4 h-4 mr-2" />
-                    Choose Files
+                  <Button size="lg" className="rounded-full px-8 shadow-lg shadow-primary-500/20">
+                    Browse Files
                   </Button>
-                  <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">
-                    Supports: PNG, JPG, WebP • No file size limit
+                  <p className="text-sm text-gray-500 mt-6 flex items-center justify-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-green-600" />
+                    No uploads. Files stay in your current browser session.
                   </p>
                 </div>
               </Card>
             )}
 
-            {/* Simple Progress and Controls */}
+            {/* Processing Controls */}
             {selectedFiles.length > 0 && (
-              <Card className="p-4">
+              <Card className="p-6 bg-white dark:bg-gray-900 shadow-xl border-none">
                 {isProcessing ? (
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-400">
-                      <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                      Processing {completedCount} of {selectedFiles.length} images...
+                  <div className="space-y-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center text-gray-900 dark:text-white font-medium">
+                        <RefreshCw className="w-5 h-5 mr-3 animate-spin text-primary-600" />
+                        Processing Queue: {completedCount} / {selectedFiles.length}
+                      </div>
+                      <span className="text-sm font-mono text-primary-600">{Math.round(processingProgress)}%</span>
                     </div>
-                    <Progress value={processingProgress} className="w-full" />
+                    <Progress value={processingProgress} className="h-3" />
                   </div>
                 ) : (
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div className="flex flex-wrap items-center gap-4">
                       {completedCount > 0 && (
                         <>
-                          <Button onClick={downloadAll}>
+                          <Button onClick={downloadAll} className="rounded-full">
                             <Download className="w-4 h-4 mr-2" />
                             Download All ({completedCount})
                           </Button>
-                          <Button variant="outline" onClick={downloadAsZip}>
+                          <Button variant="outline" onClick={downloadAsZip} className="rounded-full border-gray-200">
                             <Archive className="w-4 h-4 mr-2" />
-                            Download ZIP
+                            Export List
                           </Button>
                         </>
                       )}
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
-                        {completedCount} of {selectedFiles.length} ready
-                      </span>
+                      <Badge variant="secondary" className="px-4 py-1">
+                        Queue ready: {selectedFiles.length} files
+                      </Badge>
                     </div>
                     
-                    <Button variant="outline" size="sm" onClick={clearAll}>
+                    <Button variant="ghost" size="sm" onClick={clearAll} className="text-gray-400 hover:text-red-500 transition-colors">
                       <Trash2 className="w-4 h-4 mr-2" />
-                      Clear
+                      Clear Workspace
                     </Button>
                   </div>
                 )}
@@ -372,63 +380,58 @@ export default function BatchPage() {
 
             {/* Image Grid */}
             {processedImages.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                 {processedImages.map((image) => (
-                  <Card key={image.id} className="p-3 relative">
+                  <Card key={image.id} className="p-2 relative group overflow-hidden border-none bg-white dark:bg-gray-900 shadow-md">
                     <div className="space-y-3">
-                      {/* Image Display */}
-                      <div className="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden relative flex items-center justify-center">
+                      <div className="aspect-[4/5] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden relative flex items-center justify-center">
                         {image.processedData ? (
                           <ProcessedPreviewCanvas data={image.processedData} />
                         ) : image.originalPreviewUrl ? (
                           <img
                             src={image.originalPreviewUrl}
-                            alt="Original color photo before batch black and white conversion"
-                            className="w-full h-full object-cover opacity-60"
+                            alt="Original preview"
+                            className="w-full h-full object-cover opacity-40 grayscale"
                           />
-                        ) : (
-                          <div className="w-full h-full flex flex-col items-center justify-center">
+                        ) : null}
+
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                           {image.processingStatus === 'completed' && (
+                            <Button size="icon" variant="secondary" className="rounded-full h-10 w-10 shadow-lg" onClick={() => downloadImageFile(image)}>
+                              <Download className="w-5 h-5" />
+                            </Button>
+                           )}
+                        </div>
+
+                        {image.processingStatus === 'processing' && (
+                          <div className="absolute inset-0 bg-white/60 dark:bg-gray-900/60 flex items-center justify-center">
                             <RefreshCw className="w-6 h-6 animate-spin text-primary-600" />
                           </div>
                         )}
-
-                        {image.processingStatus === 'processing' && (
-                          <div className="absolute inset-0 bg-black/25 flex items-center justify-center">
-                            <RefreshCw className="w-6 h-6 animate-spin text-primary-100" />
-                          </div>
-                        )}
-                        {image.processingStatus === 'pending' && (
-                          <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                            <Clock className="w-6 h-6 text-gray-200" />
-                          </div>
-                        )}
                         {image.processingStatus === 'error' && (
-                          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                            <AlertCircle className="w-6 h-6 text-red-400" />
-                          </div>
-                        )}
-
-                        {image.processingStatus === 'completed' && (
-                          <div className="absolute top-2 right-2 bg-green-500 text-white rounded-full p-1">
-                            <CheckCircle className="w-3 h-3" />
+                          <div className="absolute inset-0 bg-red-50/80 flex items-center justify-center">
+                            <AlertCircle className="w-6 h-6 text-red-500" />
                           </div>
                         )}
                       </div>
                       
-                      {/* File name */}
-                      <p className="text-xs font-medium text-gray-900 dark:text-white truncate">
-                        {image.originalFile.name}
-                      </p>
+                      <div className="px-1 flex items-center justify-between gap-2">
+                        <p className="text-[10px] font-medium text-gray-500 dark:text-gray-400 truncate max-w-[80px]">
+                          {image.originalFile.name}
+                        </p>
+                        <Badge variant="outline" className="text-[8px] h-4 py-0 px-1 font-mono uppercase">
+                          {image.originalInfo.extension}
+                        </Badge>
+                      </div>
                       
-                      {/* Format selection & Download */}
-                      {image.processingStatus === 'completed' && image.processedData && (
-                        <div className="space-y-2">
+                      {image.processingStatus === 'completed' && (
+                        <div className="px-1 pb-1">
                           <Select
                             value={image.selectedFormat.value}
                             onValueChange={(value) => handleFormatChange(image.id, value)}
                           >
-                            <SelectTrigger className="w-full text-left text-xs h-8 px-2 py-1">
-                              <span className="truncate">{image.selectedFormat.label}</span>
+                            <SelectTrigger className="w-full h-6 text-[9px] px-2 bg-gray-50 dark:bg-gray-800 border-none">
+                              <span>{image.selectedFormat.label}</span>
                             </SelectTrigger>
                             <SelectContent>
                               {DOWNLOAD_FORMATS.map(format => (
@@ -438,15 +441,6 @@ export default function BatchPage() {
                               ))}
                             </SelectContent>
                           </Select>
-
-                          <Button
-                            size="sm"
-                            className="w-full text-xs h-7"
-                            onClick={() => downloadImageFile(image)}
-                          >
-                            <Download className="w-3 h-3 mr-1" />
-                            Download
-                          </Button>
                         </div>
                       )}
                     </div>
@@ -454,104 +448,82 @@ export default function BatchPage() {
                 ))}
               </div>
             )}
-            <section className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-                How to Convert Multiple Images to Black and White in One Session
-              </h2>
-              <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 text-center">
-                Follow these steps to keep every file organized as you convert multiple images to black and white. The workflow is designed for speed, whether you are preparing a wedding gallery, managing an ecommerce drop, or building a social media campaign.
-              </p>
-              <ol className="space-y-6 text-left">
-                <li>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Gather and label your source files</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Create a folder for the project and sort assets by scene or product before you load them. Good naming conventions keep the batch black and white converter interface tidy and make it easier to hand off files to teammates after processing.</p>
-                </li>
-                <li>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Upload everything into the converter</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Drag a full stack of images into the dropzone. The tool instantly queues each file and begins to convert photos to black and white using your selected preset so you do not waste a second on manual clicks.</p>
-                </li>
-                <li>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Monitor progress while you multitask</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Watch the progress bar and status labels to see how many black and white photos are complete. You can meanwhile update spreadsheets, write captions, or prep exports without pausing the conversion queue.</p>
-                </li>
-                <li>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Download with consistent naming</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Once processing hits 100 percent, download individual files or grab the entire set. The converter appends a helpful "-bw" suffix so you know which versions are the black and white pictures ready for delivery.</p>
-                </li>
-              </ol>
-            </section>
+        </div>
 
-            <section className="bg-gray-50 dark:bg-gray-900/60 rounded-3xl p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-                Why Teams Choose This Batch Black and White Converter
-              </h2>
-              <div className="grid md:grid-cols-2 gap-8 text-left text-gray-600 dark:text-gray-400">
-                <div className="space-y-4">
-                  <p>Agencies need fast turnarounds with zero privacy concerns. Because the batch processor keeps every pixel on your device, creative directors can make pictures black and white for confidential pitches without touching cloud storage or external plugins.</p>
-                  <p>Marketing managers love the repeatable presets. Once you dial in a look that fits your brand, you can convert multiple images to black and white every week and maintain a consistent tone across product launches, billboards, email banners, and paid ads.</p>
-                </div>
-                <div className="space-y-4">
-                  <p>Event photographers often deliver thousands of files. Automating the first pass with this batch black and white converter gives you a polished baseline, so you can spend editing time on retouching hero shots instead of repetitive conversions.</p>
-                  <p>Educators and non-profits rely on the workflow for newsletters and course materials. Dragging an entire lecture folder into the converter produces accessible black and white images that print cleanly and look professional on every device.</p>
-                </div>
+        {/* Technical & Workflow Section */}
+        <div className="grid md:grid-cols-3 gap-12 mb-24">
+          <div className="space-y-4">
+            <div className="p-3 bg-white dark:bg-gray-900 rounded-2xl w-fit shadow-sm border border-gray-100 dark:border-gray-800">
+              <Cpu className="w-6 h-6 text-primary-600" />
+            </div>
+            <h3 className="text-xl font-bold">Local Computing Power</h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              BWConverter uses <strong>Web Workers</strong> to process image data in background threads.
+              You avoid long uploads, and your original files never leave the device.
+            </p>
+          </div>
+          <div className="space-y-4">
+            <div className="p-3 bg-white dark:bg-gray-900 rounded-2xl w-fit shadow-sm border border-gray-100 dark:border-gray-800">
+              <Workflow className="w-6 h-6 text-purple-600" />
+            </div>
+            <h3 className="text-xl font-bold">Studio Workflow Integration</h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              A practical flow is to use batch mode as the first monochrome pass after culling.
+              Apply one baseline preset to the whole set, then fine-tune only the keepers.
+            </p>
+          </div>
+          <div className="space-y-4">
+            <div className="p-3 bg-white dark:bg-gray-900 rounded-2xl w-fit shadow-sm border border-gray-100 dark:border-gray-800">
+              <ShieldCheck className="w-6 h-6 text-green-600" />
+            </div>
+            <h3 className="text-xl font-bold">Zero-Storage Commitment</h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              This tool does not store your photos on my server.
+              Images only exist in browser memory while the tab is open.
+            </p>
+          </div>
+        </div>
+
+        {/* FAQ & Tips */}
+        <div className="grid md:grid-cols-2 gap-16 mb-16">
+          <div className="space-y-8">
+            <h4 className="text-2xl font-bold">Production FAQ</h4>
+            <div className="space-y-6">
+              <details className="group border-b border-gray-100 dark:border-gray-800 pb-4">
+                <summary className="list-none cursor-pointer font-semibold group-open:text-primary-600 transition-colors">
+                  How many files can I process at once?
+                </summary>
+                <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                  In testing, 100 to 150 images at 24MP works on recent laptops.
+                  Actual limits depend on available RAM, so split into smaller runs if previews slow down.
+                </p>
+              </details>
+              <details className="group border-b border-gray-100 dark:border-gray-800 pb-4">
+                <summary className="list-none cursor-pointer font-semibold group-open:text-primary-600 transition-colors">
+                  Does this tool resize my photos?
+                </summary>
+                <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                  No. Output keeps the original width and height.
+                  A 6000x4000 input exports at 6000x4000 unless you choose a different format/compression profile.
+                </p>
+              </details>
+            </div>
+          </div>
+          <div className="bg-gray-900 rounded-3xl p-8 text-white">
+            <h4 className="text-2xl font-bold mb-6">Solo Dev Tip</h4>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              &quot;When I process a large gallery, I batch by lighting setup first.
+              Window-light photos and flash photos need different contrast baselines,
+              and this split cuts rework later in delivery.&quot;
+            </p>
+            <div className="flex items-center gap-3">
+              <img src="/authors/sivan-lee.jpg" alt="Sivan" className="w-10 h-10 rounded-full grayscale border border-gray-700" />
+              <div>
+                <p className="text-xs font-bold">Sivan Xu</p>
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest">Independent Developer</p>
               </div>
-            </section>
-
-            <section className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-                Batch Workflow Tips for Consistent Black and White Photos
-              </h2>
-              <ul className="list-disc pl-6 space-y-4 text-gray-600 dark:text-gray-400">
-                <li>Group similar lighting conditions so the converter can apply the same preset and keep contrast levels consistent across every set of black and white photos.</li>
-                <li>Run a short test batch to confirm grain and contrast settings before you process the full queue. This protects your time and keeps make pictures black and white projects on schedule.</li>
-                <li>Leverage the built-in format picker to export PNG, JPG, or WebP variations for different platforms without reprocessing the originals.</li>
-                <li>Keep an eye on the status panel. If any image has an error state, you can requeue it instantly instead of digging through folders later.</li>
-                <li>Archive the processed set with a project code so you can repurpose the same files the next time you convert photos to black and white for a related campaign.</li>
-              </ul>
-            </section>
-
-            <section className="bg-gray-50 dark:bg-gray-900/60 rounded-3xl p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-                Batch Converter FAQ
-              </h2>
-              <div className="space-y-6 text-left text-gray-600 dark:text-gray-400">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How many files can I process at once?</h3>
-                  <p>The batch black and white converter comfortably handles more than 100 images in modern browsers. Queue them all, let the worker finish, and download when every status badge turns green.</p>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Will my originals stay untouched?</h3>
-                  <p>Absolutely. The tool creates processed copies and keeps your source files intact. You can revisit the same folder to make picture adjustments or run a different preset later.</p>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Can I switch presets mid-batch?</h3>
-                  <p>You can cancel and restart with a new preset at any time. Adjust the sliders, requeue the files, and the converter will apply your updated look to every photo to black and white export.</p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mt-16 text-center">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Other Specialized Tools
-              </h2>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/logo-to-black-and-white">
-                  <Button variant="outline">
-                    Convert Logos & Icons
-                  </Button>
-                </Link>
-                <Link href="/jpg-to-black-and-white">
-                  <Button variant="outline">
-                    JPG Optimizer
-                  </Button>
-                </Link>
-                <Link href="/invert-image-colors">
-                  <Button variant="outline">
-                    Invert Colors
-                  </Button>
-                </Link>
-              </div>
-            </section>
+            </div>
+          </div>
         </div>
       </div>
     </div>

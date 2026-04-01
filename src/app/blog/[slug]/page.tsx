@@ -261,14 +261,14 @@ export default function BlogPostPage({ params }: Props) {
   const authorProfile = authorProfiles[post.author]
   const suggestedReadings = [
     {
-      title: 'Integration Playbook',
-      description: 'Understand how workers, presets, and QA logs align for production builds.',
-      href: '/image-black-and-white-converter'
+      title: 'Logo Conversion Guide',
+      description: 'Learn how alpha handling and SVG rendering affect monochrome logo exports.',
+      href: '/logo-to-black-and-white'
     },
     {
       title: 'Newborn Studio Case Study',
-      description: 'Benchmark lighting setups and revenue impact from monochrome deliverables.',
-      href: '/black-and-white-newborn-images'
+      description: 'Compare lighting setups and editing timelines for newborn sessions.',
+      href: '/newborn-photography-guide'
     },
     {
       title: 'Advanced Workflow Checklist',

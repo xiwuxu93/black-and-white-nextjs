@@ -8,7 +8,7 @@ import { ConverterExperience } from '@/components/home/converter-experience'
 const HOWTO_SCHEMA = {
   name: 'Convert image to black and white online',
   description:
-    'Turn any color photo into a black and white image in your browser. No upload, instant preview, and professional presets.',
+    'Convert photos, logos, and graphics to black and white in your browser. No upload required.',
   image: '/black-and-white-image.png',
   totalTime: 'PT1M',
   tool: ['BWConverter web app'],
@@ -36,7 +36,7 @@ const HOME_FAQ_SCHEMA = {
     {
       question: 'How do I convert an image to black and white?',
       answer:
-        'Upload your file, choose a preset, and click download. The converter analyzes color data and applies channel mixing, letting you convert image to black and white with depth, contrast, and film-style grain in under a minute.'
+        'Upload your file, choose a preset, and click download. The converter applies channel mixing so you can convert image to black and white with controlled contrast and tonal separation.'
     },
     {
       question: 'Can I convert logos with transparent backgrounds?',
@@ -56,12 +56,12 @@ const HOME_FAQ_SCHEMA = {
     {
       question: "What's the best black and white converter?",
       answer:
-        'The best converter gives you custom tonal control, fast previews, and private processing. BWConverter includes all of that plus presets inspired by darkroom workflows so you get professional black and white photos every time.'
+        'A solid converter should give you tonal controls, fast preview updates, and private local processing. BWConverter focuses on those three basics.'
     },
     {
       question: 'Is this black and white photo editor free?',
       answer:
-        'Absolutely. BWConverter is a free black and white photo editor with no hidden paywalls, watermarks, or file limits. Every feature works without creating an account.'
+        'Yes. The converter is free to use, with no watermark and no account required for standard use.'
     }
   ]
 } as const
@@ -74,7 +74,7 @@ function MarketingSections() {
         {/* Specialized Tools Hub - New Addition for SEO Weight Distribution */}
         <div className="mb-20">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
-            Choose the Right Tool for Your Workflow
+            Choose the Right Tool for the Job
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             <Link href="/logo-to-black-and-white" className="group">
@@ -111,19 +111,19 @@ function MarketingSections() {
               </Card>
             </Link>
 
-            <Link href="/jpg-to-black-and-white" className="group">
+            <Link href="/how-to-use" className="group">
               <Card className="p-6 h-full transition-shadow hover:shadow-md border-primary-100 dark:border-primary-900/50">
                  <div className="mb-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-full w-fit text-green-600 dark:text-green-400">
                   <ImageIcon className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-600 transition-colors">
-                  JPG Photo Converter
+                  JPG Workflow Guide
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Optimized for photography. Smart artifact smoothing for compressed JPGs.
+                  Converting JPG to black and white? This guide covers artifact handling, presets, and export settings.
                 </p>
                 <div className="mt-4 flex items-center text-sm font-medium text-primary-600">
-                  Convert JPG <ChevronRight className="w-4 h-4 ml-1" />
+                  Read JPG Tips <ChevronRight className="w-4 h-4 ml-1" />
                 </div>
               </Card>
             </Link>
@@ -132,12 +132,11 @@ function MarketingSections() {
 
         <div className="text-gray-600 dark:text-gray-400 text-center max-w-3xl mx-auto mb-16">
           <p className="text-xl mb-4 text-gray-800 dark:text-gray-200 font-medium">
-            Professional Grade Monochrome Conversion in Your Browser
+            Black and White Conversion That Stays Predictable
           </p>
           <p className="text-base md:text-lg">
-            Whether you are a photographer creating dramatic portraits or a designer preparing assets for print, 
-            BWConverter gives you the control of a desktop editor with the speed of a web tool.
-            Privacy-first, free, and no watermark.
+            Built for photographers and designers who need repeatable tone control without sending files to a server.
+            Upload, adjust, and export from the browser with no watermark.
           </p>
         </div>
 
@@ -172,7 +171,7 @@ function MarketingSections() {
                   Adjust tone and contrast
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Don't settle for a flat grey image. Use the Channel Mixer to darken skies (Blue channel) or brighten skin tones (Red channel).
+                  Use Channel Mixer controls to push skies darker (Blue channel) or keep skin tones brighter (Red channel).
                 </p>
               </div>
             </li>
@@ -187,7 +186,7 @@ function MarketingSections() {
                   Download instantly
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Export as JPG, PNG, or WebP. Your file is processed locally, meaning 0 wait time for uploads or downloads.
+                  Export as JPG, PNG, or WebP. Processing stays local, so you do not wait on server upload queues.
                 </p>
               </div>
             </li>
@@ -205,7 +204,7 @@ function MarketingSections() {
                 Channel Mixing
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                True black and white photography isn't just desaturation. Control how Red, Green, and Blue colors translate to greyscale values.
+                Black and white conversion is more than desaturation. Control how red, green, and blue map to gray values.
               </p>
             </Card>
             <Card className="p-6 h-full">
@@ -214,7 +213,7 @@ function MarketingSections() {
                 100% Client-Side
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                We use WebAssembly technology. Your photos are processed by your own device's CPU/GPU, ensuring maximum speed and privacy.
+                Your images are processed on your device using browser compute, which keeps files private and responsive.
               </p>
             </Card>
             <Card className="p-6 h-full">
@@ -223,7 +222,7 @@ function MarketingSections() {
                 Smart Presets
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                One-click looks including "High Contrast", "Matte", and "Classic Film" to jumpstart your editing.
+                Start with presets like High Contrast or Classic Film, then fine-tune sliders for your scene.
               </p>
             </Card>
           </div>
@@ -248,10 +247,10 @@ function MarketingSections() {
         <section className="bg-gray-50 dark:bg-gray-900/60 rounded-3xl p-8 md:p-12">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Master Monochrome Photography
+              Learn Monochrome Editing
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              Check out our guides on composition, lighting, and editing techniques.
+              Explore practical guides on composition, lighting, and black and white editing choices.
             </p>
             <div className="mt-6">
               <Link href="/blog">
@@ -276,7 +275,7 @@ export default function HomePage() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
         <ConverterExperience 
           heroTitle="Black and White Image Converter"
-          heroSubtitle="Free online tool to turn photos, logos, and images into black and white. Professional features, 100% private."
+          heroSubtitle="I built this private tool to get professional monochrome tones without the complexity of desktop editors. No uploads, no grain loss, and 100% browser-resident processing."
         />
         <MarketingSections />
       </div>

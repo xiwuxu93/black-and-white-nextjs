@@ -28,15 +28,15 @@ export default function FAQPage() {
       questions: [
         {
           question: "How do I keep preset looks consistent across projects?",
-          answer: "Store the numeric slider values (contrast, brightness, shadows, highlights, grain) returned by BWConverter in your DAM or CMS. When you reopen the converter, hydrate those values before triggering the worker message—our WebAssembly pipeline is deterministic, so identical inputs produce identical results."
+          answer: "Save your slider values (contrast, brightness, highlights, shadows, grain) with the project. Reusing the same values on similar lighting gives consistent black and white output."
         },
         {
-          question: "Can I automate publishing before/after sliders?",
-          answer: "Yes. Bundle `/worker.js` with your front-end build, capture both the colour original and BWConverter output via `downloadCanvasImage`, and save the preset metadata alongside the assets. The integration checklist at `/image-black-and-white-converter` shows the exact pattern."
+          question: "When should I use the batch black and white converter?",
+          answer: "Use `/batch-black-and-white-converter` when you need one baseline look across many photos. It is useful for galleries, catalog images, and first-pass client previews."
         },
         {
           question: "What is the recommended RAW → delivery workflow?",
-          answer: "Cull and colour-correct in Lightroom or Capture One, export 16-bit TIFF or high-quality JPEG files, and then run them through BWConverter for monochrome mastering. Use the QA checklist on `/how-to-use` together with the newborn case study timeline to validate tone curves before delivering galleries."
+          answer: "Cull and color-correct in Lightroom or Capture One first, then export high-quality JPEG/TIFF files and convert in BWConverter. Do final spot adjustments only on selected keepers."
         }
       ]
     },
@@ -45,15 +45,15 @@ export default function FAQPage() {
       questions: [
         {
           question: "How large can my files be?",
-          answer: "The hosted UI caps uploads at 10 MB for performance, but the engine itself handles substantially larger files when self-hosted. For 40+ MP frames, convert to a 16-bit TIFF or JPEG before upload, or embed the worker locally without the UI limit."
+          answer: "The hosted interface is tuned for files up to 10 MB for smoother browser performance. Very large frames may still work, but available RAM becomes the practical limit."
         },
         {
           question: "Does the converter change image dimensions?",
-          answer: "No. We render to a canvas that matches the original width and height. If you need to constrain file size, pass a `maxBytes` value to `downloadCanvasImage`—this preserves resolution while adjusting compression."
+          answer: "No. Output keeps the original width and height. If you need smaller files, lower quality/compression at export."
         },
         {
-          question: "Can I create custom presets?",
-          answer: "Absolutely. Duplicate any object in `DEFAULT_PRESETS`, tweak the numbers, and persist it via local storage or your CMS schema. The converter automatically recognises presets that follow the same shape."
+          question: "Which formats are supported?",
+          answer: "For standard conversion, BWConverter supports common image formats such as JPG, PNG, and WebP. The logo converter also supports SVG input and preserves transparency."
         }
       ]
     },
@@ -62,15 +62,15 @@ export default function FAQPage() {
       questions: [
         {
           question: "Are images or analytics sent to your servers?",
-          answer: "No image pixels ever leave your browser. Optional Google Analytics collects anonymous usage data (page views, load times) only—review `/privacy` for the full statement."
+          answer: "Image pixels are processed locally in your browser. Optional analytics can collect anonymous usage events like page views; details are listed on `/privacy`."
         },
         {
           question: "How do I document privacy for client audits?",
-          answer: "Share the signed Statement of Intent on `/about`, capture a network log that shows zero upload requests during conversion, and attach the QA checklist from `/how-to-use` to demonstrate your process."
+          answer: "Use `/privacy` and `/about` as policy references, then capture a browser network log during conversion to show there are no image upload requests."
         },
         {
           question: "Can I run BWConverter offline?",
-          answer: "Yes. Serve the app from a local server or bundle it with a Chromium kiosk/Electron shell. Workers and the WebAssembly engine have no external API dependencies."
+          answer: "Yes. Once assets are available locally, conversion can run without sending files to external APIs."
         }
       ]
     },
@@ -79,15 +79,15 @@ export default function FAQPage() {
       questions: [
         {
           question: "Preview rendering pauses on very large files. Why?",
-          answer: "High-resolution frames can exhaust browser memory. Downsize the file before previewing or move final exports to the `/batch-black-and-white-converter` worker, which processes one frame at a time."
+          answer: "High-resolution images can exhaust browser memory. Try smaller batches, close extra tabs, or export a lighter intermediate file before conversion."
         },
         {
           question: "Downloads are larger than my client’s limit. What should I check?",
-          answer: "Ensure every download call includes the `maxBytes` parameter and confirm the output size in your QA log. This keeps exports within print or CMS restrictions."
+          answer: "Use JPG/WebP with lower quality settings and verify output size before delivery. PNG exports are usually larger for photo content."
         },
         {
           question: "Where can I find sample outputs for comparison?",
-          answer: "Download verified before/after frames from `/samples/` or inside the newborn guide. Each sample notes the preset and settings used so you can reproduce the look."
+          answer: "Visit `/examples` to compare before/after results and inspect style choices for portraits, newborn sessions, and street scenes."
         }
       ]
     },
@@ -95,16 +95,16 @@ export default function FAQPage() {
       category: "Advanced Features",
       questions: [
         {
-          question: "How do I capture slider metadata for analytics?",
-          answer: "Listen to slider change events, store the values in your analytics platform, and associate them with session IDs. This helps you learn which looks your team prefers and whether additional presets are needed."
+          question: "Can I integrate the conversion worker in my own app?",
+          answer: "Yes. You can reuse worker-based processing in a custom frontend setup. This is useful if you need black and white conversion inside an internal CMS."
         },
         {
-          question: "Can I hook BWConverter into a CI/CD pipeline?",
-          answer: "Yes. Use Node + Puppeteer to run the converter headlessly, process reference images, and compare histograms against the `/samples/` outputs during automated tests."
+          question: "Can I define my own presets?",
+          answer: "Yes. Create a preset object with your preferred slider values and store it in local storage or your own settings layer."
         },
         {
           question: "Is batch processing available via API?",
-          answer: "The `/batch-black-and-white-converter` route exposes the same worker used in the UI. You can instantiate it inside your own app, feed it a file list, and retrieve processed ImageData objects for downstream automation."
+          answer: "There is no public hosted API endpoint. Batch processing is currently delivered through the web UI and browser worker architecture."
         }
       ]
     }
@@ -134,8 +134,7 @@ export default function FAQPage() {
             Frequently Asked Questions
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Get instant answers to common questions about our black and white image converter. 
-            Can't find what you're looking for? Feel free to reach out!
+            Practical answers about workflow, file handling, privacy, and troubleshooting.
           </p>
         </div>
 
@@ -177,8 +176,7 @@ export default function FAQPage() {
             Still Have Questions?
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
-            If you couldn't find the answer you were looking for, don't hesitate to try our converter 
-            or explore our detailed guides.
+            If your use case is not covered here, start with the guide or contact support.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/">
@@ -202,11 +200,11 @@ export default function FAQPage() {
             Quick Tips for Best Results
           </h3>
           <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-            <li>• Use high-resolution images for the best quality conversion</li>
-            <li>• Photos with good contrast and lighting convert better</li>
-            <li>• Try different presets to find the perfect style for your image</li>
-            <li>• Use batch processing for multiple images with consistent settings</li>
-            <li>• Your images are processed locally - no privacy concerns</li>
+            <li>• Start from a well-exposed image with clear subject separation</li>
+            <li>• Apply one preset first, then tune highlights and shadows</li>
+            <li>• Use batch mode for consistency, then refine select images individually</li>
+            <li>• Prefer JPG/WebP for smaller delivery files; PNG for transparency</li>
+            <li>• Conversion runs locally, so originals stay on your device</li>
           </ul>
         </Card>
       </div>

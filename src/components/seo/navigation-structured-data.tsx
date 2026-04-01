@@ -11,15 +11,15 @@ export function NavigationStructuredData() {
     name: 'BWConverter - Free Black and White Image Converter',
     alternateName: 'Black and White Image Converter Online',
     url: homeUrl,
-    description: 'Convert images to black and white online for free. Professional quality black and white photo converter with multiple artistic styles.',
+    description: 'Convert images to black and white online with local processing and practical tonal controls.',
     // Main site navigation structure
     hasPart: [
       {
         '@type': 'WebPage',
         '@id': homeUrl,
         url: homeUrl,
-        name: 'Free Black and White Image Converter',
-        description: 'Convert any image to black and white instantly with professional quality results',
+        name: 'Black and White Image Converter',
+        description: 'Convert image files to black and white in your browser.',
         isPartOf: {
           '@type': 'WebSite',
           '@id': homeUrl
@@ -29,8 +29,19 @@ export function NavigationStructuredData() {
         '@type': 'WebPage',
         '@id': canonicalUrl('/batch-black-and-white-converter'),
         url: canonicalUrl('/batch-black-and-white-converter'),
-        name: 'Batch Black and White Image Converter',
-        description: 'Convert multiple images to black and white at once - bulk processing tool',
+        name: 'Batch Black and White Converter',
+        description: 'Convert multiple image files in one workflow.',
+        isPartOf: {
+          '@type': 'WebSite',
+          '@id': homeUrl
+        }
+      },
+      {
+        '@type': 'WebPage',
+        '@id': canonicalUrl('/logo-to-black-and-white'),
+        url: canonicalUrl('/logo-to-black-and-white'),
+        name: 'Logo to Black and White',
+        description: 'Convert PNG and SVG logo assets while preserving transparency.',
         isPartOf: {
           '@type': 'WebSite',
           '@id': homeUrl
@@ -40,8 +51,8 @@ export function NavigationStructuredData() {
         '@type': 'WebPage',
         '@id': canonicalUrl('/examples'),
         url: canonicalUrl('/examples'),
-        name: 'Black and White Image Examples',
-        description: 'See stunning before and after examples of black and white image conversions',
+        name: 'Black and White Examples',
+        description: 'Before and after conversion examples with style notes.',
         isPartOf: {
           '@type': 'WebSite',
           '@id': homeUrl
@@ -49,32 +60,10 @@ export function NavigationStructuredData() {
       },
       {
         '@type': 'WebPage',
-        '@id': canonicalUrl('/newborn-black-and-white-images'),
-        url: canonicalUrl('/newborn-black-and-white-images'),
-        name: 'Newborn Black and White Images',
-        description: 'Create beautiful black and white newborn photos with professional quality',
-        isPartOf: {
-          '@type': 'WebSite',
-          '@id': homeUrl
-        }
-      },
-      {
-        '@type': 'WebPage',
-        '@id': canonicalUrl('/black-and-white-newborn-images'),
-        url: canonicalUrl('/black-and-white-newborn-images'),
-        name: 'Black and White Newborn Images - Professional Converter',
-        description: 'Transform newborn photos into elegant black and white with specialized styles',
-        isPartOf: {
-          '@type': 'WebSite',
-          '@id': homeUrl
-        }
-      },
-      {
-        '@type': 'WebPage',
-        '@id': canonicalUrl('/image-black-and-white-converter'),
-        url: canonicalUrl('/image-black-and-white-converter'),
-        name: 'Image Black and White Converter - Best Free Tool 2025',
-        description: 'The most powerful free online image to black and white converter with professional results',
+        '@id': canonicalUrl('/newborn-photography-guide'),
+        url: canonicalUrl('/newborn-photography-guide'),
+        name: 'Newborn Photography Guide',
+        description: 'Lighting and workflow notes for newborn black and white edits.',
         isPartOf: {
           '@type': 'WebSite',
           '@id': homeUrl
@@ -84,8 +73,8 @@ export function NavigationStructuredData() {
         '@type': 'WebPage',
         '@id': canonicalUrl('/how-to-use'),
         url: canonicalUrl('/how-to-use'),
-        name: 'How to Use Black and White Image Converter',
-        description: 'Step-by-step guide on how to convert images to black and white professionally',
+        name: 'How to Use',
+        description: 'Step-by-step workflow and troubleshooting guidance.',
         isPartOf: {
           '@type': 'WebSite',
           '@id': homeUrl
@@ -95,8 +84,8 @@ export function NavigationStructuredData() {
         '@type': 'WebPage',
         '@id': canonicalUrl('/blog'),
         url: canonicalUrl('/blog'),
-        name: 'Black and White Photography Blog',
-        description: 'Tips, techniques, and inspiration for black and white photography',
+        name: 'Photography Blog',
+        description: 'Guides and practical notes for black and white editing.',
         isPartOf: {
           '@type': 'WebSite',
           '@id': homeUrl
@@ -106,8 +95,8 @@ export function NavigationStructuredData() {
         '@type': 'WebPage',
         '@id': canonicalUrl('/faq'),
         url: canonicalUrl('/faq'),
-        name: 'Frequently Asked Questions',
-        description: 'Common questions about black and white image conversion',
+        name: 'FAQ',
+        description: 'Common questions about conversion, exports, and privacy.',
         isPartOf: {
           '@type': 'WebSite',
           '@id': homeUrl
@@ -117,8 +106,8 @@ export function NavigationStructuredData() {
         '@type': 'WebPage',
         '@id': canonicalUrl('/contact'),
         url: canonicalUrl('/contact'),
-        name: 'Contact BWConverter Support',
-        description: 'Email support@bwconverter.com or find quick answers for the converter',
+        name: 'Contact',
+        description: 'Contact BWConverter support.',
         isPartOf: {
           '@type': 'WebSite',
           '@id': homeUrl
@@ -135,42 +124,37 @@ export function NavigationStructuredData() {
     hasPart: [
       {
         '@type': 'WebPage',
-        name: 'Home - Free Black and White Converter',
+        name: 'Home',
         url: homeUrl
       },
       {
-        '@type': 'WebPage', 
+        '@type': 'WebPage',
         name: 'Batch Converter',
         url: canonicalUrl('/batch-black-and-white-converter')
       },
       {
         '@type': 'WebPage',
-        name: 'Examples Gallery',
+        name: 'Logo Converter',
+        url: canonicalUrl('/logo-to-black-and-white')
+      },
+      {
+        '@type': 'WebPage',
+        name: 'Examples',
         url: canonicalUrl('/examples')
       },
       {
         '@type': 'WebPage',
-        name: 'Newborn Photography',
-        url: canonicalUrl('/newborn-black-and-white-images')
-      },
-      {
-        '@type': 'WebPage',
-        name: 'Professional Converter',
-        url: canonicalUrl('/image-black-and-white-converter')
-      },
-      {
-        '@type': 'WebPage',
-        name: 'How to Use Guide',
+        name: 'How to Use',
         url: canonicalUrl('/how-to-use')
       },
       {
         '@type': 'WebPage',
-        name: 'Blog & Tips',
+        name: 'Blog',
         url: canonicalUrl('/blog')
       },
       {
         '@type': 'WebPage',
-        name: 'FAQ & Support',
+        name: 'FAQ',
         url: canonicalUrl('/faq')
       },
       {

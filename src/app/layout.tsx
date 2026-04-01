@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: 'Black and White Image Converter | Convert Image to Black and White Online Free',
     template: '%s | BWConverter'
   },
-  description: 'Convert images to black and white with our free online tool. Make photos monochrome instantly with professional editing features. No upload, 100% private.',
+  description: 'Convert images to black and white with a free browser-based tool. Local processing, no upload required, with practical tonal controls.',
   keywords: [
     'black white image converter',
     'convert image black white', 
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: canonicalUrl('/'),
     title: 'Convert Image to Black and White - Free B&W Photo Converter',
-    description: 'Transform any color photo into stunning black and white images with our free online converter. Professional results in just a few clicks - no software needed.',
+    description: 'Convert color photos to black and white in your browser with local processing and practical tonal controls.',
     siteName: 'BWConverter - Black and White Image Converter',
     images: [
       {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Convert Image to Black and White - Free B&W Photo Converter',
-    description: 'Transform any color photo into stunning black and white images with our free online converter. Professional results in just a few clicks - no software needed.',
+    description: 'Convert color photos to black and white in your browser with local processing and practical tonal controls.',
     images: ['/black-and-white-image.png'],
     creator: '@bwconverter'
   },

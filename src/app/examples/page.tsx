@@ -7,14 +7,14 @@ import { Card } from '@/components/ui/card'
 
 export const metadata: Metadata = {
   title: 'Black and White Photo Examples - Professional Before & After Gallery',
-  description: 'Explore stunning black and white image conversions with detailed analysis and professional techniques. Learn from real examples of portrait, landscape, and artistic photography transformations.',
+  description: 'Browse black and white photo examples with before/after comparisons, style notes, and practical conversion guidance.',
   keywords: ['black and white photo examples', 'image conversion gallery', 'before after photography', 'monochrome examples', 'professional photo conversion', 'black white transformation', 'photography case studies'],
   alternates: {
     canonical: canonicalUrl('/examples')
   },
   openGraph: {
     title: 'Black and White Photo Examples - Professional Before & After Gallery',
-    description: 'Explore stunning black and white image conversions with detailed analysis and professional techniques. Learn from real examples of portrait, landscape, and artistic photography transformations.',
+    description: 'Browse black and white photo examples with before/after comparisons, style notes, and practical conversion guidance.',
     url: canonicalUrl('/examples')
   }
 }
@@ -31,9 +31,8 @@ export default function ExamplesPage() {
             Professional Black and White Photography Examples
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8">
-            Explore our comprehensive gallery of professional black and white image conversions. 
-            Each example includes detailed analysis of techniques, artistic choices, and the 
-            science behind creating compelling monochrome photography.
+            This gallery shows before/after conversions with notes on style choice,
+            contrast strategy, and subject handling.
           </p>
         </div>
 
@@ -59,10 +58,11 @@ export default function ExamplesPage() {
 
             <Card className="p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Newborn Photography: Studio & Home
+                Newborn Workflow: Studio vs Home
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-                Complete guide covering both professional studio workflows and DIY home sessions. Includes lighting diagrams, preset choices, and delivery metrics.
+                Comparison guide for studio and home sessions, including lighting setup,
+                preset baseline choices, and delivery checkpoints.
               </p>
               <Link href="/newborn-photography-guide" className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
                 Explore the guide
@@ -83,15 +83,14 @@ export default function ExamplesPage() {
                 🎨 Artistic Vision
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Black and white photography strips away color distractions, forcing viewers to focus on 
-                composition, emotion, texture, and form. This creates more powerful storytelling and 
-                timeless artistic impact.
+                Removing color shifts attention to shape, light, texture, and timing.
+                That often makes composition mistakes easier to spot and fix.
               </p>
               <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
-                <li>• Enhanced emotional connection</li>
-                <li>• Focus on composition and form</li>
-                <li>• Timeless, classic aesthetic</li>
-                <li>• Dramatic contrast opportunities</li>
+                <li>• Better focus on composition</li>
+                <li>• Clearer separation of subject and background</li>
+                <li>• Stronger emphasis on texture</li>
+                <li>• Easier contrast-led storytelling</li>
               </ul>
             </div>
 
@@ -100,15 +99,14 @@ export default function ExamplesPage() {
                 🔬 Technical Science
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Professional black and white conversion involves sophisticated algorithms that analyze 
-                luminance values, contrast ratios, and tonal relationships to preserve detail while 
-                enhancing visual impact.
+                Conversion quality depends on how color channels map to grayscale,
+                and how highlights and shadows are balanced for the target scene.
               </p>
               <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
-                <li>• Luminance mapping and analysis</li>
-                <li>• Contrast optimization algorithms</li>
-                <li>• Selective tone adjustment</li>
-                <li>• Detail preservation techniques</li>
+                <li>• Channel-to-gray mapping</li>
+                <li>• Global and local contrast control</li>
+                <li>• Highlight and shadow management</li>
+                <li>• Detail retention in textured areas</li>
               </ul>
             </div>
 
@@ -117,9 +115,8 @@ export default function ExamplesPage() {
                 📸 Professional Applications
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Professional photographers use black and white conversion for portfolios, fine art, 
-                commercial projects, and artistic expression where monochrome impact enhances the 
-                message and emotional resonance.
+                Typical use cases include portfolio work, client galleries, editorial layouts,
+                and documentary sequences where tone carries the story.
               </p>
               <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
                 <li>• Portfolio and exhibition work</li>
@@ -140,8 +137,8 @@ export default function ExamplesPage() {
             <div className="bg-gray-900 text-white rounded-xl p-6">
               <h3 className="text-xl font-semibold mb-4">🎭 Classic Style</h3>
               <p className="text-gray-300 mb-4">
-                Traditional balanced conversion that maintains natural tonal relationships. 
-                Perfect for portraits, wedding photography, and timeless compositions.
+                Balanced conversion that keeps midtones stable and skin texture intact.
+                A good default for portraits and event photography.
               </p>
               <div className="space-y-2 text-sm">
                 <div><strong>Best for:</strong> Portraits, weddings, family photos</div>
@@ -153,8 +150,8 @@ export default function ExamplesPage() {
             <div className="bg-red-900 text-white rounded-xl p-6">
               <h3 className="text-xl font-semibold mb-4">⚡ Dramatic Style</h3>
               <p className="text-gray-300 mb-4">
-                High-contrast conversion with deep blacks and bright whites. 
-                Creates powerful visual impact for landscapes and architectural photography.
+                Strong contrast with deep blacks and bright highlights.
+                Useful for architecture, street frames, and scenes with graphic lines.
               </p>
               <div className="space-y-2 text-sm">
                 <div><strong>Best for:</strong> Landscapes, architecture, street photography</div>
@@ -166,8 +163,8 @@ export default function ExamplesPage() {
             <div className="bg-amber-800 text-white rounded-xl p-6">
               <h3 className="text-xl font-semibold mb-4">📽️ Vintage Style</h3>
               <p className="text-gray-300 mb-4">
-                Film-inspired conversion with subtle sepia undertones. 
-                Perfect for fashion, editorial, and artistic projects requiring nostalgic appeal.
+                Film-style conversion with softer contrast and mild warmth.
+                Often used in fashion, editorial, and memory-driven projects.
               </p>
               <div className="space-y-2 text-sm">
                 <div><strong>Best for:</strong> Fashion, editorial, artistic projects</div>
@@ -179,8 +176,8 @@ export default function ExamplesPage() {
             <div className="bg-blue-900 text-white rounded-xl p-6">
               <h3 className="text-xl font-semibold mb-4">🌙 Film Noir Style</h3>
               <p className="text-gray-300 mb-4">
-                Cinematic style with dramatic shadows and mood lighting. 
-                Ideal for urban photography and storytelling with strong emotional impact.
+                Cinematic style with darker shadows and controlled highlights.
+                Works well for urban stories and low-key scenes.
               </p>
               <div className="space-y-2 text-sm">
                 <div><strong>Best for:</strong> Urban scenes, mood photography</div>
@@ -192,8 +189,8 @@ export default function ExamplesPage() {
             <div className="bg-purple-900 text-white rounded-xl p-6">
               <h3 className="text-xl font-semibold mb-4">🕊️ Soft Style</h3>
               <p className="text-gray-300 mb-4">
-                Gentle conversion with smooth gradients and minimal contrast. 
-                Perfect for newborn photography, delicate subjects, and ethereal compositions.
+                Gentle contrast and smoother gradients.
+                Useful for newborn sessions and other delicate subjects.
               </p>
               <div className="space-y-2 text-sm">
                 <div><strong>Best for:</strong> Newborns, delicate subjects, ethereal mood</div>
@@ -205,8 +202,8 @@ export default function ExamplesPage() {
             <div className="bg-gray-700 text-white rounded-xl p-6">
               <h3 className="text-xl font-semibold mb-4">⚫ High Contrast</h3>
               <p className="text-gray-300 mb-4">
-                Maximum contrast conversion with pure blacks and whites. 
-                Creates bold, graphic impact perfect for modern art and design applications.
+                Near-binary black/white output with minimal midtone detail.
+                Best for graphic compositions and abstract shapes.
               </p>
               <div className="space-y-2 text-sm">
                 <div><strong>Best for:</strong> Modern art, graphic design, abstract</div>
@@ -295,7 +292,7 @@ export default function ExamplesPage() {
         {/* Professional Tips Section */}
         <section className="mt-16 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            Expert Tips for Black and White Photography
+            Practical Tips for Black and White Photography
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div>
