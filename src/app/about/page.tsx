@@ -11,12 +11,11 @@ import {
   Code,
   Lock,
   Mail,
-  Coffee,
   Github,
-  ChevronRight
+  ChevronRight,
+  Terminal
 } from 'lucide-react'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'About Sivan Xu & The Story Behind BWConverter',
@@ -45,17 +44,11 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white dark:bg-gray-950 py-16 md:py-24">
       <div className="container mx-auto px-4 max-w-4xl">
         
-        {/* Personal Intro Section */}
+        {/* Intro Section - Removed Western Headshot */}
         <section className="mb-20">
-          <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-            <div className="w-48 h-48 md:w-64 md:h-64 relative flex-shrink-0">
-              <div className="absolute inset-0 bg-gray-100 dark:bg-gray-800 rounded-2xl rotate-3"></div>
-              <Image
-                src="/authors/sivan-lee.jpg"
-                alt="Sivan Xu - Founder of BWConverter"
-                fill
-                className="object-cover rounded-2xl -rotate-3 border-2 border-white dark:border-gray-900 shadow-xl"
-              />
+          <div className="flex flex-col gap-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gray-900 text-white mb-2">
+              <Terminal className="w-8 h-8" />
             </div>
             <div>
               <Badge className="mb-4" variant="outline">
@@ -65,23 +58,23 @@ export default function AboutPage() {
                 Hi, I&apos;m Sivan Xu.
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                By day, I&apos;m a professional frontend developer with over a decade of experience building complex web applications. 
-                By heart, I&apos;m an enthusiast photographer who finds peace in the deep contrast of black and white imagery.
+                I am a professional frontend developer based in China with over 12 years of experience building high-performance web systems. 
+                Outside of my coding life, I am an enthusiast of monochrome photography, fascinated by the timeless storytelling of black and white tones.
               </p>
               <p className="text-lg text-gray-500 dark:text-gray-500 mb-8 italic">
-                &quot;I built BWConverter at the intersection of my two worlds: technical precision and creative expression.&quot;
+                &quot;I built BWConverter to bridge the gap between technical privacy and creative freedom.&quot;
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="mailto:support@bwconverter.com">
+                <Link href="https://github.com/xiwuxu93/black-and-white-nextjs">
                   <Button variant="default">
-                    <Mail className="w-4 h-4 mr-2" />
-                    Contact Me
+                    <Github className="w-4 h-4 mr-2" />
+                    View Source on GitHub
                   </Button>
                 </Link>
-                <Link href="/blog">
-                  <Button variant="ghost">
-                    Check My Tech & Photo Blog
-                    <ChevronRight className="w-4 h-4 ml-1" />
+                <Link href="mailto:support@bwconverter.com">
+                  <Button variant="outline">
+                    <Mail className="w-4 h-4 mr-2" />
+                    Get in Touch
                   </Button>
                 </Link>
               </div>
@@ -97,25 +90,26 @@ export default function AboutPage() {
             </h2>
             <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
               <p>
-                In my 12 years of frontend work, I&apos;ve seen the web move toward constant cloud-dependency. 
-                But as a photographer, I hated uploading my high-res files to unknown servers just to apply a simple monochrome filter. 
-                Most tools were either slow, invasive, or produced &quot;muddy&quot; grays that lacked tonal depth.
+                As a developer, I believe the web should respect user data. I was tired of online tools that forced me 
+                to upload my private high-resolution photos to their servers just for a simple grayscale conversion. 
+                They were often slow and degraded the tonal quality of my shots.
               </p>
               <p>
-                I knew I could use modern browser technology to do better. I wanted a tool that reflected my own standards:
+                I knew I could leverage modern browser technology like WebAssembly and WebWorkers to do better. 
+                I built this tool to be:
               </p>
               <ul className="list-none space-y-4 pl-0 mt-8">
                 <li className="flex items-start">
                   <Code className="w-5 h-5 mr-3 mt-1 text-blue-600 flex-shrink-0" />
-                  <span><strong>Native Performance:</strong> Using WebAssembly (Rust) to handle pixel-level math at near-native speeds.</span>
+                  <span><strong>Technically Superior:</strong> Powered by Rust/WebAssembly for near-native pixel processing.</span>
                 </li>
                 <li className="flex items-start">
                   <Lock className="w-5 h-5 mr-3 mt-1 text-green-600 flex-shrink-0" />
-                  <span><strong>Pure Privacy:</strong> No images ever leave your browser. As a developer, I designed the code so I literally cannot see your data.</span>
+                  <span><strong>Truly Private:</strong> Everything stays in your browser. I literally cannot see what you process.</span>
                 </li>
                 <li className="flex items-start">
                   <Camera className="w-5 h-5 mr-3 mt-1 text-purple-600 flex-shrink-0" />
-                  <span><strong>Professional Tones:</strong> I implemented a &quot;Channel Mixer&quot; logic to give photographers real control over luminance, not just desaturation.</span>
+                  <span><strong>Photographer-Friendly:</strong> Designed with a &quot;Channel Mixer&quot; logic to give you real control over light.</span>
                 </li>
               </ul>
             </div>
@@ -127,52 +121,28 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <Card className="p-8 border-none bg-gray-50 dark:bg-gray-900">
               <div className="text-4xl font-bold mb-2">12+</div>
-              <p className="text-sm text-gray-500 uppercase tracking-wider">Years Coding Experience</p>
+              <p className="text-sm text-gray-500 uppercase tracking-wider">Years Frontend Expertise</p>
             </Card>
             <Card className="p-8 border-none bg-gray-50 dark:bg-gray-900">
               <div className="text-4xl font-bold mb-2">100%</div>
-              <p className="text-sm text-gray-500 uppercase tracking-wider">Private & Local</p>
+              <p className="text-sm text-gray-500 uppercase tracking-wider">Local Processing</p>
             </Card>
             <Card className="p-8 border-none bg-gray-50 dark:bg-gray-900">
               <div className="text-4xl font-bold mb-2">0</div>
-              <p className="text-sm text-gray-500 uppercase tracking-wider">Cloud Processing</p>
+              <p className="text-sm text-gray-500 uppercase tracking-wider">Cloud Storage</p>
             </Card>
-          </div>
-        </section>
-
-        {/* Commitment */}
-        <section className="mb-24">
-          <h2 className="text-3xl font-bold text-center mb-12">My Developer Standards</h2>
-          <div className="grid md:grid-cols-2 gap-10">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold flex items-center gap-2">
-                <Zap className="w-5 h-5 text-yellow-500" />
-                Performance First
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                I optimize for milliseconds. By using WebWorkers, I ensure that processing even 100 images in batch mode doesn&apos;t freeze your UI.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold flex items-center gap-2">
-                <Shield className="w-5 h-5 text-blue-500" />
-                No Telemetry
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                I don&apos;t use invasive tracking. The only data I care about is your user experience and the quality of the monochrome output.
-              </p>
-            </div>
           </div>
         </section>
 
         {/* Connect */}
         <section className="text-center py-16 border-t border-gray-100 dark:border-gray-800">
-          <h2 className="text-3xl font-bold mb-6">Let&apos;s Build Together</h2>
+          <h2 className="text-3xl font-bold mb-6">Open Source & Independent</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto">
-            BWConverter is an independent project. If you have a feature request or just want to talk tech and photography, feel free to reach out.
+            BWConverter is a side project born from my own needs. The project is open source on GitHub. 
+            If you like what I&apos;m doing, feel free to contribute or give it a star.
           </p>
           <div className="flex justify-center gap-6">
-            <Link href="https://github.com" className="text-gray-400 hover:text-black dark:hover:text-white transition-colors">
+            <Link href="https://github.com/xiwuxu93/black-and-white-nextjs" className="text-gray-400 hover:text-black dark:hover:text-white transition-colors">
               <Github className="w-8 h-8" />
             </Link>
             <Link href="mailto:support@bwconverter.com" className="text-gray-400 hover:text-blue-600 transition-colors">
