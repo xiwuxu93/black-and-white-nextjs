@@ -9,8 +9,8 @@ export function FundingChoices({ pubId }: FundingChoicesProps) {
   const src = `https://fundingchoicesmessages.google.com/i/${pubId}?ers=2`
   return (
     <>
-      <Script id="funding-choices-script" src={src} async strategy="beforeInteractive" />
-      <Script id="funding-choices-present" strategy="beforeInteractive">
+      <Script id="funding-choices-script" src={src} async strategy="afterInteractive" />
+      <Script id="funding-choices-present" strategy="afterInteractive">
         {`
           (function() {
             function signalGooglefcPresent() {
@@ -32,4 +32,3 @@ export function FundingChoices({ pubId }: FundingChoicesProps) {
     </>
   )
 }
-

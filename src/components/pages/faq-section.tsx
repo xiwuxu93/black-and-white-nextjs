@@ -226,7 +226,7 @@ export function FAQSection() {
             Didn’t find what you need?
           </h3>
           <p className="text-muted-foreground mb-4">
-            Our support team is here to help
+            Send a note and I will help you debug it
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">

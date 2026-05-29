@@ -45,7 +45,7 @@ export function Header() {
         { name: "Invert Colors", href: "/invert-image-colors", icon: ImageIcon, description: "Flip color values for design and negatives" },
         { name: "Newborn Guide", href: "/newborn-photography-guide", icon: Camera, description: "Lighting and editing workflow notes" },
         { name: "FAQ", href: "/faq", icon: HelpCircle, description: "Common questions answered" },
-        { name: "Contact", href: "/contact", icon: Mail, description: "Email our support team" },
+        { name: "Contact", href: "/contact", icon: Mail, description: "Email support" },
         { name: "About", href: "/about", icon: Info, description: "Project background and development notes" },
         { name: "Privacy Policy", href: "/privacy", icon: Shield, description: "How we protect your data" },
         { name: "Terms of Service", href: "/terms", icon: FileText, description: "Usage terms and conditions" }

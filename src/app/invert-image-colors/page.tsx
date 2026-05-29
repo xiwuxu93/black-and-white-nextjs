@@ -44,7 +44,7 @@ const FAQ_SCHEMA = {
     },
     {
       question: 'Is my data private?',
-      answer: 'Yes. We process images using WebAssembly in your browser. Unlike server-side converters, your photos never leave your device, guaranteeing 100% privacy.'
+      answer: 'Yes. The image is processed locally with browser Canvas APIs. Unlike server-side converters, your photos never leave your device.'
     }
   ]
 }

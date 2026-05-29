@@ -3,6 +3,13 @@
 import { useEffect, useState } from 'react'
 import { AdBanner } from './google-adsense'
 
+const AD_SLOTS = {
+  header: process.env.NEXT_PUBLIC_ADSENSE_HEADER_SLOT,
+  sidebar: process.env.NEXT_PUBLIC_ADSENSE_SIDEBAR_SLOT,
+  content: process.env.NEXT_PUBLIC_ADSENSE_CONTENT_SLOT,
+  footer: process.env.NEXT_PUBLIC_ADSENSE_FOOTER_SLOT
+}
+
 // Header banner ad
 export function HeaderAd() {
   const [adLoaded, setAdLoaded] = useState(false)
@@ -21,7 +28,7 @@ export function HeaderAd() {
     return () => clearTimeout(timer)
   }, [])
 
-  if (!adLoaded) {
+  if (!AD_SLOTS.header || !adLoaded) {
     return null
   }
 
@@ -29,7 +36,7 @@ export function HeaderAd() {
     <div className="w-full py-4 bg-gray-50 dark:bg-gray-800 border-b border-border">
       <div className="container mx-auto flex justify-center">
         <AdBanner 
-          adSlot="1234567890"
+          adSlot={AD_SLOTS.header}
           adFormat="auto"
           className="max-w-screen-md w-full"
         />
@@ -56,14 +63,14 @@ export function SidebarAd() {
     return () => clearTimeout(timer)
   }, [])
 
-  if (!adLoaded) {
+  if (!AD_SLOTS.sidebar || !adLoaded) {
     return null
   }
 
   return (
     <div className="sticky top-20">
       <AdBanner 
-        adSlot="2345678901"
+        adSlot={AD_SLOTS.sidebar}
         adFormat="auto"
         responsive={false}
         className="w-full max-w-xs"
@@ -90,14 +97,14 @@ export function ContentAd() {
     return () => clearTimeout(timer)
   }, [])
 
-  if (!adLoaded) {
+  if (!AD_SLOTS.content || !adLoaded) {
     return null
   }
 
   return (
     <div className="my-8 flex justify-center">
       <AdBanner 
-        adSlot="3456789012"
+        adSlot={AD_SLOTS.content}
         adFormat="auto"
         className="w-full max-w-lg"
       />
@@ -123,7 +130,7 @@ export function FooterAd() {
     return () => clearTimeout(timer)
   }, [])
 
-  if (!adLoaded) {
+  if (!AD_SLOTS.footer || !adLoaded) {
     return null
   }
 
@@ -131,7 +138,7 @@ export function FooterAd() {
     <div className="w-full py-4 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto flex justify-center">
         <AdBanner 
-          adSlot="4567890123"
+          adSlot={AD_SLOTS.footer}
           adFormat="auto"
           className="max-w-screen-lg w-full"
         />

@@ -95,13 +95,13 @@ export default function AboutPage() {
                 They were often slow and degraded the tonal quality of my shots.
               </p>
               <p>
-                I knew I could leverage modern browser technology like WebAssembly and WebWorkers to do better. 
+                I knew I could leverage modern browser APIs like Canvas and Web Workers to do better.
                 I built this tool to be:
               </p>
               <ul className="list-none space-y-4 pl-0 mt-8">
                 <li className="flex items-start">
                   <Code className="w-5 h-5 mr-3 mt-1 text-blue-600 flex-shrink-0" />
-                  <span><strong>Technically Superior:</strong> Powered by Rust/WebAssembly for near-native pixel processing.</span>
+                  <span><strong>Technically Practical:</strong> Powered by Canvas pixel processing and Web Workers so previews stay responsive.</span>
                 </li>
                 <li className="flex items-start">
                   <Lock className="w-5 h-5 mr-3 mt-1 text-green-600 flex-shrink-0" />

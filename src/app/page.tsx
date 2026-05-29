@@ -66,6 +66,29 @@ const HOME_FAQ_SCHEMA = {
   ]
 } as const
 
+const EDITING_NOTES = [
+  {
+    title: 'Portraits',
+    note:
+      'I usually start with a softer preset, lift midtones slightly, and avoid crushing shadows around hair and clothing. Skin often needs separation, not maximum contrast.'
+  },
+  {
+    title: 'Architecture',
+    note:
+      'Hard edges and repeating forms can handle stronger contrast. I darken blue-heavy skies and keep highlights below clipping so concrete, glass, and metal still show texture.'
+  },
+  {
+    title: 'Product Images',
+    note:
+      'For catalogs, consistency matters more than drama. I keep grain off, use a neutral tone curve, and export in the same format as the original when file size allows.'
+  },
+  {
+    title: 'Scanned Artwork',
+    note:
+      'Old scans often need gentle cleanup first. A modest contrast boost plus slightly lifted shadows preserves paper texture without making dust and scratches dominate.'
+  }
+] as const
+
 function MarketingSections() {
   return (
     <section className="converter-marketing py-20 px-4">
@@ -225,6 +248,30 @@ function MarketingSections() {
                 Start with presets like High Contrast or Classic Film, then fine-tune sliders for your scene.
               </p>
             </Card>
+          </div>
+        </section>
+
+        <section className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 mb-16">
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Practical Monochrome Notes From Real Edits
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Black and white conversion works best when the settings match the subject.
+              These are the starting points I use when testing BWConverter against real photos and design assets.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {EDITING_NOTES.map(({ title, note }) => (
+              <div key={title} className="border border-gray-100 dark:border-gray-700 rounded-2xl p-6">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                  {title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {note}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 

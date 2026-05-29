@@ -8,10 +8,10 @@ import GoogleAnalytics from '@/components/analytics/google-analytics'
 import { StructuredData } from '@/components/seo/structured-data'
 import { NavigationStructuredData } from '@/components/seo/navigation-structured-data'
 import { canonicalUrl } from '@/lib/seo'
-import Script from 'next/script'
 import { FundingChoices } from '@/components/consent/funding-choices'
 
 const inter = Inter({ subsets: ['latin'] })
+const enableAds = process.env.NEXT_PUBLIC_ENABLE_ADS === 'true'
 
 export const metadata: Metadata = {
   title: {
@@ -99,8 +99,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google Funding Choices (CMP) */}
-        <FundingChoices pubId={process.env.NEXT_PUBLIC_FC_PUB_ID || 'pub-4855228928819714'} />
+        {enableAds && (
+          <FundingChoices pubId={process.env.NEXT_PUBLIC_FC_PUB_ID || 'pub-4855228928819714'} />
+        )}
         <NavigationStructuredData />
         <StructuredData type="website" data={{}} />
         <StructuredData type="application" data={{}} />
@@ -120,10 +121,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
-        {/* Analytics and AdSense scripts can load normally; Consent Mode controls storage */}
-        <div style={{display:'none'}}>
-          <GoogleAnalytics />
-        </div>
+        {enableAds && <GoogleAnalytics />}
       </body>
     </html>
   )

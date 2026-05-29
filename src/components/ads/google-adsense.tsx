@@ -4,9 +4,10 @@ import Script from 'next/script'
 import { useEffect, useRef } from 'react'
 
 const ADSENSE_ID = 'ca-pub-4855228928819714'
+const ENABLE_ADS = process.env.NEXT_PUBLIC_ENABLE_ADS === 'true'
 
 export default function GoogleAdsense() {
-  if (process.env.NODE_ENV !== 'production') return null
+  if (process.env.NODE_ENV !== 'production' || !ENABLE_ADS) return null
   return <Script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`} crossOrigin="anonymous" strategy="afterInteractive" />
 }
 
@@ -25,7 +26,7 @@ export function AdBanner({
 }: AdBannerProps) {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') return
+    if (process.env.NODE_ENV !== 'production' || !ENABLE_ADS) return
     const el = ref.current
     if (!el) return
 
@@ -64,6 +65,8 @@ export function AdBanner({
     io.observe(el)
     return () => io.disconnect()
   }, [adSlot, adFormat, responsive])
+
+  if (!ENABLE_ADS) return null
 
   return (
     <div ref={ref} className={`ad-banner min-h-[100px] flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded ${className}`}>

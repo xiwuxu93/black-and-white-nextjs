@@ -8,13 +8,13 @@ import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Contact Us - BWConverter Support',
-  description: 'Get in touch with the BWConverter team. Email our support staff or explore self-service resources for fast answers about the black and white image converter.',
+  description: 'Get in touch with BWConverter. Email support or explore self-service resources for fast answers about the black and white image converter.',
   alternates: {
     canonical: canonicalUrl('/contact')
   },
   openGraph: {
     title: 'Contact BWConverter Support',
-    description: 'Need help with the black and white image converter? Email our support team or find quick answers in the FAQ.',
+    description: 'Need help with the black and white image converter? Email support or find quick answers in the FAQ.',
     url: canonicalUrl('/contact')
   }
 }
@@ -34,7 +34,7 @@ export default function ContactPage() {
             We’re Here to Help
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Whether you have a support question, partnership idea, or feedback about the converter, the team typically replies within one business day.
+            Whether you have a support question, partnership idea, or feedback about the converter, I typically reply within one business day.
           </p>
         </div>
 
