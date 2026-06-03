@@ -121,7 +121,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
-        {enableAds && <GoogleAnalytics />}
+        <GoogleAnalytics />
       </body>
     </html>
   )
