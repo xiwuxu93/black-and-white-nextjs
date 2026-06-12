@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ChevronRight, Layers, Image as ImageIcon, Briefcase } from 'lucide-react'
+import { ChevronRight, Layers, Image as ImageIcon, Briefcase, FileText } from 'lucide-react'
 import { StructuredData } from '@/components/seo/structured-data'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -99,7 +99,7 @@ function MarketingSections() {
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
             Choose the Right Tool for the Job
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link href="/logo-to-black-and-white" className="group">
               <Card className="p-6 h-full transition-shadow hover:shadow-md border-primary-100 dark:border-primary-900/50">
                 <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-full w-fit text-blue-600 dark:text-blue-400">
@@ -130,6 +130,23 @@ function MarketingSections() {
                 </p>
                 <div className="mt-4 flex items-center text-sm font-medium text-primary-600">
                   Start Batch <ChevronRight className="w-4 h-4 ml-1" />
+                </div>
+              </Card>
+            </Link>
+
+            <Link href="/convert-pdf-to-black-and-white" className="group">
+              <Card className="p-6 h-full transition-shadow hover:shadow-md border-primary-100 dark:border-primary-900/50">
+                 <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 rounded-full w-fit text-red-600 dark:text-red-400">
+                  <FileText className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-600 transition-colors">
+                  PDF Grayscale Converter
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Grayscale entire PDF documents locally. Save color printing costs and expensive toner ink.
+                </p>
+                <div className="mt-4 flex items-center text-sm font-medium text-primary-600">
+                  Convert PDF <ChevronRight className="w-4 h-4 ml-1" />
                 </div>
               </Card>
             </Link>

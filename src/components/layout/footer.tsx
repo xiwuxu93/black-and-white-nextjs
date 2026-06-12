@@ -9,6 +9,7 @@ export function Footer() {
         { name: "Single Converter", href: "/" },
         { name: "Batch Converter", href: "/batch-black-and-white-converter" },
         { name: "Logo Converter", href: "/logo-to-black-and-white" },
+        { name: "PDF Converter", href: "/convert-pdf-to-black-and-white" },
         { name: "Invert Colors", href: "/invert-image-colors" },
         { name: "Examples & Gallery", href: "/examples" },
         { name: "Newborn Guide", href: "/newborn-photography-guide" },

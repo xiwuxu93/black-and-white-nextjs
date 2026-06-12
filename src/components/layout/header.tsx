@@ -42,6 +42,7 @@ export function Header() {
       href: "#",
       children: [
         { name: "Logo Converter", href: "/logo-to-black-and-white", icon: Layers, description: "Convert PNG and SVG logos" },
+        { name: "PDF Converter", href: "/convert-pdf-to-black-and-white", icon: FileText, description: "Grayscale your PDF documents" },
         { name: "Invert Colors", href: "/invert-image-colors", icon: ImageIcon, description: "Flip color values for design and negatives" },
         { name: "Newborn Guide", href: "/newborn-photography-guide", icon: Camera, description: "Lighting and editing workflow notes" },
         { name: "FAQ", href: "/faq", icon: HelpCircle, description: "Common questions answered" },
