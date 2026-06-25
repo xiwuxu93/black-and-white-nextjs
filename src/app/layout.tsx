@@ -122,12 +122,14 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
-        <Script
-          src="https://scripts.scriptwrapper.com/tags/6be4f521-ca9d-4437-9b0c-41cf46b08702.js"
-          strategy="afterInteractive"
-          data-noptimize="1"
-          data-cfasync="false"
-        />
+        {process.env.NODE_ENV === 'production' && (
+          <Script
+            src="https://scripts.scriptwrapper.com/tags/6be4f521-ca9d-4437-9b0c-41cf46b08702.js"
+            strategy="afterInteractive"
+            data-noptimize="1"
+            data-cfasync="false"
+          />
+        )}
         <GoogleAnalytics />
       </body>
     </html>
