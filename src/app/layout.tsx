@@ -9,6 +9,7 @@ import { StructuredData } from '@/components/seo/structured-data'
 import { NavigationStructuredData } from '@/components/seo/navigation-structured-data'
 import { canonicalUrl } from '@/lib/seo'
 import { FundingChoices } from '@/components/consent/funding-choices'
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 const enableAds = process.env.NEXT_PUBLIC_ENABLE_ADS === 'true'
@@ -121,6 +122,14 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
+        {process.env.NODE_ENV === 'production' && (
+          <Script
+            src="https://scripts.scriptwrapper.com/tags/6be4f521-ca9d-4437-9b0c-41cf46b08702.js"
+            strategy="afterInteractive"
+            data-noptimize="1"
+            data-cfasync="false"
+          />
+        )}
         <GoogleAnalytics />
       </body>
     </html>
