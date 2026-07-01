@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /download
 Disallow: /*?q=
+Disallow: /*?step=
 Sitemap: https://bwconverter.com/sitemap.xml

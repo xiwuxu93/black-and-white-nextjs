@@ -11,6 +11,9 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
+import { useConversionStore } from '@/store/conversionStore'
+import { Card } from '@/components/ui/card'
 import { UploadArea } from '@/components/bw-converter/upload-area'
 import {
   DEFAULT_PRESETS,
@@ -142,6 +145,10 @@ export function ConverterExperience({
   const [originalFileInfo, setOriginalFileInfo] =
     useState<OriginalFileInfo | null>(null)
 
+  const router = useRouter()
+  const setConversionData = useConversionStore((state) => state.setConversionData)
+  const [processingStatus, setProcessingStatus] = useState<string>('')
+
   const workerRef = useRef<Worker | null>(null)
   const debounceTimerRef = useRef<TimeoutHandle>()
   const originalFileInfoRef = useRef<OriginalFileInfo | null>(null)
@@ -192,7 +199,6 @@ export function ConverterExperience({
       }
 
       ctx.putImageData(imageData, 0, 0)
-      const { downloadCanvasImage } = await import('@/lib/utils')
 
       const originalInfo = originalFileInfoRef.current
       const defaultFormat =
@@ -206,27 +212,66 @@ export function ConverterExperience({
         originalInfo?.baseName ?? 'black-and-white-image'
       )
       const filename = `${safeBaseName}-bw.${selectedFormat.value}`
-      const sameFormat =
-        !!originalInfo &&
-        normalizeExtension(originalInfo.extension) ===
-          normalizeExtension(selectedFormat.value)
-      const maxBytes = sameFormat ? originalInfo?.size : undefined
+
+      setIsProcessing(true)
+
+      // Phase 2: Fake conversion loading delay steps
+      const steps = [
+        { text: 'Analyzing color channels...', delay: 800 },
+        { text: 'Optimizing midtones and contrast...', delay: 1000 },
+        { text: 'Applying grayscale film presets...', delay: 800 },
+        { text: 'Finalizing monochrome rendering...', delay: 400 }
+      ]
 
       try {
-        await downloadCanvasImage(canvas, {
-          filename,
-          mimeType: selectedFormat.mimeType,
-          quality: qualityForFormat(selectedFormat),
-          maxBytes
+        // Phase 3: Push a virtual route change step for ads refresh
+        if (typeof window !== 'undefined') {
+          window.history.pushState({}, '', '/?step=finalizing')
+          window.dispatchEvent(new PopStateEvent('popstate'))
+        }
+
+        for (const step of steps) {
+          setProcessingStatus(step.text)
+          await new Promise((resolve) => setTimeout(resolve, step.delay))
+        }
+
+        // Convert canvas to Blob
+        const blob = await new Promise<Blob | null>((resolve) => {
+          canvas.toBlob(
+            (b) => resolve(b),
+            selectedFormat.mimeType,
+            qualityForFormat(selectedFormat)
+          )
         })
+
+        if (!blob) {
+          throw new Error('Failed to create image blob')
+        }
+
+        const fileUrl = URL.createObjectURL(blob)
+        const originalSizeMB = originalInfo ? (originalInfo.size / (1024 * 1024)).toFixed(2) : '0'
+        const processedSizeMB = (blob.size / (1024 * 1024)).toFixed(2)
+
+        // Save to Zustand store
+        setConversionData({
+          fileUrl,
+          filename,
+          fileType: 'image',
+          originalSize: originalSizeMB,
+          processedSize: processedSizeMB
+        })
+
+        // Redirect to download page
+        router.push('/download')
       } catch (error) {
-        console.error('Download failed:', error)
+        console.error('Processing or redirect failed:', error)
       } finally {
         pendingDownloadFormatRef.current = null
         setIsProcessing(false)
+        setProcessingStatus('')
       }
     },
-    []
+    [router, setConversionData]
   )
 
   const initializeWorker = useCallback(() => {
@@ -623,6 +668,22 @@ export function ConverterExperience({
             )}
           </div>
         </section>
+      )}
+      {isProcessing && processingStatus && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <Card className="max-w-md w-full p-6 text-center space-y-6 bg-white dark:bg-gray-800 shadow-2xl border-none">
+            <div className="relative w-20 h-20 mx-auto">
+              <div className="absolute inset-0 border-4 border-gray-100 dark:border-gray-700 rounded-full" />
+              <div className="absolute inset-0 border-4 border-primary-600 border-t-transparent rounded-full animate-spin" />
+            </div>
+            <div className="space-y-2 animate-pulse">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white">Processing Image</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                {processingStatus}
+              </p>
+            </div>
+          </Card>
+        </div>
       )}
     </div>
   )

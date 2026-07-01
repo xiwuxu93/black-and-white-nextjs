@@ -1,6 +1,8 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
+import { useConversionStore } from '@/store/conversionStore'
 import { 
   FileText, 
   Download, 
@@ -10,8 +12,8 @@ import {
   CheckCircle2, 
   Loader2, 
   Printer, 
-  Eye,
-  Sliders
+  Eye, 
+  Sliders 
 } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -25,6 +27,9 @@ declare global {
 }
 
 export default function PdfPage() {
+  const router = useRouter()
+  const setConversionData = useConversionStore((state) => state.setConversionData)
+
   // Loading state for PDF.js CDN
   const [pdfjsLoaded, setPdfjsLoaded] = useState(false)
   const [loadingError, setLoadingError] = useState<string | null>(null)
@@ -342,19 +347,40 @@ export default function PdfPage() {
       }
 
       // Finalize PDF assembly
-      setProcessingStatus('Saving document output...')
+      setProcessingStatus('Saving and compiling document output...')
       const finalPdfBytes = await grayscalePdfDoc.save()
       const finalPdfBlob = new Blob([finalPdfBytes as any], { type: 'application/pdf' })
       
-      const fileBlobUrl = URL.createObjectURL(finalPdfBlob)
-      setOutputPdfBlobUrl(fileBlobUrl)
-      setOutputPdfSize((finalPdfBlob.size / (1024 * 1024)).toFixed(2))
+      // Phase 3: Push virtual pageview to refresh ads
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', '/?step=finalizing-pdf')
+        window.dispatchEvent(new PopStateEvent('popstate'))
+      }
 
+      // Phase 2: Fake loading step to ensure ad viewability
+      setProcessingStatus('Finalizing document structure and optimizing ink compression...')
+      await new Promise((resolve) => setTimeout(resolve, 1500))
+
+      const fileBlobUrl = URL.createObjectURL(finalPdfBlob)
       const origName = file.name.replace(/\.[^/.]+$/, "") // Strip original extension
-      setDownloadFilename(`${origName}-grayscale.pdf`)
-      
-      setProcessingStatus('Conversion complete!')
+      const filename = `${origName}-grayscale.pdf`
+      const originalSizeMB = fileSizeMB
+      const processedSizeMB = (finalPdfBlob.size / (1024 * 1024)).toFixed(2)
+
+      // Save to Zustand store
+      setConversionData({
+        fileUrl: fileBlobUrl,
+        filename,
+        fileType: 'pdf',
+        originalSize: originalSizeMB,
+        processedSize: processedSizeMB
+      })
+
+      setProcessingStatus('Conversion complete! Redirecting...')
       setIsProcessing(false)
+
+      // Redirect to download page
+      router.push('/download')
 
     } catch (error) {
       console.error('Error converting PDF to black and white:', error)
