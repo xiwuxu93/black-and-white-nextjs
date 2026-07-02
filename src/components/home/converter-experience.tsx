@@ -716,21 +716,8 @@ export function ConverterExperience({
 function Sidebar() {
   return (
     <aside className="space-y-6 lg:sticky lg:top-24 mt-8 lg:mt-0">
-      {/* Primary Sidebar Ad Slot */}
-      <Card className="p-4 bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 shadow-sm flex flex-col items-center">
-        <span className="text-[10px] uppercase tracking-wider font-semibold text-gray-400 dark:text-gray-500 mb-3">
-          Advertisement
-        </span>
-        {/* Grow automated ad wrapper with dedicated height to prevent layout shifts */}
-        <div className="w-[300px] min-h-[250px] lg:min-h-[600px] bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-dashed border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center p-4 grow-sidebar-ad">
-          <div className="text-center space-y-2 text-gray-400 dark:text-gray-600">
-            <svg className="w-8 h-8 mx-auto opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <p className="text-[10px] font-medium">Grow Sticky Sidebar Ad Unit</p>
-          </div>
-        </div>
-      </Card>
+      {/* Primary Sidebar Ad Slot - Transparent container for automated Journey ads */}
+      <div className="w-[300px] min-h-[250px] lg:min-h-[600px] mx-auto grow-sidebar-ad flex items-center justify-center" />
 
       {/* Photography guides */}
       <Card className="p-6 bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 shadow-sm space-y-4">
