@@ -716,7 +716,7 @@ export function ConverterExperience({
 
 function Sidebar() {
   return (
-    <aside className="space-y-6 lg:sticky lg:top-24 mt-8 lg:mt-0 w-full">
+    <aside id="primary-sidebar" className="sidebar widget-area space-y-6 lg:sticky lg:top-24 mt-8 lg:mt-0 w-full">
       {/* Primary Sidebar Ad Slot - Transparent container to hold automated Journey ads */}
       <div className="w-[300px] min-h-[600px] mx-auto grow-sidebar-ad bg-gray-50/30 dark:bg-gray-800/10 rounded-2xl border border-dashed border-gray-200/50 dark:border-gray-700/30 flex items-center justify-center">
         <span className="text-[10px] text-gray-400 dark:text-gray-600 uppercase tracking-wider font-semibold">Advertisement</span>
