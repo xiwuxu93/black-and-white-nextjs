@@ -421,14 +421,14 @@ export default function BlogPostPage({ params }: Props) {
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
-            <div className="prose prose-lg max-w-none prose-gray dark:prose-invert">
+            <article className="prose prose-lg max-w-none prose-gray dark:prose-invert entry-content post-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={MarkdownComponents as any}
               >
                 {post.content}
               </ReactMarkdown>
-            </div>
+            </article>
 
             {/* Tags */}
             <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
