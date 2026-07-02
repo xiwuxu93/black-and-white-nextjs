@@ -241,6 +241,10 @@ export default function BatchPage() {
   }, [])
 
   const downloadAll = useCallback(async () => {
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, '', '/batch-black-and-white-converter?step=download-all')
+      window.dispatchEvent(new PopStateEvent('popstate'))
+    }
     for (const image of processedImages) {
       if (image.processingStatus === 'completed' && image.processedData) {
         await downloadImageFile(image)
