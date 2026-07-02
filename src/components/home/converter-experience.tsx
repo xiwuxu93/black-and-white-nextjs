@@ -532,7 +532,7 @@ export function ConverterExperience({
               </div>
 
               {/* Right Column: Sidebar */}
-              <div id="primary-sidebar" className="sidebar widget-area lg:sticky lg:top-24 self-start w-full max-w-[300px] mx-auto lg:mx-0">
+              <div id="primary-sidebar" className="sidebar widget-area w-full max-w-[300px] mx-auto lg:mx-0">
                 <Sidebar />
               </div>
             </div>
@@ -696,7 +696,7 @@ export function ConverterExperience({
               </div>
 
               {/* Right Column: Sidebar */}
-              <div id="primary-sidebar" className="sidebar widget-area lg:sticky lg:top-24 self-start w-full max-w-[300px] mx-auto lg:mx-0">
+              <div id="primary-sidebar" className="sidebar widget-area w-full max-w-[300px] mx-auto lg:mx-0">
                 <Sidebar />
               </div>
             </div>
