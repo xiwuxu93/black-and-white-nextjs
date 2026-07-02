@@ -467,38 +467,44 @@ export function ConverterExperience({
     <div className="min-h-[60vh] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       {!showEditor && (
         <section className="py-20 px-4">
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center max-w-4xl mx-auto">
+          <div className="container mx-auto max-w-7xl">
+            {/* Centered Hero Header */}
+            <div className="text-center max-w-4xl mx-auto mb-10">
               <Badge className="mb-6" variant="secondary">
                 {heroBadgeText ?? '✨ Free Black and White Converter'}
-                  </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                    {heroTitle ?? 'Convert Images to Black and White Online'}
-                  </h1>
+              </Badge>
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+                {heroTitle ?? 'Convert Images to Black and White Online'}
+              </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300">
-                    {heroSubtitle ??
-                      'Upload, preview, and export professional monochrome photos in seconds. No accounts, no uploads to third-party servers—everything happens in your browser.'}
-                  </p>
-                </div>
+                {heroSubtitle ??
+                  'Upload, preview, and export professional monochrome photos in seconds. No accounts, no uploads to third-party servers—everything happens in your browser.'}
+              </p>
+            </div>
 
-            <div className="flex flex-wrap justify-center gap-2 mb-12 mt-10">
+            {/* Feature Badges */}
+            <div className="flex flex-wrap justify-center gap-2 mb-12">
               {(heroFeatureBadges ?? [
-                    'Make Photos Black and White',
-                    'Instant Privacy-Friendly Processing',
-                    'Film Style Presets',
-                    'Professional Download Formats'
+                'Make Photos Black and White',
+                'Instant Privacy-Friendly Processing',
+                'Film Style Presets',
+                'Professional Download Formats'
               ]).map((label) => (
-                    <Badge key={label} variant="secondary">
-                      {label}
-                    </Badge>
-                  ))}
-                </div>
+                <Badge key={label} variant="secondary">
+                  {label}
+                </Badge>
+              ))}
+            </div>
 
-            <div className="mb-12 max-w-xl mx-auto">
+            {/* Workspace Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Column: Upload Workspace */}
+              <div className="lg:col-span-9">
+                <div className="mb-12 max-w-xl mx-auto">
                   <UploadArea
                     onFileSelect={handleFileSelect}
                     isProcessing={isProcessing}
-                    className="max-w-xl"
+                    className="w-full"
                     accept={uploadAccept}
                     supportText={uploadSupportText}
                     allowedExtensions={uploadAllowedExtensions}
@@ -507,23 +513,31 @@ export function ConverterExperience({
                 </div>
 
                 {!hideBottomFeatures && (
-              <div className="text-center text-gray-500 dark:text-gray-400 text-sm">
+                  <div className="text-center text-gray-500 dark:text-gray-400 text-sm">
                     Need to process a whole campaign?{' '}
                     <Link
                       href="/batch-black-and-white-converter"
-                  className="text-primary-600 hover:underline dark:text-primary-400"
+                      className="text-primary-600 hover:underline dark:text-primary-400 font-semibold"
                     >
                       Try the batch converter
-                  </Link>
-                </div>
-              )}
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Right Column: Sidebar */}
+              <div className="lg:col-span-3">
+                <Sidebar />
+              </div>
             </div>
-          </section>
+          </div>
+        </section>
       )}
 
       {showEditor && (
         <section className="py-12 px-4">
-          <div className="container mx-auto max-w-5xl">
+          <div className="container mx-auto max-w-7xl">
+            {/* Centered Editor Header */}
             <div className="mb-8 text-center">
               <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 Your Black and White Image
@@ -533,139 +547,150 @@ export function ConverterExperience({
               </p>
             </div>
 
-            <div className="mb-8">
-              <ResultDisplay
-                originalImageBitmap={currentImageBitmap}
-                processedImageData={processedImageData}
-                isProcessing={isProcessing}
-                onDownload={handleDownload}
-                onReset={handleReset}
-                simplified={true}
-                defaultFormat={defaultDownloadFormat}
-                availableFormats={DOWNLOAD_FORMATS}
-              />
-            </div>
-
-            {mode !== 'invert' && (
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">
-                  Quick Styles (Optional)
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                  {Object.entries(DEFAULT_PRESETS).map(([presetName]) => (
-                    <button
-                      key={presetName}
-                      onClick={() => handlePresetSelect(presetName)}
-                      disabled={isProcessing}
-                      className={`p-4 rounded-lg border-2 transition-all ${
-                        selectedPreset === presetName
-                          ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                          : 'border-gray-200 dark:border-gray-700 hover:border-primary-300'
-                      } ${
-                        isProcessing ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-                      }`}
-                    >
-                      <div className="text-sm font-medium text-gray-900 dark:text-white capitalize">
-                        {presetName === 'default'
-                          ? 'Classic'
-                          : presetName.replace('-', ' ')}
-                      </div>
-                    </button>
-                  ))}
+            {/* Workspace Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Column: Editor Workspace */}
+              <div className="lg:col-span-9 space-y-8">
+                <div className="mb-8">
+                  <ResultDisplay
+                    originalImageBitmap={currentImageBitmap}
+                    processedImageData={processedImageData}
+                    isProcessing={isProcessing}
+                    onDownload={handleDownload}
+                    onReset={handleReset}
+                    simplified={true}
+                    defaultFormat={defaultDownloadFormat}
+                    availableFormats={DOWNLOAD_FORMATS}
+                  />
                 </div>
-              </div>
-            )}
 
-            {!hideAdvancedControls && (
-              <div className="text-center">
-                <details className="group">
-                  <summary className="cursor-pointer inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-primary-600 transition-colors">
-                    <span className="mr-2">Advanced Controls</span>
-                    <svg
-                      className="w-4 h-4 transform group-open:rotate-180 transition-transform"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </summary>
-
-                  <div className="mt-6">
-                    <ParameterPanel
-                      filters={filters}
-                      onFiltersChange={handleFiltersChange}
-                      disabled={isProcessing}
-                      compact={true}
-                      className="mx-auto max-w-md bg-white/80 dark:bg-gray-900/60 backdrop-blur"
-                      showInvertToggle={mode === 'invert'}
-                    />
+                {mode !== 'invert' && (
+                  <div className="mb-8">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">
+                      Quick Styles (Optional)
+                    </h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                      {Object.entries(DEFAULT_PRESETS).map(([presetName]) => (
+                        <button
+                          key={presetName}
+                          onClick={() => handlePresetSelect(presetName)}
+                          disabled={isProcessing}
+                          className={`p-4 rounded-lg border-2 transition-all ${
+                            selectedPreset === presetName
+                              ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                              : 'border-gray-200 dark:border-gray-700 hover:border-primary-300'
+                          } ${
+                            isProcessing ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+                          }`}
+                        >
+                          <div className="text-sm font-medium text-gray-900 dark:text-white capitalize">
+                            {presetName === 'default'
+                              ? 'Classic'
+                              : presetName.replace('-', ' ')}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </details>
+                )}
+
+                {!hideAdvancedControls && (
+                  <div className="text-center">
+                    <details className="group">
+                      <summary className="cursor-pointer inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-primary-600 transition-colors">
+                        <span className="mr-2">Advanced Controls</span>
+                        <svg
+                          className="w-4 h-4 transform group-open:rotate-180 transition-transform"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </summary>
+
+                      <div className="mt-6">
+                        <ParameterPanel
+                          filters={filters}
+                          onFiltersChange={handleFiltersChange}
+                          disabled={isProcessing}
+                          compact={true}
+                          className="mx-auto max-w-md bg-white/80 dark:bg-gray-900/60 backdrop-blur"
+                          showInvertToggle={mode === 'invert'}
+                        />
+                      </div>
+                    </details>
+                  </div>
+                )}
+
+                {!hideBottomFeatures && (
+                  <div className="mt-12 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 p-8 dark:from-gray-800 dark:to-gray-700">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+                      ✨ Explore More Features
+                    </h3>
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                      <Link href="/batch-black-and-white-converter" className="group">
+                        <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
+                          <div className="text-2xl mb-2">📦</div>
+                          <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
+                            Batch Converter
+                          </h4>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            Convert multiple images at once
+                          </p>
+                        </div>
+                      </Link>
+
+                      <Link href="/examples" className="group">
+                        <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
+                          <div className="text-2xl mb-2">🖼️</div>
+                          <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
+                            Example Gallery
+                          </h4>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            See before and after examples
+                          </p>
+                        </div>
+                      </Link>
+
+                      <Link href="/how-to-use" className="group">
+                        <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
+                          <div className="text-2xl mb-2">📚</div>
+                          <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
+                            How to Use Guide
+                          </h4>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            Learn professional techniques
+                          </p>
+                        </div>
+                      </Link>
+
+                      <Link href="/blog" className="group">
+                        <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
+                          <div className="text-2xl mb-2">✍️</div>
+                          <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
+                            Photography Blog
+                          </h4>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            Tips and inspiration articles
+                          </p>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
 
-            {!hideBottomFeatures && (
-              <div className="mt-12 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 p-8 dark:from-gray-800 dark:to-gray-700">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-                  ✨ Explore More Features
-                </h3>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                  <Link href="/batch-black-and-white-converter" className="group">
-                    <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
-                      <div className="text-2xl mb-2">📦</div>
-                      <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
-                        Batch Converter
-                      </h4>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">
-                        Convert multiple images at once
-                      </p>
-                    </div>
-                  </Link>
-
-                  <Link href="/examples" className="group">
-                    <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
-                      <div className="text-2xl mb-2">🖼️</div>
-                      <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
-                        Example Gallery
-                      </h4>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">
-                        See before and after examples
-                      </p>
-                    </div>
-                  </Link>
-
-                  <Link href="/how-to-use" className="group">
-                    <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
-                      <div className="text-2xl mb-2">📚</div>
-                      <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
-                        How to Use Guide
-                      </h4>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">
-                        Learn professional techniques
-                      </p>
-                    </div>
-                  </Link>
-
-                  <Link href="/blog" className="group">
-                    <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
-                      <div className="text-2xl mb-2">✍️</div>
-                      <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
-                        Photography Blog
-                      </h4>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">
-                        Tips and inspiration articles
-                      </p>
-                    </div>
-                  </Link>
-                </div>
+              {/* Right Column: Sidebar */}
+              <div className="lg:col-span-3">
+                <Sidebar />
               </div>
-            )}
+            </div>
           </div>
         </section>
       )}
@@ -686,5 +711,38 @@ export function ConverterExperience({
         </div>
       )}
     </div>
+  )
+}
+
+function Sidebar() {
+  return (
+    <aside className="space-y-6 lg:sticky lg:top-24 mt-8 lg:mt-0 w-full">
+      {/* Primary Sidebar Ad Slot - Transparent container to hold automated Journey ads */}
+      <div className="w-[300px] min-h-[600px] mx-auto grow-sidebar-ad bg-gray-50/30 dark:bg-gray-800/10 rounded-2xl border border-dashed border-gray-200/50 dark:border-gray-700/30 flex items-center justify-center">
+        <span className="text-[10px] text-gray-400 dark:text-gray-600 uppercase tracking-wider font-semibold">Advertisement</span>
+      </div>
+
+      {/* Photography guides */}
+      <Card className="p-6 bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 shadow-sm space-y-4">
+        <h4 className="font-bold text-gray-900 dark:text-white text-sm">Monochrome Workflows</h4>
+        <ul className="space-y-3 text-xs text-gray-600 dark:text-gray-400">
+          <li>
+            <Link href="/blog/how-to-make-photo-black-and-white" className="font-semibold text-primary-600 dark:text-primary-400 hover:underline">
+              📸 5 Easy Conversion Methods
+            </Link>
+          </li>
+          <li>
+            <Link href="/newborn-photography-guide" className="font-semibold text-primary-600 dark:text-primary-400 hover:underline">
+              👶 Newborn Portrait Guide
+            </Link>
+          </li>
+          <li>
+            <Link href="/logo-to-black-and-white" className="font-semibold text-primary-600 dark:text-primary-400 hover:underline">
+              🎨 Grayscale Vector Logos
+            </Link>
+          </li>
+        </ul>
+      </Card>
+    </aside>
   )
 }
