@@ -115,6 +115,7 @@ interface ConverterExperienceProps {
   mode?: 'default' | 'invert'
   hideAdvancedControls?: boolean
   hideBottomFeatures?: boolean
+  marketingContent?: React.ReactNode
 }
 
 export function ConverterExperience({
@@ -129,7 +130,8 @@ export function ConverterExperience({
   defaultFilters,
   mode = 'default',
   hideAdvancedControls = false,
-  hideBottomFeatures = false
+  hideBottomFeatures = false,
+  marketingContent
 }: ConverterExperienceProps = {}) {
   const [currentImageBitmap, setCurrentImageBitmap] =
     useState<ImageBitmap | null>(null)
@@ -497,12 +499,12 @@ export function ConverterExperience({
             </div>
 
             {/* Workspace Grid */}
-            <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[100px_1fr_300px] gap-8">
               {/* Left Spacer */}
-              <div className="hidden xl:block xl:col-span-2" />
+              <div className="hidden lg:block" />
 
               {/* Center Column: Upload Workspace */}
-              <div className="xl:col-span-7">
+              <div className="w-full">
                 <div className="mb-12 max-w-xl mx-auto">
                   <UploadArea
                     onFileSelect={handleFileSelect}
@@ -526,10 +528,11 @@ export function ConverterExperience({
                     </Link>
                   </div>
                 )}
+                {marketingContent}
               </div>
 
               {/* Right Column: Sidebar */}
-              <div id="primary-sidebar" className="sidebar widget-area xl:col-span-3 xl:sticky xl:top-24 mt-8 xl:mt-0 h-fit">
+              <div id="primary-sidebar" className="sidebar widget-area lg:sticky lg:top-24 self-start w-full max-w-[300px] mx-auto lg:mx-0">
                 <Sidebar />
               </div>
             </div>
@@ -551,12 +554,12 @@ export function ConverterExperience({
             </div>
 
             {/* Workspace Grid */}
-            <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[100px_1fr_300px] gap-8">
               {/* Left Spacer */}
-              <div className="hidden xl:block xl:col-span-2" />
+              <div className="hidden lg:block" />
 
               {/* Center Column: Editor Workspace */}
-              <div className="xl:col-span-7 space-y-8">
+              <div className="w-full space-y-8">
                 <div className="mb-8">
                   <ResultDisplay
                     originalImageBitmap={currentImageBitmap}
@@ -693,7 +696,7 @@ export function ConverterExperience({
               </div>
 
               {/* Right Column: Sidebar */}
-              <div id="primary-sidebar" className="sidebar widget-area xl:col-span-3 xl:sticky xl:top-24 mt-8 xl:mt-0 h-fit">
+              <div id="primary-sidebar" className="sidebar widget-area lg:sticky lg:top-24 self-start w-full max-w-[300px] mx-auto lg:mx-0">
                 <Sidebar />
               </div>
             </div>
@@ -724,7 +727,7 @@ function Sidebar() {
   return (
     <aside className="space-y-6 w-full">
       {/* Primary Sidebar Ad Slot - Transparent container to hold automated Journey ads */}
-      <div className="w-[300px] min-h-[600px] mx-auto grow-sidebar-ad bg-gray-50/30 dark:bg-gray-800/10 rounded-2xl border border-dashed border-gray-200/50 dark:border-gray-700/30 flex items-center justify-center">
+      <div className="w-[300px] min-h-[250px] mx-auto grow-sidebar-ad bg-gray-50/30 dark:bg-gray-800/10 rounded-2xl border border-dashed border-gray-200/50 dark:border-gray-700/30 flex items-center justify-center">
         <span className="text-[10px] text-gray-400 dark:text-gray-600 uppercase tracking-wider font-semibold">Advertisement</span>
       </div>
 

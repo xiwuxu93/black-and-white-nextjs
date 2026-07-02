@@ -91,7 +91,7 @@ const EDITING_NOTES = [
 
 function MarketingSections() {
   return (
-    <section className="converter-marketing py-20 px-4">
+    <article className="converter-marketing py-20 px-4 entry-content">
       <div className="container mx-auto max-w-6xl">
         
         {/* Specialized Tools Hub - New Addition for SEO Weight Distribution */}
@@ -99,7 +99,7 @@ function MarketingSections() {
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
             Choose the Right Tool for the Job
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link href="/logo-to-black-and-white" className="group">
               <Card className="p-6 h-full transition-shadow hover:shadow-md border-primary-100 dark:border-primary-900/50">
                 <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-full w-fit text-blue-600 dark:text-blue-400">
@@ -234,37 +234,54 @@ function MarketingSections() {
         </section>
 
         <section className="bg-gray-50 dark:bg-gray-900/60 rounded-3xl p-8 md:p-12 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-10 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
             Why Use Our Black and White Converter?
           </h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="p-6 h-full">
-              <div className="text-2xl mb-4">🎚️</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Channel Mixing
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Black and white conversion is more than desaturation. Control how red, green, and blue map to gray values.
-              </p>
-            </Card>
-            <Card className="p-6 h-full">
-              <div className="text-2xl mb-4">⚡</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                100% Client-Side
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Your images are processed on your device using browser compute, which keeps files private and responsive.
-              </p>
-            </Card>
-            <Card className="p-6 h-full">
-              <div className="text-2xl mb-4">✨</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Smart Presets
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Start with presets like High Contrast or Classic Film, then fine-tune sliders for your scene.
-              </p>
-            </Card>
+          <div className="space-y-6 max-w-2xl mx-auto">
+            {/* Feature 1: Channel Mixing */}
+            <div className="flex gap-5 p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
+              <div className="text-3xl p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl h-fit text-blue-600 dark:text-blue-400 flex-shrink-0">
+                🎚️
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                  True Monochrome Color Mixing
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Monochrome editing is more than simple desaturation. Independently blend red, green, and blue color channels to control sky depth, contrast separation, and skin tone luminosity.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 2: Client Side */}
+            <div className="flex gap-5 p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
+              <div className="text-3xl p-3 bg-purple-50 dark:bg-purple-900/20 rounded-xl h-fit text-purple-600 dark:text-purple-400 flex-shrink-0">
+                ⚡
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                  Local, Zero-Upload Privacy
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Your photos never leave your device. All rendering is processed inside your browser using hardware-accelerated canvas API, keeping your creative work 100% secure and private.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 3: Presets */}
+            <div className="flex gap-5 p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
+              <div className="text-3xl p-3 bg-green-50 dark:bg-green-900/20 rounded-xl h-fit text-green-600 dark:text-green-400 flex-shrink-0">
+                ✨
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                  Studio-Grade Tonal Presets
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Kickstart your edits with pro presets like Classic Monochrome, High-Contrast Cinematic, or Soft Portrait, then fine-tune highlights, deep shadows, and subtle film grain.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -293,17 +310,35 @@ function MarketingSections() {
         </section>
 
         <section id="faq" className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
             Frequently Asked Questions
           </h2>
-          <div className="grid gap-6 md:grid-cols-2 text-gray-600 dark:text-gray-400">
+          <div className="space-y-4 max-w-3xl mx-auto text-left">
             {HOME_FAQ_SCHEMA.questions.map(({ question, answer }) => (
-              <div key={question} className="bg-gray-50 dark:bg-gray-900/60 rounded-2xl p-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  {question}
-                </h3>
-                <p>{answer}</p>
-              </div>
+              <details
+                key={question}
+                className="group border border-gray-100 dark:border-gray-700/80 rounded-2xl p-5 bg-gray-50/50 dark:bg-gray-900/20 hover:bg-gray-50 dark:hover:bg-gray-900/40 transition-all duration-200"
+              >
+                <summary className="list-none flex items-center justify-between cursor-pointer font-semibold text-gray-900 dark:text-white text-base md:text-lg focus:outline-none select-none">
+                  <span>{question}</span>
+                  <svg
+                    className="w-5 h-5 text-gray-400 transform group-open:rotate-180 transition-transform duration-200 flex-shrink-0 ml-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </summary>
+                <div className="mt-4 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700/50 pt-4">
+                  <p>{answer}</p>
+                </div>
+              </details>
             ))}
           </div>
         </section>
@@ -327,7 +362,7 @@ function MarketingSections() {
           </div>
         </section>
       </div>
-    </section>
+    </article>
   )
 }
 
@@ -340,8 +375,8 @@ export default function HomePage() {
         <ConverterExperience 
           heroTitle="Black and White Image Converter"
           heroSubtitle="I built this private tool to get professional monochrome tones without the complexity of desktop editors. No uploads, no grain loss, and 100% browser-resident processing."
+          marketingContent={<MarketingSections />}
         />
-        <MarketingSections />
       </div>
     </>
   )
