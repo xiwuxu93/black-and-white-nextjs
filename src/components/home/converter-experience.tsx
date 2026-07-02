@@ -497,9 +497,12 @@ export function ConverterExperience({
             </div>
 
             {/* Workspace Grid */}
-            <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
-              {/* Left Column: Upload Workspace */}
-              <div className="xl:col-span-9">
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+              {/* Left Spacer */}
+              <div className="hidden xl:block xl:col-span-2" />
+
+              {/* Center Column: Upload Workspace */}
+              <div className="xl:col-span-7">
                 <div className="mb-12 max-w-xl mx-auto">
                   <UploadArea
                     onFileSelect={handleFileSelect}
@@ -526,7 +529,7 @@ export function ConverterExperience({
               </div>
 
               {/* Right Column: Sidebar */}
-              <div className="xl:col-span-3">
+              <div id="primary-sidebar" className="sidebar widget-area xl:col-span-3 xl:sticky xl:top-24 mt-8 xl:mt-0 h-fit">
                 <Sidebar />
               </div>
             </div>
@@ -548,9 +551,12 @@ export function ConverterExperience({
             </div>
 
             {/* Workspace Grid */}
-            <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
-              {/* Left Column: Editor Workspace */}
-              <div className="xl:col-span-9 space-y-8">
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+              {/* Left Spacer */}
+              <div className="hidden xl:block xl:col-span-2" />
+
+              {/* Center Column: Editor Workspace */}
+              <div className="xl:col-span-7 space-y-8">
                 <div className="mb-8">
                   <ResultDisplay
                     originalImageBitmap={currentImageBitmap}
@@ -687,7 +693,7 @@ export function ConverterExperience({
               </div>
 
               {/* Right Column: Sidebar */}
-              <div className="xl:col-span-3">
+              <div id="primary-sidebar" className="sidebar widget-area xl:col-span-3 xl:sticky xl:top-24 mt-8 xl:mt-0 h-fit">
                 <Sidebar />
               </div>
             </div>
@@ -716,7 +722,7 @@ export function ConverterExperience({
 
 function Sidebar() {
   return (
-    <aside id="primary-sidebar" className="sidebar widget-area space-y-6 lg:sticky lg:top-24 mt-8 lg:mt-0 w-full">
+    <aside className="space-y-6 w-full">
       {/* Primary Sidebar Ad Slot - Transparent container to hold automated Journey ads */}
       <div className="w-[300px] min-h-[600px] mx-auto grow-sidebar-ad bg-gray-50/30 dark:bg-gray-800/10 rounded-2xl border border-dashed border-gray-200/50 dark:border-gray-700/30 flex items-center justify-center">
         <span className="text-[10px] text-gray-400 dark:text-gray-600 uppercase tracking-wider font-semibold">Advertisement</span>
