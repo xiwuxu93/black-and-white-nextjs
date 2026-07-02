@@ -179,7 +179,7 @@ export default function PrivacyPolicyPage() {
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1">
                   <li><strong>Google Analytics:</strong> Website usage statistics (anonymous)</li>
-                  <li><strong>Google AdSense:</strong> Advertising services (if applicable)</li>
+                  <li><strong>Journey by Mediavine:</strong> Advertising management and optimization services</li>
                 </ul>
               </div>
 
@@ -269,41 +269,32 @@ export default function PrivacyPolicyPage() {
             </div>
           </Card>
 
-          {/* Advertising and Cookies (AdSense) */}
+          {/* Advertising and Cookies (Mediavine Journey) */}
           <Card className="p-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              6. Advertising and Cookies (Google AdSense)
+              6. Advertising and Cookies (Journey by Mediavine)
             </h2>
             <div className="space-y-4 text-gray-600 dark:text-gray-400">
               <p>
-                We show advertising on some pages using Google AdSense. As part of this service:
+                We partner with Journey by Mediavine to manage third-party interest-based advertising appearing on the Site. Journey processes personal data to deliver personalized, relevant ads to your browser and measure ad performance.
+              </p>
+              <p>
+                Mediavine and its ad partners use cookies, device identifiers, and similar technologies to collect information about your visits to this website and other sites across the internet to serve advertisements tailored to your interests.
+              </p>
+              <p>
+                You can manage your consent preferences or opt out of personalized tracking at any time by interacting with the cookie consent banner presented on our website, or by visiting the network's privacy resources below:
               </p>
               <ul className="list-disc ml-6 space-y-1">
                 <li>
-                  Third‑party vendors, including Google, use cookies to serve ads based on a user’s prior visits to this website or other websites.
+                  Mediavine Privacy Policy: <a className="underline" href="https://www.mediavine.com/ad-partners-privacy-policy/" rel="noopener noreferrer" target="_blank">https://www.mediavine.com/ad-partners-privacy-policy/</a>
                 </li>
                 <li>
-                  Google’s advertising cookies and identifiers enable Google and its partners to serve ads based on your visits to this site and/or other sites on the Internet.
+                  Network Advertising Initiative (NAI) Opt-Out: <a className="underline" href="https://optout.networkadvertising.org" rel="noopener noreferrer" target="_blank">https://optout.networkadvertising.org</a>
+                </li>
+                <li>
+                  Digital Advertising Alliance (DAA) Choice Page: <a className="underline" href="https://optout.aboutads.info" rel="noopener noreferrer" target="_blank">https://optout.aboutads.info</a>
                 </li>
               </ul>
-              <p>
-                Users can opt out of personalized advertising by visiting Google’s Ads Settings.
-                Alternatively, you can opt out of some third‑party vendors’ uses of cookies for personalized advertising by visiting the industry opt‑out page.
-              </p>
-              <ul className="list-disc ml-6 space-y-1">
-                <li>
-                  Google Ads Settings: <a className="underline" href="https://adssettings.google.com" rel="noopener noreferrer" target="_blank">https://adssettings.google.com</a>
-                </li>
-                <li>
-                  AboutAds choices: <a className="underline" href="http://www.aboutads.info/choices" rel="noopener noreferrer" target="_blank">http://www.aboutads.info/choices</a>
-                </li>
-              </ul>
-              <p>
-                We currently use Google AdSense as our advertising partner. If we later work with additional third‑party vendors or ad networks, we will list them here and link to their opt‑out pages.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Learn more: <a className="underline" href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">How Google uses cookies in ads</a> · <a className="underline" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google uses data from partner sites</a>
-              </p>
             </div>
           </Card>
 

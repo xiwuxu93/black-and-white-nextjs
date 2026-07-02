@@ -8,7 +8,6 @@ import GoogleAnalytics from '@/components/analytics/google-analytics'
 import { StructuredData } from '@/components/seo/structured-data'
 import { NavigationStructuredData } from '@/components/seo/navigation-structured-data'
 import { canonicalUrl } from '@/lib/seo'
-import { FundingChoices } from '@/components/consent/funding-choices'
 import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -70,9 +69,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'ca-pub-4855228928819714',
-  },
   alternates: {
     canonical: canonicalUrl('/'),
   },
@@ -86,9 +82,6 @@ export const metadata: Metadata = {
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
     ]
-  },
-  other: {
-    'google-adsense-account': 'ca-pub-4855228928819714'
   }
 }
 
@@ -100,9 +93,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {enableAds && (
-          <FundingChoices pubId={process.env.NEXT_PUBLIC_FC_PUB_ID || 'pub-4855228928819714'} />
-        )}
         <NavigationStructuredData />
         <StructuredData type="website" data={{}} />
         <StructuredData type="application" data={{}} />
