@@ -497,9 +497,9 @@ export function ConverterExperience({
             </div>
 
             {/* Workspace Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
               {/* Left Column: Upload Workspace */}
-              <div className="lg:col-span-9">
+              <div className="xl:col-span-9">
                 <div className="mb-12 max-w-xl mx-auto">
                   <UploadArea
                     onFileSelect={handleFileSelect}
@@ -526,7 +526,7 @@ export function ConverterExperience({
               </div>
 
               {/* Right Column: Sidebar */}
-              <div className="lg:col-span-3">
+              <div className="xl:col-span-3">
                 <Sidebar />
               </div>
             </div>
@@ -548,9 +548,9 @@ export function ConverterExperience({
             </div>
 
             {/* Workspace Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
               {/* Left Column: Editor Workspace */}
-              <div className="lg:col-span-9 space-y-8">
+              <div className="xl:col-span-9 space-y-8">
                 <div className="mb-8">
                   <ResultDisplay
                     originalImageBitmap={currentImageBitmap}
@@ -687,7 +687,7 @@ export function ConverterExperience({
               </div>
 
               {/* Right Column: Sidebar */}
-              <div className="lg:col-span-3">
+              <div className="xl:col-span-3">
                 <Sidebar />
               </div>
             </div>
