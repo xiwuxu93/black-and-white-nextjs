@@ -32,7 +32,6 @@ import {
   qualityForFormat,
   normalizeExtension
 } from '@/lib/image-format'
-import { ChevronRight } from 'lucide-react'
 
 const ResultDisplay = dynamic(
   () =>
@@ -150,7 +149,8 @@ export function ConverterExperience({
     useState<OriginalFileInfo | null>(null)
 
   const router = useRouter()
-  const setConversionData = useConversionStore((state) => state.setConversionData)
+  const setPendingImageFile = useConversionStore((state) => state.setPendingImageFile)
+  const consumePendingImageFile = useConversionStore((state) => state.consumePendingImageFile)
   const [processingStatus, setProcessingStatus] = useState<string>('')
 
   const workerRef = useRef<Worker | null>(null)
@@ -228,12 +228,6 @@ export function ConverterExperience({
       ]
 
       try {
-        // Phase 3: Push a virtual route change step for ads refresh
-        if (typeof window !== 'undefined') {
-          window.history.pushState({}, '', '/?step=finalizing')
-          window.dispatchEvent(new PopStateEvent('popstate'))
-        }
-
         for (const step of steps) {
           setProcessingStatus(step.text)
           await new Promise((resolve) => setTimeout(resolve, step.delay))
@@ -253,29 +247,22 @@ export function ConverterExperience({
         }
 
         const fileUrl = URL.createObjectURL(blob)
-        const originalSizeMB = originalInfo ? (originalInfo.size / (1024 * 1024)).toFixed(2) : '0'
-        const processedSizeMB = (blob.size / (1024 * 1024)).toFixed(2)
-
-        // Save to Zustand store
-        setConversionData({
-          fileUrl,
-          filename,
-          fileType: 'image',
-          originalSize: originalSizeMB,
-          processedSize: processedSizeMB
-        })
-
-        // Redirect to download page
-        router.push('/download')
+        const link = document.createElement('a')
+        link.href = fileUrl
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        link.remove()
+        window.setTimeout(() => URL.revokeObjectURL(fileUrl), 1000)
       } catch (error) {
-        console.error('Processing or redirect failed:', error)
+        console.error('Processing or download failed:', error)
       } finally {
         pendingDownloadFormatRef.current = null
         setIsProcessing(false)
         setProcessingStatus('')
       }
     },
-    [router, setConversionData]
+    []
   )
 
   const initializeWorker = useCallback(() => {
@@ -401,6 +388,17 @@ export function ConverterExperience({
     [filters, initializeWorker, processImage]
   )
 
+  useEffect(() => {
+    if (isLandingPage || showEditor) {
+      return
+    }
+
+    const pendingFile = consumePendingImageFile()
+    if (pendingFile) {
+      void handleFileSelect(pendingFile)
+    }
+  }, [consumePendingImageFile, handleFileSelect, isLandingPage, showEditor])
+
   const handleFiltersChange = useCallback(
     (newFilters: ImageFilter) => {
       setFilters(newFilters)
@@ -467,26 +465,33 @@ export function ConverterExperience({
     return DOWNLOAD_FORMATS[0]
   }, [originalFileInfo])
 
+  const handleLandingFileSelect = useCallback(
+    (file: File) => {
+      setPendingImageFile(file)
+      router.push('/black-and-white-converter/?start=1')
+    },
+    [router, setPendingImageFile]
+  )
+
   return (
     <>
       {!showEditor && (
-        <div className="py-6">
-            {/* Centered Hero Header */}
-            <div className="text-center max-w-4xl mx-auto mb-10">
+        <>
+            <header className="article-header mx-auto max-w-4xl">
               <Badge className="mb-6" variant="secondary">
                 {heroBadgeText ?? '✨ Free Black and White Converter'}
               </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+              <h1>
                 {heroTitle ?? 'Convert Images to Black and White Online'}
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300">
                 {heroSubtitle ??
                   'Upload, preview, and export professional monochrome photos in seconds. No accounts, no uploads to third-party servers—everything happens in your browser.'}
               </p>
-            </div>
+            </header>
 
             {/* Feature Badges */}
-            <div className="flex flex-wrap justify-center gap-2 mb-12">
+            <div className="flex flex-wrap justify-center gap-2">
               {(heroFeatureBadges ?? [
                 'Make Photos Black and White',
                 'Instant Privacy-Friendly Processing',
@@ -500,15 +505,18 @@ export function ConverterExperience({
             </div>
 
             {/* Center Column Content */}
-            <div className="w-full">
+            <section className="article-section border-t-0 pt-0">
               {isLandingPage ? (
-                <div className="my-16 text-center">
-                  <Link href="/black-and-white-converter">
-                    <Button size="lg" className="rounded-full px-12 py-7 text-lg md:text-xl font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all bg-primary-600 hover:bg-primary-700 text-white">
-                      Start Converting Now
-                      <ChevronRight className="w-5.5 h-5.5 ml-2.5" />
-                    </Button>
-                  </Link>
+                <div className="mb-12 max-w-xl mx-auto">
+                  <UploadArea
+                    onFileSelect={handleLandingFileSelect}
+                    isProcessing={isProcessing}
+                    className="w-full"
+                    accept={uploadAccept}
+                    supportText={uploadSupportText}
+                    allowedExtensions={uploadAllowedExtensions}
+                    invalidFileMessage={uploadInvalidFileMessage}
+                  />
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 font-medium">
                     100% Free • Secure Local Browser Processing • No Registration Required
                   </p>
@@ -540,9 +548,9 @@ export function ConverterExperience({
                   )}
                 </>
               )}
-              {marketingContent}
-            </div>
-          </div>
+            </section>
+            {marketingContent}
+          </>
         )}
 
       {showEditor && (
@@ -714,4 +722,3 @@ export function ConverterExperience({
       </>
     )
 }
-

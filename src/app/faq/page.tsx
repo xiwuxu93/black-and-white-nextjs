@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ChevronDown, HelpCircle, CheckCircle, ArrowRight } from 'lucide-react'
@@ -122,27 +121,25 @@ export default function FAQPage() {
   return (
     <>
       <StructuredData type="faq" data={faqStructuredData} />
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12">
-      <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
-        <div className="text-center mb-12">
+        <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             <HelpCircle className="w-4 h-4 mr-2" />
             FAQ
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h1>
             Frequently Asked Questions
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Practical answers about workflow, file handling, privacy, and troubleshooting.
           </p>
-        </div>
+        </header>
 
         {/* FAQ Categories */}
-        <div className="space-y-8">
+        <div>
           {faqs.map((category, categoryIndex) => (
-            <Card key={categoryIndex} className="p-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+            <section key={categoryIndex} className="article-section">
+              <h2 className="flex items-center">
                 <CheckCircle className="w-6 h-6 text-green-500 mr-3" />
                 {category.category}
               </h2>
@@ -165,14 +162,14 @@ export default function FAQPage() {
                   </details>
                 ))}
               </div>
-            </Card>
+            </section>
           ))}
         </div>
 
         {/* Still Have Questions */}
-        <Card className="p-8 mt-12 text-center bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-800">
+        <section className="article-section text-center">
           <HelpCircle className="w-12 h-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2>
             Still Have Questions?
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
@@ -191,14 +188,14 @@ export default function FAQPage() {
               </Button>
             </Link>
           </div>
-        </Card>
+        </section>
 
         {/* Quick Tips */}
-        <Card className="p-6 mt-8 bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center">
+        <section className="article-section">
+          <h2 className="flex items-center">
             <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
             Quick Tips for Best Results
-          </h3>
+          </h2>
           <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
             <li>• Start from a well-exposed image with clear subject separation</li>
             <li>• Apply one preset first, then tune highlights and shadows</li>
@@ -206,9 +203,7 @@ export default function FAQPage() {
             <li>• Prefer JPG/WebP for smaller delivery files; PNG for transparency</li>
             <li>• Conversion runs locally, so originals stay on your device</li>
           </ul>
-        </Card>
-      </div>
-    </div>
+        </section>
     </>
   )
 }

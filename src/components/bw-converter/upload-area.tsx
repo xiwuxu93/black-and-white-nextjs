@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { Upload, Image as ImageIcon, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -45,6 +45,7 @@ export function UploadArea({
 }: UploadAreaProps) {
   const [dragActive, setDragActive] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const validateAndProcessFile = useCallback(
     (file: File) => {
@@ -105,6 +106,7 @@ export function UploadArea({
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0]
       validateAndProcessFile(file)
+      e.target.value = ''
     }
   }, [validateAndProcessFile])
 
@@ -123,11 +125,11 @@ export function UploadArea({
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={handleDrop}
-        onClick={() => !isProcessing && document.getElementById('file-input')?.click()}
+        onClick={() => !isProcessing && inputRef.current?.click()}
       >
         <div className="p-12 text-center">
           <input
-            id="file-input"
+            ref={inputRef}
             type="file"
             accept={accept || 'image/*'}
             onChange={handleFileInput}

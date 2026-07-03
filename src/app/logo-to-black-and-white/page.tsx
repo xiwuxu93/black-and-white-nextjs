@@ -53,13 +53,12 @@ const FAQ_SCHEMA = {
 
 function LogoToBwSections() {
   return (
-    <section className="converter-marketing py-20 px-4">
-      <div className="container mx-auto max-w-6xl space-y-24">
+    <>
         
         {/* Deep Dive: Technical Logic */}
-        <section className="bg-white dark:bg-gray-900 rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 dark:border-gray-800">
+        <section className="converter-marketing article-section">
           <div className="max-w-3xl mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2>
               How Logo Conversion Works
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400">
@@ -97,7 +96,7 @@ function LogoToBwSections() {
 
         {/* Brand Management Use Cases */}
         <section>
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-10 text-center">
+          <h2>
             Practical Use Cases
           </h2>
           <div className="grid md:grid-cols-3 gap-8 text-gray-600 dark:text-gray-400">
@@ -135,7 +134,7 @@ function LogoToBwSections() {
         </section>
 
         {/* Designer Tips */}
-        <section className="bg-blue-50 dark:bg-blue-900/20 rounded-3xl p-8 md:p-12 border border-blue-100 dark:border-blue-900/30">
+        <section className="article-section">
           <div className="flex items-start gap-4">
             <div className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-sm">
               <Info className="w-6 h-6 text-blue-600" />
@@ -153,8 +152,8 @@ function LogoToBwSections() {
           </div>
         </section>
 
-        <section className="bg-white dark:bg-gray-900 rounded-3xl p-8 md:p-12 border border-gray-100 dark:border-gray-800">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-10 text-center">
+        <section className="article-section">
+          <h2>
             Logo Conversion FAQ
           </h2>
           <div className="grid gap-8 md:grid-cols-2 text-gray-600 dark:text-gray-400">
@@ -167,8 +166,8 @@ function LogoToBwSections() {
           </div>
         </section>
 
-        <section className="text-center py-12">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+        <section className="article-section text-center">
+          <h2>
             Need Bulk Processing Too?
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8">
@@ -187,8 +186,7 @@ function LogoToBwSections() {
             </Link>
           </div>
         </section>
-      </div>
-    </section>
+    </>
   )
 }
 
@@ -196,27 +194,25 @@ export default function LogoToBlackAndWhitePage() {
   return (
     <>
       <StructuredData type="faq" data={FAQ_SCHEMA} />
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <ConverterExperience
-          heroBadgeText="Professional Design Tool"
-          heroTitle="Logo to Black and White"
-          heroSubtitle="I know how frustrating it is when filters ruin transparency. This tool keeps your alpha channel intact while you map brand colors to perfect grayscale."
-          heroFeatureBadges={[
-            'Alpha Layer Isolation',
-            'Vector Anti-Aliasing',
-            'No Watermarks',
-            'Studio Privacy'
-          ]}
-          uploadAccept=".png,image/png,.svg,image/svg+xml"
-          uploadSupportText="Supports: PNG, SVG (Max 10MB)"
-          uploadAllowedExtensions={[
-            'png',
-            'svg'
-          ]}
-          uploadInvalidFileMessage="Please upload a PNG or SVG file."
-        />
-        <LogoToBwSections />
-      </div>
+      <ConverterExperience
+        heroBadgeText="Professional Design Tool"
+        heroTitle="Logo to Black and White"
+        heroSubtitle="I know how frustrating it is when filters ruin transparency. This tool keeps your alpha channel intact while you map brand colors to perfect grayscale."
+        heroFeatureBadges={[
+          'Alpha Layer Isolation',
+          'Vector Anti-Aliasing',
+          'No Watermarks',
+          'Studio Privacy'
+        ]}
+        uploadAccept=".png,image/png,.svg,image/svg+xml"
+        uploadSupportText="Supports: PNG, SVG (Max 10MB)"
+        uploadAllowedExtensions={[
+          'png',
+          'svg'
+        ]}
+        uploadInvalidFileMessage="Please upload a PNG or SVG file."
+      />
+      <LogoToBwSections />
     </>
   )
 }

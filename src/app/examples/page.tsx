@@ -21,24 +21,23 @@ export const metadata: Metadata = {
 
 export default function ExamplesPage() {
   return (
-    <div className="min-h-screen py-12">
-      <div className="container max-w-7xl">
+    <>
         <Breadcrumb items={[{ name: 'Examples' }]} />
 
         {/* Page title */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <header className="article-header">
+          <h1>
             Professional Black and White Photography Examples
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8">
             This gallery shows before/after conversions with notes on style choice,
             contrast strategy, and subject handling.
           </p>
-        </div>
+        </header>
 
         {/* Featured Guides */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white text-center mb-10">
+        <section className="article-section">
+          <h2>
             Featured Guides & Case Studies
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -73,8 +72,8 @@ export default function ExamplesPage() {
         </section>
 
         {/* Photography Education Section */}
-        <section className="mb-16 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+        <section className="article-section">
+          <h2>
             Understanding Black and White Photography
           </h2>
           <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -129,8 +128,8 @@ export default function ExamplesPage() {
         </section>
 
         {/* Style Analysis Section */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+        <section className="article-section">
+          <h2>
             Professional Black and White Conversion Styles
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -290,8 +289,8 @@ export default function ExamplesPage() {
         <ExamplesGrid />
 
         {/* Professional Tips Section */}
-        <section className="mt-16 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+        <section className="article-section">
+          <h2>
             Practical Tips for Black and White Photography
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -335,7 +334,6 @@ export default function ExamplesPage() {
             </div>
           </div>
         </section>
-      </div>
-    </div>
+    </>
   )
 }

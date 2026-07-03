@@ -39,6 +39,11 @@ const nextConfig = {
         permanent: true
       },
       {
+        source: '/black-and-white-converte/:path*',
+        destination: '/black-and-white-converter/',
+        permanent: true
+      },
+      {
         source: '/black-and-white-newborn-images/',
         destination: '/newborn-photography-guide/',
         permanent: true

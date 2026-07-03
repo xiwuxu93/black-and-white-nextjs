@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ConverterExperience } from '@/components/home/converter-experience'
 import { canonicalUrl } from '@/lib/seo'
@@ -51,10 +50,9 @@ const FAQ_SCHEMA = {
 
 function InvertSections() {
   return (
-    <section className="converter-marketing py-20 px-4">
-      <div className="container mx-auto max-w-6xl space-y-16">
-        <section className="bg-white dark:bg-gray-900 rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 dark:border-gray-800">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+    <>
+        <section className="converter-marketing article-section">
+          <h2>
             Why Invert Image Colors?
           </h2>
           <div className="grid md:grid-cols-3 gap-8 text-gray-600 dark:text-gray-300">
@@ -85,9 +83,9 @@ function InvertSections() {
           </div>
         </section>
 
-        <section className="bg-gray-50 dark:bg-gray-900/60 rounded-3xl p-8 md:p-12 border border-gray-100 dark:border-gray-800">
+        <section className="article-section">
           <div className="max-w-3xl mx-auto text-left">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+            <h2>
               The Science of Color Inversion
             </h2>
             <div className="space-y-4 text-gray-600 dark:text-gray-300">
@@ -110,8 +108,8 @@ function InvertSections() {
           </div>
         </section>
 
-        <section className="bg-white dark:bg-gray-900 rounded-3xl p-8 md:p-12 border border-gray-100 dark:border-gray-800">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+        <section className="article-section">
+          <h2>
             Invert Colors FAQ
           </h2>
           <div className="grid gap-6 md:grid-cols-2 text-gray-600 dark:text-gray-300">
@@ -124,9 +122,9 @@ function InvertSections() {
           </div>
         </section>
 
-        <section className="bg-gray-50 dark:bg-gray-900/60 rounded-3xl p-8 md:p-12 border border-gray-100 dark:border-gray-800">
+        <section className="article-section">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2>
               More Tools
             </h2>
             <div className="flex flex-wrap justify-center gap-4">
@@ -143,8 +141,7 @@ function InvertSections() {
             </div>
           </div>
         </section>
-      </div>
-    </section>
+    </>
   )
 }
 
@@ -152,27 +149,25 @@ export default function InvertImageColorsPage() {
   return (
     <>
       <StructuredData type="faq" data={FAQ_SCHEMA} />
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <ConverterExperience
-          heroBadgeText="Free Negative Tool"
-          heroTitle="Invert Image Colors Online"
-          heroSubtitle="Instantly flip colors to their opposite. Turn black to white, or create negative photo effects in your browser."
-          heroFeatureBadges={[
-            'Invert Colors',
-            'Negative Effect',
-            'Black to White',
-            '100% Private'
-          ]}
-          defaultFilters={{
-            invert: true,
-            grayscale: false
-          }}
-          mode="invert"
-          hideAdvancedControls={true}
-          hideBottomFeatures={true}
-        />
-        <InvertSections />
-      </div>
+      <ConverterExperience
+        heroBadgeText="Free Negative Tool"
+        heroTitle="Invert Image Colors Online"
+        heroSubtitle="Instantly flip colors to their opposite. Turn black to white, or create negative photo effects in your browser."
+        heroFeatureBadges={[
+          'Invert Colors',
+          'Negative Effect',
+          'Black to White',
+          '100% Private'
+        ]}
+        defaultFilters={{
+          invert: true,
+          grayscale: false
+        }}
+        mode="invert"
+        hideAdvancedControls={true}
+        hideBottomFeatures={true}
+      />
+      <InvertSections />
     </>
   )
 }

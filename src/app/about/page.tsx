@@ -41,11 +41,10 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 py-16 md:py-24">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <>
         
         {/* Intro Section - Removed Western Headshot */}
-        <section className="mb-20">
+        <section>
           <div className="flex flex-col gap-8">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gray-900 text-white mb-2">
               <Terminal className="w-8 h-8" />
@@ -54,7 +53,7 @@ export default function AboutPage() {
               <Badge className="mb-4" variant="outline">
                 12+ Years Frontend Expert & Hobbyist Photographer
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              <h1>
                 Hi, I&apos;m Sivan Xu.
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
@@ -83,7 +82,7 @@ export default function AboutPage() {
         </section>
 
         {/* The "Why" - Technical & Creative Conflict */}
-        <section className="mb-24 space-y-12">
+        <section className="article-section">
           <div className="border-l-4 border-gray-900 dark:border-gray-100 pl-6 md:pl-10">
             <h2 className="text-3xl font-bold mb-6">
               The Mission: Privacy + Fidelity
@@ -117,7 +116,7 @@ export default function AboutPage() {
         </section>
 
         {/* Success Metrics */}
-        <section className="mb-24">
+        <section className="article-section">
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <Card className="p-8 border-none bg-gray-50 dark:bg-gray-900">
               <div className="text-4xl font-bold mb-2">12+</div>
@@ -135,7 +134,7 @@ export default function AboutPage() {
         </section>
 
         {/* Connect */}
-        <section className="text-center py-16 border-t border-gray-100 dark:border-gray-800">
+        <section className="article-section text-center">
           <h2 className="text-3xl font-bold mb-6">Open Source & Independent</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto">
             BWConverter is a side project born from my own needs. The project is open source on GitHub. 
@@ -157,7 +156,6 @@ export default function AboutPage() {
             </Link>
           </div>
         </section>
-      </div>
-    </div>
+    </>
   )
 }

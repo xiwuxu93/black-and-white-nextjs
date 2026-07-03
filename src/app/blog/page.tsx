@@ -65,21 +65,20 @@ export default function BlogPage() {
   const regularPosts = blogPosts.filter(post => !post.featured || post.id !== featuredPost?.id)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <>
         {/* Header */}
-        <div className="text-center mb-12">
+        <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             📝 Photography Blog
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1>
             Black And White Photography
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Tips, techniques, and insights for creating stunning black and white images. 
             From beginner guides to professional workflows.
           </p>
-        </div>
+        </header>
 
         {/* Horizontal Categories Filter Bar */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
@@ -238,8 +237,7 @@ export default function BlogPage() {
                 Load More Articles
               </Button>
             </div>
-          </div>
         </div>
-      </div>
+    </>
   )
 }

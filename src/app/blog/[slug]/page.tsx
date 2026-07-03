@@ -278,8 +278,7 @@ export default function BlogPostPage({ params }: Props) {
   ]
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 py-12 px-4">
-      <div className="container mx-auto max-w-4xl">
+    <>
         {/* Navigation */}
         <div className="mb-8">
           <Link href="/blog">
@@ -419,14 +418,14 @@ export default function BlogPostPage({ params }: Props) {
         </div>
 
         <div className="w-full">
-            <article className="prose prose-lg max-w-none prose-gray dark:prose-invert entry-content post-content">
+            <div className="prose prose-lg max-w-none prose-gray dark:prose-invert">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={MarkdownComponents as any}
               >
                 {post.content}
               </ReactMarkdown>
-            </article>
+            </div>
 
             {/* Tags */}
             <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
@@ -503,7 +502,6 @@ export default function BlogPostPage({ params }: Props) {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </>
   )
 }

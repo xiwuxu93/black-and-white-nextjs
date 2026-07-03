@@ -66,11 +66,12 @@ export default function BatchPage() {
   
   const workerRef = useRef<Worker | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const selectedFilesCountRef = useRef(0)
 
   // Initialize batch worker
   React.useEffect(() => {
     if (typeof window !== 'undefined' && window.Worker) {
-      workerRef.current = new Worker('/batch-worker.js')
+      workerRef.current = new Worker('/batch-worker.js?v=20260703')
       workerRef.current.onmessage = handleWorkerMessage
       workerRef.current.onerror = handleWorkerError
     }
@@ -111,7 +112,8 @@ export default function BatchPage() {
 
     // Update progress
     setProcessingProgress(prev => {
-      const newProgress = prev + (100 / selectedFiles.length)
+      const fileCount = selectedFilesCountRef.current
+      const newProgress = fileCount > 0 ? prev + (100 / fileCount) : 100
       if (newProgress >= 100) {
         setIsProcessing(false)
         return 100
@@ -127,6 +129,7 @@ export default function BatchPage() {
 
   const handleFilesSelect = useCallback((files: FileList | File[]) => {
     const fileArray = Array.from(files).filter(file => file.type.startsWith('image/'))
+    selectedFilesCountRef.current = fileArray.length
     setSelectedFiles(fileArray)
     
     const processedImagesList: ProcessedImage[] = fileArray.map((file, index) => {
@@ -270,6 +273,7 @@ export default function BatchPage() {
   }, [])
 
   const clearAll = useCallback(() => {
+    selectedFilesCountRef.current = 0
     setSelectedFiles([])
     setProcessedImages([])
     setProcessingProgress(0)
@@ -282,15 +286,14 @@ export default function BatchPage() {
   const completedCount = processedImages.filter(img => img.processingStatus === 'completed').length
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <>
         {/* Header Section */}
-        <div className="text-center mb-16">
+        <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             <Zap className="w-4 h-4 mr-2 text-yellow-500" />
             High-Volume Production Tool
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+          <h1>
             Batch Black and White Converter
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
@@ -298,7 +301,7 @@ export default function BatchPage() {
             It works well for wedding galleries, ecommerce catalogs, and social media sets where you need
             consistent black and white output across many files.
           </p>
-        </div>
+        </header>
 
         <div className="space-y-12 mb-24">
             {/* Upload Area */}
@@ -386,7 +389,7 @@ export default function BatchPage() {
             {processedImages.length > 0 && (
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                 {processedImages.map((image) => (
-                  <Card key={image.id} className="p-2 relative group overflow-hidden border-none bg-white dark:bg-gray-900 shadow-md">
+                  <Card key={image.id} className="p-2 relative group border-none bg-white dark:bg-gray-900 shadow-md">
                     <div className="space-y-3">
                       <div className="aspect-[4/5] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden relative flex items-center justify-center">
                         {image.processedData ? (
@@ -437,7 +440,7 @@ export default function BatchPage() {
                             <SelectTrigger className="w-full h-6 text-[9px] px-2 bg-gray-50 dark:bg-gray-800 border-none">
                               <span>{image.selectedFormat.label}</span>
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className="z-[70] w-full min-w-full">
                               {DOWNLOAD_FORMATS.map(format => (
                                 <SelectItem key={format.value} value={format.value}>
                                   {format.label}
@@ -455,7 +458,7 @@ export default function BatchPage() {
         </div>
 
         {/* Technical & Workflow Section */}
-        <div className="grid md:grid-cols-3 gap-12 mb-24">
+        <section className="article-section grid md:grid-cols-3 gap-12">
           <div className="space-y-4">
             <div className="p-3 bg-white dark:bg-gray-900 rounded-2xl w-fit shadow-sm border border-gray-100 dark:border-gray-800">
               <Cpu className="w-6 h-6 text-primary-600" />
@@ -486,10 +489,10 @@ export default function BatchPage() {
               Images only exist in browser memory while the tab is open.
             </p>
           </div>
-        </div>
+        </section>
 
         {/* FAQ & Tips */}
-        <div className="grid md:grid-cols-2 gap-16 mb-16">
+        <section className="article-section grid md:grid-cols-2 gap-16">
           <div className="space-y-8">
             <h4 className="text-2xl font-bold">Production FAQ</h4>
             <div className="space-y-6">
@@ -528,8 +531,7 @@ export default function BatchPage() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </section>
+    </>
   )
 }

@@ -12,7 +12,6 @@ import {
   FileText, 
   CheckCircle2, 
   ArrowLeft, 
-  FileImage, 
   BookOpen 
 } from 'lucide-react'
 import Link from 'next/link'
@@ -30,7 +29,7 @@ export default function DownloadPageClient() {
 
   if (!data) {
     return (
-      <div className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="flex min-h-[70vh] items-center justify-center">
         <div className="text-center">
           <RefreshCw className="w-8 h-8 animate-spin text-primary-600 mx-auto mb-4" />
           <p className="text-gray-500">Redirecting to homepage...</p>
@@ -53,8 +52,7 @@ export default function DownloadPageClient() {
       : 0
 
   return (
-    <div className="min-h-[85vh] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4">
-      <div className="container mx-auto max-w-5xl">
+    <>
         {/* Navigation Breadcrumb */}
         <div className="mb-8">
           <Button 
@@ -185,7 +183,6 @@ export default function DownloadPageClient() {
             </Card>
           </div>
         </div>
-      </div>
-    </div>
+    </>
   )
 }

@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { FileText, CheckCircle, AlertTriangle, ArrowRight } from 'lucide-react'
@@ -22,10 +21,9 @@ export const metadata: Metadata = {
 
 export default function TermsOfServicePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <>
         {/* Header */}
-        <div className="text-center mb-12">
+        <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             <FileText className="w-4 h-4 mr-2" />
             Terms of Service
@@ -39,11 +37,10 @@ export default function TermsOfServicePage() {
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
             Last updated: December 2024
           </p>
-        </div>
+        </header>
 
-        <div className="space-y-8">
           {/* Acceptance of Terms */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               1. Acceptance of Terms
             </h2>
@@ -53,10 +50,10 @@ export default function TermsOfServicePage() {
             <p className="text-gray-600 dark:text-gray-400">
               If you do not agree to abide by the above, please do not use this service. Your continued use of the Service constitutes acceptance of these terms.
             </p>
-          </Card>
+          </section>
 
           {/* Description of Service */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               2. Description of Service
             </h2>
@@ -76,10 +73,10 @@ export default function TermsOfServicePage() {
                 The Service is provided free of charge and processes images entirely within your web browser without uploading them to our servers.
               </p>
             </div>
-          </Card>
+          </section>
 
           {/* User Responsibilities */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               3. User Responsibilities
             </h2>
@@ -113,10 +110,10 @@ export default function TermsOfServicePage() {
                 </ul>
               </div>
             </div>
-          </Card>
+          </section>
 
           {/* Intellectual Property */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               4. Intellectual Property Rights
             </h2>
@@ -139,10 +136,10 @@ export default function TermsOfServicePage() {
                 </p>
               </div>
             </div>
-          </Card>
+          </section>
 
           {/* Privacy and Data */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               5. Privacy and Data Processing
             </h2>
@@ -162,10 +159,10 @@ export default function TermsOfServicePage() {
             <p className="text-gray-600 dark:text-gray-400">
               For detailed information about how we handle data and protect your privacy, please review our <Link href="/privacy" className="text-blue-600 hover:text-blue-800 underline">Privacy Policy</Link>.
             </p>
-          </Card>
+          </section>
 
           {/* Service Availability */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               6. Service Availability
             </h2>
@@ -183,10 +180,10 @@ export default function TermsOfServicePage() {
                 We may temporarily suspend the Service for maintenance, updates, or technical issues. We will attempt to provide advance notice when possible.
               </p>
             </div>
-          </Card>
+          </section>
 
           {/* Disclaimers */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               7. Disclaimers
             </h2>
@@ -213,10 +210,10 @@ export default function TermsOfServicePage() {
                 <li>Uninterrupted or error-free operation</li>
               </ul>
             </div>
-          </Card>
+          </section>
 
           {/* Limitation of Liability */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               8. Limitation of Liability
             </h2>
@@ -235,10 +232,10 @@ export default function TermsOfServicePage() {
                 Our total liability, if any, shall not exceed the amount you paid for the Service (which is $0 as it's free).
               </p>
             </div>
-          </Card>
+          </section>
 
           {/* Modifications */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               9. Modifications to Terms
             </h2>
@@ -248,30 +245,30 @@ export default function TermsOfServicePage() {
             <p className="text-gray-600 dark:text-gray-400">
               Your continued use of the Service after any changes indicates your acceptance of the new terms. We encourage you to review these terms periodically.
             </p>
-          </Card>
+          </section>
 
           {/* Governing Law */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               10. Governing Law
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
               These terms shall be interpreted and governed by the laws of the jurisdiction where our service is operated, without regard to conflict of law principles. Any disputes arising from these terms or your use of the Service shall be subject to the exclusive jurisdiction of the courts in that jurisdiction.
             </p>
-          </Card>
+          </section>
 
           {/* Severability */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               11. Severability
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
               If any provision of these terms is found to be unenforceable or invalid, the remaining provisions will continue in full force and effect. The unenforceable provision will be replaced with a valid provision that most closely matches the intent of the original.
             </p>
-          </Card>
+          </section>
 
           {/* Contact Information */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               12. Contact Information
             </h2>
@@ -296,11 +293,10 @@ export default function TermsOfServicePage() {
                 </Button>
               </Link>
             </div>
-          </Card>
-        </div>
+          </section>
 
         {/* Summary */}
-        <Card className="p-6 mt-8 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
+        <section className="article-section">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
             Terms Summary
           </h2>
@@ -313,8 +309,7 @@ export default function TermsOfServicePage() {
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>
-        </Card>
-      </div>
-    </div>
+        </section>
+    </>
   )
 }

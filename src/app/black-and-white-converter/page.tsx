@@ -1,6 +1,10 @@
 import { Metadata } from 'next'
 import { ConverterExperience } from '@/components/home/converter-experience'
-import { MarketingSections, HOWTO_SCHEMA, HOME_FAQ_SCHEMA } from '@/app/page'
+import {
+  HOME_FAQ_SCHEMA,
+  HOWTO_SCHEMA,
+  MarketingSections
+} from '@/components/home/marketing-sections'
 import { StructuredData } from '@/components/seo/structured-data'
 import { canonicalUrl } from '@/lib/seo'
 
@@ -15,12 +19,12 @@ export const metadata: Metadata = {
     'B&W converter online'
   ],
   alternates: {
-    canonical: canonicalUrl('/black-and-white-converter')
+    canonical: canonicalUrl('/')
   },
   openGraph: {
     title: 'Convert Photo to Black and White Online Free - B&W Photo Converter',
     description: 'Convert color photos to black and white in your browser with local processing and practical tonal controls.',
-    url: canonicalUrl('/black-and-white-converter')
+    url: canonicalUrl('/')
   }
 }
 
@@ -29,14 +33,12 @@ export default function ToolSubpage() {
     <>
       <StructuredData type="howto" data={HOWTO_SCHEMA} />
       <StructuredData type="faq" data={HOME_FAQ_SCHEMA} />
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <ConverterExperience 
-          isLandingPage={false}
-          heroTitle="Black and White Image Converter"
-          heroSubtitle="I built this private tool to get professional monochrome tones without the complexity of desktop editors. No uploads, no grain loss, and 100% browser-resident processing."
-          marketingContent={<MarketingSections />}
-        />
-      </div>
+      <ConverterExperience 
+        isLandingPage={false}
+        heroTitle="Black and White Image Converter"
+        heroSubtitle="I built this private tool to get professional monochrome tones without the complexity of desktop editors. No uploads, no grain loss, and 100% browser-resident processing."
+        marketingContent={<MarketingSections />}
+      />
     </>
   )
 }

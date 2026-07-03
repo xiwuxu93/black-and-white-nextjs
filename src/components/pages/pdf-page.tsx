@@ -1,12 +1,9 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { useRouter } from 'next/navigation'
-import { useConversionStore } from '@/store/conversionStore'
 import { 
   FileText, 
   Download, 
-  Settings, 
   RefreshCw, 
   AlertCircle, 
   CheckCircle2, 
@@ -27,9 +24,6 @@ declare global {
 }
 
 export default function PdfPage() {
-  const router = useRouter()
-  const setConversionData = useConversionStore((state) => state.setConversionData)
-
   // Loading state for PDF.js CDN
   const [pdfjsLoaded, setPdfjsLoaded] = useState(false)
   const [loadingError, setLoadingError] = useState<string | null>(null)
@@ -364,24 +358,13 @@ export default function PdfPage() {
       const fileBlobUrl = URL.createObjectURL(finalPdfBlob)
       const origName = file.name.replace(/\.[^/.]+$/, "") // Strip original extension
       const filename = `${origName}-grayscale.pdf`
-      const originalSizeMB = fileSizeMB
       const processedSizeMB = (finalPdfBlob.size / (1024 * 1024)).toFixed(2)
 
-      // Save to Zustand store
-      setConversionData({
-        fileUrl: fileBlobUrl,
-        filename,
-        fileType: 'pdf',
-        originalSize: originalSizeMB,
-        processedSize: processedSizeMB
-      })
-
-      setProcessingStatus('Conversion complete! Redirecting...')
+      setOutputPdfBlobUrl(fileBlobUrl)
+      setDownloadFilename(filename)
+      setOutputPdfSize(processedSizeMB)
+      setProcessingStatus('Conversion complete. Download your grayscale PDF.')
       setIsProcessing(false)
-
-      // Redirect to download page
-      router.push('/download')
-
     } catch (error) {
       console.error('Error converting PDF to black and white:', error)
       alert('Conversion failed. This PDF might contain unsupported font types or encrypted structures.')
@@ -404,8 +387,7 @@ export default function PdfPage() {
   }
 
   return (
-    <div className="min-h-[80vh] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4">
-      <div className="container mx-auto max-w-5xl">
+    <>
         
         {/* Dynamic Script Loading Status */}
         {!pdfjsLoaded && !loadingError && (
@@ -430,17 +412,17 @@ export default function PdfPage() {
           <>
             {/* Header & Subtitle */}
             {!file && (
-              <div className="text-center max-w-3xl mx-auto mb-12">
+              <header className="article-header max-w-3xl mx-auto">
                 <Badge className="mb-4" variant="secondary">
                   🔒 Private Local Conversion
                 </Badge>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                <h1>
                   Convert PDF to Black and White Online
                 </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-300">
                   Grayscale your PDF files locally. Save printer ink and toner. No server uploads means your files remain 100% secure.
                 </p>
-              </div>
+              </header>
             )}
 
             {/* File Upload Zone */}
@@ -732,11 +714,11 @@ export default function PdfPage() {
 
             {/* Structured SEO FAQs & Tutorial (Only visible when no file is active) */}
             {!file && (
-              <div className="mt-24 max-w-4xl mx-auto space-y-16">
+              <div className="mt-24 max-w-4xl mx-auto">
                 
                 {/* 3 Step Tutorial */}
-                <section className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100/50 dark:border-gray-700/50">
-                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-10 text-center">
+                <section className="article-section">
+                  <h2>
                     How to Convert PDF to Black and White Online
                   </h2>
                   <div className="grid md:grid-cols-3 gap-8">
@@ -771,8 +753,8 @@ export default function PdfPage() {
                 </section>
 
                 {/* FAQ Accordions */}
-                <section>
-                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-10 text-center">
+                <section className="article-section">
+                  <h2>
                     Frequently Asked Questions
                   </h2>
                   <div className="grid md:grid-cols-2 gap-6">
@@ -835,8 +817,6 @@ export default function PdfPage() {
             )}
           </>
         )}
-
-      </div>
-    </div>
+    </>
   )
 }

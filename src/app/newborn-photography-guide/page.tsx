@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
-import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Baby, Calendar } from 'lucide-react'
+import { Baby } from 'lucide-react'
 import Link from 'next/link'
 import { Breadcrumb } from '@/components/seo/breadcrumb'
 import { canonicalUrl } from '@/lib/seo'
@@ -34,8 +33,7 @@ export const metadata: Metadata = {
 
 export default function NewbornPhotographyGuidePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 py-12">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <>
         <Breadcrumb
           items={[
             { name: 'Photography Guides', url: '/examples' },
@@ -44,27 +42,26 @@ export default function NewbornPhotographyGuidePage() {
         />
 
         {/* Header */}
-        <div className="text-center mb-12">
+        <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             <Baby className="w-4 h-4 mr-2" />
             Complete Guide
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h1>
             Complete Newborn Photography Guide
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8">
             Everything you need for stunning newborn portraits - from DIY home sessions to professional studio workflows. Includes lighting setups, BWConverter presets, and delivery best practices.
           </p>
-        </div>
+        </header>
 
         <NewbornGuideTabs />
 
         {/* Cross-reference Section */}
-        <section className="mt-16 text-center">
-          <Card className="p-8 bg-gray-50 dark:bg-gray-900/60">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+        <section className="article-section text-center">
+            <h2>
               Continue Learning
-            </h3>
+            </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
               Explore more photography guides and tutorials
             </p>
@@ -80,9 +77,7 @@ export default function NewbornPhotographyGuidePage() {
                 </Button>
               </Link>
             </div>
-          </Card>
         </section>
-      </div>
-    </div>
+    </>
   )
 }

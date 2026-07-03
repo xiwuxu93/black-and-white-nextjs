@@ -10,12 +10,16 @@ export interface ConversionData {
 
 interface ConversionState {
   data: ConversionData | null
+  pendingImageFile: File | null
   setConversionData: (data: ConversionData) => void
   clearConversionData: () => void
+  setPendingImageFile: (file: File) => void
+  consumePendingImageFile: () => File | null
 }
 
 export const useConversionStore = create<ConversionState>((set) => ({
   data: null,
+  pendingImageFile: null,
   setConversionData: (data) => set({ data }),
   clearConversionData: () => {
     set((state) => {
@@ -29,5 +33,14 @@ export const useConversionStore = create<ConversionState>((set) => ({
       }
       return { data: null }
     })
+  },
+  setPendingImageFile: (file) => set({ pendingImageFile: file }),
+  consumePendingImageFile: () => {
+    let file: File | null = null
+    set((state) => {
+      file = state.pendingImageFile
+      return { pendingImageFile: null }
+    })
+    return file
   },
 }))

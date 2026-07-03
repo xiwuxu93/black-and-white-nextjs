@@ -7,29 +7,24 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const isHomepage = pathname === '/'
 
-  if (isHomepage) {
-    return (
-      <main className="flex-1 container mx-auto max-w-5xl py-12 px-4">
-        <article className="w-full entry-content">
-          {children}
-        </article>
-      </main>
-    )
-  }
-
   return (
-    <main className="flex-1 container mx-auto max-w-7xl py-12 px-4">
-      <div className="grid grid-cols-1 lg:grid-cols-[100px_1fr_300px] gap-8">
-        {/* Left Spacer */}
-        <div className="hidden lg:block" />
-
-        {/* Main Content Area */}
-        <article className="w-full entry-content">
+    <main className="flex-1">
+      <div className={`mx-auto grid w-full gap-8 px-4 py-10 sm:px-6 lg:px-8 ${
+        isHomepage
+          ? 'max-w-5xl'
+          : 'max-w-7xl lg:grid-cols-[minmax(0,1fr)_300px]'
+      }`}>
+        <article className="entry-content post-content min-w-0">
           {children}
         </article>
 
-        {/* Sidebar Area */}
-        <div id="primary-sidebar" className="sidebar widget-area w-full max-w-[300px] mx-auto lg:mx-0" />
+        {!isHomepage && (
+          <aside
+            id="primary-sidebar"
+            className="sidebar widget-area hidden w-[300px] lg:block"
+            aria-label="Sidebar"
+          />
+        )}
       </div>
     </main>
   )

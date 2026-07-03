@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Mail, MessageSquare, HelpCircle, Shield } from 'lucide-react'
@@ -23,23 +22,22 @@ const SUPPORT_EMAIL = 'support@bwconverter.com'
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-12">
+    <>
+        <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             <Mail className="w-4 h-4 mr-2" />
             Contact BWConverter
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1>
             We’re Here to Help
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Whether you have a support question, partnership idea, or feedback about the converter, I typically reply within one business day.
           </p>
-        </div>
+        </header>
 
         <div className="grid gap-6 md:grid-cols-2">
-          <Card className="p-6">
+          <section className="article-section">
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
                 <Mail className="w-5 h-5 text-primary-600 dark:text-primary-300" />
@@ -57,9 +55,9 @@ export default function ContactPage() {
             >
               {SUPPORT_EMAIL}
             </a>
-          </Card>
+          </section>
 
-          <Card className="p-6">
+          <section className="article-section">
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
                 <HelpCircle className="w-5 h-5 text-blue-600 dark:text-blue-300" />
@@ -76,10 +74,10 @@ export default function ContactPage() {
                 Browse FAQ
               </Button>
             </Link>
-          </Card>
+          </section>
         </div>
 
-        <Card className="p-6 mt-6">
+        <section className="article-section">
           <div className="flex items-start space-x-3">
             <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
               <Shield className="w-5 h-5 text-green-600 dark:text-green-300" />
@@ -96,9 +94,9 @@ export default function ContactPage() {
               </p>
             </div>
           </div>
-        </Card>
+        </section>
 
-        <Card className="p-6 mt-6">
+        <section className="article-section">
           <div className="flex items-start space-x-3">
             <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
               <MessageSquare className="w-5 h-5 text-purple-600 dark:text-purple-300" />
@@ -114,8 +112,7 @@ export default function ContactPage() {
               </ul>
             </div>
           </div>
-        </Card>
-      </div>
-    </div>
+        </section>
+    </>
   )
 }

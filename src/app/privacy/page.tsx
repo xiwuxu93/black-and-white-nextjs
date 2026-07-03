@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Shield, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react'
@@ -22,10 +21,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <>
         {/* Header */}
-        <div className="text-center mb-12">
+        <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             <Shield className="w-4 h-4 mr-2" />
             Privacy Policy
@@ -39,10 +37,10 @@ export default function PrivacyPolicyPage() {
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
             Last updated: December 2024
           </p>
-        </div>
+        </header>
 
         {/* Key Points */}
-        <Card className="p-6 mb-8 bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
+        <section className="article-section">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
             <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
             Key Privacy Highlights
@@ -61,11 +59,10 @@ export default function PrivacyPolicyPage() {
               <strong>Local Processing Only:</strong> Your images never leave your device
             </li>
           </ul>
-        </Card>
+        </section>
 
-        <div className="space-y-8">
           {/* Information We Collect */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               1. Information We Collect
             </h2>
@@ -110,10 +107,10 @@ export default function PrivacyPolicyPage() {
                 </p>
               </div>
             </div>
-          </Card>
+          </section>
 
           {/* How We Use Information */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               2. How We Use Information
             </h2>
@@ -148,10 +145,10 @@ export default function PrivacyPolicyPage() {
                 </ul>
               </div>
             </div>
-          </Card>
+          </section>
 
           {/* Data Sharing */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               3. Information Sharing
             </h2>
@@ -192,10 +189,10 @@ export default function PrivacyPolicyPage() {
                 </p>
               </div>
             </div>
-          </Card>
+          </section>
 
           {/* Data Security */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               4. Data Security
             </h2>
@@ -230,10 +227,10 @@ export default function PrivacyPolicyPage() {
                 </ul>
               </div>
             </div>
-          </Card>
+          </section>
 
           {/* Your Rights */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               5. Your Privacy Rights
             </h2>
@@ -267,10 +264,10 @@ export default function PrivacyPolicyPage() {
                 </ul>
               </div>
             </div>
-          </Card>
+          </section>
 
           {/* Advertising and Cookies (Mediavine Journey) */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               6. Advertising and Cookies (Journey by Mediavine)
             </h2>
@@ -296,10 +293,10 @@ export default function PrivacyPolicyPage() {
                 </li>
               </ul>
             </div>
-          </Card>
+          </section>
 
           {/* Cookies */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               7. Cookies and Local Storage
             </h2>
@@ -327,20 +324,20 @@ export default function PrivacyPolicyPage() {
                 </p>
               </div>
             </div>
-          </Card>
+          </section>
 
           {/* Children's Privacy */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               8. Children's Privacy
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
               Our service is suitable for all ages since we don't collect personal information. However, we recommend parental supervision for children under 13 when using any online service. Parents can be confident that their children's images are processed securely on their own device.
             </p>
-          </Card>
+          </section>
 
           {/* Changes to Policy */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               9. Changes to This Policy
             </h2>
@@ -350,10 +347,10 @@ export default function PrivacyPolicyPage() {
             <p className="text-gray-600 dark:text-gray-400">
               We encourage you to review this policy periodically. Your continued use of the service after any changes indicates your acceptance of the updated policy.
             </p>
-          </Card>
+          </section>
 
           {/* Contact */}
-          <Card className="p-6">
+          <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               10. Contact Information
             </h2>
@@ -372,11 +369,10 @@ export default function PrivacyPolicyPage() {
                 </Button>
               </Link>
             </div>
-          </Card>
-        </div>
+          </section>
 
         {/* Summary */}
-        <Card className="p-6 mt-8 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
+        <section className="article-section">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
             Privacy Summary
           </h2>
@@ -389,8 +385,7 @@ export default function PrivacyPolicyPage() {
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>
-        </Card>
-      </div>
-    </div>
+        </section>
+    </>
   )
 }

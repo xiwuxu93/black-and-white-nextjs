@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -119,29 +118,28 @@ export default function HowToUsePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-12">
+    <>
+        <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             📖 Complete Guide
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h1>
             How to Use Our Black And White Converter
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A practical guide for getting consistent black and white results.
           </p>
-        </div>
+        </header>
 
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+        <section className="article-section">
+          <h2>
             Step-by-Step Tutorial  
           </h2>
           <div className="space-y-8">
             {steps.map((step, index) => {
               const Icon = step.icon
               return (
-                <Card key={index} className="p-6">
+                <article key={index} className="border-t border-gray-200 pt-8 dark:border-gray-800">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
                       <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center">
@@ -175,19 +173,19 @@ export default function HowToUsePage() {
                       </div>
                     </div>
                   </div>
-                </Card>
+                </article>
               )
             })}
           </div>
         </section>
 
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+        <section className="article-section">
+          <h2>
             Production-Ready Workflows
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {proWorkflows.map((flow) => (
-              <Card key={flow.title} className="p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+              <article key={flow.title} className="border-t border-gray-200 pt-6 dark:border-gray-800">
                 <div className="flex items-center gap-3 mb-4">
                   <Workflow className="w-5 h-5 text-primary-600 dark:text-primary-400" />
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{flow.title}</h3>
@@ -205,16 +203,15 @@ export default function HowToUsePage() {
                   {flow.link.label}
                   <ArrowRight className="w-4 h-4 ml-1" />
                 </Link>
-              </Card>
+              </article>
             ))}
           </div>
         </section>
 
-        <section className="mb-16">
-          <Card className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-800">
+        <section className="article-section">
             <div className="flex items-center gap-3 mb-4">
               <ServerCog className="w-5 h-5 text-blue-600 dark:text-blue-300" />
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+              <h2>
                 Troubleshooting Checklist
               </h2>
             </div>
@@ -247,11 +244,10 @@ export default function HowToUsePage() {
             <p className="text-xs text-blue-700 dark:text-blue-300 mt-3">
               Need more help? Share logs and screenshots via <Link href="/contact" className="underline">support@bwconverter.com</Link>—include preset values and browser details for faster debugging.
             </p>
-          </Card>
         </section>
 
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+        <section className="article-section text-center">
+          <h2>
             Ready to Start?
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -267,8 +263,7 @@ export default function HowToUsePage() {
               </Button>
             </Link>
           </div>
-        </div>
-      </div>
-    </div>
+        </section>
+    </>
   )
 }
