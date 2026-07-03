@@ -9,7 +9,7 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
 
   return (
     <main className="flex-1">
-      <div className={`mx-auto grid w-full gap-8 px-4 py-10 sm:px-6 lg:px-8 ${
+      <div className={`mx-auto grid gap-8 px-4 py-10 sm:px-6 lg:px-8 ${
         isHomepage
           ? 'max-w-5xl'
           : 'max-w-7xl lg:grid-cols-[minmax(0,1fr)_300px]'

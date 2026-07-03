@@ -34,7 +34,7 @@ export function Tabs({ defaultValue, value: controlledValue, onValueChange, chil
 
   return (
     <TabsContext.Provider value={{ value, onValueChange: handleValueChange }}>
-      <div className={cn('w-full', className)}>
+      <div className={className}>
         {children}
       </div>
     </TabsContext.Provider>

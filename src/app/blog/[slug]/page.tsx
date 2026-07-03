@@ -417,7 +417,7 @@ export default function BlogPostPage({ params }: Props) {
           </Card>
         </div>
 
-        <div className="w-full">
+        <section className="article-section border-t-0 pt-0">
             <div className="prose prose-lg max-w-none prose-gray dark:prose-invert">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -501,7 +501,7 @@ export default function BlogPostPage({ params }: Props) {
               ))}
             </div>
           </div>
-        </div>
+        </section>
     </>
   )
 }

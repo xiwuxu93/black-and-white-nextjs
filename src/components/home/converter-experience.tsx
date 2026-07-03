@@ -566,7 +566,7 @@ export function ConverterExperience({
             </div>
 
             {/* Center Column Content */}
-            <div className="w-full space-y-8">
+            <section className="article-section border-t-0 pt-0 space-y-8">
                 <div className="mb-8">
                   <ResultDisplay
                     originalImageBitmap={currentImageBitmap}
@@ -700,7 +700,7 @@ export function ConverterExperience({
                     </div>
                   </div>
                 )}
-            </div>
+            </section>
           </div>
         )}
         {isProcessing && processingStatus && (

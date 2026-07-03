@@ -99,7 +99,7 @@ export default function BlogPage() {
           })}
         </div>
 
-        <div className="w-full space-y-8">
+        <section className="article-section border-t-0 pt-0 space-y-8">
             {/* Featured Post */}
             {featuredPost && (
               <Card className="overflow-hidden">
@@ -237,7 +237,7 @@ export default function BlogPage() {
                 Load More Articles
               </Button>
             </div>
-        </div>
+        </section>
     </>
   )
 }

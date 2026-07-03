@@ -155,8 +155,8 @@ const workflowStages = [
 
 export function NewbornGuideTabs() {
   return (
-    <Tabs defaultValue="home" className="w-full">
-      <TabsList className="grid w-full grid-cols-2 mb-8 max-w-md mx-auto">
+    <Tabs defaultValue="home">
+      <TabsList className="grid grid-cols-2 mb-8 max-w-md mx-auto">
         <TabsTrigger value="home">
           <span className="flex items-center gap-2">
             🏠 Home Sessions
@@ -452,4 +452,3 @@ export function NewbornGuideTabs() {
     </Tabs>
   )
 }
-
