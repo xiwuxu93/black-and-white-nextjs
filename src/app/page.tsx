@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ConverterExperience } from '@/components/home/converter-experience'
 
-const HOWTO_SCHEMA = {
+export const HOWTO_SCHEMA = {
   name: 'Convert image to black and white online',
   description:
     'Convert photos, logos, and graphics to black and white in your browser. No upload required.',
@@ -31,7 +31,7 @@ const HOWTO_SCHEMA = {
   ]
 } as const
 
-const HOME_FAQ_SCHEMA = {
+export const HOME_FAQ_SCHEMA = {
   questions: [
     {
       question: 'How do I convert an image to black and white?',
@@ -89,10 +89,9 @@ const EDITING_NOTES = [
   }
 ] as const
 
-function MarketingSections() {
+export function MarketingSections() {
   return (
-    <article className="converter-marketing py-20 px-4 entry-content">
-      <div className="container mx-auto max-w-6xl">
+    <div className="converter-marketing py-12 space-y-20">
         
         {/* Specialized Tools Hub - New Addition for SEO Weight Distribution */}
         <div className="mb-20">
@@ -361,8 +360,7 @@ function MarketingSections() {
             </div>
           </div>
         </section>
-      </div>
-    </article>
+    </div>
   )
 }
 
@@ -373,6 +371,7 @@ export default function HomePage() {
       <StructuredData type="faq" data={HOME_FAQ_SCHEMA} />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
         <ConverterExperience 
+          isLandingPage={true}
           heroTitle="Black and White Image Converter"
           heroSubtitle="I built this private tool to get professional monochrome tones without the complexity of desktop editors. No uploads, no grain loss, and 100% browser-resident processing."
           marketingContent={<MarketingSections />}

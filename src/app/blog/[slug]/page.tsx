@@ -418,9 +418,7 @@ export default function BlogPostPage({ params }: Props) {
           </Card>
         </div>
 
-        <div className="grid lg:grid-cols-4 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-3">
+        <div className="w-full">
             <article className="prose prose-lg max-w-none prose-gray dark:prose-invert entry-content post-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -483,39 +481,26 @@ export default function BlogPostPage({ params }: Props) {
                 postId={post.id} 
               />
             </div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <Card className="p-6 sticky top-8">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Related Articles</h3>
-              <div className="space-y-4">
-                {postsToShow.map((related: BlogPost) => (
-                  <Link
-                    key={related.id}
-                    href={`/blog/${related.id}`}
-                    className="block space-y-2 hover:bg-gray-50 dark:hover:bg-gray-800 p-2 rounded transition-colors"
-                  >
-                    <h4 className="font-medium text-sm text-gray-900 dark:text-white line-clamp-2">
+          {/* Related Articles (moved from sidebar) */}
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Related Articles</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {postsToShow.map((related: BlogPost) => (
+                <Card key={related.id} className="p-5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 flex flex-col justify-between hover:shadow-md transition-shadow">
+                  <div className="space-y-2">
+                    <h4 className="font-bold text-sm text-gray-900 dark:text-white line-clamp-2">
                       {related.title}
                     </h4>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center space-x-2">
-                      <span>{related.readTime}</span>
-                      <span>•</span>
-                      <span>{related.category}</span>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      {related.category} • {related.readTime}
                     </p>
+                  </div>
+                  <Link href={`/blog/${related.id}`} className="mt-4 inline-flex items-center text-primary-600 dark:text-primary-400 text-xs font-semibold hover:underline">
+                    Read article <ArrowRight className="w-3.5 h-3.5 ml-1" />
                   </Link>
-                ))}
-              </div>
-              
-              <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <Link href="/#how-to-convert">
-                  <Button className="w-full">
-                    Try BW Converter
-                  </Button>
-                </Link>
-              </div>
-            </Card>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </div>

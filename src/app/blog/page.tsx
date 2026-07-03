@@ -81,35 +81,26 @@ export default function BlogPage() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-4 gap-8">
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <Card className="p-6 sticky top-8">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">
-                Categories
-              </h3>
-              <div className="space-y-2">
-                {categories.map((category) => {
-                  const Icon = category.icon
-                  return (
-                    <Button
-                      key={category.name}
-                      variant={category.name === 'All Posts' ? 'default' : 'ghost'}
-                      className="w-full justify-start"
-                    >
-                      <Icon className="w-4 h-4 mr-2" />
-                      {category.name}
-                      <Badge variant="outline" className="ml-auto text-xs">
-                        {category.count}
-                      </Badge>
-                    </Button>
-                  )
-                })}
-              </div>
-            </Card>
-          </div>
+        {/* Horizontal Categories Filter Bar */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {categories.map((category) => {
+            const Icon = category.icon
+            return (
+              <Button
+                key={category.name}
+                variant={category.name === 'All Posts' ? 'default' : 'outline'}
+                size="sm"
+                className="rounded-full"
+              >
+                <Icon className="w-3.5 h-3.5 mr-1.5" />
+                {category.name}
+                <span className="ml-1 text-xs opacity-70">({category.count})</span>
+              </Button>
+            )
+          })}
+        </div>
 
-          <div className="lg:col-span-3 space-y-8">
+        <div className="w-full space-y-8">
             {/* Featured Post */}
             {featuredPost && (
               <Card className="overflow-hidden">
@@ -250,6 +241,5 @@ export default function BlogPage() {
           </div>
         </div>
       </div>
-    </div>
   )
 }

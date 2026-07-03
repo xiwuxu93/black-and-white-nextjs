@@ -1,16 +1,16 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
+import { MainContainer } from '@/components/layout/main-container'
 import GoogleAnalytics from '@/components/analytics/google-analytics'
 import { StructuredData } from '@/components/seo/structured-data'
 import { NavigationStructuredData } from '@/components/seo/navigation-structured-data'
 import { canonicalUrl } from '@/lib/seo'
 import Script from 'next/script'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = { className: 'font-sans' }
 const enableAds = process.env.NEXT_PUBLIC_ENABLE_ADS === 'true'
 
 export const metadata: Metadata = {
@@ -104,11 +104,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen bg-background text-foreground">
+          <div className="min-h-screen bg-background text-foreground flex flex-col">
             <Header />
-            <main className="flex-1">
+            <MainContainer>
               {children}
-            </main>
+            </MainContainer>
             <Footer />
           </div>
         </ThemeProvider>

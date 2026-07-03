@@ -116,9 +116,11 @@ interface ConverterExperienceProps {
   hideAdvancedControls?: boolean
   hideBottomFeatures?: boolean
   marketingContent?: React.ReactNode
+  isLandingPage?: boolean
 }
 
 export function ConverterExperience({
+  isLandingPage = false,
   heroBadgeText,
   heroTitle,
   heroSubtitle,
@@ -466,10 +468,9 @@ export function ConverterExperience({
   }, [originalFileInfo])
 
   return (
-    <div className="min-h-[60vh] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <>
       {!showEditor && (
-        <section className="py-20 px-4">
-          <div className="container mx-auto max-w-7xl">
+        <div className="py-6">
             {/* Centered Hero Header */}
             <div className="text-center max-w-4xl mx-auto mb-10">
               <Badge className="mb-6" variant="secondary">
@@ -498,51 +499,54 @@ export function ConverterExperience({
               ))}
             </div>
 
-            {/* Workspace Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-[100px_1fr_300px] gap-8">
-              {/* Left Spacer */}
-              <div className="hidden lg:block" />
-
-              {/* Center Column: Upload Workspace */}
-              <div className="w-full">
-                <div className="mb-12 max-w-xl mx-auto">
-                  <UploadArea
-                    onFileSelect={handleFileSelect}
-                    isProcessing={isProcessing}
-                    className="w-full"
-                    accept={uploadAccept}
-                    supportText={uploadSupportText}
-                    allowedExtensions={uploadAllowedExtensions}
-                    invalidFileMessage={uploadInvalidFileMessage}
-                  />
+            {/* Center Column Content */}
+            <div className="w-full">
+              {isLandingPage ? (
+                <div className="my-16 text-center">
+                  <Link href="/black-and-white-converter">
+                    <Button size="lg" className="rounded-full px-12 py-7 text-lg md:text-xl font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all bg-primary-600 hover:bg-primary-700 text-white">
+                      Start Converting Now
+                      <ChevronRight className="w-5.5 h-5.5 ml-2.5" />
+                    </Button>
+                  </Link>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 font-medium">
+                    100% Free • Secure Local Browser Processing • No Registration Required
+                  </p>
                 </div>
-
-                {!hideBottomFeatures && (
-                  <div className="text-center text-gray-500 dark:text-gray-400 text-sm">
-                    Need to process a whole campaign?{' '}
-                    <Link
-                      href="/batch-black-and-white-converter"
-                      className="text-primary-600 hover:underline dark:text-primary-400 font-semibold"
-                    >
-                      Try the batch converter
-                    </Link>
+              ) : (
+                <>
+                  <div className="mb-12 max-w-xl mx-auto">
+                    <UploadArea
+                      onFileSelect={handleFileSelect}
+                      isProcessing={isProcessing}
+                      className="w-full"
+                      accept={uploadAccept}
+                      supportText={uploadSupportText}
+                      allowedExtensions={uploadAllowedExtensions}
+                      invalidFileMessage={uploadInvalidFileMessage}
+                    />
                   </div>
-                )}
-                {marketingContent}
-              </div>
 
-              {/* Right Column: Sidebar */}
-              <div id="primary-sidebar" className="sidebar widget-area w-full max-w-[300px] mx-auto lg:mx-0">
-                <Sidebar />
-              </div>
+                  {!hideBottomFeatures && (
+                    <div className="text-center text-gray-500 dark:text-gray-400 text-sm mb-6">
+                      Need to process a whole campaign?{' '}
+                      <Link
+                        href="/batch-black-and-white-converter"
+                        className="text-primary-600 hover:underline dark:text-primary-400 font-semibold"
+                      >
+                        Try the batch converter
+                      </Link>
+                    </div>
+                  )}
+                </>
+              )}
+              {marketingContent}
             </div>
           </div>
-        </section>
-      )}
+        )}
 
       {showEditor && (
-        <section className="py-12 px-4">
-          <div className="container mx-auto max-w-7xl">
+        <div className="py-6">
             {/* Centered Editor Header */}
             <div className="mb-8 text-center">
               <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -553,13 +557,8 @@ export function ConverterExperience({
               </p>
             </div>
 
-            {/* Workspace Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-[100px_1fr_300px] gap-8">
-              {/* Left Spacer */}
-              <div className="hidden lg:block" />
-
-              {/* Center Column: Editor Workspace */}
-              <div className="w-full space-y-8">
+            {/* Center Column Content */}
+            <div className="w-full space-y-8">
                 <div className="mb-8">
                   <ResultDisplay
                     originalImageBitmap={currentImageBitmap}
@@ -693,65 +692,26 @@ export function ConverterExperience({
                     </div>
                   </div>
                 )}
-              </div>
-
-              {/* Right Column: Sidebar */}
-              <div id="primary-sidebar" className="sidebar widget-area w-full max-w-[300px] mx-auto lg:mx-0">
-                <Sidebar />
-              </div>
             </div>
           </div>
-        </section>
-      )}
-      {isProcessing && processingStatus && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <Card className="max-w-md w-full p-6 text-center space-y-6 bg-white dark:bg-gray-800 shadow-2xl border-none">
-            <div className="relative w-20 h-20 mx-auto">
-              <div className="absolute inset-0 border-4 border-gray-100 dark:border-gray-700 rounded-full" />
-              <div className="absolute inset-0 border-4 border-primary-600 border-t-transparent rounded-full animate-spin" />
-            </div>
-            <div className="space-y-2 animate-pulse">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white">Processing Image</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                {processingStatus}
-              </p>
-            </div>
-          </Card>
-        </div>
-      )}
-    </div>
-  )
+        )}
+        {isProcessing && processingStatus && (
+          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <Card className="max-w-md w-full p-6 text-center space-y-6 bg-white dark:bg-gray-800 shadow-2xl border-none">
+              <div className="relative w-20 h-20 mx-auto">
+                <div className="absolute inset-0 border-4 border-gray-100 dark:border-gray-700 rounded-full" />
+                <div className="absolute inset-0 border-4 border-primary-600 border-t-transparent rounded-full animate-spin" />
+              </div>
+              <div className="space-y-2 animate-pulse">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Processing Image</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                  {processingStatus}
+                </p>
+              </div>
+            </Card>
+          </div>
+        )}
+      </>
+    )
 }
 
-function Sidebar() {
-  return (
-    <aside className="space-y-6 w-full">
-      {/* Primary Sidebar Ad Slot - Transparent container to hold automated Journey ads */}
-      <div className="w-[300px] min-h-[250px] mx-auto grow-sidebar-ad bg-gray-50/30 dark:bg-gray-800/10 rounded-2xl border border-dashed border-gray-200/50 dark:border-gray-700/30 flex items-center justify-center">
-        <span className="text-[10px] text-gray-400 dark:text-gray-600 uppercase tracking-wider font-semibold">Advertisement</span>
-      </div>
-
-      {/* Photography guides */}
-      <Card className="p-6 bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 shadow-sm space-y-4">
-        <h4 className="font-bold text-gray-900 dark:text-white text-sm">Monochrome Workflows</h4>
-        <ul className="space-y-3 text-xs text-gray-600 dark:text-gray-400">
-          <li>
-            <Link href="/blog/how-to-make-photo-black-and-white" className="font-semibold text-primary-600 dark:text-primary-400 hover:underline">
-              📸 5 Easy Conversion Methods
-            </Link>
-          </li>
-          <li>
-            <Link href="/newborn-photography-guide" className="font-semibold text-primary-600 dark:text-primary-400 hover:underline">
-              👶 Newborn Portrait Guide
-            </Link>
-          </li>
-          <li>
-            <Link href="/logo-to-black-and-white" className="font-semibold text-primary-600 dark:text-primary-400 hover:underline">
-              🎨 Grayscale Vector Logos
-            </Link>
-          </li>
-        </ul>
-      </Card>
-    </aside>
-  )
-}
