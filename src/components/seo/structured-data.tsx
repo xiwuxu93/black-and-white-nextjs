@@ -16,9 +16,9 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         '@type': 'WebSite',
         name: 'BWConverter - Free Black and White Image Converter',
         alternateName: 'Black and White Image Converter Online',
-        description: 'Free black and white image converter with local browser processing, tonal presets, and instant preview.',
+        description: 'Make an image black and white online with local browser processing, preview controls, and JPG, PNG, or WebP downloads.',
         url: canonicalUrl('/'),
-        keywords: 'black and white image, black and white image converter, convert image to black and white, monochrome image',
+        keywords: 'black and white image converter, make image black and white, image to black and white, convert image to black and white, black and white converter',
         inLanguage: 'en-US',
         publisher: {
           '@type': 'Organization',
@@ -37,8 +37,8 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
         name: 'BWConverter - Free Black and White Image Converter Online',
-        alternateName: 'Black and White Photo Converter',
-        description: 'Free online tool to convert color images to black and white photos in the browser with local processing and instant preview.',
+        alternateName: 'Image to Black and White Converter',
+        description: 'Free online tool to make images black and white in the browser. Upload a color image, preview the result, adjust tones, and download a new file.',
         url: canonicalUrl('/'),
         applicationCategory: 'MultimediaApplication',
         applicationSubCategory: 'Photo Editor',
@@ -50,12 +50,13 @@ export function StructuredData({ type, data }: StructuredDataProps) {
           availability: 'https://schema.org/InStock'
         },
         featureList: [
-          'Convert images to black and white instantly',
+          'Make image black and white in the browser',
+          'Convert color image to black and white without uploading',
+          'Image to black and white preview before download',
           'Black and white presets for classic, dramatic, and film-style looks',
           'Editing controls for contrast, brightness, highlights, shadows, and grain',
           'Batch black and white image processing',
           'Multiple export formats for black and white images (PNG, JPEG, WebP)',
-          'Real-time black and white preview',
           'No watermarks on black and white images',
           'Free black and white image conversion'
         ],

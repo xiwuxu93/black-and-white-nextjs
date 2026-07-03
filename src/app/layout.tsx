@@ -15,16 +15,16 @@ const enableAds = process.env.NEXT_PUBLIC_ENABLE_ADS === 'true'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Black and White Image Converter | Convert Image to Black and White Online Free',
+    default: 'Black and White Image Converter - Make Image Black and White Online',
     template: '%s | BWConverter'
   },
-  description: 'Convert images to black and white with a free browser-based tool. Local processing, no upload required, with practical tonal controls.',
+  description: 'Make an image black and white in your browser. Upload a photo, preview the result, adjust the tones, and download it without sending the file to a server.',
   keywords: [
-    'black white image converter',
-    'convert image black white', 
-    'free photo converter',
-    'monochrome image',
-    'B&W converter online'
+    'black and white image converter',
+    'make image black and white',
+    'image to black and white',
+    'convert image to black and white',
+    'black and white converter'
   ],
   authors: [{ name: 'BWConverter.com' }],
   creator: 'BWConverter.com',
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: canonicalUrl('/'),
-    title: 'Convert Image to Black and White - Free B&W Photo Converter',
-    description: 'Convert color photos to black and white in your browser with local processing and practical tonal controls.',
+    title: 'Black and White Image Converter - Make Image Black and White Online',
+    description: 'Upload a color image and turn it black and white in your browser. Preview tones, adjust contrast, and download the result.',
     siteName: 'BWConverter - Black and White Image Converter',
     images: [
       {
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Convert Image to Black and White - Free B&W Photo Converter',
-    description: 'Convert color photos to black and white in your browser with local processing and practical tonal controls.',
+    title: 'Black and White Image Converter - Make Image Black and White Online',
+    description: 'Upload a color image and turn it black and white in your browser. Preview tones, adjust contrast, and download the result.',
     images: ['/black-and-white-image.png'],
     creator: '@bwconverter'
   },

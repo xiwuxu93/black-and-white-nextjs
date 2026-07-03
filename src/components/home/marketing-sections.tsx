@@ -10,9 +10,9 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
 export const HOWTO_SCHEMA = {
-  name: 'Convert image to black and white online',
+  name: 'Make an image black and white online',
   description:
-    'Convert photos, logos, and graphics to black and white in your browser. No upload required.',
+    'Upload a color image, preview a black and white version, adjust the tones, and download the result from your browser.',
   image: '/black-and-white-image.png',
   totalTime: 'PT1M',
   tool: ['BWConverter web app'],
@@ -20,17 +20,17 @@ export const HOWTO_SCHEMA = {
     {
       name: 'Upload your image',
       text:
-        'Drag and drop a JPG, PNG, or WebP into the upload area, or click to browse your files.'
+        'Drag and drop a JPG, PNG, or WebP into the upload area, or click to choose a file from your device.'
     },
     {
       name: 'Choose a preset and fine-tune',
       text:
-        'Select a starting look like Classic or Dramatic, then adjust contrast, highlights, shadows, and grain with real-time preview.'
+        'Start with a simple black and white conversion, then adjust contrast, highlights, shadows, and grain if the photo needs more shape.'
     },
     {
       name: 'Download your black and white photo',
       text:
-        'Export as PNG, JPG, or WebP at full resolution. Your edited file is saved locally with "-bw" in the name.'
+        'Download the black and white image as PNG, JPG, or WebP. Your original file is not uploaded or overwritten.'
     }
   ]
 } as const
@@ -38,9 +38,19 @@ export const HOWTO_SCHEMA = {
 export const HOME_FAQ_SCHEMA = {
   questions: [
     {
-      question: 'How do I convert an image to black and white?',
+      question: 'How do I make an image black and white?',
       answer:
-        'Upload your file, choose a preset, and click download. The converter applies channel mixing so you can convert image to black and white with controlled contrast and tonal separation.'
+        'Upload your file, wait for the preview, then download the black and white version. If the first result feels flat, adjust contrast, shadows, or highlights before exporting.'
+    },
+    {
+      question: 'Can I convert a color image to black and white without uploading it?',
+      answer:
+        'Yes. BWConverter works in your browser with Canvas and Web Worker processing. The image stays on your device while you preview and export the black and white version.'
+    },
+    {
+      question: 'Is this an image to black and white converter or a photo editor?',
+      answer:
+        'It is a focused image to black and white converter. You get the controls that matter for monochrome output, such as contrast, brightness, shadows, highlights, grain, and export format.'
     },
     {
       question: 'Can I convert logos with transparent backgrounds?',
@@ -55,17 +65,17 @@ export const HOME_FAQ_SCHEMA = {
     {
       question: 'How do I turn a picture black and white online?',
       answer:
-        'Use the browser-based editor, drag in your picture, adjust the sliders, and hit export. There is no download or signup required to turn image black and white online with full control.'
+        'Use the upload box, choose a file, and the page will create a black and white preview. You can keep the default look or tune the image before downloading.'
     },
     {
       question: "What's the best black and white converter?",
       answer:
-        'A solid converter should give you tonal controls, fast preview updates, and private local processing. BWConverter focuses on those three basics.'
+        'For quick web use, a good black and white converter should be fast, private, and easy to adjust. BWConverter focuses on those basics instead of hiding the export behind a large editing suite.'
     },
     {
       question: 'Is this black and white photo editor free?',
       answer:
-        'Yes. The converter is free to use, with no watermark and no account required for standard use.'
+        'Yes. You can make images black and white for free, with no watermark and no account required.'
     }
   ]
 } as const
@@ -171,16 +181,16 @@ export function MarketingSections() {
 
       <section className="article-section text-gray-600 dark:text-gray-400 text-center max-w-3xl mx-auto">
         <p className="text-xl mb-4 text-gray-800 dark:text-gray-200 font-medium">
-          Black and White Conversion That Stays Predictable
+          Make Image Black and White Without Opening a Full Editor
         </p>
         <p className="text-base md:text-lg">
-          Built for photographers and designers who need repeatable tone control without sending files to a server.
-          Upload, adjust, and export from the browser with no watermark.
+          Most people do not need a full photo editor just to turn one image black and white.
+          BWConverter keeps the workflow short: upload the file, check the preview, make small tone adjustments, and save the result.
         </p>
       </section>
 
       <section id="how-to-convert" className="article-section">
-        <h2>How to Make Image Black and White</h2>
+        <h2>How to Make an Image Black and White</h2>
         <ol className="space-y-8 text-left max-w-4xl mx-auto">
           <li className="flex flex-col md:flex-row md:items-start gap-4">
             <div className="flex-shrink-0">
@@ -193,7 +203,7 @@ export function MarketingSections() {
                 Upload your photo
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Drag and drop any image file. We support high-resolution processing so your print quality remains sharp.
+                Drag in a color image from your computer or phone. JPG, PNG, and WebP files work well for most everyday conversions.
               </p>
             </div>
           </li>
@@ -205,11 +215,11 @@ export function MarketingSections() {
             </div>
             <div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Adjust tone and contrast
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Use Channel Mixer controls to push skies darker (Blue channel) or keep skin tones brighter (Red channel).
-              </p>
+                  Preview the black and white image
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  The converter creates a black and white preview in the browser. If the photo looks too flat or too harsh, adjust the sliders before saving.
+                </p>
             </div>
           </li>
           <li className="flex flex-col md:flex-row md:items-start gap-4">
@@ -223,7 +233,7 @@ export function MarketingSections() {
                 Download instantly
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Export as JPG, PNG, or WebP. Processing stays local, so you do not wait on server upload queues.
+                Export as JPG, PNG, or WebP. The original color image stays untouched, and the edited file downloads as a new copy.
               </p>
             </div>
           </li>
@@ -231,7 +241,7 @@ export function MarketingSections() {
       </section>
 
       <section className="article-section">
-        <h2>Why Use Our Black and White Converter?</h2>
+        <h2>Why Use This Image to Black and White Converter?</h2>
         <div className="space-y-6 max-w-2xl mx-auto">
           <div className="flex gap-5 p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
             <div className="text-3xl p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl h-fit text-blue-600 dark:text-blue-400 flex-shrink-0">
@@ -242,7 +252,7 @@ export function MarketingSections() {
                 True Monochrome Color Mixing
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Monochrome editing is more than simple desaturation. Independently blend red, green, and blue color channels to control sky depth, contrast separation, and skin tone luminosity.
+                A useful black and white image keeps separation between faces, skies, clothing, and backgrounds. The controls here help you shape that tonal range instead of only removing color.
               </p>
             </div>
           </div>
@@ -256,7 +266,7 @@ export function MarketingSections() {
                 Local, Zero-Upload Privacy
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Your photos never leave your device. All rendering is processed inside your browser using hardware-accelerated canvas API, keeping your creative work 100% secure and private.
+                The image is processed in your browser, not on a remote server. That matters for family photos, client previews, product shots, and anything you do not want to upload.
               </p>
             </div>
           </div>
@@ -270,7 +280,7 @@ export function MarketingSections() {
                 Studio-Grade Tonal Presets
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Kickstart your edits with pro presets like Classic Monochrome, High-Contrast Cinematic, or Soft Portrait, then fine-tune highlights, deep shadows, and subtle film grain.
+                Start with a clean conversion, then use presets when you want a stronger look. Soft portraits, high-contrast street photos, and product images usually need different tones.
               </p>
             </div>
           </div>

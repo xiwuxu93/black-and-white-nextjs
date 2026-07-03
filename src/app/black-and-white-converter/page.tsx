@@ -9,21 +9,21 @@ import { StructuredData } from '@/components/seo/structured-data'
 import { canonicalUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Black and White Image Converter | Convert Photo to B&W Online Free',
-  description: 'Upload and convert color photos to black and white online. Free, secure, browser-resident monochrome photo processing with fine-grained tonal mixer.',
+  title: 'Black and White Image Converter - Make Image Black and White Online',
+  description: 'Make an image black and white in your browser. Upload a photo, preview the result, adjust the tones, and download it without sending the file to a server.',
   keywords: [
     'black and white image converter',
-    'convert image black and white',
-    'free photo converter',
-    'monochrome image',
-    'B&W converter online'
+    'make image black and white',
+    'image to black and white',
+    'convert image to black and white',
+    'black and white converter'
   ],
   alternates: {
     canonical: canonicalUrl('/')
   },
   openGraph: {
-    title: 'Convert Photo to Black and White Online Free - B&W Photo Converter',
-    description: 'Convert color photos to black and white in your browser with local processing and practical tonal controls.',
+    title: 'Black and White Image Converter - Make Image Black and White Online',
+    description: 'Upload a color image and turn it black and white in your browser. Preview tones, adjust contrast, and download the result.',
     url: canonicalUrl('/')
   }
 }
@@ -36,7 +36,7 @@ export default function ToolSubpage() {
       <ConverterExperience 
         isLandingPage={false}
         heroTitle="Black and White Image Converter"
-        heroSubtitle="I built this private tool to get professional monochrome tones without the complexity of desktop editors. No uploads, no grain loss, and 100% browser-resident processing."
+        heroSubtitle="Upload a color photo, turn it black and white, and download the result. The conversion runs in your browser, so the original file stays on your device."
         marketingContent={<MarketingSections />}
       />
     </>

@@ -14,7 +14,7 @@ export default function HomePage() {
       <ConverterExperience
         isLandingPage={true}
         heroTitle="Black and White Image Converter"
-        heroSubtitle="I built this private tool to get professional monochrome tones without the complexity of desktop editors. No uploads, no grain loss, and 100% browser-resident processing."
+        heroSubtitle="Upload a color photo, turn it black and white, and download the result. The conversion runs in your browser, so the original file stays on your device."
         marketingContent={<MarketingSections />}
       />
     </>
