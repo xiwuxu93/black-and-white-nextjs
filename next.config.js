@@ -19,6 +19,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/',
+        destination: '/en/',
+        permanent: true
+      },
+      {
         source: '/:path*/index.html',
         destination: '/:path*/',
         permanent: true
@@ -30,62 +35,62 @@ const nextConfig = {
       },
       {
         source: '/black-and-white-image/:path*',
-        destination: '/',
+        destination: '/en/',
         permanent: true
       },
       {
         source: '/convert-image-to-black-and-white/:path*',
-        destination: '/',
+        destination: '/en/',
         permanent: true
       },
       {
         source: '/black-and-white-converte/:path*',
-        destination: '/black-and-white-converter/',
+        destination: '/en/black-and-white-converter/',
         permanent: true
       },
       {
         source: '/black-and-white-newborn-images/',
-        destination: '/newborn-photography-guide/',
+        destination: '/en/newborn-photography-guide/',
         permanent: true
       },
       {
         source: '/newborn-black-and-white-images/',
-        destination: '/newborn-photography-guide/',
+        destination: '/en/newborn-photography-guide/',
         permanent: true
       },
       {
         source: '/jpg-to-black-and-white/',
-        destination: '/',
+        destination: '/en/',
         permanent: true
       },
       {
         source: '/png-to-black-and-white/',
-        destination: '/',
+        destination: '/en/',
         permanent: true
       },
       {
         source: '/image-black-and-white-converter/',
-        destination: '/',
+        destination: '/en/',
         permanent: true
       },
       {
         source: '/black-and-white-photo-converter/',
-        destination: '/',
+        destination: '/en/',
         permanent: true
       },
       {
         source: '/black-and-white-photo-generator/',
-        destination: '/',
+        destination: '/en/',
         permanent: true
       },
       {
         source: '/tools/',
-        destination: '/',
+        destination: '/en/',
         permanent: true
       },
       {
         source: '/changelog/',
-        destination: '/',
+        destination: '/en/',
         permanent: true
       },
       {

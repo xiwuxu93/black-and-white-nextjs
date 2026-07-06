@@ -17,13 +17,13 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         name: 'BWConverter - Free Black and White Image Converter',
         alternateName: 'Black and White Image Converter Online',
         description: 'Make an image black and white online with local browser processing, preview controls, and JPG, PNG, or WebP downloads.',
-        url: canonicalUrl('/'),
+        url: canonicalUrl('/en/'),
         keywords: 'black and white image converter, make image black and white, image to black and white, convert image to black and white, black and white converter',
         inLanguage: 'en-US',
         publisher: {
           '@type': 'Organization',
           name: 'BWConverter - Black and White Image Converter',
-          url: canonicalUrl('/'),
+          url: canonicalUrl('/en/'),
           logo: {
             '@type': 'ImageObject',
             url: `${SITE_URL}/logo.png`
@@ -39,7 +39,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         name: 'BWConverter - Free Black and White Image Converter Online',
         alternateName: 'Image to Black and White Converter',
         description: 'Free online tool to make images black and white in the browser. Upload a color image, preview the result, adjust tones, and download a new file.',
-        url: canonicalUrl('/'),
+        url: canonicalUrl('/en/'),
         applicationCategory: 'MultimediaApplication',
         applicationSubCategory: 'Photo Editor',
         operatingSystem: 'Any',

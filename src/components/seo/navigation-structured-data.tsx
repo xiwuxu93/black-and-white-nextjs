@@ -4,7 +4,7 @@ import { WithContext, WebSite, SiteNavigationElement } from 'schema-dts'
 import { canonicalUrl } from '@/lib/seo'
 
 export function NavigationStructuredData() {
-  const homeUrl = canonicalUrl('/')
+  const homeUrl = canonicalUrl('/en/')
   const websiteData: WithContext<WebSite> = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',

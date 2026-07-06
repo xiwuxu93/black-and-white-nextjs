@@ -11,7 +11,6 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { useRouter } from 'next/navigation'
 import { useConversionStore } from '@/store/conversionStore'
 import { Card } from '@/components/ui/card'
 import { UploadArea } from '@/components/bw-converter/upload-area'
@@ -148,8 +147,6 @@ export function ConverterExperience({
   const [originalFileInfo, setOriginalFileInfo] =
     useState<OriginalFileInfo | null>(null)
 
-  const router = useRouter()
-  const setPendingImageFile = useConversionStore((state) => state.setPendingImageFile)
   const consumePendingImageFile = useConversionStore((state) => state.consumePendingImageFile)
   const [processingStatus, setProcessingStatus] = useState<string>('')
 
@@ -465,14 +462,6 @@ export function ConverterExperience({
     return DOWNLOAD_FORMATS[0]
   }, [originalFileInfo])
 
-  const handleLandingFileSelect = useCallback(
-    (file: File) => {
-      setPendingImageFile(file)
-      router.push('/black-and-white-converter/?start=1')
-    },
-    [router, setPendingImageFile]
-  )
-
   return (
     <>
       {!showEditor && (
@@ -509,7 +498,7 @@ export function ConverterExperience({
               {isLandingPage ? (
                 <div className="mb-12 max-w-xl mx-auto">
                   <UploadArea
-                    onFileSelect={handleLandingFileSelect}
+                    onFileSelect={handleFileSelect}
                     isProcessing={isProcessing}
                     className="w-full"
                     accept={uploadAccept}

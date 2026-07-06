@@ -6,7 +6,7 @@ export function Footer() {
     product: {
       title: "Product",
       links: [
-        { name: "Single Converter", href: "/" },
+        { name: "Single Converter", href: "/en/" },
         { name: "Batch Converter", href: "/batch-black-and-white-converter" },
         { name: "Logo Converter", href: "/logo-to-black-and-white" },
         { name: "PDF Converter", href: "/convert-pdf-to-black-and-white" },
@@ -40,7 +40,7 @@ export function Footer() {
         {/* Main content area */}
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-1 space-y-4">
-            <Link href="/" className="text-xl font-bold tracking-tighter">
+            <Link href="/en/" className="text-xl font-bold tracking-tighter">
               BWConverter
             </Link>
             <p className="text-sm text-gray-500 leading-relaxed">

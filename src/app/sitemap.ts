@@ -6,20 +6,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString()
 
   const staticRoutes = [
-    { path: '/', changeFrequency: 'daily' as const, priority: 1.0 },
-    { path: '/batch-black-and-white-converter', changeFrequency: 'weekly' as const, priority: 0.9 },
-    { path: '/blog', changeFrequency: 'weekly' as const, priority: 0.8 },
-    { path: '/logo-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.85 },
-    { path: '/convert-pdf-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.88 },
-    { path: '/invert-image-colors', changeFrequency: 'weekly' as const, priority: 0.82 },
-    { path: '/how-to-use', changeFrequency: 'monthly' as const, priority: 0.7 },
-    { path: '/about', changeFrequency: 'monthly' as const, priority: 0.7 },
-    { path: '/faq', changeFrequency: 'monthly' as const, priority: 0.7 },
-    { path: '/privacy', changeFrequency: 'monthly' as const, priority: 0.6 },
-    { path: '/terms', changeFrequency: 'monthly' as const, priority: 0.6 },
-    { path: '/examples', changeFrequency: 'weekly' as const, priority: 0.8 },
-    { path: '/newborn-photography-guide', changeFrequency: 'weekly' as const, priority: 0.9 },
-    { path: '/contact', changeFrequency: 'monthly' as const, priority: 0.5 }
+    { path: '/en/', changeFrequency: 'daily' as const, priority: 1.0 },
+    { path: '/en/batch-black-and-white-converter', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/en/blog', changeFrequency: 'weekly' as const, priority: 0.8 },
+    { path: '/en/logo-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.85 },
+    { path: '/en/convert-pdf-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.88 },
+    { path: '/en/invert-image-colors', changeFrequency: 'weekly' as const, priority: 0.82 },
+    { path: '/en/how-to-use', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: '/en/about', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: '/en/faq', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: '/en/privacy', changeFrequency: 'monthly' as const, priority: 0.6 },
+    { path: '/en/terms', changeFrequency: 'monthly' as const, priority: 0.6 },
+    { path: '/en/examples', changeFrequency: 'weekly' as const, priority: 0.8 },
+    { path: '/en/newborn-photography-guide', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/en/contact', changeFrequency: 'monthly' as const, priority: 0.5 }
   ]
 
   const staticPages = staticRoutes.map((route) => ({
@@ -33,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogPages = blogPosts.map((post) => {
     const lastModifiedSource = post.updatedDate ?? post.publishDate
     return {
-      url: canonicalUrl(`/blog/${post.id}`),
+      url: canonicalUrl(`/en/blog/${post.id}`),
       lastModified: lastModifiedSource ? new Date(lastModifiedSource).toISOString() : currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.8

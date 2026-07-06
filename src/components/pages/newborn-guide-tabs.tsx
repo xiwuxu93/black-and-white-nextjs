@@ -312,7 +312,7 @@ export function NewbornGuideTabs() {
 
         {/* CTA */}
         <div className="text-center">
-          <Link href="/">
+          <Link href="/en/">
             <Button size="lg" className="bg-pink-600 hover:bg-pink-700">
               <Camera className="w-4 h-4 mr-2" />
               Convert Your Photos Now

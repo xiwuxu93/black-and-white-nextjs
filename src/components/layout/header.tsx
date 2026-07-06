@@ -32,7 +32,7 @@ export function Header() {
   }, [])
 
   const navigation = [
-    { name: "Home", href: "/" },
+    { name: "Home", href: "/en/" },
     { name: "Batch Converter", href: "/batch-black-and-white-converter" },
     { name: "Examples", href: "/examples" },
     { name: "How to Use", href: "/how-to-use" },
@@ -63,7 +63,7 @@ export function Header() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo and brand */}
         <div className="flex items-center space-x-2">
-          <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+          <Link href="/en/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
             <Image
               src="/logo.png"
               alt="BW Converter Logo"
