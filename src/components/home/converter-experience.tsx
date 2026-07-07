@@ -538,7 +538,6 @@ export function ConverterExperience({
                 </>
               )}
             </section>
-            {marketingContent}
           </>
         )}
 
@@ -692,6 +691,7 @@ export function ConverterExperience({
             </section>
           </div>
         )}
+        {marketingContent}
         {isProcessing && processingStatus && (
           <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
             <Card className="max-w-md w-full p-6 text-center space-y-6 bg-white dark:bg-gray-800 shadow-2xl border-none">
