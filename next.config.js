@@ -19,6 +19,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/ads.txt',
+        destination: 'https://adstxt.journeymv.com/sites/6be4f521-ca9d-4437-9b0c-41cf46b08702/ads.txt',
+        permanent: true
+      },
+      {
         source: '/',
         destination: '/en/',
         permanent: true
