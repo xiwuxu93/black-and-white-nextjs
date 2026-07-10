@@ -33,23 +33,23 @@ export function Header() {
 
   const navigation = [
     { name: "Home", href: "/en/" },
-    { name: "Batch Converter", href: "/batch-black-and-white-converter" },
-    { name: "Examples", href: "/examples" },
-    { name: "How to Use", href: "/how-to-use" },
-    { name: "Blog", href: "/blog" },
+    { name: "Batch Converter", href: "/en/batch-black-and-white-converter" },
+    { name: "Examples", href: "/en/examples" },
+    { name: "How to Use", href: "/en/how-to-use" },
+    { name: "Blog", href: "/en/blog" },
     {
       name: "More",
       href: "#",
       children: [
-        { name: "Logo Converter", href: "/logo-to-black-and-white", icon: Layers, description: "Convert PNG and SVG logos" },
-        { name: "PDF Converter", href: "/convert-pdf-to-black-and-white", icon: FileText, description: "Grayscale your PDF documents" },
-        { name: "Invert Colors", href: "/invert-image-colors", icon: ImageIcon, description: "Flip color values for design and negatives" },
-        { name: "Newborn Guide", href: "/newborn-photography-guide", icon: Camera, description: "Lighting and editing workflow notes" },
-        { name: "FAQ", href: "/faq", icon: HelpCircle, description: "Common questions answered" },
-        { name: "Contact", href: "/contact", icon: Mail, description: "Email support" },
-        { name: "About", href: "/about", icon: Info, description: "Project background and development notes" },
-        { name: "Privacy Policy", href: "/privacy", icon: Shield, description: "How we protect your data" },
-        { name: "Terms of Service", href: "/terms", icon: FileText, description: "Usage terms and conditions" }
+        { name: "Logo Converter", href: "/en/logo-to-black-and-white", icon: Layers, description: "Convert PNG and SVG logos" },
+        { name: "PDF Converter", href: "/en/convert-pdf-to-black-and-white", icon: FileText, description: "Grayscale your PDF documents" },
+        { name: "Invert Colors", href: "/en/invert-image-colors", icon: ImageIcon, description: "Flip color values for design and negatives" },
+        { name: "Newborn Guide", href: "/en/newborn-photography-guide", icon: Camera, description: "Lighting and editing workflow notes" },
+        { name: "FAQ", href: "/en/faq", icon: HelpCircle, description: "Common questions answered" },
+        { name: "Contact", href: "/en/contact", icon: Mail, description: "Email support" },
+        { name: "About", href: "/en/about", icon: Info, description: "Project background and development notes" },
+        { name: "Privacy Policy", href: "/en/privacy", icon: Shield, description: "How we protect your data" },
+        { name: "Terms of Service", href: "/en/terms", icon: FileText, description: "Usage terms and conditions" }
       ]
     }
   ]

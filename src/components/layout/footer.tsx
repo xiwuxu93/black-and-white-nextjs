@@ -7,29 +7,29 @@ export function Footer() {
       title: "Product",
       links: [
         { name: "Single Converter", href: "/en/" },
-        { name: "Batch Converter", href: "/batch-black-and-white-converter" },
-        { name: "Logo Converter", href: "/logo-to-black-and-white" },
-        { name: "PDF Converter", href: "/convert-pdf-to-black-and-white" },
-        { name: "Invert Colors", href: "/invert-image-colors" },
-        { name: "Examples & Gallery", href: "/examples" },
-        { name: "Newborn Guide", href: "/newborn-photography-guide" },
-        { name: "How to Use", href: "/how-to-use" },
-        { name: "Photography Blog", href: "/blog" },
+        { name: "Batch Converter", href: "/en/batch-black-and-white-converter" },
+        { name: "Logo Converter", href: "/en/logo-to-black-and-white" },
+        { name: "PDF Converter", href: "/en/convert-pdf-to-black-and-white" },
+        { name: "Invert Colors", href: "/en/invert-image-colors" },
+        { name: "Examples & Gallery", href: "/en/examples" },
+        { name: "Newborn Guide", href: "/en/newborn-photography-guide" },
+        { name: "How to Use", href: "/en/how-to-use" },
+        { name: "Photography Blog", href: "/en/blog" },
       ],
     },
     support: {
       title: "Support",
       links: [
-        { name: "FAQ", href: "/faq" },
-        { name: "Contact Sivan", href: "/contact" },
-        { name: "About My Story", href: "/about" },
+        { name: "FAQ", href: "/en/faq" },
+        { name: "Contact Sivan", href: "/en/contact" },
+        { name: "About My Story", href: "/en/about" },
       ],
     },
     legal: {
       title: "Legal",
       links: [
-        { name: "Privacy Policy", href: "/privacy" },
-        { name: "Terms of Service", href: "/terms" },
+        { name: "Privacy Policy", href: "/en/privacy" },
+        { name: "Terms of Service", href: "/en/terms" },
       ],
     },
   };
@@ -48,7 +48,7 @@ export function Footer() {
               black and white converter that runs locally and keeps files private.
             </p>
             <div className="pt-2">
-              <Link href="/about">
+              <Link href="/en/about">
                 <Badge variant="outline" className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
                   <Coffee className="w-3 h-3 mr-2" />
                   Independent Project
