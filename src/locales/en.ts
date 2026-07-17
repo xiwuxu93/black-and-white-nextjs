@@ -427,6 +427,7 @@ export const en = {
       sec3Desc1: 'We use the following third-party services that may collect anonymous data:',
       sec3Bullets1: [
         'Google Analytics: Website usage statistics (anonymous)',
+        'Google AdSense / DoubleClick: Third-party advertising services',
         'Journey by Mediavine: Advertising management and optimization services'
       ],
       sec3Sub2: 'Legal Requirements',
@@ -467,10 +468,10 @@ export const en = {
         'Installing Google Analytics opt-out extensions'
       ],
 
-      sec6Title: '6. Advertising and Cookies (Journey by Mediavine)',
-      sec6P1: 'We partner with Journey by Mediavine to manage third-party interest-based advertising appearing on the Site. Journey processes personal data to deliver personalized, relevant ads to your browser and measure ad performance.',
-      sec6P2: 'Mediavine and its ad partners use cookies, device identifiers, and similar technologies to collect information about your visits to this website and other sites across the internet to serve advertisements tailored to your interests.',
-      sec6P3: 'You can manage your consent preferences or opt out of personalized tracking at any time by interacting with the cookie consent banner presented on our website, or by visiting the network\'s privacy resources below:',
+      sec6Title: '6. Advertising and Cookies (Google AdSense & Mediavine)',
+      sec6P1: 'We use Google AdSense and partner with Journey by Mediavine to serve personalized advertisements when you visit our website. Google AdSense and Mediavine use cookies, device identifiers, and similar technologies to collect information about your visits to this website and other sites across the internet to serve advertisements tailored to your interests and measure ad performance.',
+      sec6P2: 'Google\'s use of the DoubleClick cookie enables it and its partners to serve ads to our users based on their visit to our sites and/or other sites on the Internet. You can manage your consent preferences or opt out of personalized tracking at any time by interacting with the cookie consent banner presented on our website.',
+      sec6P3: 'Alternatively, you may opt out of a third-party vendor\'s use of cookies for personalized advertising by visiting the Network Advertising Initiative (NAI) opt-out page at https://optout.networkadvertising.org, the Digital Advertising Alliance (DAA) choice page at https://optout.aboutads.info, or Google\'s Ad Settings page at https://adssettings.google.com.',
 
       sec7Title: '7. Cookies and Local Storage',
       sec7Sub1: 'Essential Cookies',
