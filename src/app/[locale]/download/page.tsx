@@ -1,5 +1,10 @@
 import type { Metadata } from 'next'
 import DownloadPageClient from '@/components/pages/download-page-client'
+import { getDictionary } from '@/locales'
+
+interface Props {
+  params: { locale: string }
+}
 
 export const metadata: Metadata = {
   title: 'Download Your Converted File - BWConverter',
@@ -10,6 +15,7 @@ export const metadata: Metadata = {
   }
 }
 
-export default function DownloadPage() {
-  return <DownloadPageClient />
+export default function DownloadPage({ params }: Props) {
+  const dict = getDictionary(params.locale)
+  return <DownloadPageClient dict={dict} />
 }

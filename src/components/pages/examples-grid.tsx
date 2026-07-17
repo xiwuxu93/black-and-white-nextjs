@@ -6,16 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import { cn } from "@/lib/utils"
 import { 
   Play, 
   Search, 
   Filter,
-  Star,
-  Clock,
-  Users,
-  Eye
+  Star
 } from "lucide-react"
+import { Dictionary } from "@/locales/en"
 
 interface Example {
   id: string
@@ -30,111 +27,70 @@ interface Example {
   tips: string[]
 }
 
-const EXAMPLES: Example[] = [
-  {
-    id: '1',
-    title: 'Professional Portrait',
-    description: 'Headshot conversion focused on facial contrast, skin texture, and clean background separation.',
-    category: 'Portrait Photography',
-    style: 'Classic',
-    tags: ['portrait', 'professional', 'headshot', 'business'],
-    featured: true,
-    beforeImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&sat=-100',
-    tips: [
-      'Use Classic preset as a neutral baseline for portraits',
-      'Lower highlights if forehead reflections clip',
-      'Keep micro-contrast moderate for natural skin rendering'
-    ]
-  },
-  {
-    id: '2',
-    title: 'Newborn Baby Photo',
-    description: 'Soft conversion for newborn skin tones with low contrast and smooth tonal transitions.',
-    category: 'Newborn Photography',
-    style: 'Soft',
-    tags: ['newborn', 'baby', 'family', 'memories'],
-    featured: true,
-    beforeImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80&sat=-100',
-    tips: [
-      'Start with Soft preset and reduce contrast slightly',
-      'Protect highlight detail in blankets and wraps',
-      'Avoid heavy sharpening on skin areas'
-    ]
-  },
-  {
-    id: '3',
-    title: 'Urban Street Scene',
-    description: 'High-contrast street conversion emphasizing geometry, shadows, and structural lines.',
-    category: 'Street Photography',
-    style: 'High Contrast',
-    tags: ['street', 'urban', 'architecture', 'city'],
-    featured: true,
-    beforeImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80&sat=-100',
-    tips: [
-      'Increase blue-channel influence to darken skies',
-      'Use stronger blacks for concrete and metal textures',
-      'Check shadow clipping in deep alley areas'
-    ]
-  },
-  {
-    id: '4',
-    title: 'Wedding Moment',
-    description: 'Classic monochrome treatment for ceremony moments with balanced skin and dress detail.',
-    category: 'Wedding Photography',
-    style: 'Classic',
-    tags: ['wedding', 'romance', 'couple', 'love'],
-    featured: false,
-    beforeImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80&sat=-100',
-    tips: [
-      'Protect white dress highlights before adding contrast',
-      'Keep grain subtle for album-ready exports',
-      'Use local adjustments for faces if needed'
-    ]
-  },
-  {
-    id: '5',
-    title: 'Nature Landscape',
-    description: 'Landscape conversion built around cloud texture, terrain depth, and tonal layering.',
-    category: 'Landscape Photography',
-    style: 'Dramatic',
-    tags: ['landscape', 'nature', 'mountains', 'scenic'],
-    featured: false,
-    beforeImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&sat=-100',
-    tips: [
-      'Dramatic preset works well for cloud-heavy skies',
-      'Lift shadows slightly to keep terrain detail',
-      'Check horizon contrast at final export size'
-    ]
-  },
-  {
-    id: '6',
-    title: 'Fashion Portrait',
-    description: 'Vintage-style portrait with restrained contrast and controlled grain for editorial mood.',
-    category: 'Fashion Photography',
-    style: 'Vintage',
-    tags: ['fashion', 'model', 'vintage', 'editorial'],
-    featured: false,
-    beforeImage: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80&sat=-100',
-    tips: [
-      'Add grain carefully to avoid fabric detail loss',
-      'Keep midtones open for makeup and clothing texture',
-      'Use slight warm tone only if the brief allows'
-    ]
-  }
-]
+interface ExamplesGridProps {
+  dict: Dictionary
+}
 
-export function ExamplesGrid() {
+export function ExamplesGrid({ dict }: ExamplesGridProps) {
   const [searchTerm, setSearchTerm] = React.useState('')
   const [selectedCategory, setSelectedCategory] = React.useState('all')
   const [selectedStyle, setSelectedStyle] = React.useState('all')
 
-  const examples = EXAMPLES
+  const exampleDetails = [
+    {
+      id: '1',
+      style: 'Classic' as const,
+      tags: ['portrait', 'professional', 'headshot', 'business'],
+      featured: true,
+      beforeImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
+      afterImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&sat=-100',
+    },
+    {
+      id: '2',
+      style: 'Soft' as const,
+      tags: ['newborn', 'baby', 'family', 'memories'],
+      featured: true,
+      beforeImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80',
+      afterImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80&sat=-100',
+    },
+    {
+      id: '3',
+      style: 'High Contrast' as const,
+      tags: ['street', 'urban', 'architecture', 'city'],
+      featured: true,
+      beforeImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80',
+      afterImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80&sat=-100',
+    },
+    {
+      id: '4',
+      style: 'Classic' as const,
+      tags: ['wedding', 'romance', 'couple', 'love'],
+      featured: false,
+      beforeImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+      afterImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80&sat=-100',
+    },
+    {
+      id: '5',
+      style: 'Dramatic' as const,
+      tags: ['landscape', 'nature', 'mountains', 'scenic'],
+      featured: false,
+      beforeImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+      afterImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&sat=-100',
+    },
+    {
+      id: '6',
+      style: 'Vintage' as const,
+      tags: ['fashion', 'model', 'vintage', 'editorial'],
+      featured: false,
+      beforeImage: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80',
+      afterImage: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80&sat=-100',
+    }
+  ]
+
+  const examples: Example[] = dict.examples.items.map((item: any, idx: number) => ({
+    ...item,
+    ...exampleDetails[idx]
+  }))
 
   const categories = ['all', ...Array.from(new Set(examples.map(ex => ex.category)))]
   const styles = ['all', 'Classic', 'Dramatic', 'Soft', 'Vintage', 'High Contrast']
@@ -165,8 +121,7 @@ export function ExamplesGrid() {
   }
 
   const tryExample = (example: Example) => {
-    // Navigate to main converter page
-    window.location.href = '/'
+    window.location.href = `/${dict.locale || 'en'}/`
   }
 
   return (
@@ -193,7 +148,7 @@ export function ExamplesGrid() {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-3 py-2 border rounded-lg text-sm"
+              className="px-3 py-2 border rounded-lg text-sm bg-white dark:bg-gray-800"
             >
               {categories.map(category => (
                 <option key={category} value={category}>
@@ -207,7 +162,7 @@ export function ExamplesGrid() {
           <select
             value={selectedStyle}
             onChange={(e) => setSelectedStyle(e.target.value)}
-            className="px-3 py-2 border rounded-lg text-sm"
+            className="px-3 py-2 border rounded-lg text-sm bg-white dark:bg-gray-800"
           >
             {styles.map(style => (
               <option key={style} value={style}>

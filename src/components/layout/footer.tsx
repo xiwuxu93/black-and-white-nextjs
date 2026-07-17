@@ -1,35 +1,41 @@
 import Link from "next/link";
 import { Heart, Coffee } from "lucide-react";
+import { Dictionary } from "@/locales/en";
 
-export function Footer() {
+interface FooterProps {
+  dict: Dictionary
+}
+
+export function Footer({ dict }: FooterProps) {
   const footerLinks = {
     product: {
       title: "Product",
       links: [
-        { name: "Single Converter", href: "/en/" },
-        { name: "Batch Converter", href: "/en/batch-black-and-white-converter" },
-        { name: "Logo Converter", href: "/en/logo-to-black-and-white" },
-        { name: "PDF Converter", href: "/en/convert-pdf-to-black-and-white" },
-        { name: "Invert Colors", href: "/en/invert-image-colors" },
-        { name: "Examples & Gallery", href: "/en/examples" },
-        { name: "Newborn Guide", href: "/en/newborn-photography-guide" },
-        { name: "How to Use", href: "/en/how-to-use" },
-        { name: "Photography Blog", href: "/en/blog" },
+        { name: dict.common.home, href: `/${dict.locale || 'en'}/` },
+        { name: dict.common.batch, href: `/${dict.locale || 'en'}/batch-black-and-white-converter` },
+        { name: dict.common.logo, href: `/${dict.locale || 'en'}/logo-to-black-and-white` },
+        { name: dict.common.pdf, href: `/${dict.locale || 'en'}/convert-pdf-to-black-and-white` },
+        { name: dict.invert.heroBadge, href: `/${dict.locale || 'en'}/invert-image-colors` },
+        { name: dict.sepia.heroBadge, href: `/${dict.locale || 'en'}/sepia-filter` },
+        { name: dict.common.gallery, href: `/${dict.locale || 'en'}/examples` },
+        { name: dict.newborn.heroBadge, href: `/${dict.locale || 'en'}/newborn-photography-guide` },
+        { name: dict.common.howToUse, href: `/${dict.locale || 'en'}/how-to-use` },
+        { name: dict.common.blog, href: `/${dict.locale || 'en'}/blog` },
       ],
     },
     support: {
       title: "Support",
       links: [
-        { name: "FAQ", href: "/en/faq" },
-        { name: "Contact Sivan", href: "/en/contact" },
-        { name: "About My Story", href: "/en/about" },
+        { name: dict.common.faq, href: `/${dict.locale || 'en'}/faq` },
+        { name: dict.common.contact, href: `/${dict.locale || 'en'}/contact` },
+        { name: dict.common.about, href: `/${dict.locale || 'en'}/about` },
       ],
     },
     legal: {
       title: "Legal",
       links: [
-        { name: "Privacy Policy", href: "/en/privacy" },
-        { name: "Terms of Service", href: "/en/terms" },
+        { name: dict.common.privacy, href: `/${dict.locale || 'en'}/privacy` },
+        { name: dict.common.terms, href: `/${dict.locale || 'en'}/terms` },
       ],
     },
   };
@@ -40,18 +46,17 @@ export function Footer() {
         {/* Main content area */}
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-1 space-y-4">
-            <Link href="/en/" className="text-xl font-bold tracking-tighter">
+            <Link href={`/${dict.locale || 'en'}/`} className="text-xl font-bold tracking-tighter">
               BWConverter
             </Link>
             <p className="text-sm text-gray-500 leading-relaxed">
-              Built by Sivan Xu for photographers and designers who need a reliable
-              black and white converter that runs locally and keeps files private.
+              {dict.layout.footerDesc}
             </p>
             <div className="pt-2">
-              <Link href="/en/about">
+              <Link href={`/${dict.locale || 'en'}/about`}>
                 <Badge variant="outline" className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
                   <Coffee className="w-3 h-3 mr-2" />
-                  Independent Project
+                  {dict.layout.footerBadge}
                 </Badge>
               </Link>
             </div>
@@ -84,11 +89,11 @@ export function Footer() {
             {/* Copyright */}
             <div className="flex items-center space-x-1 text-xs text-gray-400">
               <span>
-                © {new Date().getFullYear()} BWConverter. Built with
+                {dict.layout.footerCopyright.split('{year}')[0]}{new Date().getFullYear()}{dict.layout.footerCopyright.split('{year}')[1].split('{heart}')[0]}
               </span>
               <Heart className="h-3 w-3 text-pink-500" />
               <span>
-                by Sivan Xu in Hong Kong.
+                {dict.layout.footerCopyright.split('{heart}')[1]}
               </span>
             </div>
             <div className="text-xs text-gray-400">
@@ -103,7 +108,7 @@ export function Footer() {
 
           <div className="mt-8 text-center text-[10px] text-gray-400 uppercase tracking-widest space-y-2">
             <p>
-              Local Processing • No Cloud Uploads • Controlled Tonal Range
+              {dict.layout.footerBottom}
             </p>
           </div>
         </div>

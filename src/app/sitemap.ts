@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/en/logo-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.85 },
     { path: '/en/convert-pdf-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.88 },
     { path: '/en/invert-image-colors', changeFrequency: 'weekly' as const, priority: 0.82 },
+    { path: '/en/sepia-filter', changeFrequency: 'weekly' as const, priority: 0.86 },
     { path: '/en/how-to-use', changeFrequency: 'monthly' as const, priority: 0.7 },
     { path: '/en/about', changeFrequency: 'monthly' as const, priority: 0.7 },
     { path: '/en/faq', changeFrequency: 'monthly' as const, priority: 0.7 },

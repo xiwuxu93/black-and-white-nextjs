@@ -15,24 +15,29 @@ import {
   BookOpen 
 } from 'lucide-react'
 import Link from 'next/link'
+import { Dictionary } from '@/locales/en'
 
-export default function DownloadPageClient() {
+interface DownloadPageClientProps {
+  dict: Dictionary
+}
+
+export default function DownloadPageClient({ dict }: DownloadPageClientProps) {
   const router = useRouter()
   const { data, clearConversionData } = useConversionStore()
 
   useEffect(() => {
     // If no conversion has occurred, redirect back to home
     if (!data) {
-      router.replace('/')
+      router.replace(`/${dict.locale || 'en'}/`)
     }
-  }, [data, router])
+  }, [data, router, dict.locale])
 
   if (!data) {
     return (
       <div className="flex min-h-[70vh] items-center justify-center">
         <div className="text-center">
           <RefreshCw className="w-8 h-8 animate-spin text-primary-600 mx-auto mb-4" />
-          <p className="text-gray-500">Redirecting to homepage...</p>
+          <p className="text-gray-500">Redirecting...</p>
         </div>
       </div>
     )
@@ -40,7 +45,7 @@ export default function DownloadPageClient() {
 
   const handleConvertAnother = () => {
     clearConversionData()
-    router.push('/')
+    router.push(`/${dict.locale || 'en'}/`)
   }
 
   // Calculate compression savings percentage
@@ -61,7 +66,7 @@ export default function DownloadPageClient() {
             onClick={handleConvertAnother}
             className="text-gray-600 dark:text-gray-400 hover:text-gray-900"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" /> Back to Converter
+            <ArrowLeft className="w-4 h-4 mr-2" /> {dict.downloadPage.btnBack}
           </Button>
         </div>
 
@@ -70,7 +75,7 @@ export default function DownloadPageClient() {
           <div className="lg:col-span-7 space-y-6">
             <Card className="p-6 bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col justify-center items-center min-h-[400px]">
               <Badge className="mb-4 bg-green-500 hover:bg-green-600 text-white">
-                ✓ Converted Successfully
+                {dict.downloadPage.badgeSuccess}
               </Badge>
               
               {data.fileType === 'image' ? (
@@ -88,7 +93,7 @@ export default function DownloadPageClient() {
                     {data.filename}
                   </p>
                   <Badge variant="secondary" className="mt-2">
-                    PDF Document
+                    {dict.downloadPage.badgePdf}
                   </Badge>
                 </div>
               )}
@@ -100,7 +105,7 @@ export default function DownloadPageClient() {
             <Card className="p-6 bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 space-y-6">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight flex items-center">
-                  <CheckCircle2 className="w-7 h-7 text-green-500 mr-2 shrink-0" /> File is Ready!
+                  <CheckCircle2 className="w-7 h-7 text-green-500 mr-2 shrink-0" /> {dict.downloadPage.readyTitle}
                 </h1>
                 <p className="text-sm text-gray-500 dark:text-gray-400 break-all">
                   {data.filename}
@@ -110,18 +115,18 @@ export default function DownloadPageClient() {
               {/* Metrics */}
               <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-800">
                 <div>
-                  <span className="block text-xs text-gray-400 font-medium">Original Size</span>
+                  <span className="block text-xs text-gray-400 font-medium">{dict.downloadPage.lblOriginalSize}</span>
                   <span className="text-lg font-bold text-gray-700 dark:text-gray-300">{data.originalSize} MB</span>
                 </div>
                 <div>
-                  <span className="block text-xs text-gray-400 font-medium">New Size</span>
+                  <span className="block text-xs text-gray-400 font-medium">{dict.downloadPage.lblNewSize}</span>
                   <span className="text-lg font-bold text-gray-900 dark:text-white">{data.processedSize} MB</span>
                 </div>
                 {savingsPct > 0 && (
                   <div className="col-span-2 pt-2 border-t border-gray-200/50 dark:border-gray-800/50 flex justify-between items-center">
-                    <span className="text-xs text-green-600 dark:text-green-400 font-semibold">Tonal Compression</span>
+                    <span className="text-xs text-green-600 dark:text-green-400 font-semibold">{dict.downloadPage.lblCompression}</span>
                     <Badge variant="secondary" className="bg-green-50 dark:bg-green-950/30 text-green-700 dark:text-green-400 hover:bg-green-100">
-                      Saved {savingsPct}% ink volume
+                      {dict.downloadPage.badgeSavings.replace('{pct}', String(savingsPct))}
                     </Badge>
                   </div>
                 )}
@@ -138,7 +143,7 @@ export default function DownloadPageClient() {
                     size="lg" 
                     className="w-full rounded-full font-bold h-14 bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2 shadow-lg shadow-green-600/20"
                   >
-                    <Download className="w-5 h-5" /> Download Grayscale File
+                    <Download className="w-5 h-5" /> {dict.downloadPage.btnDownload}
                   </Button>
                 </a>
 
@@ -148,37 +153,34 @@ export default function DownloadPageClient() {
                   onClick={handleConvertAnother}
                   className="w-full rounded-full h-12 text-sm border-gray-200 dark:border-gray-700 hover:bg-gray-50"
                 >
-                  <RefreshCw className="w-4 h-4 mr-2" /> Convert Another File
+                  <RefreshCw className="w-4 h-4 mr-2" /> {dict.downloadPage.btnAnother}
                 </Button>
               </div>
 
               {/* Privacy Shield */}
               <p className="text-[10px] text-center text-gray-400">
-                🔒 Private local processing: Your file remains entirely in your browser memory and is never uploaded to our servers.
+                {dict.downloadPage.privacyShield}
               </p>
             </Card>
 
             {/* Internal Guides Link (Satisfies content redirection / ad booster) */}
             <Card className="p-6 bg-gradient-to-br from-blue-50/50 to-indigo-50/30 dark:from-blue-950/10 dark:to-indigo-950/5 border-blue-100/50 dark:border-blue-900/30">
               <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-3 flex items-center">
-                <BookOpen className="w-4 h-4 text-blue-500 mr-2" /> Pro Photography Guides
+                <BookOpen className="w-4 h-4 text-blue-500 mr-2" /> {dict.downloadPage.guidesTitle}
               </h3>
               <p className="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                Want to create beautiful monochrome photos? Read our workflow guides to capture high-contrast film styles.
+                {dict.downloadPage.guidesDesc}
               </p>
               <div className="space-y-2.5">
-                <Link 
-                  href="/newborn-photography-guide" 
-                  className="block text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center"
-                >
-                  📸 Newborn B&W Editing Workflow Notes
-                </Link>
-                <Link 
-                  href="/blog" 
-                  className="block text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center"
-                >
-                  ✍️ Explore our Monochrome Photography Blog
-                </Link>
+                {dict.downloadPage.guidesList.map((guide: any, idx: number) => (
+                  <Link 
+                    key={idx}
+                    href={guide.href} 
+                    className="block text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center"
+                  >
+                    {guide.label}
+                  </Link>
+                ))}
               </div>
             </Card>
           </div>

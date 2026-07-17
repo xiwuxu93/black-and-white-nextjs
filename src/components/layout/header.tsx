@@ -5,7 +5,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 import {
   Sun,
   Moon,
@@ -21,8 +20,13 @@ import {
   Layers,
   Camera
 } from "lucide-react"
+import { Dictionary } from "@/locales/en"
 
-export function Header() {
+interface HeaderProps {
+  dict: Dictionary
+}
+
+export function Header({ dict }: HeaderProps) {
   const { theme, setTheme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
@@ -32,24 +36,25 @@ export function Header() {
   }, [])
 
   const navigation = [
-    { name: "Home", href: "/en/" },
-    { name: "Batch Converter", href: "/en/batch-black-and-white-converter" },
-    { name: "Examples", href: "/en/examples" },
-    { name: "How to Use", href: "/en/how-to-use" },
-    { name: "Blog", href: "/en/blog" },
+    { name: dict.common.home, href: `/${dict.locale || 'en'}/` },
+    { name: dict.common.batch, href: `/${dict.locale || 'en'}/batch-black-and-white-converter` },
+    { name: dict.common.gallery, href: `/${dict.locale || 'en'}/examples` },
+    { name: dict.common.howToUse, href: `/${dict.locale || 'en'}/how-to-use` },
+    { name: dict.common.blog, href: `/${dict.locale || 'en'}/blog` },
     {
-      name: "More",
+      name: dict.layout.headerMore,
       href: "#",
       children: [
-        { name: "Logo Converter", href: "/en/logo-to-black-and-white", icon: Layers, description: "Convert PNG and SVG logos" },
-        { name: "PDF Converter", href: "/en/convert-pdf-to-black-and-white", icon: FileText, description: "Grayscale your PDF documents" },
-        { name: "Invert Colors", href: "/en/invert-image-colors", icon: ImageIcon, description: "Flip color values for design and negatives" },
-        { name: "Newborn Guide", href: "/en/newborn-photography-guide", icon: Camera, description: "Lighting and editing workflow notes" },
-        { name: "FAQ", href: "/en/faq", icon: HelpCircle, description: "Common questions answered" },
-        { name: "Contact", href: "/en/contact", icon: Mail, description: "Email support" },
-        { name: "About", href: "/en/about", icon: Info, description: "Project background and development notes" },
-        { name: "Privacy Policy", href: "/en/privacy", icon: Shield, description: "How we protect your data" },
-        { name: "Terms of Service", href: "/en/terms", icon: FileText, description: "Usage terms and conditions" }
+        { name: dict.common.logo, href: `/${dict.locale || 'en'}/logo-to-black-and-white`, icon: Layers, description: dict.layout.logoDesc },
+        { name: dict.common.pdf, href: `/${dict.locale || 'en'}/convert-pdf-to-black-and-white`, icon: FileText, description: dict.layout.pdfDesc },
+        { name: dict.invert.heroBadge, href: `/${dict.locale || 'en'}/invert-image-colors`, icon: ImageIcon, description: dict.layout.invertDesc },
+        { name: dict.sepia.heroBadge, href: `/${dict.locale || 'en'}/sepia-filter`, icon: ImageIcon, description: dict.layout.sepiaDesc },
+        { name: dict.newborn.heroBadge, href: `/${dict.locale || 'en'}/newborn-photography-guide`, icon: Camera, description: dict.layout.newbornDesc },
+        { name: dict.common.faq, href: `/${dict.locale || 'en'}/faq`, icon: HelpCircle, description: dict.layout.faqDesc },
+        { name: dict.common.contact, href: `/${dict.locale || 'en'}/contact`, icon: Mail, description: dict.layout.contactDesc },
+        { name: dict.common.about, href: `/${dict.locale || 'en'}/about`, icon: Info, description: dict.layout.aboutDesc },
+        { name: dict.common.privacy, href: `/${dict.locale || 'en'}/privacy`, icon: Shield, description: dict.layout.privacyDesc },
+        { name: dict.common.terms, href: `/${dict.locale || 'en'}/terms`, icon: FileText, description: dict.layout.termsDesc }
       ]
     }
   ]
@@ -63,7 +68,7 @@ export function Header() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo and brand */}
         <div className="flex items-center space-x-2">
-          <Link href="/en/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+          <Link href={`/${dict.locale || 'en'}/`} className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
             <Image
               src="/logo.png"
               alt="BW Converter Logo"
@@ -140,7 +145,6 @@ export function Header() {
               )}
             </Button>
           )}
-
 
           {/* Mobile menu button */}
           <Button

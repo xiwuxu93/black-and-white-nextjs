@@ -4,67 +4,73 @@ import { ExamplesGrid } from '@/components/pages/examples-grid'
 import { Breadcrumb } from '@/components/seo/breadcrumb'
 import { canonicalUrl } from '@/lib/seo'
 import { Card } from '@/components/ui/card'
+import { getDictionary } from '@/locales'
 
-export const metadata: Metadata = {
-  title: 'Black and White Photo Examples - Professional Before & After Gallery',
-  description: 'Browse black and white photo examples with before/after comparisons, style notes, and practical conversion guidance.',
-  keywords: ['black and white photo examples', 'image conversion gallery', 'before after photography', 'monochrome examples', 'professional photo conversion', 'black white transformation', 'photography case studies'],
-  alternates: {
-    canonical: canonicalUrl('/en/examples/')
-  },
-  openGraph: {
-    title: 'Black and White Photo Examples - Professional Before & After Gallery',
-    description: 'Browse black and white photo examples with before/after comparisons, style notes, and practical conversion guidance.',
-    url: canonicalUrl('/en/examples/')
+interface Props {
+  params: { locale: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const dict = getDictionary(params.locale)
+  const canonical = canonicalUrl(`/${params.locale}/examples/`)
+  return {
+    title: dict.examples.metaTitle,
+    description: dict.examples.metaDesc,
+    alternates: {
+      canonical
+    },
+    openGraph: {
+      title: dict.examples.metaTitle,
+      description: dict.examples.metaDesc,
+      url: canonical
+    }
   }
 }
 
-export default function ExamplesPage() {
+export default function ExamplesPage({ params }: Props) {
+  const dict = getDictionary(params.locale)
   return (
     <>
-        <Breadcrumb items={[{ name: 'Examples' }]} />
+        <Breadcrumb items={[{ name: dict.newborn.continueExamples }]} />
 
         {/* Page title */}
         <header className="article-header">
           <h1>
-            Professional Black and White Photography Examples
+            {dict.examples.heroTitle}
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8">
-            This gallery shows before/after conversions with notes on style choice,
-            contrast strategy, and subject handling.
+            {dict.examples.heroSubtitle}
           </p>
         </header>
 
         {/* Featured Guides */}
         <section className="article-section">
           <h2>
-            Featured Guides & Case Studies
+            {dict.examples.guidesTitle}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <Card className="p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Newborn Photography Playbook
+                {dict.examples.guideNewbornTitle}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-                Follow a home-session checklist, lighting recipes, and a one-hour editing timeline built for
-                BWConverter presets. Includes downloadable sample conversions and benchmark data.
+                {dict.examples.guideNewbornDesc}
               </p>
               <Link href="/newborn-photography-guide" className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
-                Read the complete guide
+                {dict.examples.guideNewbornLink}
                 <span className="sr-only">Newborn photography guide</span>
               </Link>
             </Card>
 
             <Card className="p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Newborn Workflow: Studio vs Home
+                {dict.examples.guideCompareTitle}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-                Comparison guide for studio and home sessions, including lighting setup,
-                preset baseline choices, and delivery checkpoints.
+                {dict.examples.guideCompareDesc}
               </p>
               <Link href="/newborn-photography-guide" className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
-                Explore the guide
+                {dict.examples.guideCompareLink}
                 <span className="sr-only">Newborn studio case study</span>
               </Link>
             </Card>
@@ -74,54 +80,48 @@ export default function ExamplesPage() {
         {/* Photography Education Section */}
         <section className="article-section">
           <h2>
-            Understanding Black and White Photography
+            {dict.examples.eduTitle}
           </h2>
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                🎨 Artistic Vision
+                {dict.examples.eduVisionTitle}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Removing color shifts attention to shape, light, texture, and timing.
-                That often makes composition mistakes easier to spot and fix.
+                {dict.examples.eduVisionDesc}
               </p>
               <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
-                <li>• Better focus on composition</li>
-                <li>• Clearer separation of subject and background</li>
-                <li>• Stronger emphasis on texture</li>
-                <li>• Easier contrast-led storytelling</li>
+                {dict.examples.eduVisionBullets.map((bullet: string) => (
+                  <li key={bullet}>• {bullet}</li>
+                ))}
               </ul>
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                🔬 Technical Science
+                {dict.examples.eduScienceTitle}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Conversion quality depends on how color channels map to grayscale,
-                and how highlights and shadows are balanced for the target scene.
+                {dict.examples.eduScienceDesc}
               </p>
               <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
-                <li>• Channel-to-gray mapping</li>
-                <li>• Global and local contrast control</li>
-                <li>• Highlight and shadow management</li>
-                <li>• Detail retention in textured areas</li>
+                {dict.examples.eduScienceBullets.map((bullet: string) => (
+                  <li key={bullet}>• {bullet}</li>
+                ))}
               </ul>
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                📸 Professional Applications
+                {dict.examples.eduProTitle}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Typical use cases include portfolio work, client galleries, editorial layouts,
-                and documentary sequences where tone carries the story.
+                {dict.examples.eduProDesc}
               </p>
               <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
-                <li>• Portfolio and exhibition work</li>
-                <li>• Commercial photography projects</li>
-                <li>• Fine art and gallery collections</li>
-                <li>• Documentary and storytelling</li>
+                {dict.examples.eduProBullets.map((bullet: string) => (
+                  <li key={bullet}>• {bullet}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -130,122 +130,62 @@ export default function ExamplesPage() {
         {/* Style Analysis Section */}
         <section className="article-section">
           <h2>
-            Professional Black and White Conversion Styles
+            {dict.examples.stylesTitle}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-900 text-white rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-4">🎭 Classic Style</h3>
-              <p className="text-gray-300 mb-4">
-                Balanced conversion that keeps midtones stable and skin texture intact.
-                A good default for portraits and event photography.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div><strong>Best for:</strong> Portraits, weddings, family photos</div>
-                <div><strong>Characteristics:</strong> Balanced tones, natural contrast</div>
-                <div><strong>Pro tip:</strong> Preserves skin tones and facial details</div>
-              </div>
-            </div>
-
-            <div className="bg-red-900 text-white rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-4">⚡ Dramatic Style</h3>
-              <p className="text-gray-300 mb-4">
-                Strong contrast with deep blacks and bright highlights.
-                Useful for architecture, street frames, and scenes with graphic lines.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div><strong>Best for:</strong> Landscapes, architecture, street photography</div>
-                <div><strong>Characteristics:</strong> High contrast, bold shadows</div>
-                <div><strong>Pro tip:</strong> Enhances textures and structural details</div>
-              </div>
-            </div>
-
-            <div className="bg-amber-800 text-white rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-4">📽️ Vintage Style</h3>
-              <p className="text-gray-300 mb-4">
-                Film-style conversion with softer contrast and mild warmth.
-                Often used in fashion, editorial, and memory-driven projects.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div><strong>Best for:</strong> Fashion, editorial, artistic projects</div>
-                <div><strong>Characteristics:</strong> Soft contrast, film grain effect</div>
-                <div><strong>Pro tip:</strong> Adds emotional warmth and nostalgia</div>
-              </div>
-            </div>
-
-            <div className="bg-blue-900 text-white rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-4">🌙 Film Noir Style</h3>
-              <p className="text-gray-300 mb-4">
-                Cinematic style with darker shadows and controlled highlights.
-                Works well for urban stories and low-key scenes.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div><strong>Best for:</strong> Urban scenes, mood photography</div>
-                <div><strong>Characteristics:</strong> Deep shadows, dramatic lighting</div>
-                <div><strong>Pro tip:</strong> Creates mystery and emotional depth</div>
-              </div>
-            </div>
-
-            <div className="bg-purple-900 text-white rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-4">🕊️ Soft Style</h3>
-              <p className="text-gray-300 mb-4">
-                Gentle contrast and smoother gradients.
-                Useful for newborn sessions and other delicate subjects.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div><strong>Best for:</strong> Newborns, delicate subjects, ethereal mood</div>
-                <div><strong>Characteristics:</strong> Gentle tones, soft transitions</div>
-                <div><strong>Pro tip:</strong> Maintains delicate details and textures</div>
-              </div>
-            </div>
-
-            <div className="bg-gray-700 text-white rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-4">⚫ High Contrast</h3>
-              <p className="text-gray-300 mb-4">
-                Near-binary black/white output with minimal midtone detail.
-                Best for graphic compositions and abstract shapes.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div><strong>Best for:</strong> Modern art, graphic design, abstract</div>
-                <div><strong>Characteristics:</strong> Maximum contrast, graphic impact</div>
-                <div><strong>Pro tip:</strong> Emphasizes patterns and geometric forms</div>
-              </div>
-            </div>
+            {dict.examples.stylesList.map((styleItem: any, idx: number) => {
+              const bgColors = [
+                'bg-gray-900',
+                'bg-red-900',
+                'bg-amber-800',
+                'bg-blue-900',
+                'bg-purple-900',
+                'bg-gray-700'
+              ]
+              return (
+                <div key={idx} className={`${bgColors[idx] || 'bg-gray-900'} text-white rounded-xl p-6`}>
+                  <h3 className="text-xl font-semibold mb-4">{styleItem.title}</h3>
+                  <p className="text-gray-300 mb-4">
+                    {styleItem.desc}
+                  </p>
+                  <div className="space-y-2 text-sm">
+                    <div><strong>Best for:</strong> {styleItem.bestFor}</div>
+                    <div><strong>Characteristics:</strong> {styleItem.chars}</div>
+                    <div><strong>Pro tip:</strong> {styleItem.tip}</div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </section>
 
         {/* Professional Techniques Section */}
         <section className="mb-16 bg-white dark:bg-gray-800 rounded-2xl p-8">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            Professional Black and White Photography Techniques
+            {dict.examples.techTitle}
           </h2>
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-                🔍 Composition for Monochrome
+                {dict.examples.techCompTitle}
               </h3>
               <div className="space-y-6">
                 <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Leading Lines and Geometry</h4>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{dict.examples.techCompLinesTitle}</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    In black and white photography, lines, shapes, and geometric patterns become more 
-                    prominent. Use architectural elements, natural formations, and compositional rules 
-                    to guide the viewer's eye through your image.
+                    {dict.examples.techCompLinesDesc}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Texture and Pattern</h4>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{dict.examples.techCompTextTitle}</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Without color distractions, textures become crucial storytelling elements. 
-                    Focus on surface details, fabric patterns, natural textures, and material 
-                    contrasts to add visual interest and depth.
+                    {dict.examples.techCompTextDesc}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Light and Shadow Play</h4>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{dict.examples.techCompLightTitle}</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Dramatic lighting becomes even more important in monochrome photography. 
-                    Use directional light, backlighting, and shadow patterns to create mood, 
-                    depth, and three-dimensional form.
+                    {dict.examples.techCompLightDesc}
                   </p>
                 </div>
               </div>
@@ -253,31 +193,25 @@ export default function ExamplesPage() {
             
             <div>
               <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-                ⚙️ Technical Optimization
+                {dict.examples.techOptTitle}
               </h3>
               <div className="space-y-6">
                 <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Dynamic Range Management</h4>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{dict.examples.techOptRangeTitle}</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Preserve detail in both highlights and shadows by understanding how different 
-                    colors translate to grayscale values. Reds become darker, blues lighter, 
-                    affecting final tonal balance.
+                    {dict.examples.techOptRangeDesc}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Contrast Control</h4>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{dict.examples.techOptContTitle}</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Master the relationship between micro-contrast (local detail) and macro-contrast 
-                    (overall tonal separation). Adjust these independently for professional results 
-                    that maintain detail while creating impact.
+                    {dict.examples.techOptContDesc}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Tonal Mapping</h4>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{dict.examples.techOptMapTitle}</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Understand how to map specific colors to desired grayscale values. 
-                    Use selective adjustments to control how skin tones, skies, and 
-                    vegetation appear in your final monochrome image.
+                    {dict.examples.techOptMapDesc}
                   </p>
                 </div>
               </div>
@@ -286,50 +220,44 @@ export default function ExamplesPage() {
         </section>
 
         {/* Example grid */}
-        <ExamplesGrid />
+        <ExamplesGrid dict={dict} />
 
         {/* Professional Tips Section */}
         <section className="article-section">
           <h2>
-            Practical Tips for Black and White Photography
+            {dict.examples.tipsTitle}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                📷 Before You Shoot
+                {dict.examples.tipsCol1Title}
               </h3>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• Think in terms of light, shadow, and contrast</li>
-                <li>• Look for interesting textures and patterns</li>
-                <li>• Consider how colors will translate to grayscale</li>
-                <li>• Plan for dramatic lighting conditions</li>
-                <li>• Focus on strong compositional elements</li>
+                {dict.examples.tipsCol1.map((tip: string) => (
+                  <li key={tip}>• {tip}</li>
+                ))}
               </ul>
             </div>
             
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                ⚡ During Conversion
+                {dict.examples.tipsCol2Title}
               </h3>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• Start with the appropriate style preset</li>
-                <li>• Preserve important detail areas</li>
-                <li>• Balance overall contrast with local detail</li>
-                <li>• Consider the emotional impact you want</li>
-                <li>• Test different approaches for best results</li>
+                {dict.examples.tipsCol2.map((tip: string) => (
+                  <li key={tip}>• {tip}</li>
+                ))}
               </ul>
             </div>
             
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                🎯 Final Optimization
+                {dict.examples.tipsCol3Title}
               </h3>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• Fine-tune highlights and shadows</li>
-                <li>• Adjust micro-contrast for detail enhancement</li>
-                <li>• Consider subtle vignetting for focus</li>
-                <li>• Optimize for your intended use case</li>
-                <li>• Compare multiple versions before finalizing</li>
+                {dict.examples.tipsCol3.map((tip: string) => (
+                  <li key={tip}>• {tip}</li>
+                ))}
               </ul>
             </div>
           </div>

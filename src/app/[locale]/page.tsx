@@ -7,6 +7,7 @@ import {
 } from '@/components/home/marketing-sections'
 import { StructuredData } from '@/components/seo/structured-data'
 import { canonicalUrl } from '@/lib/seo'
+import { getDictionary } from '@/locales'
 
 interface Props {
   params: { locale: string }
@@ -14,26 +15,34 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonical = canonicalUrl(`/${params.locale}/`)
+  const dict = getDictionary(params.locale)
   return {
+    title: `${dict.home.heroTitle} - Make Image Black and White Online`,
+    description: dict.home.heroSubtitle,
     alternates: {
       canonical
     },
     openGraph: {
-      url: canonical
+      url: canonical,
+      title: `${dict.home.heroTitle} - Make Image Black and White Online`,
+      description: dict.home.heroSubtitle
     }
   }
 }
 
-export default function EnglishHomePage() {
+export default function HomePage({ params }: Props) {
+  const dict = getDictionary(params.locale)
   return (
     <>
-      <StructuredData type="howto" data={HOWTO_SCHEMA} />
-      <StructuredData type="faq" data={HOME_FAQ_SCHEMA} />
+      <StructuredData type="howto" data={HOWTO_SCHEMA(dict)} />
+      <StructuredData type="faq" data={HOME_FAQ_SCHEMA(dict)} />
       <ConverterExperience
         isLandingPage={true}
-        heroTitle="Black and White Image Converter"
-        heroSubtitle="Upload a color photo, turn it black and white, and download the result. The conversion runs in your browser, so the original file stays on your device."
-        marketingContent={<MarketingSections />}
+        heroTitle={dict.home.heroTitle}
+        heroSubtitle={dict.home.heroSubtitle}
+        heroBadgeText={dict.common.freeBwConverter}
+        heroFeatureBadges={[...dict.home.badges]}
+        marketingContent={<MarketingSections dict={dict} />}
       />
     </>
   )

@@ -4,38 +4,47 @@ import { Button } from '@/components/ui/button'
 import { Shield, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { canonicalUrl } from '@/lib/seo'
+import { getDictionary } from '@/locales'
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy - Black and White Image Converter | Your Data Protection',
-  description: 'Our comprehensive privacy policy explains how we protect your data and images. Learn about our local processing approach and commitment to user privacy.',
-  keywords: ['privacy policy', 'data protection', 'image privacy', 'local processing'],
-  alternates: {
-    canonical: canonicalUrl('/en/privacy/')
-  },
-  openGraph: {
-    title: 'Privacy Policy - Black and White Image Converter | Your Data Protection',
-    description: 'Our comprehensive privacy policy explains how we protect your data and images. Learn about our local processing approach and commitment to user privacy.',
-    url: canonicalUrl('/en/privacy/')
+interface Props {
+  params: { locale: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const dict = getDictionary(params.locale)
+  const canonical = canonicalUrl(`/${params.locale}/privacy/`)
+  return {
+    title: dict.privacy.metaTitle,
+    description: dict.privacy.metaDesc,
+    alternates: {
+      canonical
+    },
+    openGraph: {
+      title: dict.privacy.metaTitle,
+      description: dict.privacy.metaDesc,
+      url: canonical
+    }
   }
 }
 
-export default function PrivacyPolicyPage() {
+export default function PrivacyPolicyPage({ params }: Props) {
+  const dict = getDictionary(params.locale)
   return (
     <>
         {/* Header */}
         <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             <Shield className="w-4 h-4 mr-2" />
-            Privacy Policy
+            {dict.privacy.badge}
           </Badge>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Privacy Policy
+            {dict.privacy.title}
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Your privacy is our priority. Learn how we protect your data and images with our local processing approach.
+            {dict.privacy.subtitle}
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
-            Last updated: December 2024
+            {dict.privacy.lastUpdated}
           </p>
         </header>
 
@@ -43,67 +52,56 @@ export default function PrivacyPolicyPage() {
         <section className="article-section">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
             <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-            Key Privacy Highlights
+            {dict.privacy.highlightsTitle}
           </h2>
           <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-            <li>
-              <strong>No Image Upload:</strong> All processing happens locally in your browser
-            </li>
-            <li>
-              <strong>Zero Data Collection:</strong> We don't collect, store, or analyze your images
-            </li>
-            <li>
-              <strong>No Tracking:</strong> We don't track your usage or create user profiles
-            </li>
-            <li>
-              <strong>Local Processing Only:</strong> Your images never leave your device
-            </li>
+            {dict.privacy.highlights.map((item: string) => (
+              <li key={item}>• {item}</li>
+            ))}
           </ul>
         </section>
 
           {/* Information We Collect */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              1. Information We Collect
+              {dict.privacy.sections.sec1Title}
             </h2>
             
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Images and Files
+                  {dict.privacy.sections.sec1Sub1}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-2">
-                  <strong>We do NOT collect your images.</strong> All image processing occurs entirely within your web browser using client-side JavaScript. Your images are:
+                  {dict.privacy.sections.sec1Desc1}
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1">
-                  <li>Processed locally on your device</li>
-                  <li>Never uploaded to our servers</li>
-                  <li>Never stored permanently anywhere</li>
-                  <li>Only temporarily loaded into your browser's memory during processing</li>
+                  {dict.privacy.sections.sec1Bullets1.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Technical Data
+                  {dict.privacy.sections.sec1Sub2}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-2">
-                  We may collect minimal technical information for website functionality:
+                  {dict.privacy.sections.sec1Desc2}
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1">
-                  <li>Browser type and version (for compatibility)</li>
-                  <li>Device type (mobile, tablet, desktop) for responsive design</li>
-                  <li>General location (country level) for content localization</li>
-                  <li>Website performance metrics (page load times)</li>
+                  {dict.privacy.sections.sec1Bullets2.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Analytics Data
+                  {dict.privacy.sections.sec1Sub3}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  We use Google Analytics to understand how visitors use our website. This includes anonymous data about page views, user interactions, and traffic sources. No personally identifiable information is collected.
+                  {dict.privacy.sections.sec1Desc3}
                 </p>
               </div>
             </div>
@@ -112,36 +110,34 @@ export default function PrivacyPolicyPage() {
           {/* How We Use Information */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              2. How We Use Information
+              {dict.privacy.sections.sec2Title}
             </h2>
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Service Provision
+                  {dict.privacy.sections.sec2Sub1}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  The minimal technical data we collect is used solely to:
+                  {dict.privacy.sections.sec2Desc1}
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1 mt-2">
-                  <li>Ensure the website works properly on your device</li>
-                  <li>Optimize performance and loading speeds</li>
-                  <li>Fix technical issues and improve functionality</li>
-                  <li>Provide responsive design for different screen sizes</li>
+                  {dict.privacy.sections.sec2Bullets1.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Website Improvement
+                  {dict.privacy.sections.sec2Sub2}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Anonymous analytics help us understand:
+                  {dict.privacy.sections.sec2Desc2}
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1 mt-2">
-                  <li>Which features are most popular</li>
-                  <li>How users navigate the website</li>
-                  <li>What improvements would be most valuable</li>
-                  <li>Technical issues that need addressing</li>
+                  {dict.privacy.sections.sec2Bullets2.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -150,17 +146,17 @@ export default function PrivacyPolicyPage() {
           {/* Data Sharing */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              3. Information Sharing
+              {dict.privacy.sections.sec3Title}
             </h2>
             <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4">
               <div className="flex items-start">
                 <AlertCircle className="w-5 h-5 text-red-500 mr-2 mt-0.5" />
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                    We Never Share Your Images
+                    {dict.privacy.sections.sec3AlertTitle}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400">
-                    Since your images are processed entirely in your browser and never reach our servers, there is nothing to share. Your images remain completely private.
+                    {dict.privacy.sections.sec3AlertDesc}
                   </p>
                 </div>
               </div>
@@ -169,23 +165,24 @@ export default function PrivacyPolicyPage() {
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Third-Party Services
+                  {dict.privacy.sections.sec3Sub1}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-2">
-                  We use the following third-party services that may collect anonymous data:
+                  {dict.privacy.sections.sec3Desc1}
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1">
-                  <li><strong>Google Analytics:</strong> Website usage statistics (anonymous)</li>
-                  <li><strong>Journey by Mediavine:</strong> Advertising management and optimization services</li>
+                  {dict.privacy.sections.sec3Bullets1.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Legal Requirements
+                  {dict.privacy.sections.sec3Sub2}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  We may disclose information if required by law, court order, or government regulation. However, since we don't collect personal images or detailed user data, there would be very little to disclose.
+                  {dict.privacy.sections.sec3Desc2}
                 </p>
               </div>
             </div>
@@ -194,36 +191,34 @@ export default function PrivacyPolicyPage() {
           {/* Data Security */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              4. Data Security
+              {dict.privacy.sections.sec4Title}
             </h2>
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Local Processing Security
+                  {dict.privacy.sections.sec4Sub1}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Our security approach is built on the principle of local processing:
+                  {dict.privacy.sections.sec4Desc1}
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1 mt-2">
-                  <li>Images are processed using client-side JavaScript</li>
-                  <li>No image data transmission over the internet</li>
-                  <li>No server-side storage of user content</li>
-                  <li>Processing happens entirely within your browser's secure environment</li>
+                  {dict.privacy.sections.sec4Bullets1.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Website Security
+                  {dict.privacy.sections.sec4Sub2}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  We implement standard web security practices:
+                  {dict.privacy.sections.sec4Desc2}
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1 mt-2">
-                  <li>HTTPS encryption for all website traffic</li>
-                  <li>Regular security updates and monitoring</li>
-                  <li>Secure hosting infrastructure</li>
-                  <li>Protection against common web vulnerabilities</li>
+                  {dict.privacy.sections.sec4Bullets2.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -232,35 +227,34 @@ export default function PrivacyPolicyPage() {
           {/* Your Rights */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              5. Your Privacy Rights
+              {dict.privacy.sections.sec5Title}
             </h2>
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Complete Control
+                  {dict.privacy.sections.sec5Sub1}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Since we don't collect your images or personal data, you have complete control over your privacy:
+                  {dict.privacy.sections.sec5Desc1}
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1 mt-2">
-                  <li>Your images never leave your device</li>
-                  <li>No account creation or personal information required</li>
-                  <li>You can use the service completely anonymously</li>
-                  <li>No data to delete, correct, or export</li>
+                  {dict.privacy.sections.sec5Bullets1.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Analytics Opt-Out
+                  {dict.privacy.sections.sec5Sub2}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  You can opt out of analytics tracking by:
+                  {dict.privacy.sections.sec5Desc2}
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1 mt-2">
-                  <li>Using browser privacy modes or ad blockers</li>
-                  <li>Disabling cookies in your browser settings</li>
-                  <li>Installing Google Analytics opt-out extensions</li>
+                  {dict.privacy.sections.sec5Bullets2.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -269,27 +263,30 @@ export default function PrivacyPolicyPage() {
           {/* Advertising and Cookies (Mediavine Journey) */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              6. Advertising and Cookies (Journey by Mediavine)
+              {dict.privacy.sections.sec6Title}
             </h2>
             <div className="space-y-4 text-gray-600 dark:text-gray-400">
-              <p>
-                We partner with Journey by Mediavine to manage third-party interest-based advertising appearing on the Site. Journey processes personal data to deliver personalized, relevant ads to your browser and measure ad performance.
-              </p>
-              <p>
-                Mediavine and its ad partners use cookies, device identifiers, and similar technologies to collect information about your visits to this website and other sites across the internet to serve advertisements tailored to your interests.
-              </p>
-              <p>
-                You can manage your consent preferences or opt out of personalized tracking at any time by interacting with the cookie consent banner presented on our website, or by visiting the network's privacy resources below:
-              </p>
+              <p>{dict.privacy.sections.sec6P1}</p>
+              <p>{dict.privacy.sections.sec6P2}</p>
+              <p>{dict.privacy.sections.sec6P3}</p>
               <ul className="list-disc ml-6 space-y-1">
                 <li>
-                  Mediavine Privacy Policy: <a className="underline" href="https://www.mediavine.com/ad-partners-privacy-policy/" rel="noopener noreferrer" target="_blank">https://www.mediavine.com/ad-partners-privacy-policy/</a>
+                  Mediavine Privacy Policy:{' '}
+                  <a className="underline" href="https://www.mediavine.com/ad-partners-privacy-policy/" rel="noopener noreferrer" target="_blank">
+                    https://www.mediavine.com/ad-partners-privacy-policy/
+                  </a>
                 </li>
                 <li>
-                  Network Advertising Initiative (NAI) Opt-Out: <a className="underline" href="https://optout.networkadvertising.org" rel="noopener noreferrer" target="_blank">https://optout.networkadvertising.org</a>
+                  Network Advertising Initiative (NAI) Opt-Out:{' '}
+                  <a className="underline" href="https://optout.networkadvertising.org" rel="noopener noreferrer" target="_blank">
+                    https://optout.networkadvertising.org
+                  </a>
                 </li>
                 <li>
-                  Digital Advertising Alliance (DAA) Choice Page: <a className="underline" href="https://optout.aboutads.info" rel="noopener noreferrer" target="_blank">https://optout.aboutads.info</a>
+                  Digital Advertising Alliance (DAA) Choice Page:{' '}
+                  <a className="underline" href="https://optout.aboutads.info" rel="noopener noreferrer" target="_blank">
+                    https://optout.aboutads.info
+                  </a>
                 </li>
               </ul>
             </div>
@@ -298,29 +295,29 @@ export default function PrivacyPolicyPage() {
           {/* Cookies */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              7. Cookies and Local Storage
+              {dict.privacy.sections.sec7Title}
             </h2>
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Essential Cookies
+                  {dict.privacy.sections.sec7Sub1}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  We use minimal cookies and local storage for basic functionality:
+                  {dict.privacy.sections.sec7Desc1}
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1 mt-2">
-                  <li>Theme preference (dark/light mode)</li>
-                  <li>Website functionality and performance</li>
-                  <li>Temporary image processing data (cleared automatically)</li>
+                  {dict.privacy.sections.sec7Bullets1.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Analytics Cookies
+                  {dict.privacy.sections.sec7Sub2}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Google Analytics may set cookies to track anonymous usage statistics. These do not contain personal information and can be disabled in your browser.
+                  {dict.privacy.sections.sec7Desc2}
                 </p>
               </div>
             </div>
@@ -329,33 +326,33 @@ export default function PrivacyPolicyPage() {
           {/* Children's Privacy */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              8. Children's Privacy
+              {dict.privacy.sections.sec8Title}
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              Our service is suitable for all ages since we don't collect personal information. However, we recommend parental supervision for children under 13 when using any online service. Parents can be confident that their children's images are processed securely on their own device.
+              {dict.privacy.sections.sec8Desc}
             </p>
           </section>
 
           {/* Changes to Policy */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              9. Changes to This Policy
+              {dict.privacy.sections.sec9Title}
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              We may update this privacy policy to reflect changes in our practices or legal requirements. Any changes will be posted on this page with an updated "Last modified" date.
+              {dict.privacy.sections.sec9P1}
             </p>
             <p className="text-gray-600 dark:text-gray-400">
-              We encourage you to review this policy periodically. Your continued use of the service after any changes indicates your acceptance of the updated policy.
+              {dict.privacy.sections.sec9P2}
             </p>
           </section>
 
           {/* Contact */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              10. Contact Information
+              {dict.privacy.sections.sec10Title}
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              If you have questions about this privacy policy or our practices, please review our FAQ section for common questions, or contact us through the information provided on our About page.
+              {dict.privacy.sections.sec10Desc}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/faq">
@@ -374,14 +371,14 @@ export default function PrivacyPolicyPage() {
         {/* Summary */}
         <section className="article-section">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-            Privacy Summary
+            {dict.privacy.summaryTitle}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            <strong>Bottom line:</strong> Your images are processed entirely on your device. We can't see them, store them, or share them because they never reach our servers. Your privacy is protected by design.
+            {dict.privacy.summaryDesc}
           </p>
-          <Link href="/en/">
+          <Link href={`/${dict.locale || 'en'}/`}>
             <Button>
-              Start Converting Images Privately
+              {dict.privacy.summaryBtn}
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>

@@ -13,11 +13,8 @@ import {
   Upload, 
   Download, 
   Archive, 
-  Image as ImageIcon, 
   Trash2, 
   RefreshCw,
-  CheckCircle,
-  Clock,
   AlertCircle,
   Zap,
   ShieldCheck,
@@ -34,6 +31,7 @@ import {
 } from '@/types/image-processing'
 import { resolveFileInfo, sanitizeBaseName, qualityForFormat, normalizeExtension } from '@/lib/image-format'
 import { downloadCanvasImage } from '@/lib/utils'
+import { Dictionary } from '@/locales/en'
 
 function ProcessedPreviewCanvas({ data }: { data?: ImageData }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -58,7 +56,11 @@ function ProcessedPreviewCanvas({ data }: { data?: ImageData }) {
   )
 }
 
-export default function BatchPage() {
+interface BatchPageProps {
+  dict: Dictionary
+}
+
+export default function BatchPage({ dict }: BatchPageProps) {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([])
   const [processedImages, setProcessedImages] = useState<ProcessedImage[]>([])
   const [isProcessing, setIsProcessing] = useState(false)
@@ -256,8 +258,6 @@ export default function BatchPage() {
   }, [processedImages, downloadImageFile])
 
   const downloadAsZip = useCallback(async () => {
-    // This would require a library like JSZip in a real implementation
-    // For now, we'll just download individually
     downloadAll()
   }, [downloadAll])
 
@@ -285,21 +285,30 @@ export default function BatchPage() {
 
   const completedCount = processedImages.filter(img => img.processingStatus === 'completed').length
 
+  const techIcons = [Cpu, Workflow, ShieldCheck]
+  const techGrid = dict.batchPage.techGrid.map((tech: any, idx: number) => {
+    const Icon = techIcons[idx] || techIcons[0]
+    const iconColors = ['text-primary-600', 'text-purple-600', 'text-green-600']
+    return {
+      ...tech,
+      icon: Icon,
+      iconColor: iconColors[idx] || 'text-primary-600'
+    }
+  })
+
   return (
     <>
         {/* Header Section */}
         <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             <Zap className="w-4 h-4 mr-2 text-yellow-500" />
-            High-Volume Production Tool
+            {dict.batchPage.heroBadge}
           </Badge>
           <h1>
-            Batch Black and White Converter
+            {dict.batchPage.heroTitle}
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            I built this for one practical task: <strong>processing large folders without uploads</strong>.
-            It works well for wedding galleries, ecommerce catalogs, and social media sets where you need
-            consistent black and white output across many files.
+            {dict.batchPage.heroSubtitle}
           </p>
         </header>
 
@@ -326,17 +335,17 @@ export default function BatchPage() {
                     <Upload className="w-10 h-10 text-primary-600 dark:text-primary-400" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                    Drop a Folder or Select Files
+                    {dict.batchPage.dropTitle}
                   </h3>
                   <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
-                    Add up to 100 images. Files are processed in browser workers so the page stays responsive.
+                    {dict.batchPage.dropDesc}
                   </p>
                   <Button size="lg" className="rounded-full px-8 shadow-lg shadow-primary-500/20">
-                    Browse Files
+                    {dict.batchPage.btnBrowse}
                   </Button>
                   <p className="text-sm text-gray-500 mt-6 flex items-center justify-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-green-600" />
-                    No uploads. Files stay in your current browser session.
+                    {dict.batchPage.dropPrivate}
                   </p>
                 </div>
               </Card>
@@ -350,7 +359,7 @@ export default function BatchPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center text-gray-900 dark:text-white font-medium">
                         <RefreshCw className="w-5 h-5 mr-3 animate-spin text-primary-600" />
-                        Processing Queue: {completedCount} / {selectedFiles.length}
+                        {dict.batchPage.progressTitle} {completedCount} / {selectedFiles.length}
                       </div>
                       <span className="text-sm font-mono text-primary-600">{Math.round(processingProgress)}%</span>
                     </div>
@@ -363,22 +372,22 @@ export default function BatchPage() {
                         <>
                           <Button onClick={downloadAll} className="rounded-full">
                             <Download className="w-4 h-4 mr-2" />
-                            Download All ({completedCount})
+                            {dict.batchPage.btnDownloadAll} ({completedCount})
                           </Button>
                           <Button variant="outline" onClick={downloadAsZip} className="rounded-full border-gray-200">
                             <Archive className="w-4 h-4 mr-2" />
-                            Export List
+                            {dict.batchPage.btnExportList}
                           </Button>
                         </>
                       )}
                       <Badge variant="secondary" className="px-4 py-1">
-                        Queue ready: {selectedFiles.length} files
+                        {dict.batchPage.badgeQueueReady} {selectedFiles.length} files
                       </Badge>
                     </div>
                     
                     <Button variant="ghost" size="sm" onClick={clearAll} className="text-gray-400 hover:text-red-500 transition-colors">
                       <Trash2 className="w-4 h-4 mr-2" />
-                      Clear Workspace
+                      {dict.batchPage.btnClear}
                     </Button>
                   </div>
                 )}
@@ -459,75 +468,47 @@ export default function BatchPage() {
 
         {/* Technical & Workflow Section */}
         <section className="article-section grid md:grid-cols-3 gap-12">
-          <div className="space-y-4">
-            <div className="p-3 bg-white dark:bg-gray-900 rounded-2xl w-fit shadow-sm border border-gray-100 dark:border-gray-800">
-              <Cpu className="w-6 h-6 text-primary-600" />
-            </div>
-            <h3 className="text-xl font-bold">Local Computing Power</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              BWConverter uses <strong>Web Workers</strong> to process image data in background threads.
-              You avoid long uploads, and your original files never leave the device.
-            </p>
-          </div>
-          <div className="space-y-4">
-            <div className="p-3 bg-white dark:bg-gray-900 rounded-2xl w-fit shadow-sm border border-gray-100 dark:border-gray-800">
-              <Workflow className="w-6 h-6 text-purple-600" />
-            </div>
-            <h3 className="text-xl font-bold">Studio Workflow Integration</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              A practical flow is to use batch mode as the first monochrome pass after culling.
-              Apply one baseline preset to the whole set, then fine-tune only the keepers.
-            </p>
-          </div>
-          <div className="space-y-4">
-            <div className="p-3 bg-white dark:bg-gray-900 rounded-2xl w-fit shadow-sm border border-gray-100 dark:border-gray-800">
-              <ShieldCheck className="w-6 h-6 text-green-600" />
-            </div>
-            <h3 className="text-xl font-bold">Zero-Storage Commitment</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              This tool does not store your photos on my server.
-              Images only exist in browser memory while the tab is open.
-            </p>
-          </div>
+          {techGrid.map((tech: any) => {
+            const Icon = tech.icon
+            return (
+              <div key={tech.title} className="space-y-4">
+                <div className={`p-3 bg-white dark:bg-gray-900 rounded-2xl w-fit shadow-sm border border-gray-100 dark:border-gray-800`}>
+                  <Icon className={`w-6 h-6 ${tech.iconColor}`} />
+                </div>
+                <h3 className="text-xl font-bold">{tech.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed whitespace-pre-line" dangerouslySetInnerHTML={{ __html: tech.desc }} />
+              </div>
+            )
+          })}
         </section>
 
         {/* FAQ & Tips */}
         <section className="article-section grid md:grid-cols-2 gap-16">
           <div className="space-y-8">
-            <h4 className="text-2xl font-bold">Production FAQ</h4>
+            <h4 className="text-2xl font-bold">{dict.batchPage.faqTitle}</h4>
             <div className="space-y-6">
-              <details className="group border-b border-gray-100 dark:border-gray-800 pb-4">
-                <summary className="list-none cursor-pointer font-semibold group-open:text-primary-600 transition-colors">
-                  How many files can I process at once?
-                </summary>
-                <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                  In testing, 100 to 150 images at 24MP works on recent laptops.
-                  Actual limits depend on available RAM, so split into smaller runs if previews slow down.
-                </p>
-              </details>
-              <details className="group border-b border-gray-100 dark:border-gray-800 pb-4">
-                <summary className="list-none cursor-pointer font-semibold group-open:text-primary-600 transition-colors">
-                  Does this tool resize my photos?
-                </summary>
-                <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                  No. Output keeps the original width and height.
-                  A 6000x4000 input exports at 6000x4000 unless you choose a different format/compression profile.
-                </p>
-              </details>
+              {dict.batchPage.faqs.map((faq: any, idx: number) => (
+                <details key={idx} className="group border-b border-gray-100 dark:border-gray-800 pb-4">
+                  <summary className="list-none cursor-pointer font-semibold group-open:text-primary-600 transition-colors">
+                    {faq.q}
+                  </summary>
+                  <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {faq.a}
+                  </p>
+                </details>
+              ))}
             </div>
           </div>
           <div className="bg-gray-900 rounded-3xl p-8 text-white">
-            <h4 className="text-2xl font-bold mb-6">Solo Dev Tip</h4>
+            <h4 className="text-2xl font-bold mb-6">{dict.batchPage.tipTitle}</h4>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              &quot;When I process a large gallery, I batch by lighting setup first.
-              Window-light photos and flash photos need different contrast baselines,
-              and this split cuts rework later in delivery.&quot;
+              {dict.batchPage.tipDesc}
             </p>
             <div className="flex items-center gap-3">
-              <img src="/authors/sivan-lee.jpg" alt="Sivan" className="w-10 h-10 rounded-full grayscale border border-gray-700" />
+              <img src="/authors/sivan-lee.jpg" alt={dict.batchPage.tipAuthor} className="w-10 h-10 rounded-full grayscale border border-gray-700" />
               <div>
-                <p className="text-xs font-bold">Sivan Xu</p>
-                <p className="text-[10px] text-gray-500 uppercase tracking-widest">Independent Developer</p>
+                <p className="text-xs font-bold">{dict.batchPage.tipAuthor}</p>
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest">{dict.batchPage.tipRole}</p>
               </div>
             </div>
           </div>

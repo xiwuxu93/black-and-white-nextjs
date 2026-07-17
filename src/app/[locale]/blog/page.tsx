@@ -17,49 +17,58 @@ import {
   BookOpen,
   Brain
 } from 'lucide-react'
+import { getDictionary } from '@/locales'
 
-export const metadata: Metadata = {
-  title: 'Black And White Photography Blog - Tips, Techniques & Tutorials',
-  description: 'Expert tips, techniques, and insights for creating stunning black and white images. From beginner guides to professional workflows.',
-  keywords: [
-    'black and white photography',
-    'monochrome photography',
-    'photography tips',
-    'B&W techniques',
-    'photo editing',
-    'photography blog',
-    'image conversion tips'
-  ],
-  openGraph: {
-    title: 'Black And White Photography Blog - BWConverter',
-    description: 'Expert tips, techniques, and insights for creating stunning black and white images. From beginner guides to professional workflows.',
-    url: canonicalUrl('/en/blog/'),
-  },
-  alternates: {
-    canonical: canonicalUrl('/en/blog/')
+interface Props {
+  params: { locale: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const dict = getDictionary(params.locale)
+  const canonical = canonicalUrl(`/${params.locale}/blog/`)
+  return {
+    title: dict.blog.metaTitle,
+    description: dict.blog.metaDesc,
+    keywords: [
+      'black and white photography',
+      'monochrome photography',
+      'photography tips',
+      'B&W techniques',
+      'photo editing',
+      'photography blog',
+      'image conversion tips'
+    ],
+    openGraph: {
+      title: dict.blog.metaTitle,
+      description: dict.blog.metaDesc,
+      url: canonical,
+    },
+    alternates: {
+      canonical
+    }
   }
 }
 
-// Get blog posts from JSON data
-const blogPosts = getBlogPosts().sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
-const featuredPosts = blogPosts.filter(post => post.featured)
+export default function BlogPage({ params }: Props) {
+  const dict = getDictionary(params.locale)
+  const blogPosts = getBlogPosts().sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
+  const featuredPosts = blogPosts.filter(post => post.featured)
 
-// Calculate category counts dynamically
-const categoryCount = blogPosts.reduce((acc, post) => {
-  acc[post.category] = (acc[post.category] || 0) + 1
-  return acc
-}, {} as Record<string, number>)
+  // Calculate category counts dynamically
+  const categoryCount = blogPosts.reduce((acc, post) => {
+    acc[post.category] = (acc[post.category] || 0) + 1
+    return acc
+  }, {} as Record<string, number>)
 
-const categories = [
-  { name: 'All Posts', count: blogPosts.length, icon: Users },
-  { name: 'Tools & Reviews', count: categoryCount['Tools & Reviews'] || 0, icon: Palette },
-  { name: 'Art & Techniques', count: categoryCount['Art & Techniques'] || 0, icon: Camera },
-  { name: 'Photography Theory', count: categoryCount['Photography Theory'] || 0, icon: Brain },
-  { name: 'Photography Basics', count: categoryCount['Photography Basics'] || 0, icon: BookOpen },
-  { name: 'Design Resources', count: categoryCount['Design Resources'] || 0, icon: Lightbulb },
-]
+  const categories = [
+    { name: dict.blog.allPosts, count: blogPosts.length, icon: Users },
+    { name: dict.blog.categoryTools, count: categoryCount['Tools & Reviews'] || 0, icon: Palette },
+    { name: dict.blog.categoryArt, count: categoryCount['Art & Techniques'] || 0, icon: Camera },
+    { name: dict.blog.categoryTheory, count: categoryCount['Photography Theory'] || 0, icon: Brain },
+    { name: dict.blog.categoryBasics, count: categoryCount['Photography Basics'] || 0, icon: BookOpen },
+    { name: dict.blog.categoryDesign, count: categoryCount['Design Resources'] || 0, icon: Lightbulb },
+  ]
 
-export default function BlogPage() {
   const featuredPost = featuredPosts[0]
   // Show all posts: highlight the first featured, and include the rest in the grid
   const regularPosts = blogPosts.filter(post => !post.featured || post.id !== featuredPost?.id)
@@ -69,14 +78,13 @@ export default function BlogPage() {
         {/* Header */}
         <header className="article-header">
           <Badge className="mb-4" variant="secondary">
-            📝 Photography Blog
+            {dict.blog.heroBadge}
           </Badge>
           <h1>
-            Black And White Photography
+            {dict.blog.heroTitle}
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Tips, techniques, and insights for creating stunning black and white images. 
-            From beginner guides to professional workflows.
+            {dict.blog.heroSubtitle}
           </p>
         </header>
 
@@ -87,7 +95,7 @@ export default function BlogPage() {
             return (
               <Button
                 key={category.name}
-                variant={category.name === 'All Posts' ? 'default' : 'outline'}
+                variant={category.name === dict.blog.allPosts ? 'default' : 'outline'}
                 size="sm"
                 className="rounded-full"
               >
@@ -107,7 +115,7 @@ export default function BlogPage() {
                   <div className="md:w-1/2 p-8">
                     <div className="flex items-center space-x-2 mb-3">
                       <Badge className="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200">
-                        ⭐ Featured
+                        {dict.blog.featuredBadge}
                       </Badge>
                       <Badge variant="outline">{featuredPost.category}</Badge>
                     </div>
@@ -130,13 +138,13 @@ export default function BlogPage() {
                         {featuredPost.readTime}
                       </div>
                       <div className="text-gray-600 dark:text-gray-300">
-                        By {featuredPost.author}
+                        {dict.blog.by} {featuredPost.author}
                       </div>
                     </div>
                       
-                    <Link href={`/blog/${featuredPost.id}`}>
+                    <Link href={`/${dict.locale || 'en'}/blog/${featuredPost.id}`}>
                       <Button size="lg">
-                        Read Article
+                        {dict.blog.readArticle}
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </Link>
@@ -207,12 +215,12 @@ export default function BlogPage() {
                     
                     <div className="flex items-center justify-between">
                       <div className="text-sm text-gray-600 dark:text-gray-300">
-                        By {post.author}
+                        {dict.blog.by} {post.author}
                       </div>
                       
-                      <Link href={`/blog/${post.id}`}>
+                      <Link href={`/${dict.locale || 'en'}/blog/${post.id}`}>
                         <Button variant="outline" size="sm">
-                          Read More
+                          {dict.blog.readMore}
                           <ArrowRight className="w-3 h-3 ml-1" />
                         </Button>
                       </Link>
@@ -234,7 +242,7 @@ export default function BlogPage() {
             {/* Load More Button */}
             <div className="text-center pt-8">
               <Button variant="outline" size="lg">
-                Load More Articles
+                {dict.blog.loadMore}
               </Button>
             </div>
         </section>

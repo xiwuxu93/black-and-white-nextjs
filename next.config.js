@@ -44,6 +44,7 @@ const nextConfig = {
       { source: '/logo-to-black-and-white/', destination: '/en/logo-to-black-and-white/', permanent: true },
       { source: '/newborn-photography-guide/', destination: '/en/newborn-photography-guide/', permanent: true },
       { source: '/privacy/', destination: '/en/privacy/', permanent: true },
+      { source: '/sepia-filter/', destination: '/en/sepia-filter/', permanent: true },
       { source: '/terms/', destination: '/en/terms/', permanent: true },
       {
         source: '/:path*/index.html',

@@ -24,7 +24,9 @@ export const metadata: Metadata = {
     'make image black and white',
     'image to black and white',
     'convert image to black and white',
-    'black and white converter'
+    'black and white converter',
+    'color to black and white',
+    'convert color image to black and white'
   ],
   authors: [{ name: 'BWConverter.com' }],
   creator: 'BWConverter.com',
@@ -89,6 +91,8 @@ export const metadata: Metadata = {
   }
 }
 
+import { getDictionary } from '@/locales'
+
 export default function RootLayout({
   children,
   params: { locale }
@@ -96,6 +100,8 @@ export default function RootLayout({
   children: React.ReactNode
   params: { locale: string }
 }) {
+  const dict = getDictionary(locale)
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
@@ -111,11 +117,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="min-h-screen bg-background text-foreground flex flex-col">
-            <Header />
+            <Header dict={dict} />
             <MainContainer>
               {children}
             </MainContainer>
-            <Footer />
+            <Footer dict={dict} />
           </div>
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && (

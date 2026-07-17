@@ -18,7 +18,9 @@ import { notFound } from 'next/navigation'
 import { BlogInteractions } from '@/components/blog/blog-interactions'
 import { BlogHeaderActions } from '@/components/blog/blog-header-actions'
 import { blogPosts, blogPostList, BlogPost } from '@/data/blog-posts'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, SITE_URL } from '@/lib/seo'
+import { getDictionary } from '@/locales'
+import { StructuredData } from '@/components/seo/structured-data'
 
 const authorProfiles: Record<string, {
   image?: string
@@ -133,7 +135,6 @@ const MarkdownComponents = {
   h3: (props: any) => (
     <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-8 mb-3" {...props} />
   ),
-  // Unwrap paragraphs that contain only an image to avoid <figure> inside <p>
   p: ({ node, children, ...props }: any) => {
     const onlyChild = node?.children && node.children.length === 1 ? node.children[0] : null
     const isImageOnly = onlyChild && (onlyChild as any).tagName === 'img'
@@ -183,11 +184,12 @@ const MarkdownComponents = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getBlogPost(params.slug)
+  const dict = getDictionary(params.locale)
   
   if (!post) {
     return {
-      title: 'Post Not Found',
-      description: 'The requested blog post could not be found.'
+      title: dict.blogDetail.notFoundTitle,
+      description: dict.blogDetail.notFoundDesc
     }
   }
 
@@ -220,6 +222,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function BlogPostPage({ params }: Props) {
+  const dict = getDictionary(params.locale)
   const post = getBlogPost(params.slug)
   
   if (!post) {
@@ -262,30 +265,43 @@ export default function BlogPostPage({ params }: Props) {
   const authorProfile = authorProfiles[post.author]
   const suggestedReadings = [
     {
-      title: 'Logo Conversion Guide',
-      description: 'Learn how alpha handling and SVG rendering affect monochrome logo exports.',
+      title: dict.logo.heroTitle,
+      description: dict.logo.howDesc,
       href: '/logo-to-black-and-white'
     },
     {
-      title: 'Newborn Studio Case Study',
-      description: 'Compare lighting setups and editing timelines for newborn sessions.',
+      title: dict.newborn.heroTitle,
+      description: dict.newborn.heroSubtitle,
       href: '/newborn-photography-guide'
     },
     {
-      title: 'Advanced Workflow Checklist',
-      description: 'Follow troubleshooting steps and production-ready workflows.',
+      title: dict.howToUse.title,
+      description: dict.howToUse.subtitle,
       href: '/how-to-use'
     }
   ]
 
+  const canonical = canonicalUrl(`/${params.locale}/blog/${post.id}`)
+  const articleSchemaData = {
+    title: post.title,
+    description: post.excerpt,
+    image: post.heroImage ? (post.heroImage.startsWith('http') ? post.heroImage : `${SITE_URL}${post.heroImage}`) : undefined,
+    author: post.author,
+    publishedDate: post.publishDate,
+    modifiedDate: post.updatedDate ?? post.publishDate,
+    url: canonical,
+    keywords: post.tags
+  }
+
   return (
     <>
+        <StructuredData type="article" data={articleSchemaData} />
         {/* Navigation */}
         <div className="mb-8">
-          <Link href="/blog">
+          <Link href={`/${dict.locale || 'en'}/blog`}>
             <Button variant="outline">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Blog
+              {dict.blogDetail.btnBack}
             </Button>
           </Link>
         </div>
@@ -296,7 +312,7 @@ export default function BlogPostPage({ params }: Props) {
             <Badge variant="outline">{post.category}</Badge>
             {post.featured && (
               <Badge className="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200">
-                ⭐ Featured
+                {dict.blog.featuredBadge}
               </Badge>
             )}
           </div>
@@ -306,7 +322,7 @@ export default function BlogPostPage({ params }: Props) {
           </h1>
           
           <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center space-x-6 text-gray-600 dark:text-gray-400">
+            <div className="flex items-center space-x-6 text-gray-600 dark:text-gray-400 flex-wrap gap-y-2">
               <div className="flex items-center space-x-2">
                 <User className="w-4 h-4" />
                 <span>{post.author}</span>
@@ -318,7 +334,7 @@ export default function BlogPostPage({ params }: Props) {
               {post.updatedDate && (
                 <div className="flex items-center space-x-1">
                   <Clock className="w-4 h-4" />
-                  <span>Updated {formatDate(post.updatedDate)}</span>
+                  <span>{dict.blogDetail.updated} {formatDate(post.updatedDate)}</span>
                 </div>
               )}
               <div className="flex items-center space-x-1">
@@ -354,7 +370,7 @@ export default function BlogPostPage({ params }: Props) {
             <Card className="mb-10 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <div className="flex items-center space-x-2">
-                  <Badge variant="secondary">Key Takeaways</Badge>
+                  <Badge variant="secondary">{dict.blogDetail.keyTakeaways}</Badge>
                 </div>
               </CardHeader>
               <CardContent>
@@ -394,7 +410,7 @@ export default function BlogPostPage({ params }: Props) {
                 <div>
                   <p className="text-lg font-semibold text-gray-900 dark:text-white">{post.author}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {authorProfile?.role || post.authorTitle || 'BWConverter Contributor'}
+                    {authorProfile?.role || post.authorTitle || dict.blogDetail.authorDefaultTitle}
                   </p>
                   {authorProfile?.expertise && (
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -403,7 +419,7 @@ export default function BlogPostPage({ params }: Props) {
                   )}
                   {authorProfile?.website && (
                     <Link href={authorProfile.website} className="inline-flex items-center text-primary-600 dark:text-primary-400 text-xs font-medium mt-2">
-                      View full bio
+                      {dict.blogDetail.authorBioLabel}
                       <ArrowRight className="w-4 h-4 ml-1" />
                     </Link>
                   )}
@@ -441,7 +457,7 @@ export default function BlogPostPage({ params }: Props) {
 
             {post.sources && post.sources.length > 0 && (
               <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">References</h2>
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{dict.blogDetail.references}</h2>
                 <ul className="space-y-2 text-gray-600 dark:text-gray-400">
                   {post.sources.map((source, idx) => (
                     <li key={idx}>
@@ -460,14 +476,14 @@ export default function BlogPostPage({ params }: Props) {
             )}
 
             <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Continue Learning</h2>
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{dict.blogDetail.continueLearning}</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {suggestedReadings.map((item) => (
                   <Card key={item.title} className="p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{item.description}</p>
-                    <Link href={item.href} className="inline-flex items-center text-primary-600 dark:text-primary-400 text-sm font-medium">
-                      Read more
+                    <Link href={`/${dict.locale || 'en'}${item.href}`} className="inline-flex items-center text-primary-600 dark:text-primary-400 text-sm font-medium">
+                      {dict.blogDetail.readMoreLink}
                       <ArrowRight className="w-4 h-4 ml-1" />
                     </Link>
                   </Card>
@@ -481,9 +497,9 @@ export default function BlogPostPage({ params }: Props) {
                 postId={post.id} 
               />
             </div>
-          {/* Related Articles (moved from sidebar) */}
+          {/* Related Articles */}
           <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Related Articles</h3>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{dict.blogDetail.relatedArticles}</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {postsToShow.map((related: BlogPost) => (
                 <Card key={related.id} className="p-5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 flex flex-col justify-between hover:shadow-md transition-shadow">
@@ -495,8 +511,8 @@ export default function BlogPostPage({ params }: Props) {
                       {related.category} • {related.readTime}
                     </p>
                   </div>
-                  <Link href={`/blog/${related.id}`} className="mt-4 inline-flex items-center text-primary-600 dark:text-primary-400 text-xs font-semibold hover:underline">
-                    Read article <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                  <Link href={`/${dict.locale || 'en'}/blog/${related.id}`} className="mt-4 inline-flex items-center text-primary-600 dark:text-primary-400 text-xs font-semibold hover:underline">
+                    {dict.blogDetail.readArticleLink} <ArrowRight className="w-3.5 h-3.5 ml-1" />
                   </Link>
                 </Card>
               ))}

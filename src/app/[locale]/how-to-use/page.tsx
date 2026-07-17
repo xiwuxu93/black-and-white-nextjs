@@ -13,130 +13,71 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { canonicalUrl } from '@/lib/seo'
+import { getDictionary } from '@/locales'
 
-export const metadata: Metadata = {
-  title: 'How to Use Black and White Image Converter - Complete Guide',
-  description: 'Step-by-step guide for converting images to black and white with practical settings, workflow tips, and troubleshooting notes.',
-  keywords: ['how to convert to black and white', 'black and white photo tutorial', 'image converter guide'],
-  alternates: {
-    canonical: canonicalUrl('/en/how-to-use/')
-  },
-  openGraph: {
-    title: 'How to Use Black and White Image Converter - Complete Guide',
-    description: 'Step-by-step guide for converting images to black and white with practical settings, workflow tips, and troubleshooting notes.',
-    url: canonicalUrl('/en/how-to-use/')
+interface Props {
+  params: { locale: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const dict = getDictionary(params.locale)
+  const canonical = canonicalUrl(`/${params.locale}/how-to-use/`)
+  return {
+    title: dict.howToUse.metaTitle,
+    description: dict.howToUse.metaDesc,
+    alternates: {
+      canonical
+    },
+    openGraph: {
+      title: dict.howToUse.metaTitle,
+      description: dict.howToUse.metaDesc,
+      url: canonical
+    }
   }
 }
 
-export default function HowToUsePage() {
-  const steps = [
-    {
-      icon: Upload,
-      title: "Upload Your Image",
-      description: "Drag your image into the converter and wait for preview generation",
-      details: [
-        "Supports common formats including JPG, PNG, and WebP",
-        "Recommended upload size: up to 10MB for smoother previews", 
-        "Processing runs locally in your browser",
-        "No account is required to convert files"
-      ],
-      tips: [
-        "Start with a well-exposed image",
-        "If preview stutters, close other heavy tabs first",
-        "Keep original files for re-export with different settings"
-      ]
-    },
-    {
-      icon: Palette,
-      title: "Choose Your Style",
-      description: "Pick a preset, then tune sliders for your scene",
-      details: [
-        "Classic: balanced contrast for general use",
-        "Dramatic: deeper blacks and stronger highlights", 
-        "Vintage: softer contrast with film-like character",
-        "Soft: gentler transitions for delicate subjects",
-        "High Contrast: bold black and white separation",
-        "Film Noir: low-key cinematic tonality"
-      ],
-      tips: [
-        "Portraits often start well with Soft or Classic",
-        "Architecture and street scenes usually handle higher contrast", 
-        "Use channel sliders when two colors map to similar gray"
-      ]
-    }
-  ]
+export default function HowToUsePage({ params }: Props) {
+  const dict = getDictionary(params.locale)
+  
+  const stepIcons = [Upload, Palette]
+  const steps = dict.howToUse.steps.map((step: any, idx: number) => ({
+    ...step,
+    icon: stepIcons[idx] || stepIcons[0]
+  }))
 
-  const proWorkflows = [
-    {
-      title: 'RAW → Proofing Gallery',
-      description: 'For teams that cull in Lightroom or Capture One, then need fast monochrome previews.',
-      phases: [
-        'Export high-quality JPEG or TIFF files from your DAM.',
-        'Apply one baseline preset in BWConverter, then adjust highlights and shadows.',
-        'Use `/batch-black-and-white-converter` for full-set exports with consistent naming.'
-      ],
-      link: { href: '/batch-black-and-white-converter', label: 'Open batch workflow' }
-    },
-    {
-      title: 'CMS Publishing Workflow',
-      description: 'Useful when editors need repeatable before/after assets for articles or product pages.',
-      phases: [
-        'Define a small preset set your team agrees on.',
-        'Store the chosen preset and slider values per entry.',
-        'Export web-safe formats for publishing and archive original files separately.'
-      ],
-      link: { href: '/faq', label: 'Read implementation FAQ' }
-    },
-    {
-      title: 'On-Set Review Kiosk',
-      description: 'Useful for client preview sessions where internet access is limited or uploads are not allowed.',
-      phases: [
-        'Preload the app on the review machine before the shoot.',
-        'Create one preset per lighting setup to keep review output consistent.',
-        'Export JPG previews for fast sharing while keeping originals on the main workstation.'
-      ],
-      link: { href: '/privacy', label: 'Review privacy policy' }
+  const proWorkflows = dict.howToUse.workflows.map((flow: any, idx: number) => {
+    const hrefs = ['/batch-black-and-white-converter', '/faq', '/privacy']
+    return {
+      ...flow,
+      link: {
+        href: hrefs[idx] || '/en/',
+        label: flow.linkLabel
+      }
     }
-  ]
+  })
 
-  const troubleshooting = [
-    {
-      issue: 'Large RAW exports stall during preview',
-      cause: 'Browser hits memory ceiling when decoding >40MP frames.',
-      fix: 'Export a lighter TIFF/JPEG derivative first, then convert in browser. Close unused tabs to free memory.'
-    },
-    {
-      issue: 'Downloads exceed client file size requirements',
-      cause: 'Export format or quality is set too high for delivery constraints.',
-      fix: 'Switch to JPG/WebP and lower quality settings until files meet the required size range.'
-    },
-    {
-      issue: 'Preset look varies between devices',
-      cause: 'Custom adjustments not persisted between sessions.',
-      fix: 'Save slider values per project and reapply the same values for each delivery pass.'
-    }
-  ]
+  const troubleshooting = dict.howToUse.troubleshootItems
 
   return (
     <>
         <header className="article-header">
           <Badge className="mb-4" variant="secondary">
-            📖 Complete Guide
+            {dict.howToUse.badge}
           </Badge>
           <h1>
-            How to Use Our Black And White Converter
+            {dict.howToUse.title}
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            A practical guide for getting consistent black and white results.
+            {dict.howToUse.subtitle}
           </p>
         </header>
 
         <section className="article-section">
           <h2>
-            Step-by-Step Tutorial  
+            {dict.howToUse.section1Title}
           </h2>
           <div className="space-y-8">
-            {steps.map((step, index) => {
+            {steps.map((step: any, index: number) => {
               const Icon = step.icon
               return (
                 <article key={index} className="border-t border-gray-200 pt-8 dark:border-gray-800">
@@ -151,13 +92,13 @@ export default function HowToUsePage() {
                         {step.title}
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 mb-4">
-                        {step.description}
+                        {step.desc}
                       </p>
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
                           <h4 className="font-medium text-gray-900 dark:text-white mb-2">Details</h4>
                           <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                            {step.details.map((detail, idx) => (
+                            {step.details.map((detail: string, idx: number) => (
                               <li key={idx}>• {detail}</li>
                             ))}
                           </ul>
@@ -165,7 +106,7 @@ export default function HowToUsePage() {
                         <div>
                           <h4 className="font-medium text-gray-900 dark:text-white mb-2">Tips</h4>
                           <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                            {step.tips.map((tip, idx) => (
+                            {step.tips.map((tip: string, idx: number) => (
                               <li key={idx}>💡 {tip}</li>
                             ))}
                           </ul>
@@ -181,18 +122,18 @@ export default function HowToUsePage() {
 
         <section className="article-section">
           <h2>
-            Production-Ready Workflows
+            {dict.howToUse.section2Title}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {proWorkflows.map((flow) => (
+            {proWorkflows.map((flow: any) => (
               <article key={flow.title} className="border-t border-gray-200 pt-6 dark:border-gray-800">
                 <div className="flex items-center gap-3 mb-4">
                   <Workflow className="w-5 h-5 text-primary-600 dark:text-primary-400" />
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{flow.title}</h3>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{flow.description}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{flow.desc}</p>
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                  {flow.phases.map((item) => (
+                  {flow.phases.map((item: string) => (
                     <li key={item} className="flex items-start">
                       <Code2 className="w-4 h-4 text-primary-600 dark:text-primary-400 mr-2 mt-1" />
                       {item}
@@ -212,20 +153,20 @@ export default function HowToUsePage() {
             <div className="flex items-center gap-3 mb-4">
               <ServerCog className="w-5 h-5 text-blue-600 dark:text-blue-300" />
               <h2>
-                Troubleshooting Checklist
+                {dict.howToUse.section3Title}
               </h2>
             </div>
             <div className="overflow-hidden rounded-xl border border-blue-200 dark:border-blue-900 bg-white dark:bg-gray-900">
               <table className="min-w-full text-sm text-gray-600 dark:text-gray-300">
                 <thead className="bg-blue-50 dark:bg-blue-900/40 text-left">
                   <tr>
-                    <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">Issue</th>
-                    <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">Likely Cause</th>
-                    <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">Fix</th>
+                    {dict.howToUse.tableHeaders.map((header: string) => (
+                      <th key={header} className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">{header}</th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {troubleshooting.map((row, index) => (
+                  {troubleshooting.map((row: any, index: number) => (
                     <tr key={row.issue} className={index % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-blue-50 dark:bg-gray-900/60'}>
                       <td className="px-4 py-3 font-medium text-gray-900 dark:text-white">{row.issue}</td>
                       <td className="px-4 py-3 flex items-start">
@@ -242,24 +183,24 @@ export default function HowToUsePage() {
               </table>
             </div>
             <p className="text-xs text-blue-700 dark:text-blue-300 mt-3">
-              Need more help? Share logs and screenshots via <Link href="/contact" className="underline">support@bwconverter.com</Link>—include preset values and browser details for faster debugging.
+              {dict.howToUse.bottomHelp}
             </p>
         </section>
 
         <section className="article-section text-center">
           <h2>
-            Ready to Start?
+            {dict.howToUse.bottomTitle}
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/en/">
+            <Link href={`/${dict.locale || 'en'}/`}>
               <Button size="lg">
-                Start Converting Images
+                {dict.howToUse.btnStart}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
             <Link href="/batch-black-and-white-converter">
               <Button variant="outline" size="lg">
-                Try Batch Converter  
+                {dict.howToUse.btnBatch}
               </Button>
             </Link>
           </div>

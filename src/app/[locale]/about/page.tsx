@@ -4,45 +4,41 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { canonicalUrl } from '@/lib/seo'
 import {
-  Heart,
-  Shield,
-  Zap,
   Camera,
   Code,
   Lock,
   Mail,
   Github,
-  ChevronRight,
   Terminal
 } from 'lucide-react'
 import Link from 'next/link'
+import { getDictionary } from '@/locales'
 
-export const metadata: Metadata = {
-  title: 'About Sivan Xu & The Story Behind BWConverter',
-  description:
-    'Meet Sivan Xu, a frontend expert with 12+ years of experience and a passion for monochrome photography. Learn why I built this privacy-first image tool.',
-  keywords: [
-    'Sivan Xu developer',
-    'frontend expert photographer',
-    'why I built bwconverter',
-    'privacy-first image processing',
-    'independent developer story'
-  ],
-  alternates: {
-    canonical: canonicalUrl('/en/about/')
-  },
-  openGraph: {
-    title: 'Sivan Xu – A Frontend Developer’s Take on Monochrome',
-    description:
-      'Built by a 12-year frontend veteran and photography enthusiast. Discover why local-first image processing matters.',
-    url: canonicalUrl('/en/about/')
+interface Props {
+  params: { locale: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const dict = getDictionary(params.locale)
+  const canonical = canonicalUrl(`/${params.locale}/about/`)
+  return {
+    title: dict.about.metaTitle,
+    description: dict.about.metaDesc,
+    alternates: {
+      canonical
+    },
+    openGraph: {
+      title: dict.about.ogTitle,
+      description: dict.about.ogDesc,
+      url: canonical
+    }
   }
 }
 
-export default function AboutPage() {
+export default function AboutPage({ params }: Props) {
+  const dict = getDictionary(params.locale)
   return (
     <>
-        
         {/* Intro Section - Removed Western Headshot */}
         <section>
           <div className="flex flex-col gap-8">
@@ -51,29 +47,28 @@ export default function AboutPage() {
             </div>
             <div>
               <Badge className="mb-4" variant="outline">
-                12+ Years Frontend Expert & Hobbyist Photographer
+                {dict.about.badge}
               </Badge>
               <h1>
-                Hi, I&apos;m Sivan Xu.
+                {dict.about.title}
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                I am a professional frontend developer based in China with over 12 years of experience building high-performance web systems. 
-                Outside of my coding life, I am an enthusiast of monochrome photography, fascinated by the timeless storytelling of black and white tones.
+                {dict.about.intro}
               </p>
               <p className="text-lg text-gray-500 dark:text-gray-500 mb-8 italic">
-                &quot;I built BWConverter to bridge the gap between technical privacy and creative freedom.&quot;
+                {dict.about.quote}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="https://github.com/xiwuxu93/black-and-white-nextjs">
                   <Button variant="default">
                     <Github className="w-4 h-4 mr-2" />
-                    View Source on GitHub
+                    {dict.about.viewGithub}
                   </Button>
                 </Link>
                 <Link href="mailto:support@bwconverter.com">
                   <Button variant="outline">
                     <Mail className="w-4 h-4 mr-2" />
-                    Get in Touch
+                    {dict.about.getTouch}
                   </Button>
                 </Link>
               </div>
@@ -85,30 +80,27 @@ export default function AboutPage() {
         <section className="article-section">
           <div className="border-l-4 border-gray-900 dark:border-gray-100 pl-6 md:pl-10">
             <h2 className="text-3xl font-bold mb-6">
-              The Mission: Privacy + Fidelity
+              {dict.about.missionTitle}
             </h2>
             <div className="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-400">
               <p>
-                As a developer, I believe the web should respect user data. I was tired of online tools that forced me 
-                to upload my private high-resolution photos to their servers just for a simple grayscale conversion. 
-                They were often slow and degraded the tonal quality of my shots.
+                {dict.about.missionP1}
               </p>
               <p>
-                I knew I could leverage modern browser APIs like Canvas and Web Workers to do better.
-                I built this tool to be:
+                {dict.about.missionP2}
               </p>
               <ul className="list-none space-y-4 pl-0 mt-8">
                 <li className="flex items-start">
                   <Code className="w-5 h-5 mr-3 mt-1 text-blue-600 flex-shrink-0" />
-                  <span><strong>Technically Practical:</strong> Powered by Canvas pixel processing and Web Workers so previews stay responsive.</span>
+                  <span><strong>{dict.about.bullet1Title}</strong> {dict.about.bullet1Desc}</span>
                 </li>
                 <li className="flex items-start">
                   <Lock className="w-5 h-5 mr-3 mt-1 text-green-600 flex-shrink-0" />
-                  <span><strong>Truly Private:</strong> Everything stays in your browser. I literally cannot see what you process.</span>
+                  <span><strong>{dict.about.bullet2Title}</strong> {dict.about.bullet2Desc}</span>
                 </li>
                 <li className="flex items-start">
                   <Camera className="w-5 h-5 mr-3 mt-1 text-purple-600 flex-shrink-0" />
-                  <span><strong>Photographer-Friendly:</strong> Designed with a &quot;Channel Mixer&quot; logic to give you real control over light.</span>
+                  <span><strong>{dict.about.bullet3Title}</strong> {dict.about.bullet3Desc}</span>
                 </li>
               </ul>
             </div>
@@ -119,26 +111,25 @@ export default function AboutPage() {
         <section className="article-section">
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <Card className="p-8 border-none bg-gray-50 dark:bg-gray-900">
-              <div className="text-4xl font-bold mb-2">12+</div>
-              <p className="text-sm text-gray-500 uppercase tracking-wider">Years Frontend Expertise</p>
+              <div className="text-4xl font-bold mb-2">{dict.about.metric1Value}</div>
+              <p className="text-sm text-gray-500 uppercase tracking-wider">{dict.about.metric1Label}</p>
             </Card>
             <Card className="p-8 border-none bg-gray-50 dark:bg-gray-900">
-              <div className="text-4xl font-bold mb-2">100%</div>
-              <p className="text-sm text-gray-500 uppercase tracking-wider">Local Processing</p>
+              <div className="text-4xl font-bold mb-2">{dict.about.metric2Value}</div>
+              <p className="text-sm text-gray-500 uppercase tracking-wider">{dict.about.metric2Label}</p>
             </Card>
             <Card className="p-8 border-none bg-gray-50 dark:bg-gray-900">
-              <div className="text-4xl font-bold mb-2">0</div>
-              <p className="text-sm text-gray-500 uppercase tracking-wider">Cloud Storage</p>
+              <div className="text-4xl font-bold mb-2">{dict.about.metric3Value}</div>
+              <p className="text-sm text-gray-500 uppercase tracking-wider">{dict.about.metric3Label}</p>
             </Card>
           </div>
         </section>
 
         {/* Connect */}
         <section className="article-section text-center">
-          <h2 className="text-3xl font-bold mb-6">Open Source & Independent</h2>
+          <h2 className="text-3xl font-bold mb-6">{dict.about.connectTitle}</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto">
-            BWConverter is a side project born from my own needs. The project is open source on GitHub. 
-            If you like what I&apos;m doing, feel free to contribute or give it a star.
+            {dict.about.connectDesc}
           </p>
           <div className="flex justify-center gap-6">
             <Link href="https://github.com/xiwuxu93/black-and-white-nextjs" className="text-gray-400 hover:text-black dark:hover:text-white transition-colors">
@@ -149,9 +140,9 @@ export default function AboutPage() {
             </Link>
           </div>
           <div className="mt-12">
-            <Link href="/en/">
+            <Link href={`/${dict.locale || 'en'}/`}>
               <Button size="lg" className="rounded-full px-10">
-                Back to the Converter
+                {dict.about.backConverter}
               </Button>
             </Link>
           </div>

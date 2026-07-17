@@ -4,73 +4,79 @@ import { Button } from '@/components/ui/button'
 import { FileText, CheckCircle, AlertTriangle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { canonicalUrl } from '@/lib/seo'
+import { getDictionary } from '@/locales'
 
-export const metadata: Metadata = {
-  title: 'Terms of Service - Black and White Image Converter | Usage Agreement',
-  description: 'Read our terms of service for using the black and white image converter. Understand your rights and responsibilities when using our free online tool.',
-  keywords: ['terms of service', 'usage agreement', 'legal terms', 'user agreement'],
-  alternates: {
-    canonical: canonicalUrl('/en/terms/')
-  },
-  openGraph: {
-    title: 'Terms of Service - Black and White Image Converter | Usage Agreement',
-    description: 'Read our terms of service for using the black and white image converter. Understand your rights and responsibilities when using our free online tool.',
-    url: canonicalUrl('/en/terms/')
+interface Props {
+  params: { locale: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const dict = getDictionary(params.locale)
+  const canonical = canonicalUrl(`/${params.locale}/terms/`)
+  return {
+    title: dict.terms.metaTitle,
+    description: dict.terms.metaDesc,
+    alternates: {
+      canonical
+    },
+    openGraph: {
+      title: dict.terms.metaTitle,
+      description: dict.terms.metaDesc,
+      url: canonical
+    }
   }
 }
 
-export default function TermsOfServicePage() {
+export default function TermsOfServicePage({ params }: Props) {
+  const dict = getDictionary(params.locale)
   return (
     <>
         {/* Header */}
         <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             <FileText className="w-4 h-4 mr-2" />
-            Terms of Service
+            {dict.terms.badge}
           </Badge>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Terms of Service
+            {dict.terms.title}
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Please read these terms carefully before using our black and white image converter service.
+            {dict.terms.subtitle}
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
-            Last updated: December 2024
+            {dict.terms.lastUpdated}
           </p>
         </header>
 
           {/* Acceptance of Terms */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              1. Acceptance of Terms
+              {dict.terms.sec1Title}
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              By accessing and using our Black and White Image Converter service ("the Service"), you accept and agree to be bound by the terms and provision of this agreement.
+              {dict.terms.sec1P1}
             </p>
             <p className="text-gray-600 dark:text-gray-400">
-              If you do not agree to abide by the above, please do not use this service. Your continued use of the Service constitutes acceptance of these terms.
+              {dict.terms.sec1P2}
             </p>
           </section>
 
           {/* Description of Service */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              2. Description of Service
+              {dict.terms.sec2Title}
             </h2>
             <div className="space-y-4">
               <p className="text-gray-600 dark:text-gray-400">
-                Our service provides a free online tool for converting color images to black and white (monochrome) images. Key features include:
+                {dict.terms.sec2P1}
               </p>
               <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-2">
-                <li>Local image processing in your web browser</li>
-                <li>Multiple professional black and white presets</li>
-                <li>Advanced manual adjustment controls</li>
-                <li>Batch processing capabilities</li>
-                <li>High-quality image output</li>
-                <li>Complete privacy protection</li>
+                {dict.terms.sec2Bullets.map((bullet: string) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
               </ul>
               <p className="text-gray-600 dark:text-gray-400">
-                The Service is provided free of charge and processes images entirely within your web browser without uploading them to our servers.
+                {dict.terms.sec2P2}
               </p>
             </div>
           </section>
@@ -78,35 +84,34 @@ export default function TermsOfServicePage() {
           {/* User Responsibilities */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              3. User Responsibilities
+              {dict.terms.sec3Title}
             </h2>
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Acceptable Use
+                  {dict.terms.sec3Sub1}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-2">You agree to use the Service only for lawful purposes and in ways that do not:</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-2">
+                  {dict.terms.sec3Desc1}
+                </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1">
-                  <li>Violate any applicable local, state, national, or international law</li>
-                  <li>Process images that contain illegal, harmful, or offensive content</li>
-                  <li>Attempt to harm, disrupt, or interfere with the Service</li>
-                  <li>Use automated tools to access the Service excessively</li>
-                  <li>Reverse engineer or attempt to extract the Service's source code</li>
+                  {dict.terms.sec3Bullets1.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Content Responsibility
+                  {dict.terms.sec3Sub2}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  You are solely responsible for the images you process using our Service. You must have the legal right to process any images you upload, including:
+                  {dict.terms.sec3Desc2}
                 </p>
                 <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1 mt-2">
-                  <li>Ownership of the images or proper licensing</li>
-                  <li>Permission to modify and convert the images</li>
-                  <li>Compliance with any copyright or intellectual property rights</li>
-                  <li>Ensuring images do not contain illegal or harmful content</li>
+                  {dict.terms.sec3Bullets2.map((bullet: string) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -115,24 +120,24 @@ export default function TermsOfServicePage() {
           {/* Intellectual Property */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              4. Intellectual Property Rights
+              {dict.terms.sec4Title}
             </h2>
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Your Content
+                  {dict.terms.sec4Sub1}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  You retain all rights to your original images and the processed black and white versions. We do not claim any ownership rights to your content. Since processing occurs locally in your browser, we never have access to your images.
+                  {dict.terms.sec4Desc1}
                 </p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Our Service
+                  {dict.terms.sec4Sub2}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  The Service, including its algorithms, user interface, design, and functionality, is protected by copyright and other intellectual property laws. You may not copy, modify, distribute, or create derivative works based on our Service without permission.
+                  {dict.terms.sec4Desc2}
                 </p>
               </div>
             </div>
@@ -141,43 +146,42 @@ export default function TermsOfServicePage() {
           {/* Privacy and Data */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              5. Privacy and Data Processing
+              {dict.terms.sec5Title}
             </h2>
             <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-4">
               <div className="flex items-start">
                 <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5" />
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                    Local Processing Guarantee
+                    {dict.terms.sec5AlertTitle}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400">
-                    All image processing occurs entirely within your web browser. Your images are never uploaded to our servers, stored, or transmitted over the internet. This ensures complete privacy and security of your content.
+                    {dict.terms.sec5AlertDesc}
                   </p>
                 </div>
               </div>
             </div>
             <p className="text-gray-600 dark:text-gray-400">
-              For detailed information about how we handle data and protect your privacy, please review our <Link href="/privacy" className="text-blue-600 hover:text-blue-800 underline">Privacy Policy</Link>.
+              {dict.terms.sec5Desc} <Link href="/privacy" className="text-blue-600 hover:text-blue-800 underline">{dict.common.privacy}</Link>.
             </p>
           </section>
 
           {/* Service Availability */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              6. Service Availability
+              {dict.terms.sec6Title}
             </h2>
             <div className="space-y-4">
               <p className="text-gray-600 dark:text-gray-400">
-                We strive to provide reliable access to the Service, but we cannot guarantee:
+                {dict.terms.sec6P1}
               </p>
               <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1">
-                <li>Uninterrupted service availability (99.9% uptime goal)</li>
-                <li>Compatibility with all devices or browsers</li>
-                <li>Error-free operation in all circumstances</li>
-                <li>Continued availability of specific features</li>
+                {dict.terms.sec6Bullets.map((bullet: string) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
               </ul>
               <p className="text-gray-600 dark:text-gray-400">
-                We may temporarily suspend the Service for maintenance, updates, or technical issues. We will attempt to provide advance notice when possible.
+                {dict.terms.sec6P2}
               </p>
             </div>
           </section>
@@ -185,29 +189,27 @@ export default function TermsOfServicePage() {
           {/* Disclaimers */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              7. Disclaimers
+              {dict.terms.sec7Title}
             </h2>
             <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-4">
               <div className="flex items-start">
                 <AlertTriangle className="w-5 h-5 text-yellow-500 mr-2 mt-0.5" />
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                    Service Provided "As Is"
+                    {dict.terms.sec7AlertTitle}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400">
-                    The Service is provided on an "as is" and "as available" basis without warranties of any kind, either express or implied.
+                    {dict.terms.sec7AlertDesc}
                   </p>
                 </div>
               </div>
             </div>
             <div className="space-y-4">
-              <p className="text-gray-600 dark:text-gray-400">We specifically disclaim warranties regarding:</p>
+              <p className="text-gray-600 dark:text-gray-400">{dict.terms.sec7Desc}</p>
               <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1">
-                <li>Merchantability or fitness for a particular purpose</li>
-                <li>Non-infringement of third-party rights</li>
-                <li>Accuracy or reliability of conversion results</li>
-                <li>Compatibility with your specific use case</li>
-                <li>Uninterrupted or error-free operation</li>
+                {dict.terms.sec7Bullets.map((bullet: string) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
               </ul>
             </div>
           </section>
@@ -215,21 +217,19 @@ export default function TermsOfServicePage() {
           {/* Limitation of Liability */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              8. Limitation of Liability
+              {dict.terms.sec8Title}
             </h2>
             <div className="space-y-4">
               <p className="text-gray-600 dark:text-gray-400">
-                To the fullest extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including:
+                {dict.terms.sec8P1}
               </p>
               <ul className="list-disc ml-6 text-gray-600 dark:text-gray-400 space-y-1">
-                <li>Loss of data, images, or work product</li>
-                <li>Business interruption or lost profits</li>
-                <li>Emotional distress or reputational harm</li>
-                <li>Technical issues with your device or browser</li>
-                <li>Third-party claims related to your use of the Service</li>
+                {dict.terms.sec8Bullets.map((bullet: string) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
               </ul>
               <p className="text-gray-600 dark:text-gray-400">
-                Our total liability, if any, shall not exceed the amount you paid for the Service (which is $0 as it's free).
+                {dict.terms.sec8P2}
               </p>
             </div>
           </section>
@@ -237,43 +237,43 @@ export default function TermsOfServicePage() {
           {/* Modifications */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              9. Modifications to Terms
+              {dict.terms.sec9Title}
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              We reserve the right to modify these terms at any time. Changes will be effective when posted on this page with an updated "Last modified" date.
+              {dict.terms.sec9P1}
             </p>
             <p className="text-gray-600 dark:text-gray-400">
-              Your continued use of the Service after any changes indicates your acceptance of the new terms. We encourage you to review these terms periodically.
+              {dict.terms.sec9P2}
             </p>
           </section>
 
           {/* Governing Law */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              10. Governing Law
+              {dict.terms.sec10Title}
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              These terms shall be interpreted and governed by the laws of the jurisdiction where our service is operated, without regard to conflict of law principles. Any disputes arising from these terms or your use of the Service shall be subject to the exclusive jurisdiction of the courts in that jurisdiction.
+              {dict.terms.sec10P}
             </p>
           </section>
 
           {/* Severability */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              11. Severability
+              {dict.terms.sec11Title}
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              If any provision of these terms is found to be unenforceable or invalid, the remaining provisions will continue in full force and effect. The unenforceable provision will be replaced with a valid provision that most closely matches the intent of the original.
+              {dict.terms.sec11P}
             </p>
           </section>
 
           {/* Contact Information */}
           <section className="article-section">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              12. Contact Information
+              {dict.terms.sec12Title}
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              If you have questions about these Terms of Service, reach out anytime. We typically reply within one business day (UTC+8).
+              {dict.terms.sec12P}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
@@ -284,12 +284,12 @@ export default function TermsOfServicePage() {
               </a>
               <Link href="/contact">
                 <Button variant="outline">
-                  Contact Page
+                  {dict.terms.sec12BtnContact}
                 </Button>
               </Link>
               <Link href="/faq">
                 <Button variant="outline">
-                  Visit FAQ
+                  {dict.terms.sec12BtnFaq}
                 </Button>
               </Link>
             </div>
@@ -298,14 +298,14 @@ export default function TermsOfServicePage() {
         {/* Summary */}
         <section className="article-section">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-            Terms Summary
+            {dict.terms.summaryTitle}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            <strong>In simple terms:</strong> Use our service responsibly and legally. Your images stay private and on your device. We're not liable for issues beyond our control. These terms may change, so check back occasionally.
+            {dict.terms.summaryDesc}
           </p>
-          <Link href="/en/">
+          <Link href={`/${dict.locale || 'en'}/`}>
             <Button>
-              Start Using the Service
+              {dict.terms.summaryBtn}
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>

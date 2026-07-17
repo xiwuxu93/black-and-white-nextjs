@@ -4,35 +4,45 @@ import { Button } from '@/components/ui/button'
 import { Mail, MessageSquare, HelpCircle, Shield } from 'lucide-react'
 import Link from 'next/link'
 import { canonicalUrl } from '@/lib/seo'
+import { getDictionary } from '@/locales'
 
-export const metadata: Metadata = {
-  title: 'Contact Us - BWConverter Support',
-  description: 'Get in touch with BWConverter. Email support or explore self-service resources for fast answers about the black and white image converter.',
-  alternates: {
-    canonical: canonicalUrl('/en/contact/')
-  },
-  openGraph: {
-    title: 'Contact BWConverter Support',
-    description: 'Need help with the black and white image converter? Email support or find quick answers in the FAQ.',
-    url: canonicalUrl('/en/contact/')
+interface Props {
+  params: { locale: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const dict = getDictionary(params.locale)
+  const canonical = canonicalUrl(`/${params.locale}/contact/`)
+  return {
+    title: dict.contact.metaTitle,
+    description: dict.contact.metaDesc,
+    alternates: {
+      canonical
+    },
+    openGraph: {
+      title: dict.contact.metaTitle,
+      description: dict.contact.metaDesc,
+      url: canonical
+    }
   }
 }
 
 const SUPPORT_EMAIL = 'support@bwconverter.com'
 
-export default function ContactPage() {
+export default function ContactPage({ params }: Props) {
+  const dict = getDictionary(params.locale)
   return (
     <>
         <header className="article-header">
           <Badge className="mb-4" variant="secondary">
             <Mail className="w-4 h-4 mr-2" />
-            Contact BWConverter
+            {dict.contact.heroBadge}
           </Badge>
           <h1>
-            We’re Here to Help
+            {dict.contact.heroTitle}
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Whether you have a support question, partnership idea, or feedback about the converter, I typically reply within one business day.
+            {dict.contact.heroSubtitle}
           </p>
         </header>
 
@@ -43,11 +53,11 @@ export default function ContactPage() {
                 <Mail className="w-5 h-5 text-primary-600 dark:text-primary-300" />
               </div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Email Support
+                {dict.contact.emailTitle}
               </h2>
             </div>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Send us a message with your question, screenshots, or feature request. We respond Monday–Friday (UTC+8).
+              {dict.contact.emailDesc}
             </p>
             <a
               href={`mailto:${SUPPORT_EMAIL}`}
@@ -63,15 +73,15 @@ export default function ContactPage() {
                 <HelpCircle className="w-5 h-5 text-blue-600 dark:text-blue-300" />
               </div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Quick Answers
+                {dict.contact.faqTitle}
               </h2>
             </div>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Prefer self-service? The FAQ covers supported formats, privacy details, and troubleshooting steps for the converter.
+              {dict.contact.faqDesc}
             </p>
             <Link href="/faq">
               <Button variant="outline" className="w-full">
-                Browse FAQ
+                {dict.contact.faqButton}
               </Button>
             </Link>
           </section>
@@ -84,13 +94,13 @@ export default function ContactPage() {
             </div>
             <div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Responsible Use and Feedback
+                {dict.contact.feedbackTitle}
               </h2>
               <p className="text-gray-600 dark:text-gray-400 mb-3">
-                BWConverter processes images entirely in your browser. If you spot accessibility issues, translation errors, or privacy concerns, please let us know so we can improve quickly.
+                {dict.contact.feedbackDesc1}
               </p>
               <p className="text-gray-600 dark:text-gray-400">
-                Business inquiries and press requests are also welcome via the support inbox.
+                {dict.contact.feedbackDesc2}
               </p>
             </div>
           </div>
@@ -103,12 +113,12 @@ export default function ContactPage() {
             </div>
             <div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                What to Include in Your Message
+                {dict.contact.includeTitle}
               </h2>
               <ul className="list-disc ml-5 space-y-1 text-gray-600 dark:text-gray-400">
-                <li>Your device and browser (for debugging rendering issues)</li>
-                <li>Steps to reproduce a problem, if applicable</li>
-                <li>Any relevant screenshots or sample files</li>
+                {dict.contact.includeItems.map((item: string) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
             </div>
           </div>

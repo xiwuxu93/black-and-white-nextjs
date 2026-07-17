@@ -16,6 +16,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { PDFDocument } from 'pdf-lib'
+import { Dictionary } from '@/locales/en'
 
 declare global {
   interface Window {
@@ -23,7 +24,11 @@ declare global {
   }
 }
 
-export default function PdfPage() {
+interface PdfPageProps {
+  dict: Dictionary
+}
+
+export default function PdfPage({ dict }: PdfPageProps) {
   // Loading state for PDF.js CDN
   const [pdfjsLoaded, setPdfjsLoaded] = useState(false)
   const [loadingError, setLoadingError] = useState<string | null>(null)
@@ -417,10 +422,10 @@ export default function PdfPage() {
                   🔒 Private Local Conversion
                 </Badge>
                 <h1>
-                  Convert PDF to Black and White Online
+                  {dict.pdf.heroTitle}
                 </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-300">
-                  Grayscale your PDF files locally. Save printer ink and toner. No server uploads means your files remain 100% secure.
+                  {dict.pdf.heroSubtitle}
                 </p>
               </header>
             )}
@@ -719,34 +724,34 @@ export default function PdfPage() {
                 {/* 3 Step Tutorial */}
                 <section className="article-section">
                   <h2>
-                    How to Convert PDF to Black and White Online
+                    {dict.pdf.howToTitle}
                   </h2>
                   <div className="grid md:grid-cols-3 gap-8">
                     <div className="flex flex-col items-center text-center">
                       <span className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-700 font-bold text-xl mb-4 dark:bg-blue-900/30 dark:text-blue-400">
                         1
                       </span>
-                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">Upload Document</h3>
+                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{dict.pdf.step1Title}</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Select or drag in your color PDF document. Processing is local, supporting files up to 50MB.
+                        {dict.pdf.step1Desc}
                       </p>
                     </div>
                     <div className="flex flex-col items-center text-center">
                       <span className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-700 font-bold text-xl mb-4 dark:bg-blue-900/30 dark:text-blue-400">
                         2
                       </span>
-                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">Adjust Contrast</h3>
+                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{dict.pdf.step2Title}</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Boost contrast if your document contains light-colored graphics to make sure text prints out dark and legible.
+                        {dict.pdf.step2Desc}
                       </p>
                     </div>
                     <div className="flex flex-col items-center text-center">
                       <span className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-700 font-bold text-xl mb-4 dark:bg-blue-900/30 dark:text-blue-400">
                         3
                       </span>
-                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">Download & Print</h3>
+                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{dict.pdf.step3Title}</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Export as a grayscale PDF and print. All pages remain at native vector layouts and sizes.
+                        {dict.pdf.step3Desc}
                       </p>
                     </div>
                   </div>
@@ -755,62 +760,19 @@ export default function PdfPage() {
                 {/* FAQ Accordions */}
                 <section className="article-section">
                   <h2>
-                    Frequently Asked Questions
+                    {dict.pdf.faqTitle}
                   </h2>
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100/50 dark:border-gray-700/50">
-                      <h3 className="font-bold text-gray-900 dark:text-white mb-2">
-                        How to make a PDF black and white?
-                      </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        To convert a PDF to black and white, drag and drop your document into the conversion area above. Choose your contrast and quality settings, and click &quot;Convert to Black &amp; White&quot;. Our tool will automatically change the PDF color elements to grayscale and let you download the completed file instantly.
-                      </p>
-                    </div>
-
-                    <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100/50 dark:border-gray-700/50">
-                      <h3 className="font-bold text-gray-900 dark:text-white mb-2">
-                        How do I change a color PDF to black and white?
-                      </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        You can easily change color PDF documents to black and white by uploading them to BWConverter. Our local converter maps colored text, borders, headers, and images to their optimal grayscale equivalents, ensuring contrast remains high for reading and printing.
-                      </p>
-                    </div>
-
-                    <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100/50 dark:border-gray-700/50">
-                      <h3 className="font-bold text-gray-900 dark:text-white mb-2">
-                        How to save a PDF in black and white on Mac or Windows?
-                      </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Since BWConverter operates entirely within your web browser, you can convert and save your black and white PDF on macOS, Windows, Linux, or mobile devices. Once processing completes, clicking the download button will save the grayscale document to your system downloads folder.
-                      </p>
-                    </div>
-
-                    <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100/50 dark:border-gray-700/50">
-                      <h3 className="font-bold text-gray-900 dark:text-white mb-2">
-                        Does converting color PDF to black and white save ink?
-                      </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Yes. By converting colored charts, graphs, graphics, and backgrounds into pure monochrome or grayscale, your home or office printer will avoid pulling expensive color toner or ink cartridges, cutting your printing costs significantly.
-                      </p>
-                    </div>
-
-                    <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100/50 dark:border-gray-700/50">
-                      <h3 className="font-bold text-gray-900 dark:text-white mb-2">
-                        Can I convert PDF to black and white without Adobe Acrobat?
-                      </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Absolutely. Adobe Acrobat Pro requires a paid subscription to convert color PDFs to grayscale. BWConverter provides a 100% free, browser-native alternative. You don&apos;t have to register, upload your files to external servers, or pay a single cent.
-                      </p>
-                    </div>
-
-                    <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100/50 dark:border-gray-700/50">
-                      <h3 className="font-bold text-gray-900 dark:text-white mb-2">
-                        Is there a page limit for B&amp;W PDF conversions?
-                      </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        No, we do not impose page count limits. You can convert the entire document, regardless of length. Large documents are processed locally, with previews limited to the first 10 pages to optimize browser performance.
-                      </p>
-                    </div>
+                    {dict.pdf.faqQuestions.map((faq) => (
+                      <div key={faq.q} className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100/50 dark:border-gray-700/50">
+                        <h3 className="font-bold text-gray-900 dark:text-white mb-2">
+                          {faq.q}
+                        </h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          {faq.a}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </section>
               </div>
