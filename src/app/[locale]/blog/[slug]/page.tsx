@@ -18,7 +18,7 @@ import { notFound } from 'next/navigation'
 import { BlogInteractions } from '@/components/blog/blog-interactions'
 import { BlogHeaderActions } from '@/components/blog/blog-header-actions'
 import { blogPosts, blogPostList, BlogPost } from '@/data/blog-posts'
-import { canonicalUrl, SITE_URL } from '@/lib/seo'
+import { canonicalUrl, SITE_URL, getPageAlternates } from '@/lib/seo'
 import { getDictionary } from '@/locales'
 import { StructuredData } from '@/components/seo/structured-data'
 
@@ -193,7 +193,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const canonical = canonicalUrl(`/${params.locale}/blog/${post.id}`)
+  const alternates = getPageAlternates(`/blog/${post.id}/`, params.locale)
+  const canonical = alternates.canonical
   const lastModified = post.updatedDate ?? post.publishDate
 
   return {
@@ -215,9 +216,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.title,
       description: post.excerpt,
     },
-    alternates: {
-      canonical: canonical
-    }
+    alternates
   }
 }
 
@@ -281,7 +280,8 @@ export default function BlogPostPage({ params }: Props) {
     }
   ]
 
-  const canonical = canonicalUrl(`/${params.locale}/blog/${post.id}`)
+  const alternates = getPageAlternates(`/blog/${post.id}/`, params.locale)
+  const canonical = alternates.canonical
   const articleSchemaData = {
     title: post.title,
     description: post.excerpt,

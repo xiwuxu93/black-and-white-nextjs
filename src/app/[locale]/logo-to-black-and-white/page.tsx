@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ConverterExperience } from '@/components/home/converter-experience'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import { StructuredData } from '@/components/seo/structured-data'
 import { Layers, FileCode, CheckCircle, Info } from 'lucide-react'
 import { getDictionary } from '@/locales'
@@ -14,13 +14,12 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = getDictionary(params.locale)
-  const canonical = canonicalUrl(`/${params.locale}/logo-to-black-and-white/`)
+  const alternates = getPageAlternates('/logo-to-black-and-white/', params.locale)
+  const canonical = alternates.canonical
   return {
     title: dict.logo.metaTitle,
     description: dict.logo.metaDesc,
-    alternates: {
-      canonical
-    },
+    alternates,
     openGraph: {
       title: dict.logo.metaTitle,
       description: dict.logo.metaDesc,

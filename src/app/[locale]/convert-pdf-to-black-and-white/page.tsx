@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import PdfPage from '@/components/pages/pdf-page'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import { getDictionary } from '@/locales'
 
 interface Props {
@@ -9,13 +9,12 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = getDictionary(params.locale)
-  const canonical = canonicalUrl(`/${params.locale}/convert-pdf-to-black-and-white/`)
+  const alternates = getPageAlternates('/convert-pdf-to-black-and-white/', params.locale)
+  const canonical = alternates.canonical
   return {
     title: dict.pdf.metaTitle,
     description: dict.pdf.metaDesc,
-    alternates: {
-      canonical
-    },
+    alternates,
     openGraph: {
       title: dict.pdf.metaTitle,
       description: dict.pdf.metaDesc,

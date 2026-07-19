@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Mail, MessageSquare, HelpCircle, Shield } from 'lucide-react'
 import Link from 'next/link'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import { getDictionary } from '@/locales'
 
 interface Props {
@@ -12,13 +12,12 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = getDictionary(params.locale)
-  const canonical = canonicalUrl(`/${params.locale}/contact/`)
+  const alternates = getPageAlternates('/contact/', params.locale)
+  const canonical = alternates.canonical
   return {
     title: dict.contact.metaTitle,
     description: dict.contact.metaDesc,
-    alternates: {
-      canonical
-    },
+    alternates,
     openGraph: {
       title: dict.contact.metaTitle,
       description: dict.contact.metaDesc,

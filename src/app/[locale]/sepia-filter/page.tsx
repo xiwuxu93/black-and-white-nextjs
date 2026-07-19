@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ConverterExperience } from '@/components/home/converter-experience'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import { StructuredData } from '@/components/seo/structured-data'
 import { getDictionary } from '@/locales'
 
@@ -12,13 +12,12 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = getDictionary(params.locale)
-  const canonical = canonicalUrl(`/${params.locale}/sepia-filter/`)
+  const alternates = getPageAlternates('/sepia-filter/', params.locale)
+  const canonical = alternates.canonical
   return {
     title: dict.sepia.metaTitle,
     description: dict.sepia.metaDesc,
-    alternates: {
-      canonical
-    },
+    alternates,
     openGraph: {
       title: dict.sepia.metaTitle,
       description: dict.sepia.metaDesc,

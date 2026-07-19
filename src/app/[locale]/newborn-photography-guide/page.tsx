@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { Baby } from 'lucide-react'
 import Link from 'next/link'
 import { Breadcrumb } from '@/components/seo/breadcrumb'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import { NewbornGuideTabs } from '@/components/pages/newborn-guide-tabs'
 import { getDictionary } from '@/locales'
 
@@ -14,7 +14,8 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = getDictionary(params.locale)
-  const canonical = canonicalUrl(`/${params.locale}/newborn-photography-guide/`)
+  const alternates = getPageAlternates('/newborn-photography-guide/', params.locale)
+  const canonical = alternates.canonical
   return {
     title: dict.newborn.metaTitle,
     description: dict.newborn.metaDesc,
@@ -24,9 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: canonical,
       images: ['/black-and-white-image.png']
     },
-    alternates: {
-      canonical
-    }
+    alternates
   }
 }
 

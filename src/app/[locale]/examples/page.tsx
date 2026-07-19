@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ExamplesGrid } from '@/components/pages/examples-grid'
 import { Breadcrumb } from '@/components/seo/breadcrumb'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import { Card } from '@/components/ui/card'
 import { getDictionary } from '@/locales'
 
@@ -12,13 +12,12 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = getDictionary(params.locale)
-  const canonical = canonicalUrl(`/${params.locale}/examples/`)
+  const alternates = getPageAlternates('/examples/', params.locale)
+  const canonical = alternates.canonical
   return {
     title: dict.examples.metaTitle,
     description: dict.examples.metaDesc,
-    alternates: {
-      canonical
-    },
+    alternates,
     openGraph: {
       title: dict.examples.metaTitle,
       description: dict.examples.metaDesc,

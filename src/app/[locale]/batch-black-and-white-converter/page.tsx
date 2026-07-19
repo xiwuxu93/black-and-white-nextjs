@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import BatchPage from '@/components/pages/batch-page'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import { getDictionary } from '@/locales'
 
 interface Props {
@@ -9,13 +9,12 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = getDictionary(params.locale)
-  const canonical = canonicalUrl(`/${params.locale}/batch-black-and-white-converter/`)
+  const alternates = getPageAlternates('/batch-black-and-white-converter/', params.locale)
+  const canonical = alternates.canonical
   return {
     title: dict.batchPage.heroTitle + ' - ' + dict.batchPage.heroBadge,
     description: dict.batchPage.heroSubtitle,
-    alternates: {
-      canonical
-    },
+    alternates,
     openGraph: {
       title: dict.batchPage.heroTitle + ' - ' + dict.batchPage.heroBadge,
       description: dict.batchPage.heroSubtitle,

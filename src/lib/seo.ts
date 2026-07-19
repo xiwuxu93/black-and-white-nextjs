@@ -21,3 +21,17 @@ export const absoluteUrl = (path: string = '/'): string => {
   const normalizedPath = normalizePath(path)
   return `${SITE_URL}${normalizedPath === '/' ? '/' : normalizedPath}`
 }
+
+export const getPageAlternates = (path: string, locale: string) => {
+  const cleanPath = path.startsWith('/') ? path : `/${path}`
+  const normalizedPath = cleanPath.endsWith('/') ? cleanPath : `${cleanPath}/`
+  const canonical = canonicalUrl(`/${locale}${normalizedPath}`)
+  
+  return {
+    canonical,
+    languages: {
+      'en': canonicalUrl(`/en${normalizedPath}`),
+      'x-default': canonicalUrl(`/en${normalizedPath}`)
+    }
+  }
+}

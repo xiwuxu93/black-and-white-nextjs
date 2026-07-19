@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ConverterExperience } from '@/components/home/converter-experience'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import { StructuredData } from '@/components/seo/structured-data'
 import { getDictionary } from '@/locales'
 
@@ -12,13 +12,12 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = getDictionary(params.locale)
-  const canonical = canonicalUrl(`/${params.locale}/invert-image-colors/`)
+  const alternates = getPageAlternates('/invert-image-colors/', params.locale)
+  const canonical = alternates.canonical
   return {
     title: dict.invert.metaTitle,
     description: dict.invert.metaDesc,
-    alternates: {
-      canonical
-    },
+    alternates,
     openGraph: {
       title: dict.invert.metaTitle,
       description: dict.invert.metaDesc,

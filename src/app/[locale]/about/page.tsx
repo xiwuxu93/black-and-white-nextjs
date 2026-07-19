@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import {
   Camera,
   Code,
@@ -20,13 +20,12 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = getDictionary(params.locale)
-  const canonical = canonicalUrl(`/${params.locale}/about/`)
+  const alternates = getPageAlternates('/about/', params.locale)
+  const canonical = alternates.canonical
   return {
     title: dict.about.metaTitle,
     description: dict.about.metaDesc,
-    alternates: {
-      canonical
-    },
+    alternates,
     openGraph: {
       title: dict.about.ogTitle,
       description: dict.about.ogDesc,

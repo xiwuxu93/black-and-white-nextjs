@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import { getBlogPosts } from '@/lib/blog'
 import Image from 'next/image'
 import { 
@@ -25,7 +25,8 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = getDictionary(params.locale)
-  const canonical = canonicalUrl(`/${params.locale}/blog/`)
+  const alternates = getPageAlternates('/blog/', params.locale)
+  const canonical = alternates.canonical
   return {
     title: dict.blog.metaTitle,
     description: dict.blog.metaDesc,
@@ -43,9 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: dict.blog.metaDesc,
       url: canonical,
     },
-    alternates: {
-      canonical
-    }
+    alternates
   }
 }
 

@@ -6,7 +6,7 @@ import {
   MarketingSections
 } from '@/components/home/marketing-sections'
 import { StructuredData } from '@/components/seo/structured-data'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import { getDictionary } from '@/locales'
 
 interface Props {
@@ -14,14 +14,13 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const canonical = canonicalUrl(`/${params.locale}/`)
+  const alternates = getPageAlternates('/', params.locale)
+  const canonical = alternates.canonical
   const dict = getDictionary(params.locale)
   return {
     title: `${dict.home.heroTitle} - Make Image Black and White Online`,
     description: dict.home.heroSubtitle,
-    alternates: {
-      canonical
-    },
+    alternates,
     openGraph: {
       url: canonical,
       title: `${dict.home.heroTitle} - Make Image Black and White Online`,

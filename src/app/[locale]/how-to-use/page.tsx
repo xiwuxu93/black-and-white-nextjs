@@ -12,7 +12,7 @@ import {
   AlertTriangle
 } from 'lucide-react'
 import Link from 'next/link'
-import { canonicalUrl } from '@/lib/seo'
+import { canonicalUrl, getPageAlternates } from '@/lib/seo'
 import { getDictionary } from '@/locales'
 
 interface Props {
@@ -21,13 +21,12 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = getDictionary(params.locale)
-  const canonical = canonicalUrl(`/${params.locale}/how-to-use/`)
+  const alternates = getPageAlternates('/how-to-use/', params.locale)
+  const canonical = alternates.canonical
   return {
     title: dict.howToUse.metaTitle,
     description: dict.howToUse.metaDesc,
-    alternates: {
-      canonical
-    },
+    alternates,
     openGraph: {
       title: dict.howToUse.metaTitle,
       description: dict.howToUse.metaDesc,
