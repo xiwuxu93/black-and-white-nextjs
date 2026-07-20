@@ -31,6 +31,8 @@ export const getPageAlternates = (path: string, locale: string) => {
     canonical,
     languages: {
       'en': canonicalUrl(`/en${normalizedPath}`),
+      'es': canonicalUrl(`/es${normalizedPath}`),
+      'de': canonicalUrl(`/de${normalizedPath}`),
       'x-default': canonicalUrl(`/en${normalizedPath}`)
     }
   }

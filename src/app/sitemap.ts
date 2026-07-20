@@ -4,7 +4,7 @@ import { canonicalUrl } from '@/lib/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString()
-  const locales = ['en', 'es']
+  const locales = ['en', 'es', 'de']
 
   const baseRoutes = [
     { subpath: '', changeFrequency: 'daily' as const, priority: 1.0 },

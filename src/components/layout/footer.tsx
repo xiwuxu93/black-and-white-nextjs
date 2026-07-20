@@ -107,6 +107,10 @@ export function Footer({ dict }: FooterProps) {
               <Link href="/es/" className={`hover:text-primary-600 transition-colors ${dict.locale === 'es' ? 'font-bold text-gray-900 dark:text-white underline' : ''}`}>
                 🇪🇸 Español
               </Link>
+              <span>•</span>
+              <Link href="/de/" className={`hover:text-primary-600 transition-colors ${dict.locale === 'de' ? 'font-bold text-gray-900 dark:text-white underline' : ''}`}>
+                🇩🇪 Deutsch
+              </Link>
             </div>
 
             <div className="text-xs text-gray-400">

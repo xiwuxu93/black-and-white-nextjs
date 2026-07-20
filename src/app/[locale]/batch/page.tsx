@@ -1,5 +1,9 @@
 import { redirect } from 'next/navigation'
 
-export default function BatchPageRedirect() {
-  redirect('/en/batch-black-and-white-converter/')
+interface Props {
+  params: { locale: string }
+}
+
+export default function BatchPageRedirect({ params }: Props) {
+  redirect(`/${params.locale || 'en'}/batch-black-and-white-converter/`)
 }

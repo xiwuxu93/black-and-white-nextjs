@@ -45,11 +45,15 @@ export default function HowToUsePage({ params }: Props) {
   }))
 
   const proWorkflows = dict.howToUse.workflows.map((flow: any, idx: number) => {
-    const hrefs = ['/batch-black-and-white-converter', '/faq', '/privacy']
+    const hrefs = [
+      `/${params.locale}/batch-black-and-white-converter`,
+      `/${params.locale}/faq`,
+      `/${params.locale}/privacy`
+    ]
     return {
       ...flow,
       link: {
-        href: hrefs[idx] || '/en/',
+        href: hrefs[idx] || `/${params.locale}/`,
         label: flow.linkLabel
       }
     }

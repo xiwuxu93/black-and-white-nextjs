@@ -76,6 +76,7 @@ export const metadata: Metadata = {
     languages: {
       'en': 'https://bwconverter.com/en/',
       'es': 'https://bwconverter.com/es/',
+      'de': 'https://bwconverter.com/de/',
       'x-default': 'https://bwconverter.com/en/'
     }
   },
@@ -140,5 +141,5 @@ export default function RootLayout({
 }
 
 export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'es' }]
+  return [{ locale: 'en' }, { locale: 'es' }, { locale: 'de' }]
 }
