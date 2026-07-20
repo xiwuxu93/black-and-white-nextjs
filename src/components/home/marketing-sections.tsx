@@ -39,7 +39,7 @@ export function MarketingSections({ dict }: MarketingSectionsProps) {
       <section className="converter-marketing article-section">
         <h2>{dict.home.toolGridTitle}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Link href="/logo-to-black-and-white" className="group">
+          <Link href={`/${dict.locale || 'en'}/logo-to-black-and-white`} className="group">
             <Card className="p-6 h-full transition-shadow hover:shadow-md border-primary-100 dark:border-primary-900/50">
               <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-full w-fit text-blue-600 dark:text-blue-400">
                 <Layers className="w-6 h-6" />
@@ -56,7 +56,7 @@ export function MarketingSections({ dict }: MarketingSectionsProps) {
             </Card>
           </Link>
 
-          <Link href="/batch-black-and-white-converter" className="group">
+          <Link href={`/${dict.locale || 'en'}/batch-black-and-white-converter`} className="group">
             <Card className="p-6 h-full transition-shadow hover:shadow-md border-primary-100 dark:border-primary-900/50">
               <div className="mb-4 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-full w-fit text-purple-600 dark:text-purple-400">
                 <Briefcase className="w-6 h-6" />
@@ -73,7 +73,7 @@ export function MarketingSections({ dict }: MarketingSectionsProps) {
             </Card>
           </Link>
 
-          <Link href="/convert-pdf-to-black-and-white" className="group">
+          <Link href={`/${dict.locale || 'en'}/convert-pdf-to-black-and-white`} className="group">
             <Card className="p-6 h-full transition-shadow hover:shadow-md border-primary-100 dark:border-primary-900/50">
               <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 rounded-full w-fit text-red-600 dark:text-red-400">
                 <FileText className="w-6 h-6" />
@@ -90,7 +90,7 @@ export function MarketingSections({ dict }: MarketingSectionsProps) {
             </Card>
           </Link>
 
-          <Link href="/how-to-use" className="group">
+          <Link href={`/${dict.locale || 'en'}/how-to-use`} className="group">
             <Card className="p-6 h-full transition-shadow hover:shadow-md border-primary-100 dark:border-primary-900/50">
               <div className="mb-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-full w-fit text-green-600 dark:text-green-400">
                 <ImageIcon className="w-6 h-6" />
@@ -246,7 +246,7 @@ export function MarketingSections({ dict }: MarketingSectionsProps) {
             {dict.home.blogDesc}
           </p>
           <div className="mt-6">
-            <Link href="/blog">
+            <Link href={`/${dict.locale || 'en'}/blog`}>
               <Button size="lg" variant="outline">
                 {dict.common.readBlog}
                 <ChevronRight className="w-4 h-4 ml-2" />

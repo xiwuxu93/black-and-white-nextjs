@@ -55,7 +55,7 @@ export default function ExamplesPage({ params }: Props) {
               <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
                 {dict.examples.guideNewbornDesc}
               </p>
-              <Link href="/newborn-photography-guide" className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
+              <Link href={`/${dict.locale || 'en'}/newborn-photography-guide`} className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
                 {dict.examples.guideNewbornLink}
                 <span className="sr-only">Newborn photography guide</span>
               </Link>
@@ -68,7 +68,7 @@ export default function ExamplesPage({ params }: Props) {
               <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
                 {dict.examples.guideCompareDesc}
               </p>
-              <Link href="/newborn-photography-guide" className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
+              <Link href={`/${dict.locale || 'en'}/newborn-photography-guide`} className="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
                 {dict.examples.guideCompareLink}
                 <span className="sr-only">Newborn studio case study</span>
               </Link>

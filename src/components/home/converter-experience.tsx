@@ -8,6 +8,7 @@ import React, {
   useEffect
 } from 'react'
 import dynamic from 'next/dynamic'
+import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -133,6 +134,8 @@ export function ConverterExperience({
   hideBottomFeatures = false,
   marketingContent
 }: ConverterExperienceProps = {}) {
+  const params = useParams()
+  const localePrefix = `/${(params?.locale as string) || 'en'}`
   const [currentImageBitmap, setCurrentImageBitmap] =
     useState<ImageBitmap | null>(null)
   const [processedImageData, setProcessedImageData] =
@@ -528,7 +531,7 @@ export function ConverterExperience({
                     <div className="text-center text-gray-500 dark:text-gray-400 text-sm mb-6">
                       Need to process a whole campaign?{' '}
                       <Link
-                        href="/batch-black-and-white-converter"
+                        href={`${localePrefix}/batch-black-and-white-converter`}
                         className="text-primary-600 hover:underline dark:text-primary-400 font-semibold"
                       >
                         Try the batch converter
@@ -638,7 +641,7 @@ export function ConverterExperience({
                       ✨ Explore More Features
                     </h3>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                      <Link href="/batch-black-and-white-converter" className="group">
+                      <Link href={`${localePrefix}/batch-black-and-white-converter`} className="group">
                         <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
                           <div className="text-2xl mb-2">📦</div>
                           <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
@@ -650,7 +653,7 @@ export function ConverterExperience({
                         </div>
                       </Link>
 
-                      <Link href="/examples" className="group">
+                      <Link href={`${localePrefix}/examples`} className="group">
                         <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
                           <div className="text-2xl mb-2">🖼️</div>
                           <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
@@ -662,7 +665,7 @@ export function ConverterExperience({
                         </div>
                       </Link>
 
-                      <Link href="/how-to-use" className="group">
+                      <Link href={`${localePrefix}/how-to-use`} className="group">
                         <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
                           <div className="text-2xl mb-2">📚</div>
                           <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
@@ -674,7 +677,7 @@ export function ConverterExperience({
                         </div>
                       </Link>
 
-                      <Link href="/blog" className="group">
+                      <Link href={`${localePrefix}/blog`} className="group">
                         <div className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-primary-500">
                           <div className="text-2xl mb-2">✍️</div>
                           <h4 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">

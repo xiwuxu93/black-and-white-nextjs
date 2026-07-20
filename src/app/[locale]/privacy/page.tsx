@@ -354,12 +354,12 @@ export default function PrivacyPolicyPage({ params }: Props) {
               {dict.privacy.sections.sec10Desc}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/faq">
+              <Link href={`/${dict.locale || 'en'}/faq`}>
                 <Button variant="outline">
                   Visit FAQ
                 </Button>
               </Link>
-              <Link href="/about">
+              <Link href={`/${dict.locale || 'en'}/about`}>
                 <Button variant="outline">
                   Contact Information
                 </Button>

@@ -326,10 +326,10 @@ export function NewbornGuideTabs({ dict }: NewbornGuideTabsProps) {
             {dict.newborn.studioCtaDesc}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/batch-black-and-white-converter">
+            <Link href={`/${dict.locale || 'en'}/batch-black-and-white-converter`}>
               <Button size="lg">{dict.newborn.studioBtnLaunch}</Button>
             </Link>
-            <Link href="/contact">
+            <Link href={`/${dict.locale || 'en'}/contact`}>
               <Button variant="outline" size="lg">
                 {dict.newborn.studioBtnRequest}
               </Button>

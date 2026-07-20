@@ -65,12 +65,12 @@ export default function NewbornPhotographyGuidePage({ params }: Props) {
               {dict.newborn.continueDesc}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/blog">
+              <Link href={`/${dict.locale || 'en'}/blog`}>
                 <Button variant="outline" size="lg">
                   {dict.newborn.continueBlog}
                 </Button>
               </Link>
-              <Link href="/examples">
+              <Link href={`/${dict.locale || 'en'}/examples`}>
                 <Button variant="outline" size="lg">
                   {dict.newborn.continueExamples}
                 </Button>

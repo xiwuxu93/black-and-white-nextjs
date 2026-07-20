@@ -161,7 +161,7 @@ export default function TermsOfServicePage({ params }: Props) {
               </div>
             </div>
             <p className="text-gray-600 dark:text-gray-400">
-              {dict.terms.sec5Desc} <Link href="/privacy" className="text-blue-600 hover:text-blue-800 underline">{dict.common.privacy}</Link>.
+              {dict.terms.sec5Desc} <Link href={`/${dict.locale || 'en'}/privacy`} className="text-blue-600 hover:text-blue-800 underline">{dict.common.privacy}</Link>.
             </p>
           </section>
 
@@ -281,12 +281,12 @@ export default function TermsOfServicePage({ params }: Props) {
               >
                 support@bwconverter.com
               </a>
-              <Link href="/contact">
+              <Link href={`/${dict.locale || 'en'}/contact`}>
                 <Button variant="outline">
                   {dict.terms.sec12BtnContact}
                 </Button>
               </Link>
-              <Link href="/faq">
+              <Link href={`/${dict.locale || 'en'}/faq`}>
                 <Button variant="outline">
                   {dict.terms.sec12BtnFaq}
                 </Button>

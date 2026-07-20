@@ -104,7 +104,7 @@ export default function FAQPage({ params }: Props) {
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/how-to-use">
+            <Link href={`/${dict.locale || 'en'}/how-to-use`}>
               <Button variant="outline" size="lg">
                 {dict.faqPage.btnReadGuide}
               </Button>

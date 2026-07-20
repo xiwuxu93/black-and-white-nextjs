@@ -81,12 +81,12 @@ function SepiaSections({ dict }: { dict: any }) {
                 Black & White Converter
               </Button>
             </Link>
-            <Link href="/logo-to-black-and-white">
+            <Link href={`/${dict.locale || 'en'}/logo-to-black-and-white`}>
               <Button variant="outline" size="lg">
                 Logo Converter
               </Button>
             </Link>
-            <Link href="/convert-pdf-to-black-and-white">
+            <Link href={`/${dict.locale || 'en'}/convert-pdf-to-black-and-white`}>
               <Button variant="outline" size="lg">
                 PDF Converter
               </Button>

@@ -78,7 +78,7 @@ export default function ContactPage({ params }: Props) {
             <p className="text-gray-600 dark:text-gray-400 mb-4">
               {dict.contact.faqDesc}
             </p>
-            <Link href="/faq">
+            <Link href={`/${dict.locale || 'en'}/faq`}>
               <Button variant="outline" className="w-full">
                 {dict.contact.faqButton}
               </Button>

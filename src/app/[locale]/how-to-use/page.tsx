@@ -197,7 +197,7 @@ export default function HowToUsePage({ params }: Props) {
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/batch-black-and-white-converter">
+            <Link href={`/${dict.locale || 'en'}/batch-black-and-white-converter`}>
               <Button variant="outline" size="lg">
                 {dict.howToUse.btnBatch}
               </Button>

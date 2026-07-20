@@ -128,7 +128,7 @@ function LogoToBwSections({ dict }: { dict: any }) {
             {dict.logo.bulkDesc}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/batch-black-and-white-converter">
+            <Link href={`/${dict.locale || 'en'}/batch-black-and-white-converter`}>
               <Button size="lg" className="px-10">
                 {dict.logo.bulkBtn}
               </Button>
