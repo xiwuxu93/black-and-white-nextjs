@@ -75,6 +75,7 @@ export const metadata: Metadata = {
     canonical: canonicalUrl('/en/'),
     languages: {
       'en': 'https://bwconverter.com/en/',
+      'es': 'https://bwconverter.com/es/',
       'x-default': 'https://bwconverter.com/en/'
     }
   },
@@ -139,5 +140,5 @@ export default function RootLayout({
 }
 
 export function generateStaticParams() {
-  return [{ locale: 'en' }]
+  return [{ locale: 'en' }, { locale: 'es' }]
 }

@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Dictionary } from '@/locales/en'
+import { Dictionary } from '@/locales'
 
 export const HOWTO_SCHEMA = (dict: Dictionary) => ({
   name: dict.home.howToTitle,

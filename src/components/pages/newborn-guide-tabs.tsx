@@ -17,7 +17,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Dictionary } from '@/locales/en'
+import { Dictionary } from '@/locales'
 
 interface NewbornGuideTabsProps {
   dict: Dictionary

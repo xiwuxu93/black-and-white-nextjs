@@ -31,7 +31,7 @@ import {
 } from '@/types/image-processing'
 import { resolveFileInfo, sanitizeBaseName, qualityForFormat, normalizeExtension } from '@/lib/image-format'
 import { downloadCanvasImage } from '@/lib/utils'
-import { Dictionary } from '@/locales/en'
+import { Dictionary } from '@/locales'
 
 function ProcessedPreviewCanvas({ data }: { data?: ImageData }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)

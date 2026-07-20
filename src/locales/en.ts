@@ -1,5 +1,5 @@
 export const en = {
-  locale: 'en',
+  locale: 'en' as string,
   common: {
     freeBwConverter: '✨ Free Black and White Converter',
     secureLocalProcessing: '100% Free • Secure Local Browser Processing • No Registration Required',

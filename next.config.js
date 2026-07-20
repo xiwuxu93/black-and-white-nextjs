@@ -33,6 +33,7 @@ const nextConfig = {
       { source: '/batch/', destination: '/en/batch-black-and-white-converter/', permanent: true },
       { source: '/black-and-white-converter/', destination: '/en/', permanent: true },
       { source: '/en/black-and-white-converter/', destination: '/en/', permanent: true },
+      { source: '/es/black-and-white-converter/', destination: '/es/', permanent: true },
       { source: '/blog/', destination: '/en/blog/', permanent: true },
       { source: '/blog/:slug/', destination: '/en/blog/:slug/', permanent: true },
       { source: '/contact/', destination: '/en/contact/', permanent: true },

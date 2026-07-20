@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Heart, Coffee } from "lucide-react";
-import { Dictionary } from "@/locales/en";
+import { Dictionary } from "@/locales";
 
 interface FooterProps {
   dict: Dictionary
@@ -96,6 +96,19 @@ export function Footer({ dict }: FooterProps) {
                 {dict.layout.footerCopyright.split('{heart}')[1]}
               </span>
             </div>
+
+            {/* Language Switcher Links */}
+            <div className="flex items-center space-x-3 text-xs text-gray-400">
+              <span className="font-semibold text-gray-500">Language:</span>
+              <Link href="/en/" className={`hover:text-primary-600 transition-colors ${dict.locale === 'en' ? 'font-bold text-gray-900 dark:text-white underline' : ''}`}>
+                🇺🇸 English
+              </Link>
+              <span>•</span>
+              <Link href="/es/" className={`hover:text-primary-600 transition-colors ${dict.locale === 'es' ? 'font-bold text-gray-900 dark:text-white underline' : ''}`}>
+                🇪🇸 Español
+              </Link>
+            </div>
+
             <div className="text-xs text-gray-400">
               <a
                 href="mailto:support@bwconverter.com"

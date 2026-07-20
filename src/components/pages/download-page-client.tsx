@@ -15,7 +15,7 @@ import {
   BookOpen 
 } from 'lucide-react'
 import Link from 'next/link'
-import { Dictionary } from '@/locales/en'
+import { Dictionary } from '@/locales'
 
 interface DownloadPageClientProps {
   dict: Dictionary

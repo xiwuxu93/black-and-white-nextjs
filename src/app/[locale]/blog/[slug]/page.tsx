@@ -43,10 +43,10 @@ const getBlogPost = (slug: string) => {
 
 // Get all available blog post slugs for static generation
 export function generateStaticParams() {
-  return Object.keys(blogPosts).map((slug) => ({
-    locale: 'en',
-    slug
-  }))
+  return Object.keys(blogPosts).flatMap((slug) => [
+    { locale: 'en', slug },
+    { locale: 'es', slug }
+  ])
 }
 
 interface Props {

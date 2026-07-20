@@ -3,6 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import {
@@ -11,6 +12,7 @@ import {
   Menu,
   X,
   ChevronDown,
+  Globe,
   HelpCircle,
   Info,
   Shield,
@@ -20,7 +22,7 @@ import {
   Layers,
   Camera
 } from "lucide-react"
-import { Dictionary } from "@/locales/en"
+import { Dictionary } from "@/locales"
 
 interface HeaderProps {
   dict: Dictionary
@@ -30,31 +32,44 @@ export function Header({ dict }: HeaderProps) {
   const { theme, setTheme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
+  const pathname = usePathname()
 
   React.useEffect(() => {
     setMounted(true)
   }, [])
 
+  const currentLocale = dict.locale || 'en'
+
+  const getTargetLocaleUrl = (targetLocale: string) => {
+    if (!pathname) return `/${targetLocale}/`
+    const segments = pathname.split('/')
+    if (segments[1] === 'en' || segments[1] === 'es') {
+      segments[1] = targetLocale
+      return segments.join('/') || `/${targetLocale}/`
+    }
+    return `/${targetLocale}${pathname}`
+  }
+
   const navigation = [
-    { name: dict.common.home, href: `/${dict.locale || 'en'}/` },
-    { name: dict.common.batch, href: `/${dict.locale || 'en'}/batch-black-and-white-converter` },
-    { name: dict.common.gallery, href: `/${dict.locale || 'en'}/examples` },
-    { name: dict.common.howToUse, href: `/${dict.locale || 'en'}/how-to-use` },
-    { name: dict.common.blog, href: `/${dict.locale || 'en'}/blog` },
+    { name: dict.common.home, href: `/${currentLocale}/` },
+    { name: dict.common.batch, href: `/${currentLocale}/batch-black-and-white-converter` },
+    { name: dict.common.gallery, href: `/${currentLocale}/examples` },
+    { name: dict.common.howToUse, href: `/${currentLocale}/how-to-use` },
+    { name: dict.common.blog, href: `/${currentLocale}/blog` },
     {
       name: dict.layout.headerMore,
       href: "#",
       children: [
-        { name: dict.common.logo, href: `/${dict.locale || 'en'}/logo-to-black-and-white`, icon: Layers, description: dict.layout.logoDesc },
-        { name: dict.common.pdf, href: `/${dict.locale || 'en'}/convert-pdf-to-black-and-white`, icon: FileText, description: dict.layout.pdfDesc },
-        { name: dict.invert.heroBadge, href: `/${dict.locale || 'en'}/invert-image-colors`, icon: ImageIcon, description: dict.layout.invertDesc },
-        { name: dict.sepia.heroBadge, href: `/${dict.locale || 'en'}/sepia-filter`, icon: ImageIcon, description: dict.layout.sepiaDesc },
-        { name: dict.newborn.heroBadge, href: `/${dict.locale || 'en'}/newborn-photography-guide`, icon: Camera, description: dict.layout.newbornDesc },
-        { name: dict.common.faq, href: `/${dict.locale || 'en'}/faq`, icon: HelpCircle, description: dict.layout.faqDesc },
-        { name: dict.common.contact, href: `/${dict.locale || 'en'}/contact`, icon: Mail, description: dict.layout.contactDesc },
-        { name: dict.common.about, href: `/${dict.locale || 'en'}/about`, icon: Info, description: dict.layout.aboutDesc },
-        { name: dict.common.privacy, href: `/${dict.locale || 'en'}/privacy`, icon: Shield, description: dict.layout.privacyDesc },
-        { name: dict.common.terms, href: `/${dict.locale || 'en'}/terms`, icon: FileText, description: dict.layout.termsDesc }
+        { name: dict.common.logo, href: `/${currentLocale}/logo-to-black-and-white`, icon: Layers, description: dict.layout.logoDesc },
+        { name: dict.common.pdf, href: `/${currentLocale}/convert-pdf-to-black-and-white`, icon: FileText, description: dict.layout.pdfDesc },
+        { name: dict.invert.heroBadge, href: `/${currentLocale}/invert-image-colors`, icon: ImageIcon, description: dict.layout.invertDesc },
+        { name: dict.sepia.heroBadge, href: `/${currentLocale}/sepia-filter`, icon: ImageIcon, description: dict.layout.sepiaDesc },
+        { name: dict.newborn.heroBadge, href: `/${currentLocale}/newborn-photography-guide`, icon: Camera, description: dict.layout.newbornDesc },
+        { name: dict.common.faq, href: `/${currentLocale}/faq`, icon: HelpCircle, description: dict.layout.faqDesc },
+        { name: dict.common.contact, href: `/${currentLocale}/contact`, icon: Mail, description: dict.layout.contactDesc },
+        { name: dict.common.about, href: `/${currentLocale}/about`, icon: Info, description: dict.layout.aboutDesc },
+        { name: dict.common.privacy, href: `/${currentLocale}/privacy`, icon: Shield, description: dict.layout.privacyDesc },
+        { name: dict.common.terms, href: `/${currentLocale}/terms`, icon: FileText, description: dict.layout.termsDesc }
       ]
     }
   ]
@@ -68,7 +83,7 @@ export function Header({ dict }: HeaderProps) {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo and brand */}
         <div className="flex items-center space-x-2">
-          <Link href={`/${dict.locale || 'en'}/`} className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+          <Link href={`/${currentLocale}/`} className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
             <Image
               src="/logo.png"
               alt="BW Converter Logo"
@@ -129,7 +144,43 @@ export function Header({ dict }: HeaderProps) {
         </nav>
 
         {/* Right-side actions */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
+          {/* Language Switcher Dropdown */}
+          <div className="relative group">
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex items-center space-x-1.5 px-2.5 h-9 text-xs font-semibold rounded-full border-border/80 hover:bg-accent hover:text-foreground"
+            >
+              <Globe className="h-3.5 w-3.5 text-muted-foreground" />
+              <span className="uppercase">{currentLocale}</span>
+              <ChevronDown className="h-3 w-3 opacity-60" />
+            </Button>
+            
+            <div className="absolute right-0 top-full mt-1.5 w-36 py-1 bg-background border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+              <Link
+                href={getTargetLocaleUrl('en')}
+                className={`flex items-center px-3 py-2 text-xs font-medium transition-colors ${
+                  currentLocale === 'en'
+                    ? 'bg-accent/80 font-bold text-foreground'
+                    : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
+                }`}
+              >
+                <span className="mr-2">🇺🇸</span> English (EN)
+              </Link>
+              <Link
+                href={getTargetLocaleUrl('es')}
+                className={`flex items-center px-3 py-2 text-xs font-medium transition-colors ${
+                  currentLocale === 'es'
+                    ? 'bg-accent/80 font-bold text-foreground'
+                    : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
+                }`}
+              >
+                <span className="mr-2">🇪🇸</span> Español (ES)
+              </Link>
+            </div>
+          </div>
+
           {/* Theme toggle */}
           {mounted && (
             <Button
@@ -202,6 +253,37 @@ export function Header({ dict }: HeaderProps) {
                 )}
               </div>
             ))}
+
+            {/* Mobile Language Selector */}
+            <div className="pt-3 border-t border-border flex items-center justify-between">
+              <span className="text-xs font-medium text-muted-foreground flex items-center">
+                <Globe className="w-3.5 h-3.5 mr-1.5" /> Language / Idioma:
+              </span>
+              <div className="flex items-center space-x-2">
+                <Link
+                  href={getTargetLocaleUrl('en')}
+                  className={`px-3 py-1 text-xs rounded-full border transition-colors ${
+                    currentLocale === 'en'
+                      ? 'bg-primary text-primary-foreground font-semibold border-primary'
+                      : 'border-border text-muted-foreground hover:text-foreground'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🇺🇸 EN
+                </Link>
+                <Link
+                  href={getTargetLocaleUrl('es')}
+                  className={`px-3 py-1 text-xs rounded-full border transition-colors ${
+                    currentLocale === 'es'
+                      ? 'bg-primary text-primary-foreground font-semibold border-primary'
+                      : 'border-border text-muted-foreground hover:text-foreground'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🇪🇸 ES
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       )}

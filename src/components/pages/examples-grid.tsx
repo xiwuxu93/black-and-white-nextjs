@@ -12,7 +12,7 @@ import {
   Filter,
   Star
 } from "lucide-react"
-import { Dictionary } from "@/locales/en"
+import { Dictionary } from "@/locales"
 
 interface Example {
   id: string
