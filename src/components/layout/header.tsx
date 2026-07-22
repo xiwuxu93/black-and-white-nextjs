@@ -43,7 +43,7 @@ export function Header({ dict }: HeaderProps) {
   const getTargetLocaleUrl = (targetLocale: string) => {
     if (!pathname) return `/${targetLocale}/`
     const segments = pathname.split('/')
-    if (segments[1] === 'en' || segments[1] === 'es' || segments[1] === 'de') {
+    if (segments[1] === 'en' || segments[1] === 'es' || segments[1] === 'de' || segments[1] === 'ja') {
       segments[1] = targetLocale
       return segments.join('/') || `/${targetLocale}/`
     }
@@ -188,6 +188,16 @@ export function Header({ dict }: HeaderProps) {
               >
                 <span className="mr-2">🇩🇪</span> Deutsch (DE)
               </Link>
+              <Link
+                href={getTargetLocaleUrl('ja')}
+                className={`flex items-center px-3 py-2 text-xs font-medium transition-colors ${
+                  currentLocale === 'ja'
+                    ? 'bg-accent/80 font-bold text-foreground'
+                    : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
+                }`}
+              >
+                <span className="mr-2">🇯🇵</span> 日本語 (JA)
+              </Link>
             </div>
           </div>
 
@@ -302,6 +312,17 @@ export function Header({ dict }: HeaderProps) {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🇩🇪 DE
+                </Link>
+                <Link
+                  href={getTargetLocaleUrl('ja')}
+                  className={`px-3 py-1 text-xs rounded-full border transition-colors ${
+                    currentLocale === 'ja'
+                      ? 'bg-primary text-primary-foreground font-semibold border-primary'
+                      : 'border-border text-muted-foreground hover:text-foreground'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🇯🇵 JA
                 </Link>
               </div>
             </div>
