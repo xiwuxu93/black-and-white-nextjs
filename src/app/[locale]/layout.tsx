@@ -110,6 +110,20 @@ export default function RootLayout({
         <NavigationStructuredData />
         <StructuredData type="website" data={{}} />
         <StructuredData type="application" data={{}} />
+        
+        {/* Preconnect to Journey ad script server to reduce latency */}
+        <link rel="preconnect" href="https://scripts.scriptwrapper.com" />
+        <link rel="dns-prefetch" href="https://scripts.scriptwrapper.com" />
+
+        {/* Load Journey ads script as early as possible without blocking HTML parsing */}
+        {process.env.NODE_ENV === 'production' && (
+          <script
+            async
+            src="https://scripts.scriptwrapper.com/tags/6be4f521-ca9d-4437-9b0c-41cf46b08702.js"
+            data-noptimize="1"
+            data-cfasync="false"
+          />
+        )}
       </head>
       <body className={inter.className}>
         <ThemeProvider
@@ -126,14 +140,6 @@ export default function RootLayout({
             <Footer dict={dict} />
           </div>
         </ThemeProvider>
-        {process.env.NODE_ENV === 'production' && (
-          <Script
-            src="https://scripts.scriptwrapper.com/tags/6be4f521-ca9d-4437-9b0c-41cf46b08702.js"
-            strategy="afterInteractive"
-            data-noptimize="1"
-            data-cfasync="false"
-          />
-        )}
         <GoogleAnalytics />
       </body>
     </html>
