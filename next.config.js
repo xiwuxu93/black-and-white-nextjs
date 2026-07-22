@@ -35,6 +35,7 @@ const nextConfig = {
       { source: '/en/black-and-white-converter/', destination: '/en/', permanent: true },
       { source: '/es/black-and-white-converter/', destination: '/es/', permanent: true },
       { source: '/de/black-and-white-converter/', destination: '/de/', permanent: true },
+      { source: '/ja/black-and-white-converter/', destination: '/ja/', permanent: true },
       { source: '/blog/', destination: '/en/blog/', permanent: true },
       { source: '/blog/:slug/', destination: '/en/blog/:slug/', permanent: true },
       { source: '/contact/', destination: '/en/contact/', permanent: true },
