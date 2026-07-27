@@ -168,6 +168,7 @@ export default function LogoToBlackAndWhitePage({ params }: Props) {
           'svg'
         ]}
         uploadInvalidFileMessage={dict.logo.invalidMessage}
+        mode="logo"
       />
       <LogoToBwSections dict={dict} />
     </>

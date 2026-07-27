@@ -208,6 +208,15 @@ export const en = {
         q: 'What is the difference between grayscale and sepia?',
         a: 'Grayscale converts color values into pure shades of gray (black and white). Sepia tone applies a specific warm reddish-brown monochrome filter that mimics the natural discoloration of antique photographic prints.'
       }
+    ],
+    sepiaToneTitle: 'What is Sepia Tone?',
+    sepiaToneP1: 'Historically, sepia tone is not a digital filter but an ancient chemical toning process. In the 1880s, photographers added sepia pigment (sourced from the Sepia officinalis cuttlefish) to photographic prints. This converted metallic silver in the print into more stable silver sulfide, extending the lifespan of the photographs by preventing fading.',
+    sepiaToneP2: 'This chemical treatment resulted in the characteristic warm, reddish-brown monochrome tone that we associate with history and nostalgia today.',
+    sepiaHexTitle: 'Sepia Color Values & Hex Codes',
+    sepiaHexColors: [
+      { name: 'Classic Sepia Tone', hex: '#704214', desc: 'The traditional warm brown shade used in 19th-century portraits.' },
+      { name: 'Dark Sepia Brown', hex: '#3B2F2F', desc: 'A deep, high-contrast shadow shade for vintage dark-room tones.' },
+      { name: 'Warm Antique Gold', hex: '#B8860B', desc: 'A lighter, golden-sepia highlight tone for aged prints.' }
     ]
   },
   about: {
@@ -1165,8 +1174,8 @@ export const en = {
   },
   batchPage: {
     heroBadge: 'High-Volume Production Tool',
-    heroTitle: 'Batch Black and White Converter',
-    heroSubtitle: 'I built this for one practical task: processing large folders without uploads. It works well for wedding galleries, ecommerce catalogs, and social media sets where you need consistent black and white output across many files.',
+    heroTitle: 'Batch Black and White & Mass Grayscale Converter',
+    heroSubtitle: 'Need to process large folders of photos without uploads? Instantly mass image grayscale or batch convert JPG, PNG, and WebP files to black and white in your browser. Complete local privacy.',
     dropTitle: 'Drop a Folder or Select Files',
     dropDesc: 'Add up to 100 images. Files are processed in browser workers so the page stays responsive.',
     btnBrowse: 'Browse Files',
@@ -1231,12 +1240,62 @@ export const en = {
       }
     ]
   },
+  grayscale: {
+    metaTitle: 'Grayscale Image Converter - Convert Image to Grayscale Online',
+    metaDesc: 'Convert image to grayscale online for free. Convert JPG, PNG, WebP to gray scale in your browser. Secure and private local processing.',
+    heroBadge: 'Free Grayscale Tool',
+    heroTitle: 'Grayscale Image Converter Online',
+    heroSubtitle: 'Instantly convert your color images into high-quality grayscale. Processing happens entirely in your browser to ensure complete privacy.',
+    badges: [
+      'Grayscale Image',
+      'Convert Image to Grayscale',
+      'Grayscale Image Online',
+      '100% Private'
+    ],
+    whyTitle: 'Why Convert Image to Grayscale?',
+    whyGrid: [
+      {
+        title: 'Design & Aesthetics',
+        desc: 'Strip away distracting colors to focus on contrast, lighting, and composition. Perfect for creating elegant monochrome web assets.'
+      },
+      {
+        title: 'Reduce File Size',
+        desc: 'Converting to a single grayscale channel significantly reduces data requirements and helps optimize image files for faster page speeds.'
+      },
+      {
+        title: 'Technical & Machine Learning',
+        desc: 'Grayscale images are the industry standard for computer vision, optical character recognition (OCR), and edge detection tasks.'
+      }
+    ],
+    faqTitle: 'Grayscale Image Converter FAQ',
+    faqQuestions: [
+      {
+        q: 'How do I convert an image to grayscale?',
+        a: 'Simply drag and drop your photo into the converter box. The tool uses browser Canvas API to instantly apply a weighted average algorithm to turn color pixels into gray shades.'
+      },
+      {
+        q: 'Is my data secure?',
+        a: 'Yes. Unlike server-side converters, your photos are processed 100% locally in your browser memory and are never uploaded to any remote server.'
+      },
+      {
+        q: 'What formats are supported?',
+        a: 'The converter supports standard web formats including JPEG, PNG, WebP, SVG, and GIF.'
+      }
+    ],
+    moreToolsTitle: 'Explore More Tools',
+    btnBw: 'Black & White Converter',
+    btnPdf: 'PDF Grayscale Converter',
+    guideTitle: 'Interested in the Math & Code?',
+    guideDesc: 'Read my technical breakdown of grayscale image science, covering the BT.709 vs BT.601 standards, RGB pixel matrices, and binary image dithering.',
+    btnGuide: 'Read Grayscale Image Guide'
+  },
   layout: {
     headerMore: 'More',
     logoDesc: 'Convert PNG and SVG logos',
     pdfDesc: 'Grayscale your PDF documents',
     invertDesc: 'Flip color values for design and negatives',
     sepiaDesc: 'Add warm vintage sepia tone',
+    grayscaleDesc: 'Convert color images to gray scale',
     newbornDesc: 'Lighting and editing workflow notes',
     faqDesc: 'Common questions answered',
     contactDesc: 'Email support',
@@ -1279,6 +1338,46 @@ export const en = {
     references: 'References',
     authorBioLabel: 'View full bio',
     authorDefaultTitle: 'BWConverter Contributor'
+  },
+  grayscalePage: {
+    metaTitle: 'What is a Grayscale Image? Definition, Formulas & Math',
+    metaDesc: 'A deep look at grayscale images: how RGB channels map to gray levels, the math of BT.601 and BT.709, and the difference between grayscale and binary images.',
+    heroBadge: 'Deep Dive Manual',
+    heroTitle: 'What is a Grayscale Image?',
+    heroSubtitle: 'A guide to how digital cameras, browsers, and algorithms convert color data into monochrome intensity.',
+    secDefinitionTitle: '1. The Core Definition',
+    secDefinitionText1: 'In digital imaging, a grayscale image is one in which the value of each pixel carries only intensity information. Unlike color images, which represent color using three channels (Red, Green, and Blue), a grayscale image stores a single channel representing light brightness.',
+    secDefinitionText2: 'For standard 8-bit digital images, this channel holds a value from 0 to 255. A value of 0 is pure black (total absence of light), and 255 is pure white (maximum intensity). The 254 values in between represent the spectrum of gray tones.',
+    secMathTitle: '2. The Math of Desaturation',
+    secMathText1: 'You cannot simply calculate a straight average of Red, Green, and Blue (i.e., (R+G+B)/3) to get a natural-looking grayscale image. The human eye has different sensitivities to different wavelengths of light: we are highly sensitive to green light, moderately sensitive to red, and poorly sensitive to blue.',
+    secMathText2: 'To simulate this human perception, image processing standards use weighted formulas:',
+    formula601: 'Luma (ITU-R BT.601): Y = 0.299R + 0.587G + 0.114B',
+    formula709: 'Luma (ITU-R BT.709): Y = 0.2126R + 0.7152G + 0.0722B',
+    secMathText3: 'Standard definition televisions used the BT.601 formula, while modern web browsers, monitors, and HD screens use the BT.709 formula. Notice how green is weighted at over 71% in BT.709—this matches how bright green looks to our eyes compared to blue.',
+    secDifferenceTitle: '3. Grayscale vs. Pure Black & White (Binary)',
+    secDifferenceText1: 'In common conversation, "black and white" and "grayscale" are used interchangeably. But in computer science, they are mathematically distinct formats:',
+    diffList: [
+      {
+        title: 'Grayscale Image (8-bit)',
+        desc: 'Contains 256 shades of gray. The transition from black to white is smooth and gradual.'
+      },
+      {
+        title: 'Binary Image (1-bit)',
+        desc: 'Strictly contains only two values: pure black and pure white. There are no gray shades.'
+      }
+    ],
+    secDifferenceText2: 'To represent gray tones in a binary 1-bit format, printers and e-ink displays use "dithering" algorithms (like Floyd-Steinberg), which arrange tiny black and white dots in patterns to trick the human brain into seeing gray.',
+    secWhyTitle: '4. Why We Convert Images to Grayscale in Tech',
+    secWhyList: [
+      {
+        title: 'Computational Efficiency',
+        desc: 'Color images require 3x more data than grayscale. For machine learning models (like CNNs), converting inputs to grayscale slashes processing memory and accelerates training.'
+      },
+      {
+        title: 'Edge Detection & OCR',
+        desc: 'Algorithms like Sobel or Canny rely on light gradients to find shapes. Removing color noise makes document scanning and optical character recognition much more reliable.'
+      }
+    ]
   }
 } as const;
 

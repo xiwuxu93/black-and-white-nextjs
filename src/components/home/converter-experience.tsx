@@ -111,7 +111,7 @@ interface ConverterExperienceProps {
   /**
    * Display mode. 'default' shows all B&W presets. 'invert' focuses on inversion.
    */
-  mode?: 'default' | 'invert'
+  mode?: 'default' | 'invert' | 'grayscale' | 'sepia' | 'logo'
   hideAdvancedControls?: boolean
   hideBottomFeatures?: boolean
   marketingContent?: React.ReactNode
@@ -571,32 +571,41 @@ export function ConverterExperience({
                   />
                 </div>
 
-                {mode !== 'invert' && (
+                {mode !== 'invert' && mode !== 'sepia' && (
                   <div className="mb-8">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">
-                      Quick Styles (Optional)
+                      {mode === 'logo' ? 'Logo Styles (Optional)' : 'Quick Styles (Optional)'}
                     </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                      {Object.entries(DEFAULT_PRESETS).map(([presetName]) => (
-                        <button
-                          key={presetName}
-                          onClick={() => handlePresetSelect(presetName)}
-                          disabled={isProcessing}
-                          className={`p-4 rounded-lg border-2 transition-all ${
-                            selectedPreset === presetName
-                              ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                              : 'border-gray-200 dark:border-gray-700 hover:border-primary-300'
-                          } ${
-                            isProcessing ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-                          }`}
-                        >
-                          <div className="text-sm font-medium text-gray-900 dark:text-white capitalize">
-                            {presetName === 'default'
-                              ? 'Classic'
-                              : presetName.replace('-', ' ')}
-                          </div>
-                        </button>
-                      ))}
+                    <div className="flex flex-wrap justify-center gap-4">
+                      {Object.entries(DEFAULT_PRESETS)
+                        .filter(([presetName]) => {
+                          if (mode === 'logo') {
+                            return presetName === 'default' || presetName === 'highContrast'
+                          }
+                          return true
+                        })
+                        .map(([presetName]) => (
+                          <button
+                            key={presetName}
+                            onClick={() => handlePresetSelect(presetName)}
+                            disabled={isProcessing}
+                            className={`p-4 rounded-lg border-2 transition-all min-w-[120px] ${
+                              selectedPreset === presetName
+                                ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                                : 'border-gray-200 dark:border-gray-700 hover:border-primary-300'
+                            } ${
+                              isProcessing ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+                            }`}
+                          >
+                            <div className="text-sm font-medium text-gray-900 dark:text-white capitalize">
+                              {presetName === 'default'
+                                ? (mode === 'logo' ? 'Grayscale' : 'Classic')
+                                : presetName === 'highContrast' && mode === 'logo'
+                                ? 'Pure Black'
+                                : presetName.replace('-', ' ')}
+                            </div>
+                          </button>
+                        ))}
                     </div>
                   </div>
                 )}
@@ -629,6 +638,7 @@ export function ConverterExperience({
                           compact={true}
                           className="mx-auto max-w-md bg-white/80 dark:bg-gray-900/60 backdrop-blur"
                           showInvertToggle={mode === 'invert'}
+                          mode={mode}
                         />
                       </div>
                     </details>

@@ -4,7 +4,7 @@ import { canonicalUrl } from '@/lib/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString()
-  const locales = ['en', 'es', 'de']
+  const locales = ['en', 'es', 'de', 'ja']
 
   const baseRoutes = [
     { subpath: '', changeFrequency: 'daily' as const, priority: 1.0 },
@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { subpath: '/convert-pdf-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.88 },
     { subpath: '/invert-image-colors', changeFrequency: 'weekly' as const, priority: 0.82 },
     { subpath: '/sepia-filter', changeFrequency: 'weekly' as const, priority: 0.86 },
+    { subpath: '/grayscale-image-converter', changeFrequency: 'weekly' as const, priority: 0.84 },
+    { subpath: '/grayscale-image', changeFrequency: 'weekly' as const, priority: 0.75 },
     { subpath: '/how-to-use', changeFrequency: 'monthly' as const, priority: 0.7 },
     { subpath: '/about', changeFrequency: 'monthly' as const, priority: 0.7 },
     { subpath: '/faq', changeFrequency: 'monthly' as const, priority: 0.7 },

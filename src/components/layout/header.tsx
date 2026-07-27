@@ -64,6 +64,7 @@ export function Header({ dict }: HeaderProps) {
         { name: dict.common.pdf, href: `/${currentLocale}/convert-pdf-to-black-and-white`, icon: FileText, description: dict.layout.pdfDesc },
         { name: dict.invert.heroBadge, href: `/${currentLocale}/invert-image-colors`, icon: ImageIcon, description: dict.layout.invertDesc },
         { name: dict.sepia.heroBadge, href: `/${currentLocale}/sepia-filter`, icon: ImageIcon, description: dict.layout.sepiaDesc },
+        { name: dict.grayscale.heroBadge, href: `/${currentLocale}/grayscale-image-converter`, icon: ImageIcon, description: dict.layout.grayscaleDesc },
         { name: dict.newborn.heroBadge, href: `/${currentLocale}/newborn-photography-guide`, icon: Camera, description: dict.layout.newbornDesc },
         { name: dict.common.faq, href: `/${currentLocale}/faq`, icon: HelpCircle, description: dict.layout.faqDesc },
         { name: dict.common.contact, href: `/${currentLocale}/contact`, icon: Mail, description: dict.layout.contactDesc },

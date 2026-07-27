@@ -17,6 +17,7 @@ export function Footer({ dict }: FooterProps) {
         { name: dict.common.pdf, href: `/${dict.locale || 'en'}/convert-pdf-to-black-and-white` },
         { name: dict.invert.heroBadge, href: `/${dict.locale || 'en'}/invert-image-colors` },
         { name: dict.sepia.heroBadge, href: `/${dict.locale || 'en'}/sepia-filter` },
+        { name: dict.grayscale.heroBadge, href: `/${dict.locale || 'en'}/grayscale-image-converter` },
         { name: dict.common.gallery, href: `/${dict.locale || 'en'}/examples` },
         { name: dict.newborn.heroBadge, href: `/${dict.locale || 'en'}/newborn-photography-guide` },
         { name: dict.common.howToUse, href: `/${dict.locale || 'en'}/how-to-use` },

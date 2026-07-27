@@ -14,6 +14,7 @@ interface ParameterPanelProps {
   className?: string
   compact?: boolean
   showInvertToggle?: boolean
+  mode?: 'default' | 'grayscale' | 'sepia' | 'invert' | 'logo'
 }
 
 interface SliderControlProps {
@@ -74,7 +75,8 @@ export function ParameterPanel({
   disabled = false, 
   className = '', 
   compact = false,
-  showInvertToggle = false
+  showInvertToggle = false,
+  mode = 'default'
 }: ParameterPanelProps) {
   const handleFilterChange = (key: keyof ImageFilter, value: number | boolean) => {
     onFiltersChange({
@@ -82,6 +84,14 @@ export function ParameterPanel({
       [key]: value
     })
   }
+
+  const renderInvert = showInvertToggle || mode === 'invert' || mode === 'logo'
+  const renderContrast = true
+  const renderBrightness = true
+  const renderSepia = mode === 'sepia' || mode === 'default'
+  const renderGrain = mode !== 'invert' && mode !== 'logo'
+  const renderShadows = mode === 'default' || mode === 'grayscale'
+  const renderHighlights = mode === 'default' || mode === 'grayscale'
 
   return (
     <Card className={`${compact ? 'p-4 space-y-4' : 'p-6 space-y-6'} ${className}`}>
@@ -91,13 +101,13 @@ export function ParameterPanel({
             Adjustment Controls
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            Fine-tune your black and white conversion
+            Fine-tune your image adjustments
           </p>
         </div>
       )}
 
       <div className={compact ? 'space-y-4' : 'space-y-6'}>
-        {showInvertToggle && (
+        {renderInvert && (
           <div className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-gray-800/50">
             <div className="space-y-0.5">
               <Label htmlFor="invert-mode" className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -114,68 +124,80 @@ export function ParameterPanel({
           </div>
         )}
 
-        <SliderControl
-          label="Contrast"
-          value={filters.contrast}
-          onChange={(value) => handleFilterChange('contrast', value)}
-          min={0}
-          max={200}
-          disabled={disabled}
-          unit="%"
-          description="Adjust the difference between light and dark areas"
-        />
+        {renderContrast && (
+          <SliderControl
+            label="Contrast"
+            value={filters.contrast}
+            onChange={(value) => handleFilterChange('contrast', value)}
+            min={0}
+            max={200}
+            disabled={disabled}
+            unit="%"
+            description="Adjust the difference between light and dark areas"
+          />
+        )}
 
-        <SliderControl
-          label="Brightness"
-          value={filters.brightness}
-          onChange={(value) => handleFilterChange('brightness', value)}
-          min={0}
-          max={200}
-          disabled={disabled}
-          unit="%"
-          description="Make the image lighter or darker overall"
-        />
+        {renderBrightness && (
+          <SliderControl
+            label="Brightness"
+            value={filters.brightness}
+            onChange={(value) => handleFilterChange('brightness', value)}
+            min={0}
+            max={200}
+            disabled={disabled}
+            unit="%"
+            description="Make the image lighter or darker overall"
+          />
+        )}
 
-        <SliderControl
-          label="Sepia"
-          value={filters.sepia}
-          onChange={(value) => handleFilterChange('sepia', value)}
-          min={0}
-          max={100}
-          disabled={disabled}
-          unit="%"
-          description="Add a warm, vintage sepia tone"
-        />
+        {renderSepia && (
+          <SliderControl
+            label="Sepia"
+            value={filters.sepia}
+            onChange={(value) => handleFilterChange('sepia', value)}
+            min={0}
+            max={100}
+            disabled={disabled}
+            unit="%"
+            description="Add a warm, vintage sepia tone"
+          />
+        )}
 
-        <SliderControl
-          label="Film Grain"
-          value={filters.grain}
-          onChange={(value) => handleFilterChange('grain', value)}
-          min={0}
-          max={50}
-          disabled={disabled}
-          description="Add film-like texture and noise"
-        />
+        {renderGrain && (
+          <SliderControl
+            label="Film Grain"
+            value={filters.grain}
+            onChange={(value) => handleFilterChange('grain', value)}
+            min={0}
+            max={50}
+            disabled={disabled}
+            description="Add film-like texture and noise"
+          />
+        )}
 
-        <SliderControl
-          label="Shadows"
-          value={filters.shadows}
-          onChange={(value) => handleFilterChange('shadows', value)}
-          min={-50}
-          max={50}
-          disabled={disabled}
-          description="Lighten or darken shadow areas"
-        />
+        {renderShadows && (
+          <SliderControl
+            label="Shadows"
+            value={filters.shadows}
+            onChange={(value) => handleFilterChange('shadows', value)}
+            min={-50}
+            max={50}
+            disabled={disabled}
+            description="Lighten or darken shadow areas"
+          />
+        )}
 
-        <SliderControl
-          label="Highlights"
-          value={filters.highlights}
-          onChange={(value) => handleFilterChange('highlights', value)}
-          min={-50}
-          max={50}
-          disabled={disabled}
-          description="Lighten or darken highlight areas"
-        />
+        {renderHighlights && (
+          <SliderControl
+            label="Highlights"
+            value={filters.highlights}
+            onChange={(value) => handleFilterChange('highlights', value)}
+            min={-50}
+            max={50}
+            disabled={disabled}
+            description="Lighten or darken highlight areas"
+          />
+        )}
       </div>
 
       <div className="pt-4 border-t border-gray-200 dark:border-gray-700">

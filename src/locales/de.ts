@@ -147,6 +147,7 @@ export const de = {
     pdfDesc: 'PDF-Dokumente in Graustufen umwandeln & Druckkosten sparen.',
     invertDesc: 'Farben einer Bilddatei online umkehren.',
     sepiaDesc: 'Warmen Vintage Sepia-Filter auf Fotos anwenden.',
+    grayscaleDesc: 'Farbbilder in Graustufen umwandeln',
     newbornDesc: 'Leitfaden für bezaubernde Babyfotografie in Schwarz-Weiß.',
     faqDesc: 'Antworten auf häufig gestellte Fragen.',
     contactDesc: 'Treten Sie mit uns in Kontakt.',
@@ -336,6 +337,15 @@ export const de = {
         q: 'Was ist der Unterschied zwischen Graustufen und Sepia?',
         a: 'Graustufen wandeln Farben in reine Grautöne (Schwarz-Weiß). Sepia wendet einen warmen Rötlich-Braun-Ton an, der alte Fotos imitiert.'
       }
+    ],
+    sepiaToneTitle: 'Was ist ein Sepia-Farbton?',
+    sepiaToneP1: 'Historisch gesehen ist Sepia kein digitaler Filter, sondern ein chemischer Veredelungsprozess. In den 1880er Jahren fügten Fotografen ihren Abzügen Sepia-Pigmente (gewonnen aus der Sepia officinalis Tintenfischart) hinzu. Dies wandelte das metallische Silber im Papier in stabileres Silbersulfid um, was die Fotos extrem langlebig machte und das Verblassen verhinderte.',
+    sepiaToneP2: 'Diese Behandlung führte zu dem charakteristischen, warmen, rotbraunen Monochromton, den wir heute mit Geschichte und Nostalgie verbinden.',
+    sepiaHexTitle: 'Sepia-Farbwerte & Hex-Codes',
+    sepiaHexColors: [
+      { name: 'Klassisches Sepia-Braun', hex: '#704214', desc: 'Der traditionelle warme Braunton, der in Porträts des 19. Jahrhunderts verwendet wurde.' },
+      { name: 'Dunkles Sepia-Braun', hex: '#3B2F2F', desc: 'Ein tiefer, kontrastreicher Schatten-Farbton für Vintage-Dunkelkammer-Effekte.' },
+      { name: 'Warmes Antik-Gold', hex: '#B8860B', desc: 'Ein hellerer, goldener Sepia-Ton für gealterte Highlights.' }
     ]
   },
   logo: {
@@ -1048,6 +1058,95 @@ export const de = {
       {
         q: 'Kann ich ein schwarzes Logo in Weiß für Dark Mode umwandeln?',
         a: 'Ja! Das Invertieren eines schwarzen Logos auf weißem oder transparentem Hintergrund erzeugt sofort eine weiße Version.'
+      }
+    ]
+  },
+  grayscale: {
+    metaTitle: 'Graustufen Konverter - Bild in Graustufen umwandeln',
+    metaDesc: 'Wandeln Sie Bilder kostenlos online in Graustufen um. Konvertieren Sie JPG, PNG, WebP direkt im Browser. Sicher und privat.',
+    heroBadge: 'Kostenloses Graustufen-Tool',
+    heroTitle: 'Graustufen Bild Konverter Online',
+    heroSubtitle: 'Wandeln Sie Farbbilder sofort in hochwertige Graustufen um. Die Verarbeitung erfolgt vollständig lokal in Ihrem Browser für maximale Sicherheit.',
+    badges: [
+      'Graustufen',
+      'Bild in Graustufen',
+      'Graustufen Online',
+      '100% Privat'
+    ],
+    whyTitle: 'Warum Bilder in Graustufen umwandeln?',
+    whyGrid: [
+      {
+        title: 'Design & Ästhetik',
+        desc: 'Entfernen Sie störende Farben, um Kontrast, Licht und Komposition hervorzuheben. Perfekt für elegante monochrome Layouts.'
+      },
+      {
+        title: 'Dateigröße Reduzieren',
+        desc: 'Das Konvertieren in einen einzigen Graustufenkanal verringert den Datenbedarf und optimiert Bilder für schnellere Ladezeiten.'
+      },
+      {
+        title: 'Technische Anwendungen',
+        desc: 'Graustufenbilder sind Industriestandard für Computer Vision, Texterkennung (OCR) und Kantenerkennung.'
+      }
+    ],
+    faqTitle: 'Graustufen Konverter FAQ',
+    faqQuestions: [
+      {
+        q: 'Wie konvertiere ich ein Bild in Graustufen?',
+        a: 'Ziehen Sie Ihr Foto einfach per Drag-and-Drop in die Konverter-Box. Die Canvas-API des Browsers wendet sofort den weighted-average Algorithmus an.'
+      },
+      {
+        q: 'Sind meine Daten sicher?',
+        a: 'Ja. Im Gegensatz zu Server-Konvertern werden Ihre Bilder zu 100% lokal im Browser-Speicher verarbeitet und niemals hochgeladen.'
+      },
+      {
+        q: 'Welche Formate werden unterstützt?',
+        a: 'Der Konverter unterstützt gängige Webformate wie JPEG, PNG, WebP, SVG und GIF.'
+      }
+    ],
+    moreToolsTitle: 'Weitere Tools entdecken',
+    btnBw: 'Schwarz-Weiß Konverter',
+    btnPdf: 'PDF in Graustufen',
+    guideTitle: 'Interesse an Mathe & Code?',
+    guideDesc: 'Lesen Sie meine technische Aufbereitung der Graustufen-Bildwissenschaft, einschließlich BT.709 vs. BT.601-Standards, RGB-Pixelmatrizen und Dithering.',
+    btnGuide: 'Graustufen-Handbuch lesen'
+  },
+  grayscalePage: {
+    metaTitle: 'Was ist ein Graustufenbild? Definition, Formeln & Mathematik',
+    metaDesc: 'Eine tiefe Analyse von Graustufenbildern: Wie RGB-Kanäle auf Grauwerte abgebildet werden, die BT.601- und BT.709-Formeln und der Unterschied zu Binärbildern.',
+    heroBadge: 'Technisches Handbuch',
+    heroTitle: 'Was ist ein Graustufenbild?',
+    heroSubtitle: 'Ein Leitfaden zur Umwandlung von Farbdaten in monochrome Lichtintensität durch Kameras, Browser und Algorithmen.',
+    secDefinitionTitle: '1. Die Definition',
+    secDefinitionText1: 'In der digitalen Bildverarbeitung ist ein Graustufenbild ein Bild, bei dem der Wert jedes Pixels nur Helligkeitsinformationen trägt. Im Gegensatz zu Farbbildern, die Farben über drei Kanäle (Rot, Grün und Blau) darstellen, speichert ein Graustufenbild einen einzelnen Kanal.',
+    secDefinitionText2: 'Bei Standard-8-Bit-Bildern hat dieser Kanal einen Wert von 0 bis 255. Ein Wert von 0 ist reines Schwarz (kein Licht) und 255 ist reines Weiß (maximale Intensität). Die 254 Werte dazwischen bilden das Graustufenspektrum.',
+    secMathTitle: '2. Die Mathematik der Graustufenkonvertierung',
+    secMathText1: 'Ein einfacher Durchschnitt der Farbkanäle (also (R+G+B)/3) führt nicht zu einem natürlichen Graustufenbild. Das menschliche Auge nimmt verschiedene Wellenlängen unterschiedlich wahr: Wir sind extrem empfindlich für Grün, mäßig für Rot und kaum für Blau.',
+    secMathText2: 'Um diese menschliche Wahrnehmung zu simulieren, nutzen Bildverarbeitungsstandards gewichtete Formeln:',
+    formula601: 'Luma (ITU-R BT.601): Y = 0.299R + 0.587G + 0.114B',
+    formula709: 'Luma (ITU-R BT.709): Y = 0.2126R + 0.7152G + 0.0722B',
+    secMathText3: 'Ältere Fernsehgeräte nutzten den BT.601-Standard, während moderne Webbrowser und HD-Monitore BT.709 verwenden. Beachten Sie, dass Grün bei BT.709 mit über 71 % gewichtet wird – dies entspricht genau unserer Helligkeitswahrnehmung.',
+    secDifferenceTitle: '3. Graustufen vs. Reines Schwarz-Weiß (Binär)',
+    secDifferenceText1: 'Umgangssprachlich werden "Schwarz-Weiß" und "Graustufen" oft gleichgesetzt. In der Informatik sind es jedoch völlig unterschiedliche Formate:',
+    diffList: [
+      {
+        title: 'Graustufenbild (8-Bit)',
+        desc: 'Enthält 256 Graustufen. Der Übergang von Schwarz zu Weiß ist fließend und stufenlos.'
+      },
+      {
+        title: 'Binärbild (1-Bit)',
+        desc: 'Enthält strikt nur zwei Werte: reines Schwarz und reines Weiß. Es gibt keine Zwischentöne.'
+      }
+    ],
+    secDifferenceText2: 'Um Grautöne im 1-Bit-Format darzustellen (wie bei Zeitungsdrucken oder E-Ink-Displays), werden "Dithering-Algorithmen" (z. B. Floyd-Steinberg) verwendet, die winzige schwarze und weiße Punkte anordnen, um das Gehirn zu täuschen.',
+    secWhyTitle: '4. Warum Graustufen in der Technologie wichtig sind',
+    secWhyList: [
+      {
+        title: 'Recheneffizienz',
+        desc: 'Farbbilder verbrauchen dreimal mehr Daten. Bei Machine-Learning-Modellen reduziert die Graustufen-Konvertierung den Speicherbedarf und beschleunigt das Training.'
+      },
+      {
+        title: 'Kantenerkennung & OCR',
+        desc: 'Algorithmen zur Kanten- und Texterkennung arbeiten mit Helligkeitsgradienten. Die Eliminierung von Farbrauschen macht OCR-Systeme wesentlich zuverlässiger.'
       }
     ]
   },

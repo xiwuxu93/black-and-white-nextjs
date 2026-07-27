@@ -46,7 +46,8 @@ export function generateStaticParams() {
   return Object.keys(blogPosts).flatMap((slug) => [
     { locale: 'en', slug },
     { locale: 'es', slug },
-    { locale: 'de', slug }
+    { locale: 'de', slug },
+    { locale: 'ja', slug }
   ])
 }
 

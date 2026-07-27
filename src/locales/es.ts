@@ -343,6 +343,15 @@ export const es = {
         q: '¿Cuál es la diferencia entre escala de grises y sepia?',
         a: 'La escala de grises convierte los colores a tonos puros de gris (blanco y negro). El tono sepia aplica una pátina marrón cálida que simula el envejecimiento de impresiones antiguas.'
       }
+    ],
+    sepiaToneTitle: '¿Qué es el Tono Sepia?',
+    sepiaToneP1: 'Históricamente, el sepia no es un filtro digital sino un proceso químico antiguo. En la década de 1880, los fotógrafos añadían pigmento sepia (extraído de la sepia o jibia Sepia officinalis) a las copias fotográficas. Esto convertía la plata metálica en sulfuro de plata, haciéndolas mucho más resistentes al paso del tiempo y evitando que se desvanecieran.',
+    sepiaToneP2: 'Este tratamiento químico dio lugar a ese característico tono marrón rojizo cálido y monocromático que hoy asociamos directamente con la historia y la nostalgia.',
+    sepiaHexTitle: 'Valores de Color Sepia y Códigos Hex',
+    sepiaHexColors: [
+      { name: 'Tono Sepia Clásico', hex: '#704214', desc: 'El tono marrón cálido tradicional utilizado en los retratos del siglo XIX.' },
+      { name: 'Marrón Sepia Oscuro', hex: '#3B2F2F', desc: 'Un tono de sombra profundo y contrastado para simular revelados antiguos.' },
+      { name: 'Oro Antiguo Cálido', hex: '#B8860B', desc: 'Un tono sepia dorado más claro para las luces en fotos envejecidas.' }
     ]
   },
   logo: {
@@ -1223,12 +1232,62 @@ export const es = {
       }
     ]
   },
+  grayscale: {
+    metaTitle: 'Convertidor de imágenes a escala de grises - Convertir imagen online',
+    metaDesc: 'Convierta imágenes a escala de grises online de forma gratuita. Convierta JPG, PNG, WebP en su navegador de manera segura y privada.',
+    heroBadge: 'Herramienta de Grises Gratis',
+    heroTitle: 'Convertidor de Imágenes a Escala de Grises',
+    heroSubtitle: 'Convierta instantáneamente sus imágenes en color a escala de grises de alta calidad. El procesamiento se realiza 100% en su navegador para garantizar total privacidad.',
+    badges: [
+      'Escala de Grises',
+      'Convertir a Escala de Grises',
+      'Imagen en Grises Online',
+      '100% Privado'
+    ],
+    whyTitle: '¿Por qué convertir imágenes a escala de grises?',
+    whyGrid: [
+      {
+        title: 'Diseño y Estética',
+        desc: 'Elimine los colores que distraen para centrarse en el contraste, la iluminación y la composición. Ideal para crear recursos web monocromáticos elegantes.'
+      },
+      {
+        title: 'Reducir el Tamaño del Archivo',
+        desc: 'La conversión a un solo canal de escala de grises reduce significativamente los requisitos de datos, optimizando las imágenes para una carga web más rápida.'
+      },
+      {
+        title: 'Uso Técnico y Machine Learning',
+        desc: 'Las imágenes en escala de grises son el estándar de la industria para tareas de visión artificial, reconocimiento óptico de caracteres (OCR) y detección de bordes.'
+      }
+    ],
+    faqTitle: 'Preguntas Frecuentes sobre Escala de Grises',
+    faqQuestions: [
+      {
+        q: '¿Cómo convierto una imagen a escala de grises?',
+        a: 'Simplemente arrastre y suelte su foto en el cuadro de conversión. La herramienta utiliza la API Canvas del navegador para aplicar instantáneamente un algoritmo de promedio ponderado.'
+      },
+      {
+        q: '¿Están seguros mis datos?',
+        a: 'Sí. A diferencia de otros convertidores, sus fotos se procesan localmente en la memoria de su navegador y nunca se suben a ningún servidor externo.'
+      },
+      {
+        q: '¿Qué formatos son compatibles?',
+        a: 'El convertidor es compatible con formatos web estándar como JPEG, PNG, WebP, SVG y GIF.'
+      }
+    ],
+    moreToolsTitle: 'Explorar Más Herramientas',
+    btnBw: 'Convertidor a Blanco y Negro',
+    btnPdf: 'PDF a Escala de Grises',
+    guideTitle: '¿Te interesan las Matemáticas y el Código?',
+    guideDesc: 'Lea mi análisis técnico sobre la ciencia de la escala de grises, que cubre los estándares BT.709 y BT.601, matrices de píxeles RGB y dithering.',
+    btnGuide: 'Leer Guía de Escala de Grises'
+  },
   layout: {
     headerMore: 'Más Herramientas',
     logoDesc: 'Convertir logos PNG y SVG a monocromo',
     pdfDesc: 'Pasar documentos PDF a escala de grises',
     invertDesc: 'Invertir colores y crear negativos',
     sepiaDesc: 'Aplicar filtro sepia y tono vintage',
+    grayscaleDesc: 'Convertir imágenes a escala de grises',
     newbornDesc: 'Guía y flujo de trabajo para recién nacidos',
     faqDesc: 'Respuestas a las dudas más frecuentes',
     contactDesc: 'Contacto y soporte técnico',
@@ -1271,5 +1330,45 @@ export const es = {
     references: 'Referencias',
     authorBioLabel: 'Ver biografía completa',
     authorDefaultTitle: 'Colaborador de BWConverter'
+  },
+  grayscalePage: {
+    metaTitle: '¿Qué es una imagen en escala de grises? Definición, fórmulas y matemáticas',
+    metaDesc: 'Un análisis profundo de las imágenes en escala de grises: cómo los canales RGB se mapean a niveles de gris, las fórmulas BT.601 y BT.709, y la diferencia con las imágenes binarias.',
+    heroBadge: 'Manual Técnico Detallado',
+    heroTitle: '¿Qué es una Imagen en Escala de Grises?',
+    heroSubtitle: 'Guía práctica sobre cómo las cámaras, navegadores y algoritmos convierten los datos de color en intensidad monocromática.',
+    secDefinitionTitle: '1. Definición Fundamental',
+    secDefinitionText1: 'En imagen digital, una imagen en escala de grises es aquella donde cada píxel almacena únicamente información de intensidad de luz. A diferencia de las imágenes en color, que usan tres canales (Rojo, Verde y Azul), la escala de grises almacena un solo canal que representa el brillo.',
+    secDefinitionText2: 'En una imagen estándar de 8 bits, este canal contiene valores de 0 a 255. El valor 0 es negro absoluto (ausencia de luz) y el 255 es blanco puro (intensidad máxima). Los 254 valores intermedios componen el espectro de grises.',
+    secMathTitle: '2. Las Matemáticas de la Desaturación',
+    secMathText1: 'No se puede calcular un promedio simple (es decir, (R+G+B)/3) para obtener una escala de grises natural. El ojo humano tiene diferentes sensibilidades a los colores: percibimos el verde con mucha más intensidad, luego el rojo y finalmente el azul.',
+    secMathText2: 'Para simular la percepción humana, los estándares de procesamiento digital aplican fórmulas ponderadas:',
+    formula601: 'Luma (ITU-R BT.601): Y = 0.299R + 0.587G + 0.114B',
+    formula709: 'Luma (ITU-R BT.709): Y = 0.2126R + 0.7152G + 0.0722B',
+    secMathText3: 'Las pantallas antiguas usaban el estándar BT.601, mientras que los navegadores modernos y pantallas HD usan el BT.709. Fíjate cómo el verde pondera más del 71% en BT.709, reflejando lo brillante que nos parece el verde en comparación con el azul.',
+    secDifferenceTitle: '3. Escala de Grises vs. Blanco y Negro Puro (Binario)',
+    secDifferenceText1: 'Coloquialmente se confunde "blanco y negro" con "escala de grises", pero técnicamente son formatos muy distintos:',
+    diffList: [
+      {
+        title: 'Imagen en Escala de Grises (8 bits)',
+        desc: 'Contiene 256 niveles de gris. La transición de negro a blanco es suave y continua.'
+      },
+      {
+        title: 'Imagen Binaria (1 bit)',
+        desc: 'Solo contiene dos valores: negro absoluto o blanco puro. No existen grises.'
+      }
+    ],
+    secDifferenceText2: 'Para simular tonos grises en soportes de 1 bit (como periódicos o pantallas de tinta electrónica E-ink), se utilizan algoritmos de "dithering" (difusión de error como Floyd-Steinberg) que agrupan puntos negros y blancos para engañar al cerebro.',
+    secWhyTitle: '4. ¿Por qué usamos Escala de Grises en Tecnología?',
+    secWhyList: [
+      {
+        title: 'Eficiencia de Procesamiento',
+        desc: 'Las imágenes a color ocupan el triple de datos. En Machine Learning, convertir la entrada a escala de grises reduce drásticamente el uso de memoria de los modelos.'
+      },
+      {
+        title: 'Detección de Bordes y OCR',
+        desc: 'Los algoritmos de escaneo dependen de los gradientes de luz. Eliminar el ruido de color facilita mucho el reconocimiento de texto (OCR).'
+      }
+    ]
   }
 } as const;

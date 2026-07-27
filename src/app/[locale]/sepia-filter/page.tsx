@@ -45,6 +45,35 @@ function SepiaSections({ dict }: { dict: any }) {
 
       <section className="article-section">
         <div className="max-w-3xl mx-auto text-left">
+          <h2>{dict.sepia.sepiaToneTitle}</h2>
+          <div className="space-y-4 text-gray-600 dark:text-gray-300">
+            <p>{dict.sepia.sepiaToneP1}</p>
+            <p>{dict.sepia.sepiaToneP2}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="article-section">
+        <div className="max-w-3xl mx-auto text-left">
+          <h2>{dict.sepia.sepiaHexTitle}</h2>
+          <div className="grid gap-6 md:grid-cols-3 mt-6">
+            {dict.sepia.sepiaHexColors.map((color: any, idx: number) => (
+              <div key={idx} className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 p-6 rounded-2xl flex flex-col items-center text-center">
+                <div 
+                  className="w-16 h-16 rounded-full shadow-inner mb-4 border border-gray-200/30"
+                  style={{ backgroundColor: color.hex }}
+                />
+                <h3 className="font-bold text-gray-900 dark:text-white mb-1">{color.name}</h3>
+                <code className="text-xs text-primary-600 dark:text-primary-400 font-mono font-bold mb-2">{color.hex}</code>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{color.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="article-section">
+        <div className="max-w-3xl mx-auto text-left">
           <h2>{dict.sepia.scienceTitle}</h2>
           <div className="space-y-4 text-gray-600 dark:text-gray-300">
             <p>{dict.sepia.scienceDesc}</p>
@@ -119,6 +148,7 @@ export default function SepiaFilterPage({ params }: Props) {
           sepia: 80,
           grayscale: true
         }}
+        mode="sepia"
         isLandingPage={true}
         hideAdvancedControls={false}
         hideBottomFeatures={true}
