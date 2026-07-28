@@ -22,7 +22,7 @@ export const de = {
     readBlog: 'Blog lesen'
   },
   home: {
-    metaTitle: 'Bild in Schwarz Weiß Umwandeln Online | Fotos Schwarz Weiß Machen',
+    metaTitle: 'Bild in Schwarz Weiß Umwandeln Online - Kostenlos',
     metaDesc: 'Das schnellste Tool, um Bilder in Schwarz-Weiß umzuwandeln. Verarbeiten Sie Ihre Fotos direkt im Browser: 100% kostenlos, ohne Upload & ohne Wasserzeichen.',
     heroTitle: 'Bild in Schwarz Weiß Umwandeln Online',
     heroSubtitle: 'Wandeln Sie Farbfotos sofort in ausdrucksstarke Schwarz-Weiß-Bilder um. Volle Kontrolle über Kontrast, Schatten und Filmkorn – ohne Upload auf fremde Server.',
@@ -160,7 +160,7 @@ export const de = {
     footerBottom: 'Lokale Bildverarbeitung im Browser • Keine Registrierung Erforderlich'
   },
   howToUse: {
-    metaTitle: 'Bild in Schwarz Weiß Umwandeln | Schritt-für-Schritt Anleitung',
+    metaTitle: 'Bild in Schwarz Weiß Umwandeln Anleitung',
     metaDesc: 'Praktische Anleitung zum Umwandeln von Bildern in Schwarz-Weiß mit Kontrast-Tipps, Workflows und Fehlerbehebung.',
     badge: '📖 Vollständige Anleitung',
     title: 'So Wandeln Sie Bilder in Schwarz-Weiß Um',
@@ -258,7 +258,7 @@ export const de = {
     btnBatch: 'Stapelverarbeitung Testen'
   },
   pdf: {
-    metaTitle: 'PDF in Schwarz Weiß Umwandeln Online | Graustufen PDF Kostenlos',
+    metaTitle: 'PDF in Schwarz Weiß Umwandeln Online',
     metaDesc: 'Wandeln Sie PDF-Dokumente online in Schwarz-Weiß & Graustufen um. Sparen Sie teure Drucker-Tinte & optimieren Sie Dokumente ohne Upload.',
     heroTitle: 'PDF in Schwarz Weiß Umwandeln Online',
     heroSubtitle: 'Wandeln Sie PDF-Dokumente direkt im Browser in Graustufen um. Sauberer Bürodruck, reduzierte Tonerkosten und 100% sichere lokale Verarbeitung.',
@@ -294,7 +294,7 @@ export const de = {
     ]
   },
   sepia: {
-    metaTitle: 'Sepia Filter Online | Fotos in Warmen Vintage-Ton Umwandeln',
+    metaTitle: 'Sepia Filter Online für Fotos',
     metaDesc: 'Wenden Sie einen wunderschönen Sepia-Filter kostenlos online auf Ihre Fotos an. Erstellen Sie elegante Retro-Effekte direkt im Browser.',
     heroBadge: '✨ Kostenloser Sepia-Filter',
     heroTitle: 'Sepia Filter Online Konverter',
@@ -349,7 +349,7 @@ export const de = {
     ]
   },
   logo: {
-    metaTitle: 'Logo in Schwarz Weiß Umwandeln | Transparentes PNG & SVG',
+    metaTitle: 'Logo in Schwarz Weiß Umwandeln Online',
     metaDesc: 'Wandeln Sie Logos in Schwarz-Weiß um & behalten Sie Transparenz bei. Unterstützt PNG und SVG für Wasserzeichen & Marken-Kits.',
     heroBadge: 'Designer-Werkzeug',
     heroTitle: 'Logo in Schwarz Weiß Umwandeln',
@@ -411,7 +411,7 @@ export const de = {
     bulkBtnHome: 'Zurück zur Startseite'
   },
   about: {
-    metaTitle: 'Über Sivan Xu & Die Geschichte Hinter BWConverter',
+    metaTitle: 'Über das Projekt und Sivan Xu',
     metaDesc: 'Lernen Sie Sivan Xu kennen, Frontend-Experte mit 12+ Jahren Erfahrung. Erfahren Sie, warum er BWConverter als lokales Bild-Tool entwickelt hat.',
     ogTitle: 'Sivan Xu – Ein Frontend-Entwickler über Schwarz-Weiß-Fotografie',
     ogDesc: 'Entwickelt von einem 12-jährigen Frontend-Veteranen und Fotografie-Enthusiasten. Erfahren Sie, warum lokale Bildverarbeitung wichtig ist.',
@@ -441,7 +441,7 @@ export const de = {
     backConverter: 'Zurück zum Konverter'
   },
   faqPage: {
-    metaTitle: 'FAQ - Schwarz Weiß Konverter | Häufig Gestellte Fragen',
+    metaTitle: 'Häufig Gestellte Fragen',
     metaDesc: 'Antworten auf häufig gestellte Fragen zu Datenschutz, Dateiformaten, PDF-Konvertierung und Schwarz-Weiß-Bearbeitung.',
     heroBadge: 'Häufig Gestellte Fragen',
     heroTitle: 'Häufig Gestellte Fragen (FAQ)',
@@ -522,7 +522,7 @@ export const de = {
     ]
   },
   privacy: {
-    metaTitle: 'Datenschutzerklärung | 100% Lokale Bildverarbeitung',
+    metaTitle: 'Datenschutzerklärung',
     metaDesc: 'Transparente Informationen zum Datenschutz bei BWConverter. Ihre Bilder werden ausschließlich lokal im Browser verarbeitet.',
     badge: 'Datenschutzerklärung',
     title: 'Datenschutzerklärung',
@@ -628,7 +628,7 @@ export const de = {
     summaryBtn: 'Bilder Privat Umwandeln'
   },
   terms: {
-    metaTitle: 'Nutzungsbedingungen | BWConverter',
+    metaTitle: 'Nutzungsbedingungen',
     metaDesc: 'Nutzungsbedingungen für unseren kostenlosen Online Schwarz-Weiß Bild- & PDF-Konverter.',
     badge: 'Nutzungsbedingungen',
     title: 'Nutzungsbedingungen',
@@ -706,7 +706,7 @@ export const de = {
     summaryBtn: 'Dienst Nutzen Starten'
   },
   newborn: {
-    metaTitle: 'Neugeborenen-Fotografie in Schwarz-Weiß | Leitfaden & Tipps',
+    metaTitle: 'Leitfaden zur Neugeborenen-Fotografie',
     metaDesc: 'Erfahren Sie, wie Sie wunderschöne Babyfotos in Schwarz-Weiß umwandeln. Tipps zu weichem Kontrast, Hauttönen und zeitloser Ästhetik.',
     heroBadge: 'Fotografie-Leitfaden',
     heroTitle: 'Neugeborenen-Fotografie in Schwarz-Weiß',
@@ -790,7 +790,7 @@ export const de = {
     continueExamples: 'Weitere Beispiele'
   },
   contact: {
-    metaTitle: 'Kontakt | BWConverter Support & Feedback',
+    metaTitle: 'Kontakt und Support',
     metaDesc: 'Treten Sie mit dem BWConverter-Team in Kontakt. E-Mail-Support oder Antworten im FAQ-Bereich.',
     heroBadge: 'BWConverter Kontakt',
     heroTitle: 'Wir Sind Für Sie Da',
@@ -811,7 +811,7 @@ export const de = {
     ]
   },
   blog: {
-    metaTitle: 'Schwarz-Weiß Fotografie Blog - Tipps & Tutorials',
+    metaTitle: 'Schwarz-Weiß Fotografie Blog',
     metaDesc: 'Profi-Tipps, Techniken und Inspiration für beeindruckende Schwarz-Weiß-Bilder. Von Einsteiger-Guides bis zu Profi-Workflows.',
     heroBadge: '📝 Fotografie-Blog',
     heroTitle: 'Schwarz-Weiß Fotografie',
@@ -907,7 +907,7 @@ export const de = {
     ]
   },
   examples: {
-    metaTitle: 'Schwarz-Weiß Foto Beispiele - Vorher-Nachher Galerie',
+    metaTitle: 'Schwarz-Weiß Foto Beispiele',
     metaDesc: 'Durchsuchen Sie Schwarz-Weiß-Fotobeispiele mit Vorher-Nachher-Vergleichen und Konvertierungs-Tipps.',
     heroTitle: 'Professionelle Schwarz-Weiß Fotografie Beispiele',
     heroSubtitle: 'Diese Galerie zeigt Vorher-Nachher-Konvertierungen mit Hinweisen zu Stilwahl und Kontraststrategie.',
@@ -1015,7 +1015,7 @@ export const de = {
     ]
   },
   invert: {
-    metaTitle: 'Farben Umkehren Online | Bild Invertieren Gratis',
+    metaTitle: 'Bild Farben Umkehren Online',
     metaDesc: 'Kehren Sie die Farben von Bildern online um. Erstellen Sie Foto-Negative oder invertieren Sie Schwarz und Weiß.',
     heroBadge: 'Kostenloses Negativ-Tool',
     heroTitle: 'Farben Umkehren Online (Bild Invertieren)',
@@ -1062,7 +1062,7 @@ export const de = {
     ]
   },
   grayscale: {
-    metaTitle: 'Graustufen Konverter - Bild in Graustufen umwandeln',
+    metaTitle: 'Graustufen Bild Konverter Online',
     metaDesc: 'Wandeln Sie Bilder kostenlos online in Graustufen um. Konvertieren Sie JPG, PNG, WebP direkt im Browser. Sicher und privat.',
     heroBadge: 'Kostenloses Graustufen-Tool',
     heroTitle: 'Graustufen Bild Konverter Online',

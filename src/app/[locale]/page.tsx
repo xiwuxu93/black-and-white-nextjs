@@ -18,7 +18,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonical = alternates.canonical
   const dict = getDictionary(params.locale)
   return {
-    title: dict.home.metaTitle,
+    title: {
+      absolute: dict.home.metaTitle
+    },
     description: dict.home.metaDesc,
     alternates,
     openGraph: {

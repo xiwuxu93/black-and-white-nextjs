@@ -131,7 +131,7 @@ export const en = {
     blogDesc: 'Explore practical guides on composition, lighting, and black and white editing choices.'
   },
   pdf: {
-    metaTitle: 'Convert PDF to Black and White Online - 100% Free Grayscale PDF',
+    metaTitle: 'Convert PDF to Black and White Online',
     metaDesc: 'Easily convert color PDF to black and white online for free. Change PDF to black and white or grayscale locally in your browser. Secure, fast, and no page limits.',
     heroTitle: 'Convert PDF to Black and White Online',
     heroSubtitle: 'Grayscale color PDF documents in your browser. Clean office printing, reduced toner costs, 100% secure processing.',
@@ -167,7 +167,7 @@ export const en = {
     ]
   },
   sepia: {
-    metaTitle: 'Free Sepia Filter Online | Color Sepia Tone Photo Converter',
+    metaTitle: 'Free Sepia Filter Online - Retro Photo Effect',
     metaDesc: 'Add a beautiful vintage color sepia tone to your photos online for free. Adjust brightness, contrast, and grain to create retro photo effects in your browser.',
     heroBadge: '✨ Free Sepia Filter',
     heroTitle: 'Sepia Filter Online Photo Converter',
@@ -273,7 +273,7 @@ export const en = {
     ]
   },
   faqPage: {
-    metaTitle: 'FAQ - Black and White Image Converter | Common Questions Answered',
+    metaTitle: 'FAQ - Black and White Image Converter',
     metaDesc: 'Get answers to frequently asked questions about our black and white image converter. Learn about supported formats, processing quality, privacy, and more.',
     heroBadge: 'FAQ',
     heroTitle: 'Frequently Asked Questions',
@@ -379,7 +379,7 @@ export const en = {
     ]
   },
   privacy: {
-    metaTitle: 'Privacy Policy - Black and White Image Converter | Your Data Protection',
+    metaTitle: 'Privacy Policy - Black and White Image Converter',
     metaDesc: 'Our comprehensive privacy policy explains how we protect your data and images. Learn about our local processing approach and commitment to user privacy.',
     badge: 'Privacy Policy',
     title: 'Privacy Policy',
@@ -510,7 +510,7 @@ export const en = {
     summaryBtn: 'Start Converting Images Privately'
   },
   terms: {
-    metaTitle: 'Terms of Service - Black and White Image Converter | Usage Agreement',
+    metaTitle: 'Terms of Service - Black and White Image Converter',
     metaDesc: 'Read our terms of service for using the black and white image converter. Understand your rights and responsibilities when using our free online tool.',
     badge: 'Terms of Service',
     title: 'Terms of Service',
@@ -615,7 +615,7 @@ export const en = {
     summaryBtn: 'Start Using the Service'
   },
   howToUse: {
-    metaTitle: 'How to Use Black and White Image Converter - Complete Guide',
+    metaTitle: 'How to Use Black and White Image Converter',
     metaDesc: 'Step-by-step guide for converting images to black and white with practical settings, workflow tips, and troubleshooting notes.',
     badge: '📖 Complete Guide',
     title: 'How to Use Our Black And White Converter',
@@ -713,7 +713,7 @@ export const en = {
     btnBatch: 'Try Batch Converter'
   },
   logo: {
-    metaTitle: 'Convert Logo to Black and White - Transparent PNG & SVG Support',
+    metaTitle: 'Convert Logo to Black and White Online',
     metaDesc: 'Convert logos to black and white while preserving transparency. Supports PNG and SVG for watermarks, brand kits, and UI assets.',
     heroBadge: 'Professional Design Tool',
     heroTitle: 'Logo to Black and White',
@@ -775,7 +775,7 @@ export const en = {
     bulkBtnHome: 'Back to Homepage'
   },
   newborn: {
-    metaTitle: 'Complete Newborn Photography Guide - Home Sessions & Studio Workflow',
+    metaTitle: 'Complete Newborn Photography Guide',
     metaDesc: 'Master newborn photography with our complete guide. Learn home session techniques for parents and professional studio workflows. Includes lighting setups, BWConverter presets, and delivery tips.',
     heroBadge: 'Complete Guide',
     heroTitle: 'Complete Newborn Photography Guide',
@@ -928,7 +928,7 @@ export const en = {
     continueExamples: 'More Examples'
   },
   examples: {
-    metaTitle: 'Black and White Photo Examples - Professional Before & After Gallery',
+    metaTitle: 'Black and White Photo Examples & Gallery',
     metaDesc: 'Browse black and white photo examples with before/after comparisons, style notes, and practical conversion guidance.',
     heroTitle: 'Professional Black and White Photography Examples',
     heroSubtitle: 'This gallery shows before/after conversions with notes on style choice, contrast strategy, and subject handling.',
@@ -1119,7 +1119,7 @@ export const en = {
     ]
   },
   invert: {
-    metaTitle: 'Invert Image Colors - Online Negative Photo Effect',
+    metaTitle: 'Invert Image Colors Online',
     metaDesc: 'Invert colors of any image online. Turn photos into negatives or flip black and white to white and black instantly. Free and private tool.',
     heroBadge: 'Free Negative Tool',
     heroTitle: 'Invert Image Colors Online',
@@ -1243,7 +1243,7 @@ export const en = {
     ]
   },
   grayscale: {
-    metaTitle: 'Grayscale Image Converter - Convert Image to Grayscale Online',
+    metaTitle: 'Grayscale Image Converter Online',
     metaDesc: 'Convert image to grayscale online for free. Convert JPG, PNG, WebP to gray scale in your browser. Secure and private local processing.',
     heroBadge: 'Free Grayscale Tool',
     heroTitle: 'Grayscale Image Converter Online',
@@ -1310,7 +1310,7 @@ export const en = {
     footerBottom: 'Local Processing • No Cloud Uploads • Controlled Tonal Range'
   },
   blog: {
-    metaTitle: 'Black And White Photography Blog - Tips, Techniques & Tutorials',
+    metaTitle: 'Black and White Photography Blog',
     metaDesc: 'Expert tips, techniques, and insights for creating stunning black and white images. From beginner guides to professional workflows.',
     heroBadge: '📝 Photography Blog',
     heroTitle: 'Black And White Photography',

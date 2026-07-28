@@ -22,7 +22,7 @@ export const es = {
     readBlog: 'Leer el Blog'
   },
   home: {
-    metaTitle: 'Convertir Imagen a Blanco y Negro Online - Pasar Foto a Blanco y Negro',
+    metaTitle: 'Convertir Imagen a Blanco y Negro Online - Gratis',
     metaDesc: 'Convierta imagen a blanco y negro online de forma gratuita. La herramienta más rápida para pasar fotos a blanco y negro localmente en su navegador sin subir archivos.',
     heroTitle: 'Convertidor de Fotos a Blanco y Negro Online',
     heroSubtitle: 'Convierte tus imágenes a blanco y negro al instante con control total de contraste, sombras y grano. Sin subir tus fotos a ningún servidor.',
@@ -137,7 +137,7 @@ export const es = {
     ]
   },
   howToUse: {
-    metaTitle: 'Cómo Pasar Fotos e Imágenes a Blanco y Negro | Guía Completa',
+    metaTitle: 'Cómo Convertir Imagen a Blanco y Negro',
     metaDesc: 'Guía paso a paso para convertir fotos a blanco y negro con ajustes prácticos, consejos de flujo de trabajo y resolución de problemas.',
     badge: '📖 Guía Completa',
     title: 'Cómo Usar Nuestro Convertidor a Blanco y Negro',
@@ -264,7 +264,7 @@ export const es = {
     legalTitle: 'Legal y Privacidad'
   },
   pdf: {
-    metaTitle: 'Convertir PDF a Blanco y Negro Online | Pasar PDF a Escala de Grises Gratis',
+    metaTitle: 'Convertir PDF a Blanco y Negro Online',
     metaDesc: 'Convierte tus documentos PDF a blanco y negro y escala de grises online. Reduce el uso de tinta de impresora y optimiza tus archivos sin subir documentos.',
     heroTitle: 'Convertir PDF a Blanco y Negro Online',
     heroSubtitle: 'Transforma tus documentos PDF a escala de grises en tu propio navegador. Impresión limpia para oficina, reducción de costes de tóner y procesamiento 100% seguro.',
@@ -300,7 +300,7 @@ export const es = {
     ]
   },
   sepia: {
-    metaTitle: 'Filtro Sepia Online para Fotos | Efecto Retro y Antiguo Gratis',
+    metaTitle: 'Filtro Sepia Online para Fotos',
     metaDesc: 'Aplica el efecto sepia a tus fotos online gratis. Dale un toque vintage, cálido y elegante a tus imágenes en pocos segundos sin registros.',
     heroBadge: '✨ Filtro Sepia Gratis',
     heroTitle: 'Filtro Sepia Online para Fotos',
@@ -355,7 +355,7 @@ export const es = {
     ]
   },
   logo: {
-    metaTitle: 'Convertir Logo a Blanco y Negro Online | PNG Transparente y SVG',
+    metaTitle: 'Convertir Logo a Blanco y Negro Online',
     metaDesc: 'Convierte logos a blanco y negro manteniendo la transparencia. Compatible con PNG y SVG para marcas de agua, kits de marca y assets de interfaz.',
     heroBadge: 'Herramienta para Diseñadores',
     heroTitle: 'Convertir Logo a Blanco y Negro',
@@ -417,7 +417,7 @@ export const es = {
     bulkBtnHome: 'Volver a la Página Principal'
   },
   about: {
-    metaTitle: 'Sobre el Proyecto y Sivan Xu | Convertidor de Fotos a Blanco y Negro',
+    metaTitle: 'Sobre el Proyecto y Sivan Xu',
     metaDesc: 'Conoce a Sivan Xu, desarrollador web con más de 12 años de experiencia y apasionado de la fotografía monocromática. Descubre la historia detrás de BWConverter.',
     ogTitle: 'Sivan Xu – Fotografía Monocromática y Desarrollo Web',
     ogDesc: 'Herramienta de conversión de imágenes 100% privada y en navegador creada por Sivan Xu.',
@@ -447,7 +447,7 @@ export const es = {
     backConverter: 'Ir al Convertidor Principal'
   },
   contact: {
-    metaTitle: 'Contacto y Soporte | BWConverter',
+    metaTitle: 'Contacto y Soporte',
     metaDesc: 'Ponte en contacto con el equipo de BWConverter. Soporte por correo y recursos de ayuda rápida sobre la herramienta de conversión.',
     heroBadge: 'Contacto BWConverter',
     heroTitle: 'Estamos para Ayudarte',
@@ -474,7 +474,7 @@ export const es = {
     ]
   },
   faqPage: {
-    metaTitle: 'Preguntas Frecuentes | Convertidor de Imágenes y PDF',
+    metaTitle: 'Preguntas Frecuentes',
     metaDesc: 'Respuestas a las dudas más comunes sobre privacidad, formatos de exportación, conversión de PDF y técnicas de edición en blanco y negro.',
     heroBadge: 'Preguntas Frecuentes',
     heroTitle: 'Preguntas Frecuentes (FAQ)',
@@ -555,7 +555,7 @@ export const es = {
     ]
   },
   privacy: {
-    metaTitle: 'Política de Privacidad | Tratamiento 100% Local de Imágenes',
+    metaTitle: 'Política de Privacidad',
     metaDesc: 'Explicación clara de nuestros compromisos de privacidad: tus fotos se procesan en tu propio navegador y no se guardan en ningún servidor.',
     badge: 'Política de Privacidad',
     title: 'Política de Privacidad',
@@ -674,7 +674,7 @@ export const es = {
     summaryBtn: 'Comenzar a Convertir Fotos con Privacidad'
   },
   terms: {
-    metaTitle: 'Términos de Uso | BWConverter',
+    metaTitle: 'Términos de Uso',
     metaDesc: 'Condiciones de uso de nuestro convertidor de imágenes a blanco y negro. Herramienta gratuita para uso personal y comercial.',
     badge: 'Términos de Servicio',
     title: 'Términos de Servicio',
@@ -769,7 +769,7 @@ export const es = {
     summaryBtn: 'Comenzar a Usar el Servicio'
   },
   newborn: {
-    metaTitle: 'Guía de Fotografía de Recién Nacidos en Blanco y Negro',
+    metaTitle: 'Guía de Fotografía de Recién Nacidos',
     metaDesc: 'Aprende a capturar y editar retratos de bebés en blanco y negro. Consejos de iluminación, esquemas de sesión en casa y ajustes recomendados.',
     heroBadge: 'Guía de Fotografía',
     heroTitle: 'Fotografía de Recién Nacidos en Blanco y Negro',
@@ -922,7 +922,7 @@ export const es = {
     continueExamples: 'Ver Galería de Ejemplos'
   },
   examples: {
-    metaTitle: 'Ejemplos de Fotos en Blanco y Negro | Galería Antes y Después',
+    metaTitle: 'Ejemplos de Fotos en Blanco y Negro',
     metaDesc: 'Descubre ejemplos reales de fotos convertidas a blanco y negro. Compara el antes y después y aprende qué estilo aplicar a cada tipo de imagen.',
     heroTitle: 'Galería de Ejemplos Antes y Después',
     heroSubtitle: 'Explora ejemplos de conversión con notas técnicas sobre selección de estilos, contraste y tratamiento del sujeto.',
@@ -1113,7 +1113,7 @@ export const es = {
     ]
   },
   invert: {
-    metaTitle: 'Invertir Colores de Imagen Online | Efecto Negativo Gratis',
+    metaTitle: 'Invertir Colores de Imagen Online',
     metaDesc: 'Invierte los colores de cualquier imagen online. Transforma fotos en negativos o cambia blanco a negro al instante. Herramienta privada y gratuita.',
     heroBadge: 'Herramienta de Efecto Negativo',
     heroTitle: 'Invertir Colores de Imagen Online',
@@ -1233,7 +1233,7 @@ export const es = {
     ]
   },
   grayscale: {
-    metaTitle: 'Convertidor de imágenes a escala de grises - Convertir imagen online',
+    metaTitle: 'Convertidor de Imagen a Escala de Grises',
     metaDesc: 'Convierta imágenes a escala de grises online de forma gratuita. Convierta JPG, PNG, WebP en su navegador de manera segura y privada.',
     heroBadge: 'Herramienta de Grises Gratis',
     heroTitle: 'Convertidor de Imágenes a Escala de Grises',
@@ -1300,7 +1300,7 @@ export const es = {
     footerBottom: 'Procesamiento Local • Sin Subidas a la Nube • Control Tonal Total'
   },
   blog: {
-    metaTitle: 'Blog de Fotografía en Blanco y Negro | Consejos, Técnicas y Tutoriales',
+    metaTitle: 'Blog de Fotografía en Blanco y Negro',
     metaDesc: 'Consejos de expertos, técnicas de edición y tutoriales para crear fotos en blanco y negro espectaculares.',
     heroBadge: '📝 Blog de Fotografía',
     heroTitle: 'Fotografía en Blanco y Negro',
