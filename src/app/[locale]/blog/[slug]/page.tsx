@@ -230,6 +230,40 @@ export default function BlogPostPage({ params }: Props) {
     notFound()
   }
 
+  const localizedMarkdownComponents = {
+    ...MarkdownComponents,
+    a: ({ href, children, ...props }: any) => {
+      if (!href) return <span>{children}</span>
+      const isInternal = href.startsWith('/') && !href.startsWith('//')
+      if (isInternal) {
+        const cleanHref = href.startsWith(`/${params.locale}/`) || href === `/${params.locale}` 
+          ? href 
+          : `/${params.locale}${href}`
+        const finalHref = cleanHref.replace(/\/+/g, '/')
+        return (
+          <Link 
+            href={finalHref} 
+            className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 underline underline-offset-4"
+            {...props}
+          >
+            {children}
+          </Link>
+        )
+      }
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 underline underline-offset-4"
+          {...props}
+        >
+          {children}
+        </a>
+      )
+    }
+  }
+
   const relatedPosts = blogPostList
     .filter(item => item.id !== post.id)
     .map(item => {
@@ -440,7 +474,7 @@ export default function BlogPostPage({ params }: Props) {
             <div className="prose prose-lg max-w-none prose-gray dark:prose-invert">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
-                components={MarkdownComponents as any}
+                components={localizedMarkdownComponents as any}
               >
                 {post.content}
               </ReactMarkdown>

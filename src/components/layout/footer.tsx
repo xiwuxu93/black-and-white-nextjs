@@ -12,31 +12,31 @@ export function Footer({ dict }: FooterProps) {
       title: "Product",
       links: [
         { name: dict.common.home, href: `/${dict.locale || 'en'}/` },
-        { name: dict.common.batch, href: `/${dict.locale || 'en'}/batch-black-and-white-converter` },
-        { name: dict.common.logo, href: `/${dict.locale || 'en'}/logo-to-black-and-white` },
-        { name: dict.common.pdf, href: `/${dict.locale || 'en'}/convert-pdf-to-black-and-white` },
-        { name: dict.invert.heroBadge, href: `/${dict.locale || 'en'}/invert-image-colors` },
-        { name: dict.sepia.heroBadge, href: `/${dict.locale || 'en'}/sepia-filter` },
-        { name: dict.grayscale.heroBadge, href: `/${dict.locale || 'en'}/grayscale-image-converter` },
-        { name: dict.common.gallery, href: `/${dict.locale || 'en'}/examples` },
-        { name: dict.newborn.heroBadge, href: `/${dict.locale || 'en'}/newborn-photography-guide` },
-        { name: dict.common.howToUse, href: `/${dict.locale || 'en'}/how-to-use` },
-        { name: dict.common.blog, href: `/${dict.locale || 'en'}/blog` },
+        { name: dict.common.batch, href: `/${dict.locale || 'en'}/batch-black-and-white-converter/` },
+        { name: dict.common.logo, href: `/${dict.locale || 'en'}/logo-to-black-and-white/` },
+        { name: dict.common.pdf, href: `/${dict.locale || 'en'}/convert-pdf-to-black-and-white/` },
+        { name: dict.invert.heroBadge, href: `/${dict.locale || 'en'}/invert-image-colors/` },
+        { name: dict.sepia.heroBadge, href: `/${dict.locale || 'en'}/sepia-filter/` },
+        { name: dict.grayscale.heroBadge, href: `/${dict.locale || 'en'}/grayscale-image-converter/` },
+        { name: dict.common.gallery, href: `/${dict.locale || 'en'}/examples/` },
+        { name: dict.newborn.heroBadge, href: `/${dict.locale || 'en'}/newborn-photography-guide/` },
+        { name: dict.common.howToUse, href: `/${dict.locale || 'en'}/how-to-use/` },
+        { name: dict.common.blog, href: `/${dict.locale || 'en'}/blog/` },
       ],
     },
     support: {
       title: "Support",
       links: [
-        { name: dict.common.faq, href: `/${dict.locale || 'en'}/faq` },
-        { name: dict.common.contact, href: `/${dict.locale || 'en'}/contact` },
-        { name: dict.common.about, href: `/${dict.locale || 'en'}/about` },
+        { name: dict.common.faq, href: `/${dict.locale || 'en'}/faq/` },
+        { name: dict.common.contact, href: `/${dict.locale || 'en'}/contact/` },
+        { name: dict.common.about, href: `/${dict.locale || 'en'}/about/` },
       ],
     },
     legal: {
       title: "Legal",
       links: [
-        { name: dict.common.privacy, href: `/${dict.locale || 'en'}/privacy` },
-        { name: dict.common.terms, href: `/${dict.locale || 'en'}/terms` },
+        { name: dict.common.privacy, href: `/${dict.locale || 'en'}/privacy/` },
+        { name: dict.common.terms, href: `/${dict.locale || 'en'}/terms/` },
       ],
     },
   };
@@ -54,7 +54,7 @@ export function Footer({ dict }: FooterProps) {
               {dict.layout.footerDesc}
             </p>
             <div className="pt-2">
-              <Link href={`/${dict.locale || 'en'}/about`}>
+              <Link href={`/${dict.locale || 'en'}/about/`}>
                 <Badge variant="outline" className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
                   <Coffee className="w-3 h-3 mr-2" />
                   {dict.layout.footerBadge}

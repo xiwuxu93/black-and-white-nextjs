@@ -52,25 +52,25 @@ export function Header({ dict }: HeaderProps) {
 
   const navigation = [
     { name: dict.common.home, href: `/${currentLocale}/` },
-    { name: dict.common.batch, href: `/${currentLocale}/batch-black-and-white-converter` },
-    { name: dict.common.gallery, href: `/${currentLocale}/examples` },
-    { name: dict.common.howToUse, href: `/${currentLocale}/how-to-use` },
-    { name: dict.common.blog, href: `/${currentLocale}/blog` },
+    { name: dict.common.batch, href: `/${currentLocale}/batch-black-and-white-converter/` },
+    { name: dict.common.gallery, href: `/${currentLocale}/examples/` },
+    { name: dict.common.howToUse, href: `/${currentLocale}/how-to-use/` },
+    { name: dict.common.blog, href: `/${currentLocale}/blog/` },
     {
       name: dict.layout.headerMore,
       href: "#",
       children: [
-        { name: dict.common.logo, href: `/${currentLocale}/logo-to-black-and-white`, icon: Layers, description: dict.layout.logoDesc },
-        { name: dict.common.pdf, href: `/${currentLocale}/convert-pdf-to-black-and-white`, icon: FileText, description: dict.layout.pdfDesc },
-        { name: dict.invert.heroBadge, href: `/${currentLocale}/invert-image-colors`, icon: ImageIcon, description: dict.layout.invertDesc },
-        { name: dict.sepia.heroBadge, href: `/${currentLocale}/sepia-filter`, icon: ImageIcon, description: dict.layout.sepiaDesc },
-        { name: dict.grayscale.heroBadge, href: `/${currentLocale}/grayscale-image-converter`, icon: ImageIcon, description: dict.layout.grayscaleDesc },
-        { name: dict.newborn.heroBadge, href: `/${currentLocale}/newborn-photography-guide`, icon: Camera, description: dict.layout.newbornDesc },
-        { name: dict.common.faq, href: `/${currentLocale}/faq`, icon: HelpCircle, description: dict.layout.faqDesc },
-        { name: dict.common.contact, href: `/${currentLocale}/contact`, icon: Mail, description: dict.layout.contactDesc },
-        { name: dict.common.about, href: `/${currentLocale}/about`, icon: Info, description: dict.layout.aboutDesc },
-        { name: dict.common.privacy, href: `/${currentLocale}/privacy`, icon: Shield, description: dict.layout.privacyDesc },
-        { name: dict.common.terms, href: `/${currentLocale}/terms`, icon: FileText, description: dict.layout.termsDesc }
+        { name: dict.common.logo, href: `/${currentLocale}/logo-to-black-and-white/`, icon: Layers, description: dict.layout.logoDesc },
+        { name: dict.common.pdf, href: `/${currentLocale}/convert-pdf-to-black-and-white/`, icon: FileText, description: dict.layout.pdfDesc },
+        { name: dict.invert.heroBadge, href: `/${currentLocale}/invert-image-colors/`, icon: ImageIcon, description: dict.layout.invertDesc },
+        { name: dict.sepia.heroBadge, href: `/${currentLocale}/sepia-filter/`, icon: ImageIcon, description: dict.layout.sepiaDesc },
+        { name: dict.grayscale.heroBadge, href: `/${currentLocale}/grayscale-image-converter/`, icon: ImageIcon, description: dict.layout.grayscaleDesc },
+        { name: dict.newborn.heroBadge, href: `/${currentLocale}/newborn-photography-guide/`, icon: Camera, description: dict.layout.newbornDesc },
+        { name: dict.common.faq, href: `/${currentLocale}/faq/`, icon: HelpCircle, description: dict.layout.faqDesc },
+        { name: dict.common.contact, href: `/${currentLocale}/contact/`, icon: Mail, description: dict.layout.contactDesc },
+        { name: dict.common.about, href: `/${currentLocale}/about/`, icon: Info, description: dict.layout.aboutDesc },
+        { name: dict.common.privacy, href: `/${currentLocale}/privacy/`, icon: Shield, description: dict.layout.privacyDesc },
+        { name: dict.common.terms, href: `/${currentLocale}/terms/`, icon: FileText, description: dict.layout.termsDesc }
       ]
     }
   ]

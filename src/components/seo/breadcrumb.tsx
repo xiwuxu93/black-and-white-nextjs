@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ChevronRight, Home } from 'lucide-react'
 import { WithContext, BreadcrumbList } from 'schema-dts'
 import { canonicalUrl } from '@/lib/seo'
+import { useParams } from 'next/navigation'
 
 interface BreadcrumbItem {
   name: string
@@ -15,6 +16,16 @@ interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
+  const params = useParams()
+  const locale = (params?.locale as string) || 'en'
+
+  const localizeUrl = (url: string) => {
+    if (url.startsWith('/') && !url.startsWith('//')) {
+      return `/${locale}${url === '/' ? '' : url}`
+    }
+    return url
+  }
+
   // Always include Home as the first item
   const breadcrumbItems = [
     { name: 'Home', url: '/' },
@@ -32,7 +43,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
       ...(item.url && {
         item: {
           '@type': 'WebPage',
-          '@id': canonicalUrl(item.url)
+          '@id': canonicalUrl(localizeUrl(item.url))
         }
       })
     }))
@@ -60,7 +71,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
             )}
             {item.url ? (
               <Link 
-                href={item.url}
+                href={localizeUrl(item.url)}
                 className="hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
               >
                 {item.name}
