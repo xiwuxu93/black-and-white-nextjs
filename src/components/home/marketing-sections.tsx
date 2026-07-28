@@ -110,9 +110,9 @@ export function MarketingSections({ dict }: MarketingSectionsProps) {
       </section>
 
       <section className="article-section text-gray-600 dark:text-gray-400 text-center max-w-3xl mx-auto">
-        <p className="text-xl mb-4 text-gray-800 dark:text-gray-200 font-medium">
+        <h2 className="text-2xl md:text-3xl mb-4 text-gray-800 dark:text-gray-200 font-bold border-b-0 pb-0">
           {dict.home.bannerTitle}
-        </p>
+        </h2>
         <p className="text-base md:text-lg">
           {dict.home.bannerDesc}
         </p>

@@ -22,6 +22,8 @@ export const en = {
     readBlog: 'Read the Blog'
   },
   home: {
+    metaTitle: 'Make Image Black and White Online - Free BW Converter',
+    metaDesc: 'Upload a color photo and turn it black and white in your browser. Adjust contrast, shadows, and film grain. 100% free, private, and local.',
     heroTitle: 'Black and White Image Converter',
     heroSubtitle: 'Upload a color photo, turn it black and white, and download the result. The conversion runs in your browser, so the original file stays on your device.',
     badges: [
@@ -45,7 +47,7 @@ export const en = {
     toolGuideAction: 'Read JPG Tips',
     bannerTitle: 'Quickly Make Image Black and White Online',
     bannerDesc: 'If you want to convert color image to black and white without opening complex editing software, BWConverter keeps the workflow short. Upload your file, apply professional monochrome filters, and download.',
-    howToTitle: 'How to Make an Image Black and White',
+    howToTitle: 'How to Make an Image Black and White Online',
     howToSteps: [
       {
         num: '1',

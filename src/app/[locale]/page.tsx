@@ -18,13 +18,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonical = alternates.canonical
   const dict = getDictionary(params.locale)
   return {
-    title: `${dict.home.heroTitle} - Make Image Black and White Online`,
-    description: dict.home.heroSubtitle,
+    title: dict.home.metaTitle,
+    description: dict.home.metaDesc,
     alternates,
     openGraph: {
       url: canonical,
-      title: `${dict.home.heroTitle} - Make Image Black and White Online`,
-      description: dict.home.heroSubtitle
+      title: dict.home.metaTitle,
+      description: dict.home.metaDesc
     }
   }
 }

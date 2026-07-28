@@ -47,7 +47,7 @@ export const de = {
     toolGuideAction: 'JPG-Tipps Lesen',
     bannerTitle: 'Foto Schnellig & Einfach Schwarz Weiß Machen',
     bannerDesc: 'Wenn Sie Farbbilder in Schwarz-Weiß umwandeln möchten, ohne komplexe Bildbearbeitungsprogramme öffnen zu müssen, bietet BWConverter den schnellsten Weg. Foto hochladen, Tonwerte anpassen und direkt herunterladen.',
-    howToTitle: 'So Machen Sie ein Bild Schwarz-Weiß',
+    howToTitle: 'So Machen Sie ein Bild Schwarz-Weiß Online',
     howToSteps: [
       {
         num: '1',

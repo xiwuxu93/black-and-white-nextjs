@@ -22,8 +22,8 @@ export const es = {
     readBlog: 'Leer el Blog'
   },
   home: {
-    metaTitle: 'Pasar Foto a Blanco y Negro Online | Convertir Imagen Gratis',
-    metaDesc: 'La herramienta más rápida para pasar tu foto a blanco y negro online. Procesa tus imágenes en el navegador sin subir archivos, sin marcas de agua y gratis.',
+    metaTitle: 'Convertir Imagen a Blanco y Negro Online - Pasar Foto a Blanco y Negro',
+    metaDesc: 'Convierta imagen a blanco y negro online de forma gratuita. La herramienta más rápida para pasar fotos a blanco y negro localmente en su navegador sin subir archivos.',
     heroTitle: 'Convertidor de Fotos a Blanco y Negro Online',
     heroSubtitle: 'Convierte tus imágenes a blanco y negro al instante con control total de contraste, sombras y grano. Sin subir tus fotos a ningún servidor.',
     badges: [
@@ -45,9 +45,9 @@ export const es = {
     toolGuideTitle: 'Guía de Trabajo con Fotos JPG',
     toolGuideDesc: '¿Vas a cambiar una imagen JPG a blanco y negro? Revisa nuestros consejos de ajuste y exportación.',
     toolGuideAction: 'Leer Consejos JPG',
-    bannerTitle: 'Pasar Foto a Blanco y Negro Rápidamente Online',
+    bannerTitle: 'Pasar Imagen a Blanco y Negro Rápidamente Online',
     bannerDesc: 'Si deseas poner una imagen en blanco y negro sin abrir programas complejos de edición, BWConverter te ofrece un flujo rápido. Arrastra tu archivo, ajusta los tonos y descarga gratis.',
-    howToTitle: 'Cómo Poner una Foto en Blanco y Negro',
+    howToTitle: 'Cómo Convertir Imagen a Blanco y Negro Online',
     howToSteps: [
       {
         num: '1',
