@@ -51,6 +51,8 @@ export function generateStaticParams() {
   ])
 }
 
+export const dynamicParams = false
+
 interface Props {
   params: { locale: string; slug: string }
 }
