@@ -9,11 +9,12 @@ import {
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Dictionary } from '@/locales'
+import { SITE_URL } from '@/lib/seo'
 
 export const HOWTO_SCHEMA = (dict: Dictionary) => ({
   name: dict.home.howToTitle,
   description: dict.home.heroSubtitle,
-  image: '/black-and-white-image.png',
+  image: `${SITE_URL}/how-to-before-after.jpg`,
   totalTime: 'PT1M',
   tool: ['BWConverter web app'],
   steps: dict.home.howToSteps.map((step) => ({

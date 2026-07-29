@@ -109,8 +109,8 @@ export default function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <NavigationStructuredData />
-        <StructuredData type="website" data={{}} />
-        <StructuredData type="application" data={{}} />
+        <StructuredData type="website" data={{ locale }} />
+        <StructuredData type="application" data={{ locale }} />
         
         {/* Preconnect to Journey ad script server to reduce latency */}
         <link rel="preconnect" href="https://scripts.scriptwrapper.com" />
