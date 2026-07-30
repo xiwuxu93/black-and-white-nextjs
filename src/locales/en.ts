@@ -22,7 +22,7 @@ export const en = {
     readBlog: 'Read the Blog'
   },
   home: {
-    metaTitle: 'Make Image Black and White Online - Free BW Converter',
+    metaTitle: 'Black and White Image Converter - Make Image Black and White Online',
     metaDesc: 'Upload a color photo and turn it black and white in your browser. Adjust contrast, shadows, and film grain. 100% free, private, and local.',
     heroTitle: 'Black and White Image Converter',
     heroSubtitle: 'Upload a color photo, turn it black and white, and download the result. The conversion runs in your browser, so the original file stays on your device.',
