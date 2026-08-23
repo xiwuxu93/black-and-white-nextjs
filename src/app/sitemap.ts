@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next'
 import { getBlogPosts } from '@/lib/blog'
 import { canonicalUrl } from '@/lib/seo'
 
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString()
   const locales = ['en', 'es', 'de', 'ja']

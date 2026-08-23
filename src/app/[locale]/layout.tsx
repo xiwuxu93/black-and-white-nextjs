@@ -13,7 +13,7 @@ import Script from 'next/script'
 const inter = { className: 'font-sans' }
 const enableAds = process.env.NEXT_PUBLIC_ENABLE_ADS === 'true'
 
-export const revalidate = 86400
+export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
   title: {
