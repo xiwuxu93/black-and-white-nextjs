@@ -116,6 +116,7 @@ export function Header({ dict }: HeaderProps) {
                       const ChildIcon = child.icon
                       return (
                         <Link
+                          prefetch={false}
                           key={child.name}
                           href={child.href}
                           className="flex items-start px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors group/item"
@@ -134,6 +135,7 @@ export function Header({ dict }: HeaderProps) {
                 </div>
               ) : (
                 <Link
+                  prefetch={false}
                   href={item.href}
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
@@ -160,6 +162,7 @@ export function Header({ dict }: HeaderProps) {
             
             <div className="absolute right-0 top-full mt-1.5 w-36 py-1 bg-background border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
               <Link
+                prefetch={false}
                 href={getTargetLocaleUrl('en')}
                 className={`flex items-center px-3 py-2 text-xs font-medium transition-colors ${
                   currentLocale === 'en'
@@ -170,6 +173,7 @@ export function Header({ dict }: HeaderProps) {
                 <span className="mr-2">🇺🇸</span> English (EN)
               </Link>
               <Link
+                prefetch={false}
                 href={getTargetLocaleUrl('es')}
                 className={`flex items-center px-3 py-2 text-xs font-medium transition-colors ${
                   currentLocale === 'es'
@@ -180,6 +184,7 @@ export function Header({ dict }: HeaderProps) {
                 <span className="mr-2">🇪🇸</span> Español (ES)
               </Link>
               <Link
+                prefetch={false}
                 href={getTargetLocaleUrl('de')}
                 className={`flex items-center px-3 py-2 text-xs font-medium transition-colors ${
                   currentLocale === 'de'
@@ -190,6 +195,7 @@ export function Header({ dict }: HeaderProps) {
                 <span className="mr-2">🇩🇪</span> Deutsch (DE)
               </Link>
               <Link
+                prefetch={false}
                 href={getTargetLocaleUrl('ja')}
                 className={`flex items-center px-3 py-2 text-xs font-medium transition-colors ${
                   currentLocale === 'ja'

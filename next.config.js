@@ -13,7 +13,7 @@ const nextConfig = {
       'fwfw.app',
       'acidtools.com'
     ],
-    unoptimized: false
+    unoptimized: true
   },
   trailingSlash: true,
   async redirects() {

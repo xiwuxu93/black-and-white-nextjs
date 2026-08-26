@@ -47,14 +47,14 @@ export function Footer({ dict }: FooterProps) {
         {/* Main content area */}
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-1 space-y-4">
-            <Link href={`/${dict.locale || 'en'}/`} className="text-xl font-bold tracking-tighter">
+            <Link prefetch={false} href={`/${dict.locale || 'en'}/`} className="text-xl font-bold tracking-tighter">
               BWConverter
             </Link>
             <p className="text-sm text-gray-500 leading-relaxed">
               {dict.layout.footerDesc}
             </p>
             <div className="pt-2">
-              <Link href={`/${dict.locale || 'en'}/about/`}>
+              <Link prefetch={false} href={`/${dict.locale || 'en'}/about/`}>
                 <Badge variant="outline" className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
                   <Coffee className="w-3 h-3 mr-2" />
                   {dict.layout.footerBadge}
@@ -72,6 +72,7 @@ export function Footer({ dict }: FooterProps) {
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <Link
+                      prefetch={false}
                       href={link.href}
                       className="text-sm text-gray-500 hover:text-primary-600 transition-colors block"
                     >
@@ -101,15 +102,15 @@ export function Footer({ dict }: FooterProps) {
             {/* Language Switcher Links */}
             <div className="flex items-center space-x-3 text-xs text-gray-400">
               <span className="font-semibold text-gray-500">Language:</span>
-              <Link href="/en/" className={`hover:text-primary-600 transition-colors ${dict.locale === 'en' ? 'font-bold text-gray-900 dark:text-white underline' : ''}`}>
+              <Link prefetch={false} href="/en/" className={`hover:text-primary-600 transition-colors ${dict.locale === 'en' ? 'font-bold text-gray-900 dark:text-white underline' : ''}`}>
                 🇺🇸 English
               </Link>
               <span>•</span>
-              <Link href="/es/" className={`hover:text-primary-600 transition-colors ${dict.locale === 'es' ? 'font-bold text-gray-900 dark:text-white underline' : ''}`}>
+              <Link prefetch={false} href="/es/" className={`hover:text-primary-600 transition-colors ${dict.locale === 'es' ? 'font-bold text-gray-900 dark:text-white underline' : ''}`}>
                 🇪🇸 Español
               </Link>
               <span>•</span>
-              <Link href="/de/" className={`hover:text-primary-600 transition-colors ${dict.locale === 'de' ? 'font-bold text-gray-900 dark:text-white underline' : ''}`}>
+              <Link prefetch={false} href="/de/" className={`hover:text-primary-600 transition-colors ${dict.locale === 'de' ? 'font-bold text-gray-900 dark:text-white underline' : ''}`}>
                 🇩🇪 Deutsch
               </Link>
             </div>
