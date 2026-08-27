@@ -717,66 +717,64 @@ export default function PdfPage({ dict }: PdfPageProps) {
               </div>
             )}
 
-            {/* Structured SEO FAQs & Tutorial (Only visible when no file is active) */}
-            {!file && (
-              <div className="mt-24 max-w-4xl mx-auto">
-                
-                {/* 3 Step Tutorial */}
-                <section className="article-section">
-                  <h2>
-                    {dict.pdf.howToTitle}
-                  </h2>
-                  <div className="grid md:grid-cols-3 gap-8">
-                    <div className="flex flex-col items-center text-center">
-                      <span className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-700 font-bold text-xl mb-4 dark:bg-blue-900/30 dark:text-blue-400">
-                        1
-                      </span>
-                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{dict.pdf.step1Title}</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        {dict.pdf.step1Desc}
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-center text-center">
-                      <span className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-700 font-bold text-xl mb-4 dark:bg-blue-900/30 dark:text-blue-400">
-                        2
-                      </span>
-                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{dict.pdf.step2Title}</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        {dict.pdf.step2Desc}
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-center text-center">
-                      <span className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-700 font-bold text-xl mb-4 dark:bg-blue-900/30 dark:text-blue-400">
-                        3
-                      </span>
-                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{dict.pdf.step3Title}</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        {dict.pdf.step3Desc}
-                      </p>
-                    </div>
+            {/* Structured SEO FAQs & Tutorial (Always visible for SEO & Ad Viewability) */}
+            <div className="mt-16 max-w-4xl mx-auto">
+              
+              {/* 3 Step Tutorial */}
+              <section className="article-section">
+                <h2>
+                  {dict.pdf.howToTitle}
+                </h2>
+                <div className="grid md:grid-cols-3 gap-8">
+                  <div className="flex flex-col items-center text-center p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                    <span className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-700 font-bold text-xl mb-4 dark:bg-blue-900/30 dark:text-blue-400">
+                      1
+                    </span>
+                    <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{dict.pdf.step1Title}</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                      {dict.pdf.step1Desc}
+                    </p>
                   </div>
-                </section>
+                  <div className="flex flex-col items-center text-center p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                    <span className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-700 font-bold text-xl mb-4 dark:bg-blue-900/30 dark:text-blue-400">
+                      2
+                    </span>
+                    <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{dict.pdf.step2Title}</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                      {dict.pdf.step2Desc}
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                    <span className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-700 font-bold text-xl mb-4 dark:bg-blue-900/30 dark:text-blue-400">
+                      3
+                    </span>
+                    <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{dict.pdf.step3Title}</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                      {dict.pdf.step3Desc}
+                    </p>
+                  </div>
+                </div>
+              </section>
 
-                {/* FAQ Accordions */}
-                <section className="article-section">
-                  <h2>
-                    {dict.pdf.faqTitle}
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {dict.pdf.faqQuestions.map((faq) => (
-                      <div key={faq.q} className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100/50 dark:border-gray-700/50">
-                        <h3 className="font-bold text-gray-900 dark:text-white mb-2">
-                          {faq.q}
-                        </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                          {faq.a}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </div>
-            )}
+              {/* FAQ Accordions / Grid */}
+              <section className="article-section">
+                <h2>
+                  {dict.pdf.faqTitle}
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6 text-left">
+                  {dict.pdf.faqQuestions.map((faq) => (
+                    <div key={faq.q} className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                      <h3 className="font-bold text-gray-900 dark:text-white mb-2">
+                        {faq.q}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        {faq.a}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
           </>
         )}
     </>

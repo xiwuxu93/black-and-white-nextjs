@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { subpath: '/blog', changeFrequency: 'weekly' as const, priority: 0.8 },
     { subpath: '/logo-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.85 },
     { subpath: '/convert-pdf-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.88 },
+    { subpath: '/png-to-black-and-white', changeFrequency: 'weekly' as const, priority: 0.88 },
     { subpath: '/invert-image-colors', changeFrequency: 'weekly' as const, priority: 0.82 },
     { subpath: '/sepia-filter', changeFrequency: 'weekly' as const, priority: 0.86 },
     { subpath: '/grayscale-image-converter', changeFrequency: 'weekly' as const, priority: 0.84 },

@@ -210,32 +210,19 @@ export function MarketingSections({ dict }: MarketingSectionsProps) {
 
       <section id="faq" className="article-section">
         <h2>{dict.home.faqTitle}</h2>
-        <div className="space-y-4 max-w-3xl mx-auto text-left">
+        <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto text-left">
           {dict.home.faqQuestions.map(({ q, a }) => (
-            <details
+            <div
               key={q}
-              className="group border border-gray-100 dark:border-gray-700/80 rounded-2xl p-5 bg-gray-50/50 dark:bg-gray-900/20 hover:bg-gray-50 dark:hover:bg-gray-900/40 transition-all duration-200"
+              className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm space-y-2"
             >
-              <summary className="list-none flex items-center justify-between cursor-pointer font-semibold text-gray-900 dark:text-white text-base md:text-lg focus:outline-none select-none">
-                <span>{q}</span>
-                <svg
-                  className="w-5 h-5 text-gray-400 transform group-open:rotate-180 transition-transform duration-200 flex-shrink-0 ml-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </summary>
-              <div className="mt-4 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700/50 pt-4">
-                <p>{a}</p>
-              </div>
-            </details>
+              <h3 className="font-bold text-gray-900 dark:text-white text-base md:text-lg">
+                {q}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                {a}
+              </p>
+            </div>
           ))}
         </div>
       </section>

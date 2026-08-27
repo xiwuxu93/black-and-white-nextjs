@@ -768,6 +768,77 @@ export const es = {
     summaryDesc: 'En resumen: Usa el servicio de forma legal. Tus imágenes son tuyas y no salen de tu navegador. El servicio es gratuito.',
     summaryBtn: 'Comenzar a Usar el Servicio'
   },
+  png: {
+    metaTitle: 'Convertir PNG a Blanco y Negro Online - Fondo Transparente',
+    metaDesc: 'Cómo convertir un archivo PNG a blanco y negro online gratis. Conserva fondos transparentes, admite blanco y negro puro (sin grises) y exporta sin pérdida.',
+    heroBadge: '✨ 100% Transparencia Conservada',
+    heroTitle: 'Convertir PNG a Blanco y Negro',
+    heroSubtitle: 'Convierte imágenes y gráficos PNG a blanco y negro sin que los fondos transparentes se vuelvan negros. 100% privado, local y sin pérdidas.',
+    badges: [
+      'Transparencia Alfa Intacta',
+      'Blanco y Negro Puro (Sin Gris)',
+      'Exportación PNG Sin Pérdida',
+      'Sin Subir a Servidores'
+    ],
+    uploadSupport: 'Compatible con: PNG (con o sin transparencia, máx. 15MB)',
+    invalidMessage: 'Por favor, sube un archivo de imagen PNG válido.',
+    whyTitle: '¿Por qué convertir PNG a blanco y negro con BWConverter?',
+    whyGrid: [
+      {
+        title: 'Preservación Real del Canal Alfa',
+        desc: 'A diferencia de otras herramientas que rellenan el fondo transparente con cuadros negros o blancos, BWConverter procesa RGBA de 32 bits y mantiene la transparencia intacta.'
+      },
+      {
+        title: 'Blanco y Negro Puro (Modo Sin Gris)',
+        desc: '¿Necesitas píxeles 100% negros para grabado láser, corte de vinilo o serigrafía? Usa nuestro modo de alto contraste para eliminar los tonos grises intermedios.'
+      },
+      {
+        title: 'Resolución Original Sin Pérdida',
+        desc: 'Tu archivo PNG se procesa localmente manteniendo las dimensiones exactas en píxeles y la nitidez original.'
+      }
+    ],
+    howToTitle: 'Cómo convertir un archivo PNG a blanco y negro',
+    howToSteps: [
+      {
+        num: '1',
+        title: 'Sube tu archivo PNG',
+        desc: 'Arrastra y suelta tu archivo PNG arriba. Las áreas transparentes se conservarán intactas.'
+      },
+      {
+        num: '2',
+        title: 'Elige Escala de Grises o B/N Puro',
+        desc: 'Selecciona Escala de Grises para tonos suaves, o Alto Contraste para formas sólidas en blanco y negro.'
+      },
+      {
+        num: '3',
+        title: 'Descarga tu PNG Transparente',
+        desc: 'Exporta directamente como PNG monocromático de 32 bits con fondo transparente y máxima resolución.'
+      }
+    ],
+    guideTitle: 'Consejos para Conversión Monocromática de PNG',
+    guideP1: 'El formato PNG es el estándar para gráficos digitales e ilustraciones gracias a su compresión sin pérdida y canal alfa de transparencia. Mantener la nitidez de los bordes y la transparencia es esencial.',
+    guideP2: 'Ya sea para preparar iconos en modo oscuro, plantillas de grabado láser o gráficos para impresión, nuestro motor en el navegador garantiza un resultado perfecto y privado.',
+    faqTitle: 'Preguntas Frecuentes',
+    faqQuestions: [
+      {
+        q: '¿Se mantendrá transparente el fondo de mi PNG?',
+        a: 'Sí. BWConverter procesa el canal alfa por separado, por lo que cualquier área transparente seguirá siendo 100% transparente en el resultado.'
+      },
+      {
+        q: '¿Puedo convertir un PNG a blanco y negro puro sin grises?',
+        a: '¡Sí! Selecciona el estilo de Alto Contraste. Esto binariza los píxeles visibles a blanco o negro sólido, ideal para corte de vinilo y serigrafía.'
+      },
+      {
+        q: '¿Esta herramienta reduce la resolución de mi PNG?',
+        a: 'No. Todo el procesamiento se realiza en la memoria de tu navegador con aceleración de hardware, conservando las dimensiones originales exactas.'
+      },
+      {
+        q: '¿Por qué otros convertidores vuelven negro el fondo transparente?',
+        a: 'La mayoría de convertidores simples aplanan la imagen en espacio RGB de 24 bits sin soporte alfa. BWConverter mantiene el espacio RGBA de 32 bits.'
+      }
+    ],
+    otherToolsTitle: 'Explorar Más Herramientas Monocromáticas'
+  },
   newborn: {
     metaTitle: 'Guía de Fotografía de Recién Nacidos',
     metaDesc: 'Aprende a capturar y editar retratos de bebés en blanco y negro. Consejos de iluminación, esquemas de sesión en casa y ajustes recomendados.',
@@ -1284,6 +1355,7 @@ export const es = {
   layout: {
     headerMore: 'Más Herramientas',
     logoDesc: 'Convertir logos PNG y SVG a monocromo',
+    pngDesc: 'PNG transparente y B/N puro sin grises',
     pdfDesc: 'Pasar documentos PDF a escala de grises',
     invertDesc: 'Invertir colores y crear negativos',
     sepiaDesc: 'Aplicar filtro sepia y tono vintage',

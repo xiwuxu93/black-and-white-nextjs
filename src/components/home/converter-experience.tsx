@@ -467,95 +467,80 @@ export function ConverterExperience({
 
   return (
     <>
-      {!showEditor && (
-        <>
-            <header className="article-header mx-auto max-w-4xl">
-              <Badge className="mb-6" variant="secondary">
-                {heroBadgeText ?? '✨ Free Black and White Converter'}
-              </Badge>
-              <h1>
-                {heroTitle ?? 'Convert Images to Black and White Online'}
-              </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300">
-                {heroSubtitle ??
-                  'Upload, preview, and export professional monochrome photos in seconds. No accounts, no uploads to third-party servers—everything happens in your browser.'}
+      <header className="article-header mx-auto max-w-4xl">
+        <Badge className="mb-6" variant="secondary">
+          {heroBadgeText ?? '✨ Free Black and White Converter'}
+        </Badge>
+        <h1>
+          {heroTitle ?? 'Convert Images to Black and White Online'}
+        </h1>
+        <p className="text-xl text-gray-600 dark:text-gray-300">
+          {heroSubtitle ??
+            'Upload, preview, and export professional monochrome photos in seconds. No accounts, no uploads to third-party servers—everything happens in your browser.'}
+        </p>
+      </header>
+
+      {/* Feature Badges */}
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
+        {(heroFeatureBadges ?? [
+          'Make Photos Black and White',
+          'Instant Privacy-Friendly Processing',
+          'Film Style Presets',
+          'Professional Download Formats'
+        ]).map((label) => (
+          <Badge key={label} variant="secondary">
+            {label}
+          </Badge>
+        ))}
+      </div>
+
+      {!showEditor ? (
+        <section className="article-section border-t-0 pt-0">
+          {isLandingPage ? (
+            <div className="mb-12 max-w-xl mx-auto">
+              <UploadArea
+                onFileSelect={handleFileSelect}
+                isProcessing={isProcessing}
+                className="w-full"
+                accept={uploadAccept}
+                supportText={uploadSupportText}
+                allowedExtensions={uploadAllowedExtensions}
+                invalidFileMessage={uploadInvalidFileMessage}
+              />
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 font-medium">
+                100% Free • Secure Local Browser Processing • No Registration Required
               </p>
-            </header>
-
-            {/* Feature Badges */}
-            <div className="flex flex-wrap justify-center gap-2">
-              {(heroFeatureBadges ?? [
-                'Make Photos Black and White',
-                'Instant Privacy-Friendly Processing',
-                'Film Style Presets',
-                'Professional Download Formats'
-              ]).map((label) => (
-                <Badge key={label} variant="secondary">
-                  {label}
-                </Badge>
-              ))}
             </div>
+          ) : (
+            <>
+              <div className="mb-12 max-w-xl mx-auto">
+                <UploadArea
+                  onFileSelect={handleFileSelect}
+                  isProcessing={isProcessing}
+                  className="w-full"
+                  accept={uploadAccept}
+                  supportText={uploadSupportText}
+                  allowedExtensions={uploadAllowedExtensions}
+                  invalidFileMessage={uploadInvalidFileMessage}
+                />
+              </div>
 
-            {/* Center Column Content */}
-            <section className="article-section border-t-0 pt-0">
-              {isLandingPage ? (
-                <div className="mb-12 max-w-xl mx-auto">
-                  <UploadArea
-                    onFileSelect={handleFileSelect}
-                    isProcessing={isProcessing}
-                    className="w-full"
-                    accept={uploadAccept}
-                    supportText={uploadSupportText}
-                    allowedExtensions={uploadAllowedExtensions}
-                    invalidFileMessage={uploadInvalidFileMessage}
-                  />
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 font-medium">
-                    100% Free • Secure Local Browser Processing • No Registration Required
-                  </p>
+              {!hideBottomFeatures && (
+                <div className="text-center text-gray-500 dark:text-gray-400 text-sm mb-6">
+                  Need to process a whole campaign?{' '}
+                  <Link
+                    href={`${localePrefix}/batch-black-and-white-converter`}
+                    className="text-primary-600 hover:underline dark:text-primary-400 font-semibold"
+                  >
+                    Try the batch converter
+                  </Link>
                 </div>
-              ) : (
-                <>
-                  <div className="mb-12 max-w-xl mx-auto">
-                    <UploadArea
-                      onFileSelect={handleFileSelect}
-                      isProcessing={isProcessing}
-                      className="w-full"
-                      accept={uploadAccept}
-                      supportText={uploadSupportText}
-                      allowedExtensions={uploadAllowedExtensions}
-                      invalidFileMessage={uploadInvalidFileMessage}
-                    />
-                  </div>
-
-                  {!hideBottomFeatures && (
-                    <div className="text-center text-gray-500 dark:text-gray-400 text-sm mb-6">
-                      Need to process a whole campaign?{' '}
-                      <Link
-                        href={`${localePrefix}/batch-black-and-white-converter`}
-                        className="text-primary-600 hover:underline dark:text-primary-400 font-semibold"
-                      >
-                        Try the batch converter
-                      </Link>
-                    </div>
-                  )}
-                </>
               )}
-            </section>
-          </>
-        )}
-
-      {showEditor && (
-        <div className="py-6">
-            {/* Centered Editor Header */}
-            <div className="mb-8 text-center">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                Your Black and White Image
-              </h1>
-              <p className="text-gray-600 dark:text-gray-400">
-                Choose a style below or download directly
-              </p>
-            </div>
-
+            </>
+          )}
+        </section>
+      ) : (
+        <div className="py-2">
             {/* Center Column Content */}
             <section className="article-section border-t-0 pt-0 space-y-8">
                 <div className="mb-8">

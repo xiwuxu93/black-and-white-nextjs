@@ -92,7 +92,7 @@ const nextConfig = {
       },
       {
         source: '/png-to-black-and-white/',
-        destination: '/en/',
+        destination: '/en/png-to-black-and-white/',
         permanent: true
       },
       {

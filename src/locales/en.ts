@@ -774,6 +774,77 @@ export const en = {
     bulkBtn: 'Go to Batch Converter',
     bulkBtnHome: 'Back to Homepage'
   },
+  png: {
+    metaTitle: 'Convert PNG to Black and White Online - Transparent & Pure B&W',
+    metaDesc: 'How to convert a PNG file to black and white online for free. Preserves transparent backgrounds, supports pure 1-bit black & white (no grey), and exports in full lossless resolution.',
+    heroBadge: '✨ 100% Transparency Preserved',
+    heroTitle: 'Convert PNG to Black and White',
+    heroSubtitle: 'Convert PNG images, graphics, and illustrations to black and white without turning transparent backgrounds black. 100% private, browser-based, and lossless.',
+    badges: [
+      'Alpha Transparency Preserved',
+      'Pure Black & White (No Grey)',
+      'Lossless PNG Export',
+      'Zero Server Uploads'
+    ],
+    uploadSupport: 'Supports: PNG (With or without transparency, Max 15MB)',
+    invalidMessage: 'Please upload a valid PNG image file.',
+    whyTitle: 'Why Convert PNG to Black and White with BWConverter?',
+    whyGrid: [
+      {
+        title: 'True Alpha Channel Preservation',
+        desc: 'Unlike common online tools that replace transparent backgrounds with solid black or white boxes, BWConverter processes 32-bit RGBA pixels and isolates the alpha channel untouched.'
+      },
+      {
+        title: 'Pure Black & White (No Grey Mode)',
+        desc: 'Need 100% black pixels for laser engraving, vinyl cutting, stamping, or screen printing? Use our High-Contrast Threshold mode to eliminate gray midtones completely.'
+      },
+      {
+        title: 'Lossless High-Resolution Output',
+        desc: 'Your PNG is converted locally in full original pixel dimensions. No lossy compression, no artifacts, and no reduction in DPI.'
+      }
+    ],
+    howToTitle: 'How to Convert a PNG File to Black and White',
+    howToSteps: [
+      {
+        num: '1',
+        title: 'Upload your PNG',
+        desc: 'Drag and drop your PNG file above. Transparent areas remain completely preserved.'
+      },
+      {
+        num: '2',
+        title: 'Choose Grayscale or Pure B&W',
+        desc: 'Select Classic Grayscale for smooth tonal gradients, or High Contrast for solid 1-bit black and white shapes.'
+      },
+      {
+        num: '3',
+        title: 'Download Transparent PNG',
+        desc: 'Export directly as a transparent 32-bit monochrome PNG in full lossless resolution.'
+      }
+    ],
+    guideTitle: 'Mastering PNG Monochrome Conversion',
+    guideP1: 'PNG (Portable Network Graphics) is the standard format for digital graphics, logos, and illustrations because of its lossless compression and 8-bit alpha transparency channel. When converting a color PNG to black and white, maintaining edge sharpness and background transparency is critical.',
+    guideP2: 'Whether you are preparing monochrome assets for dark mode UI interfaces, generating clean stencils for CNC cutting, or converting graphics for black and white booklet printing, our browser-based engine ensures pixel-perfect results with zero data loss.',
+    faqTitle: 'Frequently Asked Questions',
+    faqQuestions: [
+      {
+        q: 'How do I convert a PNG to black and white without losing transparency?',
+        a: 'Simply drag your PNG file into the upload box above. Our converter automatically detects transparent areas and keeps them 100% transparent in the monochrome output.'
+      },
+      {
+        q: 'Can I convert a PNG to pure black and white with no grey?',
+        a: 'Yes! Select the "High Contrast" or "Pure Black" style. This thresholds the image so that all visible pixels turn solid black or white without intermediate grey values, which is ideal for stencils and engraving.'
+      },
+      {
+        q: 'Does this tool reduce the quality or resolution of my PNG?',
+        a: 'No. The conversion runs in your browser memory using hardware acceleration, preserving exact pixel dimensions, crisp anti-aliased edges, and full original resolution.'
+      },
+      {
+        q: 'Why do other converters turn my transparent PNG background black?',
+        a: 'Most simple converters flatten images into a 24-bit RGB space that cannot store alpha transparency. BWConverter processes 32-bit RGBA pixel arrays, preserving transparency perfectly.'
+      }
+    ],
+    otherToolsTitle: 'Explore More Monochrome Tools'
+  },
   newborn: {
     metaTitle: 'Complete Newborn Photography Guide',
     metaDesc: 'Master newborn photography with our complete guide. Learn home session techniques for parents and professional studio workflows. Includes lighting setups, BWConverter presets, and delivery tips.',
@@ -1294,6 +1365,7 @@ export const en = {
   layout: {
     headerMore: 'More',
     logoDesc: 'Convert PNG and SVG logos',
+    pngDesc: 'Transparent PNG & pure B&W (no grey)',
     pdfDesc: 'Grayscale your PDF documents',
     invertDesc: 'Flip color values for design and negatives',
     sepiaDesc: 'Add warm vintage sepia tone',

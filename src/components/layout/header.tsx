@@ -61,6 +61,7 @@ export function Header({ dict }: HeaderProps) {
       href: "#",
       children: [
         { name: dict.common.logo, href: `/${currentLocale}/logo-to-black-and-white/`, icon: Layers, description: dict.layout.logoDesc },
+        { name: dict.png.heroTitle, href: `/${currentLocale}/png-to-black-and-white/`, icon: ImageIcon, description: dict.layout.pngDesc },
         { name: dict.common.pdf, href: `/${currentLocale}/convert-pdf-to-black-and-white/`, icon: FileText, description: dict.layout.pdfDesc },
         { name: dict.invert.heroBadge, href: `/${currentLocale}/invert-image-colors/`, icon: ImageIcon, description: dict.layout.invertDesc },
         { name: dict.sepia.heroBadge, href: `/${currentLocale}/sepia-filter/`, icon: ImageIcon, description: dict.layout.sepiaDesc },

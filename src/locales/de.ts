@@ -144,6 +144,7 @@ export const de = {
   layout: {
     headerMore: 'Tools & Ratgeber',
     logoDesc: 'Logos in Schwarz/Weiß umwandeln & Transparenz behalten.',
+    pngDesc: 'Transparentes PNG & reines S/W ohne Grau',
     pdfDesc: 'PDF-Dokumente in Graustufen umwandeln & Druckkosten sparen.',
     invertDesc: 'Farben einer Bilddatei online umkehren.',
     sepiaDesc: 'Warmen Vintage Sepia-Filter auf Fotos anwenden.',
@@ -704,6 +705,77 @@ export const de = {
     summaryTitle: 'Zusammenfassung der Bedingungen',
     summaryDesc: 'Kurz gesagt: Nutzen Sie den Dienst rechtmäßig. Ihre Bilder gehören Ihnen und verlassen Ihren Browser nicht. Der Dienst ist kostenlos.',
     summaryBtn: 'Dienst Nutzen Starten'
+  },
+  png: {
+    metaTitle: 'PNG in Schwarz-Weiß umwandeln - Transparent & Reines S/W',
+    metaDesc: 'Wie man ein PNG online kostenlos in Schwarz-Weiß umwandelt. Behält transparente Hintergründe bei, unterstützt echtes 1-Bit Schwarz-Weiß (ohne Grau) und exportiert verlustfrei.',
+    heroBadge: '✨ 100% Transparenz erhalten',
+    heroTitle: 'PNG in Schwarz-Weiß umwandeln',
+    heroSubtitle: 'Wandeln Sie PNG-Bilder und Grafiken in Schwarz-Weiß um, ohne dass transparente Hintergründe schwarz werden. 100% privat, lokal und verlustfrei.',
+    badges: [
+      'Alpha-Transparenz erhalten',
+      'Reines Schwarz-Weiß (Kein Grau)',
+      'Verlustfreier PNG-Export',
+      'Keine Server-Uploads'
+    ],
+    uploadSupport: 'Unterstützt: PNG (mit oder ohne Transparenz, max. 15MB)',
+    invalidMessage: 'Bitte laden Sie eine gültige PNG-Bilddatei hoch.',
+    whyTitle: 'Warum PNGs mit BWConverter in Schwarz-Weiß umwandeln?',
+    whyGrid: [
+      {
+        title: 'Echte Alpha-Kanal-Erhaltung',
+        desc: 'Im Gegensatz zu einfachen Online-Tools, die transparente Bereiche durch feste Farbfelder ersetzen, verarbeitet BWConverter 32-Bit-RGBA-Pixel und isoliert den Alpha-Kanal unberührt.'
+      },
+      {
+        title: 'Reines Schwarz-Weiß (Ohne Graustufen)',
+        desc: 'Benötigen Sie 100% schwarze Pixel für Lasergravuren, Folienschnitte oder Siebdruck? Nutzen Sie unseren Hochkontrast-Modus, um Zwischentöne vollständig zu entfernen.'
+      },
+      {
+        title: 'Verlustfreie Originalauflösung',
+        desc: 'Ihre PNG-Datei wird lokal im Browser ohne Kompressionsartefakte in voller Pixelauflösung verarbeitet.'
+      }
+    ],
+    howToTitle: 'Wie man ein PNG in Schwarz-Weiß umwandelt',
+    howToSteps: [
+      {
+        num: '1',
+        title: 'PNG-Datei hochladen',
+        desc: 'Ziehen Sie Ihre PNG-Datei oben in das Feld. Transparente Bereiche bleiben vollständig erhalten.'
+      },
+      {
+        num: '2',
+        title: 'Graustufen oder Reines S/W wählen',
+        desc: 'Wählen Sie Klassische Graustufen für weiche Tonwerte oder Starken Kontrast für feste 1-Bit-Formen.'
+      },
+      {
+        num: '3',
+        title: 'Transparentes PNG herunterladen',
+        desc: 'Exportieren Sie die Datei direkt als transparentes monochromes 32-Bit-PNG in voller Qualität.'
+      }
+    ],
+    guideTitle: 'Tipps zur monochromen PNG-Konvertierung',
+    guideP1: 'PNG ist das Standardformat für digitale Grafiken und Illustrationen dank verlustfreier Kompression und Alpha-Transparenz. Die Erhaltung scharfer Kanten und Transparenz ist entscheidend.',
+    guideP2: 'Ob für Dark-Mode-Icons, Laserschneidvorlagen oder Broschürendruck – unsere lokale Rendering-Engine garantiert perfekte Resultate ohne Datenverlust.',
+    faqTitle: 'Häufig gestellte Fragen',
+    faqQuestions: [
+      {
+        q: 'Bleibt der transparente Hintergrund meines PNGs erhalten?',
+        a: 'Ja. BWConverter trennt den Alpha-Kanal vom Farbkanal, sodass transparente Pixel auch im Schwarz-Weiß-Ergebnis zu 100% transparent bleiben.'
+      },
+      {
+        q: 'Kann ich ein PNG in reines Schwarz-Weiß ohne Grau umwandeln?',
+        a: 'Ja! Wählen Sie den Stil "Starker Kontrast" bzw. "Pure Black". Dies binarisiert alle sichtbaren Pixel in Schwarz oder Weiß – perfekt für Gravuren und Siebdruck.'
+      },
+      {
+        q: 'Verringert dieses Tool die Qualität meines PNGs?',
+        a: 'Nein. Die Verarbeitung erfolgt im Arbeitsspeicher Ihres Browsers mit Hardware-Beschleunigung unter Beibehaltung der vollen Originalauflösung.'
+      },
+      {
+        q: 'Warum färben andere Tools transparente Hintergründe schwarz?',
+        a: 'Einfache Konverter reduzieren Bilder oft auf 24-Bit-RGB ohne Alpha-Unterstützung. BWConverter behält das vollständige 32-Bit-RGBA-Array bei.'
+      }
+    ],
+    otherToolsTitle: 'Weitere Schwarz-Weiß-Tools entdecken'
   },
   newborn: {
     metaTitle: 'Leitfaden zur Neugeborenen-Fotografie',
