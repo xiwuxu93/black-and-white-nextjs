@@ -93,6 +93,9 @@ export const metadata: Metadata = {
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
     ]
+  },
+  other: {
+    'google-adsense-account': 'ca-pub-4855228928819714'
   }
 }
 
@@ -114,6 +117,9 @@ export default function RootLayout({
         <StructuredData type="website" data={{ locale }} />
         <StructuredData type="application" data={{ locale }} />
         
+        {/* Google AdSense Site Verification Meta Tag */}
+        <meta name="google-adsense-account" content="ca-pub-4855228928819714" />
+
         {/* Preconnect to Journey ad script server to reduce latency */}
         <link rel="preconnect" href="https://scripts.scriptwrapper.com" />
         <link rel="dns-prefetch" href="https://scripts.scriptwrapper.com" />
