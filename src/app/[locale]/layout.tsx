@@ -17,18 +17,19 @@ export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Black and White Image Converter - Make Image Black and White Online',
+    default: 'Black and White Converter | Convert Image to Black and White Online',
     template: '%s | BWConverter'
   },
-  description: 'Make an image black and white in your browser. Upload a photo, preview the result, adjust the tones, and download it without sending the file to a server.',
+  description: 'Free online black and white converter. Convert image to black and white in your browser with high-quality monochrome & grayscale presets. 100% free, private & instant.',
   keywords: [
+    'black and white converter',
     'black and white image converter',
-    'make image black and white',
     'image to black and white',
     'convert image to black and white',
-    'black and white converter',
-    'color to black and white',
-    'convert color image to black and white'
+    'make image black and white',
+    'convert image to pure black and white online',
+    'black and white photo converter',
+    'color to black and white'
   ],
   authors: [{ name: 'BWConverter.com' }],
   creator: 'BWConverter.com',
@@ -40,23 +41,23 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: canonicalUrl('/en/'),
-    title: 'Black and White Image Converter - Make Image Black and White Online',
-    description: 'Upload a color image and turn it black and white in your browser. Preview tones, adjust contrast, and download the result.',
-    siteName: 'BWConverter - Black and White Image Converter',
+    title: 'Black and White Converter | Convert Image to Black and White Online',
+    description: 'Free online black and white converter. Convert image to black and white in your browser with high-quality monochrome & grayscale presets. 100% free, private & instant.',
+    siteName: 'BWConverter - Black and White Converter',
     images: [
       {
         url: '/black-and-white-image.png',
         width: 1200,
         height: 630,
-        alt: 'Black and White Image Converter - BWConverter',
+        alt: 'Black and White Converter - BWConverter',
         type: 'image/png'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Black and White Image Converter - Make Image Black and White Online',
-    description: 'Upload a color image and turn it black and white in your browser. Preview tones, adjust contrast, and download the result.',
+    title: 'Black and White Converter | Convert Image to Black and White Online',
+    description: 'Free online black and white converter. Convert image to black and white in your browser with high-quality monochrome & grayscale presets. 100% free, private & instant.',
     images: ['/black-and-white-image.png'],
     creator: '@bwconverter'
   },

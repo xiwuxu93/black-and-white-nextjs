@@ -22,15 +22,15 @@ export const en = {
     readBlog: 'Read the Blog'
   },
   home: {
-    metaTitle: 'Black and White Image Converter - Make Image Black and White Online',
-    metaDesc: 'Upload a color photo and turn it black and white in your browser. Adjust contrast, shadows, and film grain. 100% free, private, and local.',
-    heroTitle: 'Black and White Image Converter',
-    heroSubtitle: 'Upload a color photo, turn it black and white, and download the result. The conversion runs in your browser, so the original file stays on your device.',
+    metaTitle: 'Black and White Converter | Convert Image to Black and White Online',
+    metaDesc: 'Free online black and white converter. Convert image to black and white in your browser with high-quality monochrome & grayscale presets. 100% free, private & instant.',
+    heroTitle: 'Black and White Converter',
+    heroSubtitle: 'Convert image to black and white online in seconds. Upload any photo, adjust tones, contrast & grayscale presets, and download high-resolution monochrome images directly in your browser.',
     badges: [
-      'Make Photos Black and White',
+      'Black and White Image Converter',
       'Instant Privacy-Friendly Processing',
-      'Film Style Presets',
-      'Professional Download Formats'
+      'Pure Black & White Presets',
+      'Full Resolution Download'
     ],
     toolGridTitle: 'Complete Tools to Convert Color to Black and White',
     toolLogoTitle: 'Logo & Icon Converter',
